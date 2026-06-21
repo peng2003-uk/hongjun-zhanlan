@@ -852,7 +852,7 @@
         /* ================================================================
            方案四：乌江归队识字剧场 —— 暖金启明 3D 文献台（6张照片环抱）
            ================================================================ */
-        .wujiang-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; background: linear-gradient(165deg, #2A2018 0%, #1E1810 30%, #261E14 60%, #1A140C 100%); }
+        .wujiang-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; background: linear-gradient(165deg, #8B3A3A 0%, #A34A4A 25%, #B85A5A 50%, #A34A4A 75%, #6B2525 100%); }
 
         .wujiang-theater .theater-bg-silhouette {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -868,8 +868,8 @@
         .wujiang-theater .theater-bg-silhouette::after {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 50% 35%, rgba(200, 160, 100, 0.06) 0%, transparent 50%),
-                        linear-gradient(180deg, rgba(20, 14, 8, 0.15) 0%, transparent 30%, transparent 70%, rgba(12, 8, 4, 0.30) 100%);
+            background: radial-gradient(ellipse at 50% 35%, rgba(220, 100, 80, 0.05) 0%, transparent 50%),
+                        linear-gradient(180deg, rgba(100, 30, 20, 0.10) 0%, transparent 30%, transparent 70%, rgba(50, 12, 8, 0.20) 100%);
             z-index: 1;
             pointer-events: none;
         }
@@ -878,33 +878,33 @@
 
         .wujiang-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 3vw; z-index: 3; }
 
-        .wujiang-theater .theater-story { width: 35%; height: 100%; background: rgba(30, 24, 18, 0.88); color: #f0e0c8; border: 1px solid rgba(196, 168, 138, 0.20); border-radius: 20px 8px 20px 8px; box-shadow: 0 0 60px rgba(140, 100, 50, 0.08), 0 4px 24px rgba(0, 0, 0, 0.40); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .wujiang-theater .theater-story { width: 35%; height: 100%; background: rgba(40, 18, 16, 0.88); color: #f0e0d0; border: 1px solid rgba(184, 67, 58, 0.20); border-radius: 20px 8px 20px 8px; box-shadow: 0 0 60px rgba(160, 40, 30, 0.10), 0 4px 24px rgba(0, 0, 0, 0.35); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
         .wujiang-theater .theater-story::-webkit-scrollbar { width: 4px; }
         .wujiang-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
         .wujiang-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(196, 168, 138, 0.3); border-radius: 2px; }
         .wujiang-theater .theater-story .story-inner-header { margin-bottom: 2.5vh; }
         .wujiang-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--gold-dim); display: block; margin-bottom: 4px; }
         .wujiang-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.6rem; color: var(--gold-light); letter-spacing: 3px; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
-        .wujiang-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(196, 168, 138, 0.12); color: var(--gold); margin-top: 6px; border: 1px solid rgba(196, 168, 138, 0.12); }
-        .wujiang-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: #f0e0c8; }
+        .wujiang-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(184, 67, 58, 0.10); color: var(--gold); margin-top: 6px; border: 1px solid rgba(184, 67, 58, 0.10); }
+        .wujiang-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: #f0e0d0; }
         .wujiang-theater .theater-story .narrative .narr-block .speaker { color: var(--gold); }
-        .wujiang-theater .theater-story .narrative .dialogue { border-left-color: var(--gold); background: linear-gradient(90deg, rgba(196,168,138,0.12) 0%, rgba(196,168,138,0.02) 100%); color: #e8dcc0; }
+        .wujiang-theater .theater-story .narrative .dialogue { border-left-color: var(--gold); background: linear-gradient(90deg, rgba(184,67,58,0.10) 0%, rgba(184,67,58,0.02) 100%); color: #e8ddd0; }
         .wujiang-theater .theater-story .narrative .dialogue .who { color: var(--gold-light); }
-        .wujiang-theater .theater-story .continue-hint { color: #8a7a60; border-color: rgba(255,255,255,0.10); }
+        .wujiang-theater .theater-story .continue-hint { color: #8a6a6a; border-color: rgba(255,255,255,0.10); }
         .wujiang-theater .theater-story .continue-hint:hover { border-color: var(--gold); color: var(--gold); }
 
         .wujiang-theater .theater-evidence { width: 65%; height: 100%; position: relative; perspective: 1200px; transform-style: preserve-3d; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
-        .wujiang-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68%; max-width: 480px; max-height: 78%; background: #1c1810; border: 1px solid rgba(196, 168, 138, 0.18); background-image: radial-gradient(rgba(196, 168, 138, 0.04) 15%, transparent 80%); box-shadow: 0 25px 55px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0,0,0,0.7); padding: 3.5vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .wujiang-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68%; max-width: 480px; max-height: 78%; background: #1c0e0c; border: 1px solid rgba(184, 67, 58, 0.18); background-image: radial-gradient(rgba(155, 44, 44, 0.06) 15%, transparent 80%); box-shadow: 0 25px 55px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0,0,0,0.5); padding: 3.5vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
         .wujiang-theater .theater-archive::-webkit-scrollbar { width: 3px; }
         .wujiang-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
-        .wujiang-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(196, 168, 138, 0.2); border-radius: 2px; }
-        .wujiang-theater .theater-archive .archive-head { font-size: 1.1rem; color: #c4a88a; font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196, 168, 138, 0.18); padding-bottom: 1vh; }
-        .wujiang-theater .theater-archive .archive-body { font-size: 0.82rem; line-height: 1.9; color: #c8b898; text-align: justify; }
+        .wujiang-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(184, 67, 58, 0.25); border-radius: 2px; }
+        .wujiang-theater .theater-archive .archive-head { font-size: 1.1rem; color: #a89070; font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(184, 67, 58, 0.16); padding-bottom: 1vh; }
+        .wujiang-theater .theater-archive .archive-body { font-size: 0.82rem; line-height: 1.9; color: #b0a596; text-align: justify; }
 
         /* 6张照片 —— 缩小尺寸，环抱中央档案板 */
-        .wujiang-theater .theater-photo { position: absolute; background: #1e1814; padding: 6px 6px 16px 6px; box-shadow: 0 18px 35px rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.03); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
+        .wujiang-theater .theater-photo { position: absolute; background: #1c1010; padding: 6px 6px 16px 6px; box-shadow: 0 18px 35px rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.03); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
         .wujiang-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(10%) brightness(75%); transition: filter 0.4s ease; }
-        .wujiang-theater .theater-photo .photo-caption { position: absolute; bottom: 3px; left: 4px; right: 4px; font-size: 0.38rem; color: #9a8a6a; text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .wujiang-theater .theater-photo .photo-caption { position: absolute; bottom: 3px; left: 4px; right: 4px; font-size: 0.38rem; color: #8a6a6a; text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .wujiang-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 130px; height: 105px; transform: rotate(-3deg) translateZ(18px); }
         .wujiang-theater .theater-photo.pos-tc { top: 2%; left: 50%; width: 125px; height: 100px; transform: translateX(-50%) rotate(1deg) translateZ(22px); }
         .wujiang-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 130px; height: 105px; transform: rotate(3deg) translateZ(18px); }
@@ -912,7 +912,7 @@
         .wujiang-theater .theater-photo.pos-bc { bottom: 4%; left: 50%; width: 120px; height: 105px; transform: translateX(-50%) rotate(-1deg) translateZ(20px); }
         .wujiang-theater .theater-photo.pos-br { bottom: 5%; right: 1%; width: 125px; height: 110px; transform: rotate(-2deg) translateZ(16px); }
 
-        .wujiang-theater .theater-evidence:hover .theater-archive { background: #241c14; border-color: rgba(196, 168, 138, 0.28); }
+        .wujiang-theater .theater-evidence:hover .theater-archive { background: #241010; border-color: rgba(184, 67, 58, 0.28); }
         .wujiang-theater .theater-evidence:hover .pos-tl { transform: translate(-10px, -8px) rotate(0deg) scale(1.02) translateZ(40px); }
         .wujiang-theater .theater-evidence:hover .pos-tc { transform: translateX(-50%) translateY(-8px) rotate(0deg) scale(1.02) translateZ(40px); }
         .wujiang-theater .theater-evidence:hover .pos-tr { transform: translate(10px, -8px) rotate(0deg) scale(1.02) translateZ(40px); }
@@ -922,10 +922,10 @@
         .wujiang-theater .theater-evidence:hover .theater-photo img { filter: sepia(0%) brightness(90%); }
 
         .wujiang-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
-        .wujiang-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 50px; background: rgba(28, 22, 16, 0.85); border: 1px solid rgba(196, 168, 138, 0.25); font-family: var(--font-text); font-size: 1rem; font-weight: 600; color: #c4a88a; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 12px 35px rgba(0,0,0,0.7); }
-        .wujiang-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(196, 168, 138, 0.25) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
-        .wujiang-theater .theater-passage-btn:hover { color: #f0e0c8; border-color: rgba(196, 168, 138, 0.7); transform: translateY(2px) scale(0.995); }
-        .wujiang-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #c4a88a, #f0e0c8, transparent); transition: none; pointer-events: none; }
+        .wujiang-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 50px; background: rgba(28, 16, 16, 0.85); border: 1px solid rgba(168, 144, 112, 0.25); font-family: var(--font-text); font-size: 1rem; font-weight: 600; color: #a89070; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 12px 35px rgba(0,0,0,0.7); }
+        .wujiang-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(155, 44, 44, 0.25) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
+        .wujiang-theater .theater-passage-btn:hover { color: #e6c9a8; border-color: rgba(155, 44, 44, 0.7); transform: translateY(2px) scale(0.995); }
+        .wujiang-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #9b2c2c, #c4a88a, transparent); transition: none; pointer-events: none; }
         .wujiang-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
         .wujiang-theater .scene-guide { display: none; }
 
