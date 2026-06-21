@@ -213,7 +213,8 @@
 
         #content { flex: 1; height: 100vh; overflow-y: auto; overflow-x: hidden; background: var(--paper); padding: 0; position: relative; scroll-behavior: smooth; transition: background-color 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
-        .theme-scene-1 #content::before, .theme-scene-3 #content::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
+        .theme-scene-1 #content::before { display: none; }
+        .theme-scene-3 #content::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
         .theme-scene-epilogue #content::before { background: radial-gradient(ellipse at 50% 25%, rgba(200,160,120,0.03) 0%, transparent 30%, rgba(0,0,0,0.25) 100%); }
         #content::-webkit-scrollbar { width: 6px; }
         #content::-webkit-scrollbar-thumb { background: var(--red-mid); border-radius: 4px; }
@@ -331,7 +332,7 @@
         .theme-scene-0 #topBar .unit-indicator { color: var(--ink-light); }
 
         .theme-scene-1 #content { background: #120C0C; }
-        .theme-scene-1 #content::before { background: radial-gradient(ellipse at 50% 30%, rgba(180,60,40,0.06) 0%, transparent 50%, rgba(0,0,0,0.30) 100%) !important; }
+        .theme-scene-1 #content::before { display: none !important; }
         .theme-scene-1 .scene-card { background: rgba(24,12,10,0.84); color: #f0e0d0; border: 1px solid rgba(160,50,40,0.18); border-radius: 8px 20px 8px 20px; clip-path: polygon(0% 2%, 3% 0%, 97% 1%, 100% 3%, 99% 97%, 97% 100%, 2% 99%, 0% 96%); box-shadow: 0 0 60px rgba(160,40,30,0.12), 0 4px 24px rgba(0,0,0,0.40); }
         .theme-scene-1 .scene-card::before { background: linear-gradient(90deg, transparent, rgba(200,80,60,0.4), transparent) !important; height: 2px !important; }
         .theme-scene-1 #topBar { background: rgba(20,10,8,0.90); backdrop-filter: blur(16px); border-bottom-color: rgba(160,50,40,0.18); }
@@ -560,9 +561,10 @@
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
         #sceneContainer:not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
-        /* 湘江血火红底 —— 提高红色明度与饱和度，让黑色人物剪影鲜明凸显 */
-        .theme-scene-1 #content { background: linear-gradient(175deg, #7A1515 0%, #9B2020 25%, #B8433A 50%, #9B2020 75%, #6B1010 100%); }
-        .theme-scene-1 #content::before { background: none !important; }
+        /* 湘江血火红底 —— 饱满鲜明的血色渐变，与全局红色系统一致 */
+        .theme-scene-1 #content { background: linear-gradient(175deg, #B22222 0%, #C0392B 25%, #D4493A 50%, #C0392B 75%, #8B1A1A 100%) !important; }
+        /* 彻底移除全局 #content::before 暗色覆盖层 */
+        .theme-scene-1 #content::before { display: none !important; }
 
         .xiangjiang-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; }
 
@@ -582,7 +584,7 @@
         .xiangjiang-theater .theater-bg-silhouette::after {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 50% 35%, rgba(210, 50, 30, 0.10) 0%, rgba(160, 30, 15, 0.16) 40%, rgba(100, 15, 10, 0.30) 75%, rgba(50, 8, 4, 0.45) 100%);
+            background: radial-gradient(ellipse at 50% 35%, rgba(240, 80, 50, 0.06) 0%, rgba(200, 50, 30, 0.10) 40%, rgba(140, 20, 10, 0.18) 75%, rgba(80, 10, 5, 0.28) 100%);
             z-index: 1;
             pointer-events: none;
         }
