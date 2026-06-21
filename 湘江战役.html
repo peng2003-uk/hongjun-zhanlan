@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>湘江战役 · 数字化历史文献剧场</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-light: #3d2b1f;
+    --red-stamp: #b42d23;
+    --gold-dim: #a89070;
+    --gold-light: #c4a88a;
+    --paper: #f7f4ef;
+    --card: #fcfaf7;
+    --board: #faf8f5;
+    --bezier: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif SC', '宋体', 'Songti SC', serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ===== 背景噪点纹理 ===== */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+
+  /* ===== "1934" 中央水印 ===== */
+  .year-watermark {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(8rem, 20vw, 18rem);
+    font-weight: 900;
+    color: #3a2010;
+    opacity: 0.018;
+    pointer-events: none; z-index: 0;
+    letter-spacing: -0.02em;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* ===== 主容器 ===== */
+  .main-container {
+    position: relative; z-index: 1;
+    max-width: 1240px; margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  /* ===== 12 列网格 ===== */
+  .exhibition-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 48px;
+  }
+
+  /* ===== 左栏：战地日记 ===== */
+  .diary-column {
+    grid-column: span 5;
+    animation: slideInLeft 0.9s var(--bezier) forwards;
+    opacity: 0;
+  }
+
+  .diary-card {
+    position: relative;
+    background: var(--card);
+    border-radius: 2px;
+    padding: 56px 44px 52px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      0 4px 16px rgba(0,0,0,0.03),
+      0 12px 40px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* 朱砂印章 */
+  .vermilion-stamp {
+    position: absolute;
+    top: 28px; right: 32px; z-index: 10;
+    width: 68px; height: 68px;
+    border: 2.5px solid rgba(180, 45, 35, 0.65);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(12deg);
+    color: rgba(180, 45, 35, 0.65);
+    font-family: 'Ma Shan Zheng', 'KaiTi', cursive;
+    font-size: 18px;
+    writing-mode: vertical-rl;
+    letter-spacing: 6px;
+    line-height: 1.1;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(180, 45, 35, 0.10);
+    pointer-events: none;
+    animation: stampDown 0.5s var(--bezier) 0.3s forwards;
+    opacity: 0;
+    transform-origin: center;
+  }
+
+  .vermilion-stamp::after {
+    content: '';
+    position: absolute; inset: 3px;
+    border: 1px solid rgba(180, 45, 35, 0.40);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
+  @keyframes stampDown {
+    0%   { opacity: 0; transform: rotate(12deg) scale(1.8); }
+    70%  { opacity: 1; transform: rotate(12deg) scale(0.92); }
+    85%  { transform: rotate(12deg) scale(1.04); }
+    100% { opacity: 1; transform: rotate(12deg) scale(1); }
+  }
+
+  /* 日记标题 */
+  .diary-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 4px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* 日记正文 */
+  .diary-text {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: var(--ink-light);
+    text-align: justify;
+  }
+
+  .diary-text p { margin-bottom: 16px; text-indent: 2em; }
+
+  .diary-text p:first-of-type::first-letter {
+    font-family: 'Ma Shan Zheng', 'KaiTi', cursive;
+    font-size: 2.4em;
+    color: var(--red-stamp);
+    float: left;
+    line-height: 0.75;
+    margin: 4px 6px 0 0;
+  }
+
+  /* 日记底部引线 */
+  .diary-card::after {
+    content: '';
+    position: absolute; bottom: 28px; left: 44px; right: 44px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);
+  }
+
+  /* ===== 右栏：3D 文献展台 ===== */
+  .stage-column {
+    grid-column: span 7;
+    perspective: 1200px;
+    animation: slideInRight 0.9s var(--bezier) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .stage-field {
+    position: relative;
+    width: 100%;
+    min-height: 680px;
+    transform-style: preserve-3d;
+  }
+
+  /* ===== 所有图片图层共享 ===== */
+  .layer-image {
+    position: absolute;
+    transition: transform 0.8s var(--bezier), box-shadow 0.8s var(--bezier), opacity 0.6s var(--bezier);
+    cursor: default;
+  }
+
+  .layer-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== Layer 1: 水墨战场背景 ===== */
+  .layer-bg-scroll {
+    z-index: 1;
+    top: 5%; left: -2%;
+    width: 95%; height: 65%;
+    transform: rotate(-1deg);
+    filter: sepia(0.5) contrast(1.15) brightness(0.75);
+    animation: dropBounce1 1.0s var(--bezier) 0.5s forwards;
+    opacity: 0;
+  }
+
+  .layer-bg-scroll img {
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  /* ===== Layer 2: 中央历史文本板（永远平直不动）===== */
+  .layer-history-board {
+    z-index: 2;
+    top: 15%; left: 8%;
+    width: 70%; height: auto;
+    transform: rotate(0deg);
+    background: var(--board);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 1px;
+    padding: 28px 32px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.03),
+      0 8px 24px rgba(0,0,0,0.06),
+      0 20px 48px rgba(0,0,0,0.05);
+    animation: dropBounce2 0.9s var(--bezier) 0.7s forwards;
+    opacity: 0;
+  }
+
+  .layer-history-board h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: #000;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+  }
+
+  .layer-history-board p {
+    font-size: 0.82rem;
+    line-height: 2.0;
+    color: #1a1a1a;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== Layer 3: 波拉罗伊德冲锋照 ===== */
+  .layer-polaroid {
+    z-index: 3;
+    top: 5%; right: 4%;
+    width: 38%;
+    transform: rotate(2.5deg);
+    background: #fefbf4;
+    padding: 8px 8px 36px 8px;
+    box-shadow:
+      0 4px 12px rgba(0,0,0,0.12),
+      0 12px 32px rgba(0,0,0,0.10);
+    animation: dropBounce3 0.85s var(--bezier) 0.9s forwards;
+    opacity: 0;
+  }
+
+  .layer-polaroid .polaroid-caption {
+    position: absolute; bottom: 8px; left: 12px; right: 12px;
+    font-size: 0.52rem; color: #666;
+    text-align: center; letter-spacing: 1px;
+    font-family: 'Noto Serif SC', serif;
+  }
+
+  /* ===== Layer 4: 陈树湘雕塑 ===== */
+  .layer-chen {
+    z-index: 4;
+    bottom: 18%; left: 2%;
+    width: 32%;
+    transform: rotate(-2deg);
+    box-shadow:
+      0 6px 18px rgba(0,0,0,0.18),
+      0 18px 40px rgba(0,0,0,0.12);
+    animation: dropBounce4 0.8s var(--bezier) 1.1s forwards;
+    opacity: 0;
+  }
+
+  .layer-chen .dark-frame {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,4,2,0.15) 0%, rgba(10,4,2,0.35) 100%);
+    pointer-events: none;
+  }
+
+  /* ===== Layer 5: 蓑衣文物（最高层，覆盖历史板右下角）===== */
+  .layer-artifact {
+    z-index: 5;
+    bottom: 8%; right: 2%;
+    width: 40%;
+    transform: rotate(1.5deg);
+    background: #fefdfb;
+    padding: 6px;
+    box-shadow:
+      0 8px 24px rgba(0,0,0,0.16),
+      0 20px 48px rgba(0,0,0,0.10);
+    animation: dropBounce5 0.75s var(--bezier) 1.3s forwards;
+    opacity: 0;
+  }
+
+  .layer-artifact .museum-label {
+    display: block;
+    padding: 8px 12px 6px;
+    background: #fefdfb;
+    font-size: 0.58rem;
+    color: #555;
+    letter-spacing: 1.5px;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .layer-artifact .museum-label strong {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+  }
+
+  .layer-artifact .museum-label small {
+    font-size: 0.48rem;
+    color: #999;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ===== 入场掉落弹跳关键帧 ===== */
+  @keyframes dropBounce1 {
+    0%   { opacity: 0; transform: rotate(-1deg) translateY(-40px); }
+    60%  { opacity: 0.40; transform: rotate(-1deg) translateY(6px); }
+    80%  { transform: rotate(-1deg) translateY(-3px); opacity: 0.40; }
+    100% { opacity: 0.40; transform: rotate(-1deg) translateY(0); }
+  }
+
+  @keyframes dropBounce2 {
+    0%   { opacity: 0; transform: rotate(0deg) translateY(-30px); }
+    55%  { opacity: 1; transform: rotate(0deg) translateY(5px); }
+    75%  { transform: rotate(0deg) translateY(-2px); }
+    100% { opacity: 1; transform: rotate(0deg) translateY(0); }
+  }
+
+  @keyframes dropBounce3 {
+    0%   { opacity: 0; transform: rotate(2.5deg) translateY(-36px); }
+    60%  { opacity: 1; transform: rotate(2.5deg) translateY(5px); }
+    80%  { transform: rotate(2.5deg) translateY(-2px); }
+    100% { opacity: 1; transform: rotate(2.5deg) translateY(0); }
+  }
+
+  @keyframes dropBounce4 {
+    0%   { opacity: 0; transform: rotate(-2deg) translateY(-32px); }
+    55%  { opacity: 1; transform: rotate(-2deg) translateY(5px); }
+    75%  { transform: rotate(-2deg) translateY(-2px); }
+    100% { opacity: 1; transform: rotate(-2deg) translateY(0); }
+  }
+
+  @keyframes dropBounce5 {
+    0%   { opacity: 0; transform: rotate(1.5deg) translateY(-28px); }
+    50%  { opacity: 1; transform: rotate(1.5deg) translateY(4px); }
+    70%  { transform: rotate(1.5deg) translateY(-2px); }
+    100% { opacity: 1; transform: rotate(1.5deg) translateY(0); }
+  }
+
+  @keyframes slideInLeft {
+    0%   { opacity: 0; transform: translateX(-60px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slideInRight {
+    0%   { opacity: 0; transform: translateX(60px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ================================================================
+     "图动文不动" 核心交互机制
+     ================================================================ */
+
+  /* 鼠标进入右栏 → 所有图片层回正 + 放大 + 上浮 + 阴影加深 */
+  .stage-field:hover .layer-bg-scroll {
+    transform: rotate(-0.2deg) scale(1.03) translateY(-6px) !important;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.22) !important;
+    opacity: 0.48 !important;
+  }
+
+  .stage-field:hover .layer-polaroid {
+    transform: rotate(0.2deg) scale(1.06) translateY(-8px) !important;
+    box-shadow:
+      0 8px 20px rgba(0,0,0,0.18),
+      0 20px 48px rgba(0,0,0,0.14) !important;
+  }
+
+  .stage-field:hover .layer-chen {
+    transform: rotate(-0.3deg) scale(1.05) translateY(-7px) !important;
+    box-shadow:
+      0 10px 28px rgba(0,0,0,0.24),
+      0 24px 56px rgba(0,0,0,0.14) !important;
+  }
+
+  .stage-field:hover .layer-artifact {
+    transform: rotate(0.2deg) scale(1.07) translateY(-10px) !important;
+    box-shadow:
+      0 12px 32px rgba(0,0,0,0.22),
+      0 28px 64px rgba(0,0,0,0.12) !important;
+  }
+
+  /* 历史板始终不动 */
+  .stage-field:hover .layer-history-board {
+    transform: rotate(0deg) translateY(0) scale(1) !important;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.03),
+      0 8px 24px rgba(0,0,0,0.06),
+      0 20px 48px rgba(0,0,0,0.05) !important;
+  }
+
+  /* 鼠标悬停在历史板上 → 周围图片降低不透明度 */
+  .stage-field.board-focused .layer-bg-scroll,
+  .stage-field.board-focused .layer-polaroid,
+  .stage-field.board-focused .layer-chen,
+  .stage-field.board-focused .layer-artifact {
+    opacity: 0.25 !important;
+  }
+
+  .stage-field.board-focused .layer-bg-scroll {
+    opacity: 0.25 !important;
+  }
+
+  /* ================================================================
+     响应式
+     ================================================================ */
+
+  @media (max-width: 1024px) {
+    .exhibition-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .diary-column { grid-column: span 1; }
+    .stage-column { grid-column: span 1; perspective: none; }
+
+    .main-container { padding: 32px 24px 56px; }
+
+    .stage-field { min-height: 520px; }
+
+    .diary-card { padding: 36px 28px 44px; }
+
+    .layer-bg-scroll    { transform: rotate(-0.5deg); }
+    .layer-polaroid     { transform: rotate(1.5deg); }
+    .layer-chen         { transform: rotate(-1deg); }
+    .layer-artifact     { transform: rotate(0.8deg); }
+
+    /* 移动端取消 hover 3D 动画，保持静态 */
+    .stage-field:hover .layer-bg-scroll,
+    .stage-field:hover .layer-polaroid,
+    .stage-field:hover .layer-chen,
+    .stage-field:hover .layer-artifact {
+      transform: none !important;
+      box-shadow: inherit !important;
+      opacity: inherit !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .main-container { padding: 20px 12px 40px; }
+
+    .diary-card { padding: 24px 16px 36px; }
+
+    .diary-text { font-size: 0.88rem; line-height: 2.0; }
+
+    .vermilion-stamp {
+      width: 48px; height: 48px;
+      font-size: 14px;
+      top: 16px; right: 16px;
+    }
+
+    .stage-field {
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* 移动端层叠变垂直排列 */
+    .layer-image {
+      position: relative !important;
+      top: auto !important; left: auto !important;
+      right: auto !important; bottom: auto !important;
+      width: 100% !important;
+      transform: rotate(0deg) !important;
+    }
+
+    .layer-history-board {
+      position: relative !important;
+      top: auto !important; left: auto !important;
+      width: 100% !important;
+      padding: 20px 18px;
+    }
+
+    .layer-polaroid { padding: 6px 6px 28px 6px; }
+    .stage-field:hover .layer-image { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 背景水印 -->
+  <div class="year-watermark">1934</div>
+
+  <!-- 主容器 -->
+  <div class="main-container">
+
+    <!-- 12 列展览网格 -->
+    <div class="exhibition-grid">
+
+      <!-- ====== 左栏：战地日记 ====== -->
+      <div class="diary-column">
+        <div class="diary-card">
+
+          <!-- 朱砂印章：生死湘江 -->
+          <div class="vermilion-stamp">生死湘江</div>
+
+          <!-- 日记标题 -->
+          <div class="diary-title">战地日记 · 十四岁的冲锋</div>
+
+          <!-- 日记正文（逐字不动） -->
+          <div class="diary-text">
+            <p>在突破第四道封锁线的湘江战役中，年仅14岁的红小鬼赵小二紧紧跟随着主力部队的步伐。天空中，国民党军的飞机轰鸣着俯冲而下，投下的炸弹在清澈的江水中炸开一道道巨大的水柱，江水瞬间被战士们的鲜血染得通红。</p>
+            <p>面对密集的弹雨和摇晃剧烈的浮桥，赵小二心中没有恐惧，只有一定要冲过去的坚定信念。他亲眼看见身边的战友一个个倒下，但冲锋的号角依然在耳边激荡。他冒着迎面扑来的滚滚浓烟，紧握着手中的钢枪，不顾一切地向前奔跑，年轻的脸庞上写满了超越年龄的坚毅与不怕牺牲的勇敢。</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ====== 右栏：3D 文献展台 ====== -->
+      <div class="stage-column">
+        <div class="stage-field" id="stageField">
+
+          <!-- Layer 1: 水墨战场全景背景 -->
+          <div class="layer-image layer-bg-scroll">
+            <img src="images/血战湘江.jpg" alt="血战湘江 · 水墨战场全景" loading="lazy" />
+          </div>
+
+          <!-- Layer 2: 中央历史文本板（永远平直不动） -->
+          <div class="layer-history-board" id="historyBoard">
+            <h3>历史档案 · 湘江战役</h3>
+            <p>湘江战役是红军长征出发以来最壮烈的一战。红军将士在浴血奋战中，以巨大的牺牲突破了国民党军精心构筑的第四道封锁线，粉碎了敌人围歼红军于湘江以东的企图。战役中，国民党军调集重兵，并在飞机的疯狂轰炸下，对正渡江的红军发起猛烈进攻。江水被鲜血染红，红五军团三十四师师长陈树湘率领部队绝境断后，苏醒后断肠牺牲。红一军团二师五团政委易荡平也在此役中壮烈牺牲。</p>
+          </div>
+
+          <!-- Layer 3: 波拉罗伊德冲锋特写 -->
+          <div class="layer-image layer-polaroid">
+            <img src="images/血战湘江.jpg" alt="红军冲锋 · 浮桥血战" loading="lazy" />
+            <span class="polaroid-caption">血战湘江 · 浮桥冲锋</span>
+          </div>
+
+          <!-- Layer 4: 陈树湘雕塑照 -->
+          <div class="layer-image layer-chen">
+            <img src="images/湘江战役陈树湘.jpg" alt="陈树湘烈士雕塑" loading="lazy" />
+            <div class="dark-frame"></div>
+          </div>
+
+          <!-- Layer 5: 蓑衣文物（最高层）-->
+          <div class="layer-image layer-artifact">
+            <img src="images/易荡平的蓑衣.png" alt="易荡平政委穿过的蓑衣" loading="lazy" />
+            <div class="museum-label">
+              <strong>一级文物：易荡平的蓑衣</strong>
+              红一军团二师五团政委 · 湘江战役遗物
+              <small>Museum Exhibit Archive</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== "图动文不动" 交互脚本 ===== -->
+  <script>
+    (function() {
+      const stageField = document.getElementById('stageField');
+      const historyBoard = document.getElementById('historyBoard');
+      if (!stageField || !historyBoard) return;
+
+      // 鼠标进入历史板 → 周围图片变暗
+      historyBoard.addEventListener('mouseenter', function() {
+        stageField.classList.add('board-focused');
+      });
+
+      historyBoard.addEventListener('mouseleave', function() {
+        stageField.classList.remove('board-focused');
+      });
+    })();
+  </script>
+
+</body>
+</html>

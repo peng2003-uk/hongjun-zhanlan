@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>湘江战役——血肉绞肉机场景</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== 全局极致沉浸暗色系统 ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #140505;
+            font-family: 'Noto Serif SC', serif;
+            color: #dcd0c0;
+        }
+
+        /* ===== 湘江战役核心舞台容器 ===== */
+        .xiangjiang-theater-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5vh 4vw 4vh 4vw;
+            overflow: hidden;
+        }
+
+        /* 第1层：暗红底+黑色冲锋与轰炸剪影全屏背景 */
+        .silhouette-epic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/湘江战役剪影.png');
+            background-size: cover;
+            background-position: center 70%;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        /* 第2层：硝烟暗色滤镜——中心微透、四周深黑聚光灯 */
+        .theater-smoke-lens {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(20, 5, 5, 0.4) 20%, rgba(10, 3, 3, 0.85) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ===== 上层交互内容区：双栏 40% : 60% ===== */
+        .interactive-stage {
+            position: relative;
+            width: 100%;
+            height: 76vh;
+            display: flex;
+            gap: 3.5vw;
+            z-index: 3;
+        }
+
+        /* --- 左侧：赵小二的故事文本框 (40%) --- */
+        .story-panel {
+            width: 40%;
+            height: 100%;
+            background: rgba(15, 8, 8, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(155, 44, 44, 0.25);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.95), 0 20px 40px rgba(0,0,0,0.8);
+            padding: 5vh 2.5vw;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            border-radius: 4px;
+        }
+
+        .story-panel::-webkit-scrollbar { width: 4px; }
+        .story-panel::-webkit-scrollbar-track { background: transparent; }
+        .story-panel::-webkit-scrollbar-thumb { background: rgba(155, 44, 44, 0.4); border-radius: 2px; }
+
+        .story-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.2rem;
+            color: #c4a88a;
+            margin-bottom: 3.5vh;
+            letter-spacing: 2px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.9);
+        }
+
+        .story-text {
+            font-size: 1.05rem;
+            line-height: 2.3;
+            color: #dcd0c0;
+            letter-spacing: 1px;
+            text-align: justify;
+        }
+
+        .story-text p {
+            margin-bottom: 3vh;
+            text-indent: 2em;
+        }
+
+        /* --- 右侧：历史文献与 3D 照片陈列台 (60%) --- */
+        .evidence-station {
+            width: 60%;
+            height: 100%;
+            position: relative;
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+
+        /* 正中央：雷打不动的历史档案底板 */
+        .archive-plate {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%, 0);
+            width: 75%;
+            height: 75%;
+            background: #1c1010;
+            border: 1px solid rgba(168, 144, 112, 0.15);
+            background-image: radial-gradient(rgba(155, 44, 44, 0.06) 15%, transparent 80%);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0,0,0,0.7);
+            padding: 5vh 3.5vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 5;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .archive-head {
+            font-size: 1.35rem;
+            color: #a89070;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3vh;
+            letter-spacing: 3px;
+            border-bottom: 1px solid rgba(168, 144, 112, 0.15);
+            padding-bottom: 1.5vh;
+        }
+
+        .archive-body {
+            font-size: 0.98rem;
+            line-height: 2;
+            color: #b0a596;
+            text-align: justify;
+        }
+
+        /* 民谣：三年不饮湘江水 */
+        .archive-ballad {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.65rem;
+            color: #9b2c2c;
+            text-align: center;
+            margin: 2.5vh 0;
+            letter-spacing: 2px;
+            display: block;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* 四角辐射：错落散落的 3D 悬浮相片 */
+        .historic-photo {
+            position: absolute;
+            background: #241b1b;
+            padding: 10px 10px 25px 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.95);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .historic-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(25%) brightness(60%) sepia(15%);
+            transition: filter 0.4s ease;
+        }
+
+        /* 左上角：血战湘江AI史诗图片 */
+        .pos-top-left {
+            top: -4%;
+            left: -3%;
+            width: 180px;
+            height: 135px;
+            transform: rotate(-4.5deg) translateZ(30px);
+        }
+        /* 右上角：冲锋纪实照 */
+        .pos-top-right {
+            top: 0%;
+            right: -3%;
+            width: 165px;
+            height: 145px;
+            transform: rotate(5deg) translateZ(45px);
+        }
+        /* 左下角：陈树湘雕塑照 */
+        .pos-bottom-left {
+            bottom: -3%;
+            left: 1%;
+            width: 160px;
+            height: 150px;
+            transform: rotate(3.5deg) translateZ(25px);
+        }
+        /* 右下角：易荡平遗物蓑衣 */
+        .pos-bottom-right {
+            bottom: 1%;
+            right: -4%;
+            width: 145px;
+            height: 160px;
+            transform: rotate(-4deg) translateZ(35px);
+        }
+
+        /* ===== 交互——鼠标划入右侧：拨开硝烟、乱中取序 ===== */
+        .evidence-station:hover .archive-plate {
+            background: #241414;
+            border-color: rgba(168, 144, 112, 0.25);
+        }
+
+        .evidence-station:hover .pos-top-left {
+            transform: translate(-30px, -25px) rotate(0deg) translateZ(60px);
+        }
+        .evidence-station:hover .pos-top-right {
+            transform: translate(30px, -25px) rotate(0deg) translateZ(60px);
+        }
+        .evidence-station:hover .pos-bottom-left {
+            transform: translate(-30px, 25px) rotate(0deg) translateZ(60px);
+        }
+        .evidence-station:hover .pos-bottom-right {
+            transform: translate(30px, 25px) rotate(0deg) translateZ(60px);
+        }
+
+        .evidence-station:hover .historic-photo img {
+            filter: grayscale(5%) brightness(80%) sepia(5%);
+        }
+
+        /* ===== 底部：时空过渡按钮 ===== */
+        .bottom-passage {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 4;
+            padding-top: 2vh;
+        }
+
+        .passage-btn {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            height: 54px;
+            background: rgba(28, 16, 16, 0.8);
+            border: 1px solid rgba(168, 144, 112, 0.25);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #a89070;
+            letter-spacing: 4px;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+        }
+
+        /* 余烬微光呼吸 */
+        .passage-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(155, 44, 44, 0.3) 0%, transparent 70%);
+            animation: ember-breathing 3.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes ember-breathing {
+            0%, 100% { opacity: 0.3; transform: scale(0.96); }
+            50% { opacity: 0.7; transform: scale(1.04); }
+        }
+
+        .passage-btn:hover {
+            color: #e6c9a8;
+            border-color: rgba(155, 44, 44, 0.7);
+            transform: translateY(2px) scale(0.995);
+        }
+
+        /* 战火引线滑过 */
+        .passage-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: -100%;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, #9b2c2c, #c4a88a, transparent);
+            transition: none;
+        }
+        .passage-btn:hover::after {
+            left: 100%;
+            transition: all 0.9s linear;
+        }
+
+        /* ===== 全屏血幕谢幕转场 ===== */
+        .blood-curtain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #2b0404;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.15);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .blood-curtain.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="xiangjiang-theater-container">
+
+        <!-- 第1层：暗红剪影全屏背景 -->
+        <div class="silhouette-epic-bg"></div>
+
+        <!-- 第2层：聚光灯暗色滤镜 -->
+        <div class="theater-smoke-lens"></div>
+
+        <!-- 第3层：双栏内容区 (40%:60%) -->
+        <main class="interactive-stage">
+
+            <!-- 左侧：赵小二独白叙事 -->
+            <section class="story-panel">
+                <h2 class="story-title">赵小二的独白</h2>
+                <div class="story-text">
+                    <p>江水一直在排山倒海地响，天上飞机的轰炸声震得耳膜发烂。排长拉着我的领子把我按在浮桥的木板上，子弹贴着脑门嗖嗖地飞，打在水里溅起半米高的水花。我睁开眼，身边的浮桥木板已经被血水泡得发黑、打滑。</p>
+                    <p>"往前冲！别回头！"排长的大嗓门瞬间被一声巨大的爆炸吞了进去。我眼睁睁看着走在前面的一个老班长被气浪掀进了湘江，连个水泡都没冒出来。江面上全是漂着的军帽，还有被炸断的浮桥木屑。</p>
+                    <p>我的两条腿抖得不听使唤，手里死死攥着那杆比我还高的步枪。每往前挪一步，脚底下的木板就在剧烈晃动。这不是在过河，我们是在肉打的绞肉机里生生往前抠出一条活路啊……</p>
+                </div>
+            </section>
+
+            <!-- 右侧：3D 历史文献 + 四角照片陈列台 -->
+            <section class="evidence-station">
+
+                <!-- 中央档案板 -->
+                <article class="archive-plate">
+                    <h3 class="archive-head">中央红军长征史料 · 湘江突破</h3>
+                    <div class="archive-body">
+                        <p>湘江战役，是中央红军长征出发以来最壮烈的一战。红军将士在桂北湘江畔与数倍于己的敌军展开了惨绝人寰的血战，连续突破国民党军设置的第四道封锁线。</p>
+                        <span class="archive-ballad">"三年不饮湘江水，十年不食湘江鱼"</span>
+                        <p>在这场被公认为"血肉绞肉机"的战役中，中央红军由出发时的8.6万人锐减至3万余人。无数年轻的红军战士将热血与生命永远留在了冰冷的湘江之底，用血肉之躯为中国革命保全了火种。</p>
+                    </div>
+                </article>
+
+                <!-- 左上角：抢渡浮桥AI史诗图 -->
+                <div class="historic-photo pos-top-left">
+                    <img src="images/血战湘江ai图片.png" alt="血战湘江浮桥抢渡" />
+                </div>
+
+                <!-- 右上角：战火冲锋全景 -->
+                <div class="historic-photo pos-top-right">
+                    <img src="images/血战湘江.jpg" alt="红军战士火线突围" />
+                </div>
+
+                <!-- 左下角：陈树湘烈士雕塑 -->
+                <div class="historic-photo pos-bottom-left">
+                    <img src="images/湘江战役陈树湘.jpg" alt="陈树湘烈士雕塑" />
+                </div>
+
+                <!-- 右下角：易荡平遗物蓑衣 -->
+                <div class="historic-photo pos-bottom-right">
+                    <img src="images/易荡平的蓑衣.png" alt="易荡平政委穿过的蓑衣" />
+                </div>
+
+            </section>
+        </main>
+
+        <!-- 第4层：底部时空通道按钮 -->
+        <footer class="bottom-passage">
+            <button class="passage-btn" id="nextStageBtn">
+                越过血染之江 · 启程漫漫长征路
+            </button>
+        </footer>
+    </div>
+
+    <!-- 全屏血幕谢幕转场 -->
+    <div class="blood-curtain" id="bloodCurtain"></div>
+
+    <script>
+        document.getElementById('nextStageBtn').addEventListener('click', function() {
+            const curtain = document.getElementById('bloodCurtain');
+            curtain.classList.add('active');
+
+            setTimeout(function() {
+                alert('【剧场谢幕】湘江战役绞肉机场景结束，正在跨越时空，载入长征下一站……');
+                curtain.classList.remove('active');
+            }, 700);
+        });
+    </script>
+</body>
+</html>

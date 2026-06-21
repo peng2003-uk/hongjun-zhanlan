@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>雄关漫道真如铁 · 红小鬼的长征路</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== 全局 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --red: #8B1A1A;
+            --red-light: #B22222;
+            --gold: #C4A88A;
+            --gold-light: #E6C9A8;
+            --paper: #F5E6C8;
+            --paper-dark: #E8DCCC;
+            --ink: #1A1A1A;
+            --ink-light: #3D2B1F;
+            --bg-dark: #1E1A16;
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --radius: 24px;
+            --transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --font-title: 'Ma Shan Zheng', '华文行楷', cursive;
+            --font-serif: 'Noto Serif SC', '宋体', serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-serif);
+            background: var(--bg-dark);
+            color: var(--ink);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--red-light);
+            border-radius: 4px;
+        }
+
+        /* ===== 封面 ===== */
+        #cover {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at 30% 20%, #2a1212, #0d0808);
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #cover.active {
+            display: flex;
+        }
+        #cover .bg-deco {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        #cover .bg-deco .stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 215, 150, 0.3), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(255, 215, 150, 0.2), transparent),
+                radial-gradient(1px 1px at 60% 20%, rgba(255, 215, 150, 0.4), transparent),
+                radial-gradient(1px 1px at 80% 50%, rgba(255, 215, 150, 0.2), transparent),
+                radial-gradient(2px 2px at 10% 80%, rgba(255, 215, 150, 0.25), transparent),
+                radial-gradient(1px 1px at 90% 10%, rgba(255, 215, 150, 0.3), transparent);
+            background-size: 200% 200%;
+            animation: twinkle 8s ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        #cover .bg-deco .mountain {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(180deg, transparent 0%, rgba(40, 20, 20, 0.3) 40%, rgba(20, 10, 10, 0.6) 100%);
+            clip-path: polygon(0% 60%, 15% 30%, 30% 55%, 45% 20%, 60% 45%, 75% 25%, 85% 50%, 100% 35%, 100% 100%, 0% 100%);
+        }
+        #cover .poster {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            width: 100%;
+            padding: 40px 32px 36px;
+            background: linear-gradient(145deg, rgba(30, 20, 16, 0.88), rgba(20, 14, 12, 0.94));
+            backdrop-filter: blur(18px);
+            border-radius: 32px;
+            border: 1px solid rgba(178, 34, 34, 0.3);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 215, 150, 0.05);
+            text-align: center;
+            margin: 20px;
+            animation: floatPoster 4s ease-in-out infinite;
+        }
+        @keyframes floatPoster {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        #cover .poster .star {
+            font-size: 2.6rem;
+            color: var(--red-light);
+            text-shadow: 0 0 40px rgba(178, 34, 34, 0.3);
+            display: block;
+            margin-bottom: 2px;
+        }
+        #cover .poster .year {
+            font-size: 0.75rem;
+            color: #8a6a5a;
+            letter-spacing: 6px;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        #cover .poster .main-title {
+            font-family: var(--font-title);
+            font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+            color: var(--gold-light);
+            letter-spacing: 8px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        #cover .poster .main-title .red {
+            color: var(--red-light);
+        }
+        #cover .poster .sub-title {
+            font-size: clamp(0.85rem, 1.6vw, 1.2rem);
+            color: var(--gold);
+            letter-spacing: 6px;
+            margin: 6px 0 12px;
+            font-weight: 300;
+        }
+        #cover .poster .divider-line {
+            width: 80px;
+            height: 2px;
+            margin: 12px auto 16px;
+            background: linear-gradient(90deg, transparent, var(--red-light), transparent);
+            border-radius: 4px;
+        }
+        #cover .poster .desc {
+            font-size: 0.82rem;
+            color: #8a7a6a;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            max-width: 400px;
+            margin: 0 auto 22px;
+            font-weight: 300;
+        }
+        #cover .poster .btn-enter {
+            background: var(--red-light);
+            border: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 14px 44px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px rgba(178, 34, 34, 0.35);
+            letter-spacing: 3px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        #cover .poster .btn-enter:hover {
+            background: var(--red);
+            transform: scale(1.04);
+            box-shadow: 0 12px 48px rgba(178, 34, 34, 0.5);
+        }
+        #cover .poster .btn-enter .arrow {
+            display: inline-block;
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+        #cover .poster .btn-enter:hover .arrow {
+            transform: translateX(8px);
+        }
+        #cover .poster .btn-enter .pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 64px;
+            border: 2px solid rgba(178, 34, 34, 0.2);
+            animation: pulseRing 2.4s ease-out infinite;
+        }
+        @keyframes pulseRing {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.12);
+                opacity: 0;
+            }
+        }
+        #cover .poster .footer-note {
+            margin-top: 18px;
+            font-size: 0.6rem;
+            color: #5a4a3a;
+            letter-spacing: 3px;
+        }
+        #cover .poster .footer-note strong {
+            color: #7a5a4a;
+        }
+
+        /* ===== 主布局 ===== */
+        #app {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: var(--paper);
+        }
+        #app.visible {
+            display: flex;
+        }
+
+        /* ===== 左侧路线图 ===== */
+        #mapNav {
+            width: 160px;
+            min-width: 160px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1410 0%, #1e1a16 100%);
+            padding: 60px 0 30px 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border-right: 1px solid rgba(178, 34, 34, 0.15);
+            flex-shrink: 0;
+            z-index: 100;
+        }
+        #mapNav::-webkit-scrollbar {
+            width: 2px;
+        }
+        #mapNav::-webkit-scrollbar-thumb {
+            background: var(--red-light);
+            border-radius: 2px;
+        }
+        #mapNav .map-title {
+            text-align: center;
+            color: var(--gold-light);
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            padding: 0 10px 16px;
+            border-bottom: 1px solid rgba(178, 34, 34, 0.15);
+            margin: 0 12px 16px;
+        }
+        #mapNav .map-title span {
+            display: block;
+            font-size: 0.55rem;
+            font-family: var(--font-serif);
+            color: #6a5a4a;
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-top: 2px;
+        }
+        #mapNav .map-svg-wrap {
+            padding: 0 12px;
+            display: flex;
+            justify-content: center;
+        }
+        #mapNav .map-svg-wrap svg {
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 160px);
+        }
+        .map-node {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .map-node circle {
+            transition: all 0.3s;
+            fill: #3a2a1a;
+            stroke: #5a4a3a;
+            stroke-width: 2;
+        }
+        .map-node text {
+            fill: #6a5a4a;
+            font-size: 7px;
+            font-family: var(--font-serif);
+            letter-spacing: 0.5px;
+            dominant-baseline: central;
+            text-anchor: middle;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        .map-node .node-label {
+            fill: #6a5a4a;
+            font-size: 5.5px;
+            font-family: var(--font-serif);
+            letter-spacing: 0.3px;
+            dominant-baseline: hanging;
+            text-anchor: middle;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        .map-node:hover circle {
+            fill: #5a3a2a;
+            stroke: var(--gold);
+            stroke-width: 2.5;
+            r: 6;
+        }
+        .map-node:hover text,
+        .map-node:hover .node-label {
+            fill: var(--gold-light);
+        }
+        .map-node.active circle {
+            fill: var(--red-light);
+            stroke: var(--gold);
+            stroke-width: 3;
+            r: 7;
+            filter: drop-shadow(0 0 12px rgba(178, 34, 34, 0.5));
+        }
+        .map-node.active text,
+        .map-node.active .node-label {
+            fill: var(--gold-light);
+        }
+        .map-node.visited circle {
+            fill: #5a3a2a;
+            stroke: #7a5a3a;
+        }
+        .map-node.visited text,
+        .map-node.visited .node-label {
+            fill: #8a7a6a;
+        }
+        .map-path {
+            stroke: #3a2a1a;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 4 4;
+        }
+        .map-path.done {
+            stroke: var(--red-light);
+            stroke-dasharray: none;
+            opacity: 0.6;
+        }
+
+        /* ===== 右侧内容区 ===== */
+        #content {
+            flex: 1;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: var(--paper);
+            padding: 0;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+        #content::-webkit-scrollbar {
+            width: 4px;
+        }
+        #content::-webkit-scrollbar-thumb {
+            background: var(--red-light);
+            border-radius: 4px;
+        }
+
+        /* ===== 顶部栏 ===== */
+        #topBar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(245, 230, 200, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(139, 26, 26, 0.08);
+            min-height: 48px;
+        }
+        #topBar .brand {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            color: var(--ink);
+            letter-spacing: 3px;
+        }
+        #topBar .brand .red {
+            color: var(--red-light);
+        }
+        #topBar .unit-indicator {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            opacity: 0.6;
+            letter-spacing: 1px;
+        }
+        #topBar .unit-indicator strong {
+            color: var(--red-light);
+            opacity: 1;
+            font-weight: 600;
+        }
+        #topBar .nav-controls {
+            display: flex;
+            gap: 8px;
+        }
+        #topBar .nav-controls button {
+            background: transparent;
+            border: 1px solid rgba(139, 26, 26, 0.15);
+            color: var(--ink-light);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+        }
+        #topBar .nav-controls button:hover {
+            background: var(--red-light);
+            color: #fff;
+            border-color: var(--red-light);
+        }
+
+        /* ===== 场景容器 ===== */
+        #sceneContainer {
+            padding: 0 24px 60px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* ===== 场景卡片 ===== */
+        .scene-card {
+            background: rgba(255, 248, 235, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius);
+            padding: 32px 36px 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin: 20px 0 30px;
+            animation: fadeIn 0.6s ease forwards;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .scene-bg-hero .scene-card {
+            background: rgba(30, 24, 20, 0.88);
+            color: var(--gold-light);
+            border-color: rgba(178, 34, 34, 0.1);
+        }
+        .scene-bg-1 .scene-card {
+            background: rgba(255, 248, 235, 0.88);
+        }
+        .scene-bg-2 .scene-card {
+            background: rgba(40, 30, 25, 0.88);
+            color: #f0e0d0;
+            border-color: rgba(178, 34, 34, 0.12);
+        }
+        .scene-bg-3 .scene-card {
+            background: rgba(248, 240, 230, 0.88);
+        }
+        .scene-bg-4 .scene-card {
+            background: rgba(35, 45, 30, 0.88);
+            color: #e8e0d0;
+            border-color: rgba(178, 34, 34, 0.1);
+        }
+        .scene-bg-5 .scene-card {
+            background: rgba(210, 180, 140, 0.88);
+        }
+        .scene-bg-epilogue .scene-card {
+            background: rgba(30, 26, 22, 0.90);
+            color: #e8ddd0;
+            border-color: rgba(178, 34, 34, 0.08);
+        }
+
+        /* ===== 场景头部 ===== */
+        .scene-header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .scene-header .unit-tag {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            opacity: 0.35;
+            font-weight: 300;
+        }
+        .scene-header .scene-number {
+            font-size: 0.65rem;
+            opacity: 0.25;
+            letter-spacing: 2px;
+            display: block;
+            margin-top: 2px;
+        }
+        .scene-header .page-type-tag {
+            display: inline-block;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            padding: 2px 14px;
+            border-radius: 20px;
+            background: rgba(178, 34, 34, 0.08);
+            color: var(--red-light);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+        .scene-bg-2 .scene-header .page-type-tag {
+            background: rgba(196, 168, 138, 0.15);
+            color: var(--gold);
+        }
+        .scene-bg-4 .scene-header .page-type-tag {
+            background: rgba(196, 168, 138, 0.12);
+            color: var(--gold);
+        }
+        .scene-header h3 {
+            font-family: var(--font-title);
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            letter-spacing: 4px;
+            margin: 4px 0 2px;
+        }
+        .scene-bg-2 .scene-header h3 {
+            color: var(--gold);
+        }
+        .scene-bg-4 .scene-header h3 {
+            color: var(--gold);
+        }
+        .scene-bg-hero .scene-header h3 {
+            color: var(--gold-light);
+        }
+        .scene-bg-epilogue .scene-header h3 {
+            color: var(--red-light);
+        }
+
+        /* ===== 导语页 ===== */
+        .intro-title {
+            font-family: var(--font-title);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            text-align: center;
+            letter-spacing: 6px;
+            margin: 4px 0 12px;
+            line-height: 1.3;
+        }
+        .scene-bg-2 .intro-title {
+            color: var(--gold);
+        }
+        .scene-bg-4 .intro-title {
+            color: var(--gold);
+        }
+        .intro-divider {
+            text-align: center;
+            padding: 8px 0 14px;
+            opacity: 0.15;
+            letter-spacing: 8px;
+            font-size: 0.7rem;
+        }
+        .intro-text {
+            font-size: 0.98rem;
+            line-height: 2.1;
+            text-align: justify;
+        }
+        .intro-text p {
+            margin-bottom: 8px;
+        }
+
+        /* ===== 叙事区 ===== */
+        .narrative {
+            font-size: 1rem;
+            line-height: 2.2;
+            margin-bottom: 4px;
+        }
+        .narrative .narr-block {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            margin-bottom: 8px;
+        }
+        .narrative .narr-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .narrative .narr-block .speaker {
+            font-weight: 700;
+            color: var(--red);
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+        .scene-bg-2 .narrative .narr-block .speaker,
+        .scene-bg-4 .narrative .narr-block .speaker {
+            color: var(--gold);
+        }
+        .narrative .narr-block .qm {
+            color: var(--red-light);
+            font-size: 2rem;
+            font-family: serif;
+            opacity: 0.2;
+            line-height: 0.6;
+            display: inline-block;
+            vertical-align: text-top;
+        }
+        .narrative .narr-block .qm.end {
+            vertical-align: text-bottom;
+            margin-left: 2px;
+        }
+        .narrative .narr-block .hl {
+            font-weight: 700;
+            color: var(--red-light);
+        }
+        .scene-bg-2 .narrative .narr-block .hl,
+        .scene-bg-4 .narrative .narr-block .hl {
+            color: var(--gold);
+        }
+
+        /* ===== 对话 ===== */
+        .dialogue {
+            display: block;
+            padding: 6px 16px 6px 20px;
+            margin: 6px 0 8px 8px;
+            border-left: 4px solid var(--red-light);
+            background: rgba(178, 34, 34, 0.05);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #5a2a1a;
+        }
+        .scene-bg-2 .dialogue,
+        .scene-bg-4 .dialogue {
+            border-left-color: var(--gold);
+            background: rgba(196, 168, 138, 0.08);
+            color: #f0e0d0;
+        }
+        .dialogue .who {
+            font-weight: 700;
+            color: var(--red);
+            font-style: normal;
+        }
+        .scene-bg-2 .dialogue .who,
+        .scene-bg-4 .dialogue .who {
+            color: var(--gold);
+        }
+
+        /* ===== 继续提示 ===== */
+        .continue-hint {
+            display: inline-block;
+            margin-top: 2px;
+            font-size: 0.7rem;
+            color: #888;
+            opacity: 0;
+            transition: opacity 0.5s;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+        .continue-hint.show {
+            opacity: 0.4;
+        }
+        .continue-hint:hover {
+            opacity: 1 !important;
+        }
+        .scene-bg-2 .continue-hint,
+        .scene-bg-4 .continue-hint {
+            color: #a08878;
+        }
+
+        /* ===== 分隔 ===== */
+        .scene-divider {
+            text-align: center;
+            padding: 14px 0 10px;
+            opacity: 0.2;
+            letter-spacing: 6px;
+            font-size: 0.7rem;
+            color: var(--red);
+        }
+        .scene-bg-2 .scene-divider,
+        .scene-bg-4 .scene-divider {
+            color: var(--gold);
+        }
+
+        /* ===== 档案区 ===== */
+        .archive-section {
+            margin-top: 4px;
+            padding-top: 10px;
+        }
+        .archive-section .archive-title {
+            font-weight: 700;
+            color: #5a1a1a;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scene-bg-2 .archive-section .archive-title,
+        .scene-bg-4 .archive-section .archive-title {
+            color: var(--gold);
+        }
+        .archive-section .archive-title .icon {
+            font-size: 1rem;
+        }
+        .archive-section .archive-text {
+            font-size: 0.92rem;
+            line-height: 1.9;
+            opacity: 0.92;
+        }
+        .archive-section .archive-text p {
+            margin-bottom: 6px;
+        }
+        .archive-section .archive-sub {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.06);
+        }
+        .scene-bg-2 .archive-section .archive-sub,
+        .scene-bg-4 .archive-section .archive-sub {
+            border-top-color: rgba(255, 255, 255, 0.06);
+        }
+        .archive-section .archive-sub .sub-title {
+            font-weight: 700;
+            color: #5a1a1a;
+            font-size: 0.88rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .scene-bg-2 .archive-section .archive-sub .sub-title,
+        .scene-bg-4 .archive-section .archive-sub .sub-title {
+            color: var(--gold);
+        }
+
+        /* ===== 文物图片 ===== */
+        .artifact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .artifact-grid .art-item {
+            flex: 1 0 calc(33.33% - 7px);
+            min-width: 70px;
+            max-width: 150px;
+            height: 90px;
+            background: #aaa;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+        }
+        .artifact-grid .art-item:hover {
+            border-color: var(--red-light);
+            transform: scale(1.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        .artifact-grid .art-item .label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #eee;
+            font-size: 0.45rem;
+            padding: 2px 6px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .scene-bg-2 .artifact-grid .art-item:hover,
+        .scene-bg-4 .artifact-grid .art-item:hover {
+            border-color: var(--gold);
+        }
+
+        /* ===== 侧栏卡片（历史上的Ta们） ===== */
+        .side-card {
+            background: #e8ddd0;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-top: 14px;
+            border: 1px solid #b89a7a;
+        }
+        .scene-bg-2 .side-card,
+        .scene-bg-4 .side-card {
+            background: rgba(70, 60, 50, 0.35);
+            border-color: #8b6a4a;
+        }
+        .side-card h4 {
+            color: #5a1a1a;
+            border-bottom: 2px dotted var(--red-light);
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+        }
+        .scene-bg-2 .side-card h4,
+        .scene-bg-4 .side-card h4 {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+        .side-card p {
+            font-size: 0.87rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        .side-card .art-item {
+            height: 80px;
+        }
+
+        /* ===== 底部引导 ===== */
+        .scene-guide {
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            border-top: 2px dashed rgba(178, 34, 34, 0.12);
+        }
+        .scene-bg-2 .scene-guide,
+        .scene-bg-4 .scene-guide {
+            border-top-color: rgba(178, 34, 34, 0.08);
+        }
+        .scene-guide .guide-text {
+            font-size: 0.95rem;
+            line-height: 1.9;
+            opacity: 0.7;
+            font-style: italic;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .scene-guide .guide-text .hl {
+            color: var(--red-light);
+            font-weight: 600;
+            font-style: normal;
+        }
+        .scene-bg-2 .scene-guide .guide-text .hl,
+        .scene-bg-4 .scene-guide .guide-text .hl {
+            color: var(--gold);
+        }
+
+        /* ===== 底部按钮 ===== */
+        .btn-next {
+            background: var(--red-light);
+            border: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.88rem;
+            padding: 10px 34px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 24px rgba(178, 34, 34, 0.2);
+            letter-spacing: 2px;
+            font-weight: 600;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-next:hover {
+            background: var(--red);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 36px rgba(178, 34, 34, 0.3);
+        }
+        .btn-next .arrow {
+            display: inline-block;
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+        .btn-next:hover .arrow {
+            transform: translateX(6px);
+        }
+        .btn-next .pulse-ring-btn {
+            position: absolute;
+            inset: -4px;
+            border-radius: 64px;
+            border: 2px solid rgba(178, 34, 34, 0.15);
+            animation: pulseRingBtn 2.8s ease-out infinite;
+            pointer-events: none;
+        }
+        @keyframes pulseRingBtn {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.08);
+                opacity: 0;
+            }
+        }
+        /* 叙事页按钮初始隐藏 */
+        .btn-next-narrative {
+            display: none;
+            animation: fadeBtn 0.8s ease forwards;
+        }
+        .btn-next-narrative.show {
+            display: inline-block;
+        }
+        @keyframes fadeBtn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        /* 导语页和档案页按钮带指示性小标签 */
+        .btn-with-label {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-with-label .btn-label {
+            font-size: 0.6rem;
+            opacity: 0.4;
+            letter-spacing: 3px;
+            font-weight: 300;
+            color: var(--ink-light);
+        }
+        .scene-bg-2 .btn-with-label .btn-label,
+        .scene-bg-4 .btn-with-label .btn-label {
+            color: var(--gold);
+            opacity: 0.5;
+        }
+        .btn-with-label .btn-next {
+            margin-top: 2px;
+        }
+        /* 过渡引导文案（档案→叙事专用） */
+        .transition-hint {
+            font-size: 0.75rem;
+            opacity: 0.35;
+            letter-spacing: 2px;
+            margin-top: 4px;
+            display: block;
+            color: var(--ink-light);
+        }
+        .scene-bg-2 .transition-hint,
+        .scene-bg-4 .transition-hint {
+            color: var(--gold);
+            opacity: 0.4;
+        }
+
+        /* ===== 结语留言 ===== */
+        .epilogue-msg {
+            max-width: 540px;
+            margin: 24px auto 0;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            padding: 22px;
+        }
+        .epilogue-msg h4 {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .epilogue-msg textarea {
+            width: 100%;
+            height: 80px;
+            background: #2d241e;
+            border: 1px solid #5a4a3a;
+            color: #f0e0c8;
+            border-radius: 14px;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        .epilogue-msg button {
+            margin-top: 10px;
+            background: var(--red-light);
+            border: none;
+            color: #fff;
+            padding: 8px 26px;
+            border-radius: 40px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .epilogue-msg button:hover {
+            background: var(--red);
+        }
+        .epilogue-msg .fb {
+            margin-top: 10px;
+            color: var(--gold);
+            font-size: 0.82rem;
+        }
+
+        /* ===== 模态框 ===== */
+        #modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(14px);
+            z-index: 4000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+        #modal.active {
+            display: flex;
+        }
+        #modal .modal-content {
+            background: #fff;
+            max-width: 600px;
+            max-height: 90vh;
+            border-radius: 24px;
+            overflow: auto;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+        }
+        #modal .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+        }
+        #modal .modal-content .desc {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.7;
+        }
+        #modal .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+            transition: var(--transition);
+        }
+        #modal .modal-close:hover {
+            color: var(--red-light);
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 820px) {
+            #mapNav {
+                width: 100px;
+                min-width: 100px;
+                padding: 50px 0 20px 0;
+            }
+            #mapNav .map-title {
+                font-size: 0.7rem;
+                padding: 0 6px 12px;
+                margin: 0 6px 12px;
+            }
+            #mapNav .map-title span {
+                font-size: 0.45rem;
+            }
+            #mapNav .map-svg-wrap {
+                padding: 0 6px;
+            }
+            .map-node text {
+                font-size: 5px;
+            }
+            .map-node .node-label {
+                font-size: 4.5px;
+            }
+            .scene-card {
+                padding: 24px 20px 30px;
+                margin: 12px 0 20px;
+            }
+            #sceneContainer {
+                padding: 0 16px 40px;
+            }
+            #topBar {
+                padding: 6px 16px;
+                min-height: 42px;
+            }
+            #topBar .brand {
+                font-size: 0.85rem;
+            }
+            #topBar .unit-indicator {
+                font-size: 0.65rem;
+            }
+            .artifact-grid .art-item {
+                flex: 1 0 calc(50% - 5px);
+                max-width: 100%;
+                height: 75px;
+            }
+            .btn-next {
+                font-size: 0.8rem;
+                padding: 8px 26px;
+            }
+            .btn-with-label .btn-label {
+                font-size: 0.5rem;
+            }
+        }
+        @media (max-width: 640px) {
+            #app {
+                flex-direction: column;
+            }
+            #mapNav {
+                width: 100%;
+                min-width: 100%;
+                height: auto;
+                max-height: 140px;
+                padding: 8px 12px;
+                border-right: none;
+                border-bottom: 1px solid rgba(178, 34, 34, 0.15);
+                overflow-y: auto;
+            }
+            #mapNav .map-title {
+                display: none;
+            }
+            #mapNav .map-svg-wrap {
+                padding: 0;
+                max-height: 110px;
+                overflow-y: auto;
+            }
+            #mapNav .map-svg-wrap svg {
+                max-height: 100px;
+                width: auto;
+                display: block;
+                margin: 0 auto;
+            }
+            #content {
+                height: calc(100vh - 140px);
+            }
+            #topBar {
+                padding: 4px 12px;
+                min-height: 36px;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            #topBar .brand {
+                font-size: 0.75rem;
+            }
+            #topBar .unit-indicator {
+                font-size: 0.55rem;
+                display: none;
+            }
+            #topBar .nav-controls button {
+                width: 26px;
+                height: 26px;
+                font-size: 0.75rem;
+            }
+            #sceneContainer {
+                padding: 0 10px 30px;
+            }
+            .scene-card {
+                padding: 16px 14px 22px;
+                border-radius: 18px;
+                margin: 8px 0 14px;
+            }
+            .scene-header h3 {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+            .intro-title {
+                font-size: 1.4rem;
+                letter-spacing: 3px;
+            }
+            .intro-text {
+                font-size: 0.88rem;
+            }
+            .narrative {
+                font-size: 0.88rem;
+                line-height: 2;
+            }
+            .archive-section .archive-text {
+                font-size: 0.84rem;
+            }
+            .dialogue {
+                padding: 4px 10px 4px 14px;
+                margin: 4px 0 6px 2px;
+                font-size: 0.85rem;
+            }
+            .artifact-grid .art-item {
+                height: 60px;
+                min-width: 50px;
+            }
+            .scene-guide .btn-next {
+                padding: 8px 20px;
+                font-size: 0.78rem;
+            }
+            .scene-guide .guide-text {
+                font-size: 0.82rem;
+            }
+            #cover .poster {
+                padding: 28px 18px 24px;
+                margin: 12px;
+            }
+            #cover .poster .main-title {
+                font-size: 1.6rem;
+                letter-spacing: 3px;
+            }
+            #cover .poster .btn-enter {
+                padding: 10px 28px;
+                font-size: 0.82rem;
+            }
+            .side-card .art-item {
+                height: 60px;
+            }
+            .scene-header .page-type-tag {
+                font-size: 0.5rem;
+                padding: 1px 10px;
+            }
+            .btn-next-narrative {
+                font-size: 0.78rem;
+                padding: 8px 18px;
+            }
+            .btn-with-label .btn-label {
+                font-size: 0.45rem;
+            }
+            .transition-hint {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 封面 ===== -->
+    <div id="cover" class="active">
+        <div class="bg-deco">
+            <div class="stars"></div>
+            <div class="mountain"></div>
+        </div>
+        <div class="poster">
+            <span class="star">★</span>
+            <div class="year">1934 — 1936</div>
+            <div class="main-title">雄关漫道<span class="red">真如铁</span></div>
+            <div class="sub-title">—— 一个“红小鬼”的长征路</div>
+            <div class="divider-line"></div>
+            <div class="desc">二万五千里征途 · 九十年岁月回响<br />以少年之眼，看见历史之重</div>
+            <button class="btn-enter" id="enterBtn">走进征途 <span class="arrow">→</span><span class="pulse-ring"></span></button>
+            <div class="footer-note"><strong>✦</strong> 纪念中国工农红军长征胜利90周年 <strong>✦</strong></div>
+        </div>
+    </div>
+
+    <!-- ===== 主应用 ===== -->
+    <div id="app">
+        <nav id="mapNav">
+            <div class="map-title">长征路线<span>点击节点探索</span></div>
+            <div class="map-svg-wrap" id="mapSvgWrap"></div>
+        </nav>
+        <div id="content">
+            <div id="topBar">
+                <span class="brand">✦ 红<span class="red">小鬼</span></span>
+                <span class="unit-indicator" id="unitIndicator">序厅</span>
+                <div class="nav-controls">
+                    <button id="prevBtn" title="上一页">◀</button>
+                    <button id="nextBtn" title="下一页">▶</button>
+                </div>
+            </div>
+            <div id="sceneContainer"></div>
+        </div>
+    </div>
+
+    <!-- ===== 模态框 ===== -->
+    <div id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <img id="modalImg" src="" alt="展品" />
+            <div class="desc" id="modalDesc">文物说明</div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ================================================================
+            // 1. 原始场景数据
+            // ================================================================
+
+            const rawScenes = [{
+                id: 'hero',
+                type: 'hero',
+                unit: '序厅',
+                title: '雄关漫道真如铁',
+                subtitle: '一个"红小鬼"的长征路',
+                bg: 'scene-bg-hero',
+                nodeIndex: 0,
+                blocks: [
+                    { type: 'narr', text: '策展缘由\n"为有牺牲多壮志，敢教日月换新天"。长征是人类历史上的伟大奇迹。今年是中国红军长征胜利90周年，为了纪念红军长征并让观众了解长征路上的艰苦岁月，感悟先辈们的牺牲和奉献，特此推出长征文化展。' },
+                    { type: 'narr',
+                        text: '展览前言\n1934年10月，中共中央和中革军委率中央红军主力从江西于都出发，开始战略转移。至1936年10月三大主力会师，历时两年，途经十余省，翻越雪山，穿过草地，进行重要战役战斗六百余次，总行程约二万五千里。史称长征。' },
+                    { type: 'narr',
+                        text: '长征队伍中包含一定数量的少年战士，年龄多在8至16岁之间，通常被称为"红小鬼"。据不完全统计，仅中央红军中就有约一万余名。本展览以虚构人物"赵小二"为叙述者，其经历综合自长征亲历者的口述史、回忆录及档案记载，是红小鬼群体共同记忆的凝结。' }
+                ],
+                guide: '一个十三岁的孤儿，死缠烂打加入了红军。他还不懂什么是革命，只知道——红军给了他一个家。',
+                nextRaw: 'unit1_intro'
+            }, {
+                id: 'unit1_intro',
+                type: 'intro',
+                unit: '第一单元',
+                title: '倔强 · 初入红军',
+                bg: 'scene-bg-1',
+                nodeIndex: 0,
+                introText: '1933年9月，国民党调集重兵对中央苏区发动第五次大规模"围剿"，依靠碉堡封锁与经济围困，逐步压缩根据地范围。受"左"倾错误军事指挥影响，中央红军放弃灵活战术，与强敌开展阵地消耗战，苦战一年后反"围剿"最终失利。\n1934年上半年，中央苏区多处重要防线失守，内外形势日趋严峻。为保存革命有生力量，中共中央决定实施战略转移，并选定地理与敌情条件相对有利的江西于都作为集结出发地。1934年10月，八万余名中央红军主力将士齐聚于都，筹备撤离中央苏区，举世闻名的长征由此启程。\n当大部队要从瑞金转移到于都、准备离开根据地时，十三岁的孤儿赵小二不愿再重回流浪生活，几番坚持后如愿加入红军，被分配为小号手学徒。这名倔强的红小鬼，从此与数万红军战士一道，走进了艰苦卓绝的烽火征程。',
+                guide: '一个孤儿，一把军号，一段改变命运的征途。',
+                nextRaw: 'unit1_1'
+            }, {
+                id: 'unit1_1',
+                type: 'scene',
+                unit: '第一单元 · 倔强',
+                title: '我叫赵小二',
+                number: '场景 1 / 3',
+                bg: 'scene-bg-1',
+                nodeIndex: 0,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '我叫赵小二，生长在赣南的乡村。黑暗的年月里，苦难早早找上了我。父亲参加农会投身革命，被国民党靖卫团残忍杀害；母亲积劳成疾，没钱医治，最终也撒手离去。短短时间，我成了无依无靠的孤儿。' },
+                    { type: 'narr',
+                        text: '往后的日子，我只能靠放牛、沿街乞讨谋生，常年食不果腹、颠沛流离。直到红军进驻苏区，废除了压在百姓身上的苛捐杂税，穷苦人终于有了活路。在这里，我第一次吃上热腾腾的饱饭，不再看人脸色过日子。' },
+                    { type: 'narr', text: '那时的我年纪尚小，听不懂高深的革命道理，心里只有最简单的想法：红军收留了我，给了我温暖和温饱，这里就是我的家。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：长征前夕的赣南苏区',
+                    text: '土地革命战争时期，赣南是中央革命根据地的核心区域。国民党当局对苏区轮番开展军事"围剿"，实行全方位经济封锁，同时大肆征收苛捐杂税，当地底层民众在战乱与盘剥中艰难度日。\n红军抵达赣南并建立苏维埃政权后，大力开展土地革命，将土地分给贫苦农民，彻底废除各类苛捐杂税。苏区政府设立专门机构与群众团体，对孤寡、流浪孤儿等困难群体开展常态化救助。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/soviet1/200/150', desc: '苏区户籍门牌' },
+                        { img: 'https://picsum.photos/seed/decree1/200/150', desc: '苏维埃法令' },
+                        { img: 'https://picsum.photos/seed/burn1/200/150', desc: '烧地契' }
+                    ]
+                }],
+                guide: '他还不懂什么是革命，但他知道——红军给了他活下去的勇气。',
+                nextRaw: 'unit1_2'
+            }, {
+                id: 'unit1_2',
+                type: 'scene',
+                unit: '第一单元 · 倔强',
+                title: '死缠烂打，我要当兵',
+                number: '场景 2 / 3',
+                bg: 'scene-bg-1',
+                nodeIndex: 0,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '当大部队要从瑞金转移到于都、准备离开根据地时，我执意要参军，哪怕因为年纪太小被干部拒绝了无数次，我也死死拽着队伍不撒手。终于在我的软磨硬泡之下，连队收了我。' },
+                    { type: 'narr', text: '那天的我特别开心，感觉当上红军神气得很。我刚开始想当小号手，没想到连长真的安排我跟老号手学吹号。我胸前吊着一把沉甸甸的黄铜军号，虽然还吹不全号谱，可连长说："有这心气，早晚是块料。"',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：中央红军于都集结与司号兵',
+                    text: '1934年10月上旬，中央红军主力各部陆续集结于江西于都河畔，总计八万六千余名指战员在此休整、整编，为战略转移做最后的准备。\n红军司号手是连队重要岗位，军号是当年军队的"通讯工具"，不同号谱对应集合、行军、冲锋、收兵等指令。红军中不少司号手都是年纪尚小的少年战士。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/trumpet1/200/150', desc: '黄铜军号' },
+                        { img: 'https://picsum.photos/seed/leave1/200/150', desc: '离开苏区' },
+                        { img: 'https://picsum.photos/seed/sweater1/200/150', desc: '何叔衡赠林伯渠的毛衣' }
+                    ]
+                }],
+                guide: '一把军号，一腔热血。红小鬼的征途，从这一刻开始。',
+                nextRaw: 'unit1_3'
+            }, {
+                id: 'unit1_3',
+                type: 'scene',
+                unit: '第一单元 · 倔强',
+                title: '第一堂纪律课',
+                number: '场景 3 / 3',
+                bg: 'scene-bg-1',
+                nodeIndex: 0,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '队伍正式出发的深夜，于都下起了冰冷的秋雨。雨点砸在脸上，又冷又疼。八万多人的队伍踏着泥泞前行，黑暗里满是脚步与骡马的声响。' },
+                    { type: 'narr',
+                        text: '连续几十里的急行军，远远超出了我的承受能力。脚上的草鞋很快磨烂，脚底密密麻麻长满血泡，每走一步都钻心地疼。我再也撑不住，瘫坐在路边抹起眼泪，心里又累又委屈。' },
+                    { type: 'narr',
+                        text: '一只布满老茧的手敲了敲我的脑袋，是十九岁的连长陈小石头。他十三岁便参军入伍，身经百战，是队伍里人人敬重的"老革命"。他没有柔声安慰，拿出烧红的缝衣针，狠心帮我挑破血泡，又仔细为我扎紧绑腿。' },
+                    { type: 'dialogue', speaker: '陈小石头',
+                        text: '"哭解决不了任何问题，更打不退敌人。军号就是全连的耳朵，号手一旦掉队，整个连队都会陷入危险。红军的纪律是队伍的根基，身为战士，眼泪要藏在心里，脚步绝不能停下，掉队就意味着死亡。"' },
+                    { type: 'narr', text: '我攥紧胸前的军号，硬生生把泪水咽了回去。这一刻我猛然明白：我不再是随性撒娇的流浪孩童，而是一名真正的红军战士。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '红军中的"Ta"们 —— 少年"老革命"',
+                    text: '红军队伍里的"老革命"，并非指代年长战士，而是战友们对参军时间早、作战经验丰富、意志坚定的年轻指战员的尊称。\n中央红军整体队伍十分年轻，长征出发时大量基层官兵十余岁便投身革命。他们大多成长于中央苏区，早年加入儿童团、少先队，随后正式入伍，全程参与了数次反"围剿"战斗。数年的战火磨砺，让他们虽然年纪尚轻，却早已具备成熟的军人素养与实战能力。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/discipline1/200/150', desc: '红军纪律条令草案' },
+                        { img: 'https://picsum.photos/seed/note1/200/150', desc: '长征补偿字条' },
+                        { img: 'https://picsum.photos/seed/young1/200/150', desc: '少共国际师袖章' }
+                    ]
+                }],
+                guide: '告别赣南，赵小二踏上了未知的征途。前方，是血与火的考验。',
+                nextRaw: 'unit2_intro'
+            }, {
+                id: 'unit2_intro',
+                type: 'intro',
+                unit: '第二单元',
+                title: '惶恐 · 血火挣扎',
+                bg: 'scene-bg-2',
+                nodeIndex: 1,
+                introText: '1934年11月下旬，中央红军在湘江与国民党军展开殊死决战，惨烈的战斗造成大量伤亡。突围之后，红军连夜翻越老山界，向贵州境内的乌江行进。\n少年赵小二在湘江战场不幸掉队，被女战士营救后重新踏上征途。连日的浴血奋战与长途跋涉让他心生迷茫，直至抵达乌江岸边，他跟随宣传队员学习文化、理解革命意义，在血与火的历练中悄然成长。',
+                guide: '湘江的血水，冲走了无数战友。但赵小二，活了下来。',
+                nextRaw: 'unit2_1'
+            }, {
+                id: 'unit2_1',
+                type: 'scene',
+                unit: '第二单元 · 惶恐',
+                title: '湘江！血肉绞肉机',
+                number: '场景 1 / 4',
+                bg: 'scene-bg-2',
+                nodeIndex: 1,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二', text: '那根本不是人间，那是血肉绞肉机。' },
+                    { type: 'narr',
+                        text: '1934年11月底，我们连队奉命在江岸阻击敌人。国民党的道格拉斯飞机在头顶发出刺耳的尖叫，一发发航空炸弹砸进湘江，掀起十几米高的血浪。江面上漂浮着密密麻麻的灰色军装。连长满脸是血，对着我怒吼：' },
+                    { type: 'dialogue', speaker: '连长', text: '"小二！吹冲锋号！吹！"' },
+                    { type: 'narr',
+                        text: '我抖索着双手，把冰冷的号嘴凑到嘴边，可还没等我吐出第一个音符，一发巨大的航空炸弹就在身边轰然炸响。恐怖的气浪瞬间将我打翻，狠狠砸进了一个满是残肢断臂的烂泥坑里。眼前的世界陷入了一片血红与黑暗。' },
+                    { type: 'narr',
+                        text: '不知过了多久，当我满身血泥地从死人堆里爬出来时，大部队已经渡江，白匪的侧击部队正在打扫战场、枪杀重伤员。我彻底跟大部队走散了。我紧紧抱着那把残存的黄铜军号，在硝烟弥漫的树林里疯狂逃窜。' }
+                ],
+                archives: [{
+                    title: '历史档案：血战湘江 —— 长征最惨烈的一战',
+                    text: '1934年11月下旬至12月初，中央红军在广西境内打响湘江战役，这是红军长征途中突破国民党军第四道封锁线的关键战斗，也是人民军队战史上牺牲最为惨重的战役之一。蒋介石调集30余万兵力，依托湘江天险构筑封锁线，企图将八万余红军围歼于湘江东岸。\n经过数日浴血拼杀，中央红军成功突破封锁线，但付出了巨大代价：长征出发时8.6万余人的队伍，渡过湘江后锐减至3万余人。担负后卫阻击任务的红五军团第三十四师、红三军团第十八团被敌军截断在湘江东岸，大部壮烈牺牲，红三十四师师长陈树湘被俘后宁死不屈，断肠殉国。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/xiang1/200/150', desc: '易荡平穿过的蓑衣' },
+                        { img: 'https://picsum.photos/seed/xiang2/200/150', desc: '陈树湘，断肠殉国' },
+                        { img: 'https://picsum.photos/seed/xiang3/200/150', desc: '血战湘江战场' }
+                    ]
+                }],
+                guide: '湘江的血水，冲走了无数战友。但赵小二，活了下来。',
+                nextRaw: 'unit2_2'
+            }, {
+                id: 'unit2_2',
+                type: 'scene',
+                unit: '第二单元 · 惶恐',
+                title: '汉阳造与女战士',
+                number: '场景 2 / 4',
+                bg: 'scene-bg-2',
+                nodeIndex: 1,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '就在一个白匪端着刺刀狞笑着朝我刺来时，"砰"的一声沉闷枪响，白匪应声倒地。一把热烫的步枪挡在我的面前，那是负责掩护大部队、在后方打阻击的女战士李桂英，大家都管她叫"汉阳造"。' },
+                    { type: 'narr',
+                        text: '她身形挺拔，手里紧紧攥着一杆打得烫手的汉阳造步枪。她出身工人家庭，12岁遭恶霸欺辱，16岁时心爱的丈夫被资本家迫害惨死，18岁父亲被厂主逼死。她是带着父亲临终前"必须拥有一把自己的枪，不再任人宰割"的遗言参加红军的。' },
+                    { type: 'narr',
+                        text: '我抓着她满是黑灰的衣角哭喊，诉说自己和连队失散的遭遇。李桂英一把拉开枪栓，在敌机轰炸中将我死死护在身下。她告诉我，害怕是人之常情，但红军的勇敢，是哪怕心生畏惧，也要坚守责任。' },
+                    { type: 'narr', text: '她带着我在枪林弹雨里边打边撤，一发子弹击穿了她的肩膀，她依旧持枪迎敌。看着她流淌的热血，我内心的懦弱渐渐消散，紧紧抱着军号，跟随她一同寻找大部队的踪迹。' }
+                ],
+                archives: [{
+                    title: '红军中的她们：中央红军长征女战士',
+                    text: '1934年10月中央红军实施战略转移前夕，中共中央经筛选拟定32名随军女同志名单，最终2人因身体原因留守中央苏区，共计30名女战士随主力从江西于都出发长征。该群体初期统一组建妇女队，由刘群先担任队长，金维映担任政治委员。\n湘江战役中，后方附属人员需承担阵地警戒、伤员转运、失散人员收容等常规勤务。编入一线分队的女战士同步参与上述后方勤务工作。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/rifle2/200/150', desc: '汉阳造步枪' },
+                        { img: 'https://picsum.photos/seed/female2/200/150', desc: '女战士形象' }
+                    ]
+                }],
+                guide: '在绝境中，有人伸手拉你一把。这就是战友。',
+                nextRaw: 'unit2_3'
+            }, {
+                id: 'unit2_3',
+                type: 'scene',
+                unit: '第二单元 · 惶恐',
+                title: '老山界黑夜行军',
+                number: '场景 3 / 4',
+                bg: 'scene-bg-2',
+                nodeIndex: 1,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '我们跟随队伍一路辗转，翻越了高耸险峻的老山界。连日阴雨连绵，山路陡峭得近乎垂直，两侧便是万丈深渊。为躲避敌机侦察与敌军追击，全军严禁点火，我们只能在漆黑的夜色里，拽着前方战友的衣角艰难挪动。' },
+                    { type: 'narr', text: '一路流血牺牲、日夜奔波，前路望不到尽头。我心中的迷茫越来越重：我们日复一日吃苦、牺牲，这样的长征，究竟要走向何方？我们所承受的一切，又到底是为了什么？',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：翻越老山界 —— 长征第一座险山',
+                    text: '老山界属于越城岭山脉，是中央红军长征途中翻越的第一座高山，山势陡峭、道路狭窄，主峰海拔超过2000米，自古便是险途。1934年12月4日至8日，刚刚经历湘江血战的中央红军分三路翻越老山界，目的是快速摆脱尾随的国民党追兵，向贵州方向挺进。\n为规避空中侦察与地面敌军袭扰，红军全程采用夜间隐蔽行军模式，队伍在无灯火的深山险路中跋涉。翻越老山界不仅是一次地理上的跋涉，更是红军在惨重损失后，重整队伍、继续西进的重要转折点。'
+                }],
+                guide: '黑暗中的每一步，都踩在未知上。但队伍没有停下。',
+                nextRaw: 'unit2_4'
+            }, {
+                id: 'unit2_4',
+                type: 'scene',
+                unit: '第二单元 · 惶恐',
+                title: '乌江归队，第一次识字',
+                number: '场景 4 / 4',
+                bg: 'scene-bg-2',
+                nodeIndex: 1,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '1934年12月初，我们翻越了广西境内的老山界，又辗转经过黎平、剑河、台拱、黄平、瓮安，一路追着主力留下的路标和标语，整整一个多月，终于在1935年1月初乌江边追上了大部队。' },
+                    { type: 'narr',
+                        text: '宿营时，微弱的火堆旁，红军文工团的宣传员林晓月拉过了我的手。她家境贫寒，家里有好几个弟弟。父母养不活那么多孩子，就把她卖到了妓院。她最终逃了出来，听说红军男女平等，就加入了红军。她用一根树枝，在我的手心里一笔一画地写下"革命"和"自主"两个字。' },
+                    { type: 'dialogue', speaker: '林晓月',
+                        text: '"小二，在旧社会里，女人、穷人，命就像牲口一样被买卖践踏。逃出来当红军，是姐一生最勇敢的反抗。我们现在走的每一步夜路，吃的每一份苦，都是为了让天下的穷人都能自主掌控命运，不受人随意践踏，那才配叫作人！把你的号擦干净，总有一天，我们要吹响胜利的号声。"' },
+                    { type: 'narr', text: '从那天起，我捡起铅笔头、收集报纸残页，利用行军休息的间隙认字学习。革命的火苗，第一次在我的心底真正点燃。归队后，我被编入了后勤物资岗位。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '红军中的"Ta"们 —— 长征时期红军宣传队',
+                    text: '红军宣传队归属各级政治部管理，团级单位设专职宣传队，文艺分队统一并入宣传体系。依据1934年红军总政治部相关政治指令，宣传队在长征途中承担三类固定工作：对内服务指战员，对外联系群众，对敌开展工作。\n1935年1月初，中央红军于乌江休整期间，宣传队持续开展识字教学、思想宣讲等常态化工作。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/propa1/200/150', desc: '宣传队识字教学' },
+                        { img: 'https://picsum.photos/seed/slogan1/200/150', desc: '木板标语：打土豪分田地' }
+                    ]
+                }],
+                guide: '湘江的硝烟渐渐散去，但前方的路更加艰险。赵小二心中的火种，正在燃烧。',
+                nextRaw: 'unit3_intro'
+            }, {
+                id: 'unit3_intro',
+                type: 'intro',
+                unit: '第三单元',
+                title: '觉醒 · 赤水铁索',
+                bg: 'scene-bg-3',
+                nodeIndex: 2,
+                introText: '1935年1月，遵义会议召开，中央红军迎来历史转折。此后红军四渡赤水、巧渡金沙江，接连突破敌军封锁，行军全程物资极度短缺。部队继续北上，先后强渡大渡河、飞夺泸定桥，攻克多处天险。\n一系列战斗结束后，部队进行人员整编与岗位调整。"红小鬼"赵小二在转战途中见证牺牲与坚守，思想逐步觉醒，最终正式成为一名随军宣传队员。',
+                guide: '赤水河畔的转战、大渡河上的铁索，赵小二在战火中觉醒。',
+                nextRaw: 'unit3_1'
+            }, {
+                id: 'unit3_1',
+                type: 'scene',
+                unit: '第三单元 · 觉醒',
+                title: '遵义休整，遇见大锤叔',
+                number: '场景 1 / 4',
+                bg: 'scene-bg-3',
+                nodeIndex: 2,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '1935年1月，红军占领遵义，召开了遵义会议。我们基层战士并不清楚会上发生了什么，只是隐约感到队伍里多了几分生气，纪律更严了，行军更有章法了。' },
+                    { type: 'narr',
+                        text: '在这里，我遇到了年近四十的炊事老兵王大锤，他常年背着行军铁锅，脊梁被压得微微弯曲。他一辈子安分守己过日子，却因新官上任时强制全城商户跪拜献礼、摊派苛捐杂税，唯独他挺直腰杆不肯下跪，结果被官府当街拷打，血在他脸上不停地往下流。最后红军解放了县城救了他，他成为了炊事班第十八任炊事员。' }
+                ],
+                archives: [{
+                    title: '历史档案：遵义会议与红军进驻后的整训',
+                    text: '1935年1月15日至17日，中共中央在贵州遵义召开了政治局扩大会议。会议严厉批评了博古和李德在军事上的单纯防御路线，取消了他们的最高军事指挥权，通过了《遵义会议决议》，并增选毛泽东为中央政治局常委。遵义会议是中国共产党第一次独立自主地运用马克思主义基本原理解决自身路线和组织问题的伟大转折点。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/zunyi3/200/150', desc: '遵义会议室' },
+                        { img: 'https://picsum.photos/seed/loushan/200/150', desc: '娄山关' }
+                    ]
+                }],
+                guide: '遵义城头，红旗漫卷。赵小二在这里，遇见了一个改变他命运的人。',
+                nextRaw: 'unit3_2'
+            }, {
+                id: 'unit3_2',
+                type: 'scene',
+                unit: '第三单元 · 觉醒',
+                title: '四渡赤水，接过铁锅',
+                number: '场景 2 / 4',
+                bg: 'scene-bg-3',
+                nodeIndex: 3,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '二月到三月，我们跟随队伍在川黔滇边境来回转战，这便是四渡赤水。连续的急行军让所有人疲惫不堪，更残酷的是粮草彻底断绝。战士们只能煮皮带、啃野菜充饥。我连日饥饿，眼前一黑，重重栽倒在乱石滩上。' },
+                    { type: 'narr',
+                        text: '当我醒来时，发现自己躺在枯草堆上，嘴里正被强行塞进一块硬邦邦、带着浓重汗味的青稞饼。那是不知多珍贵的最后一口干粮。而旁边的王大锤正弓着干瘪的脊梁，满脸黑青，大口大口地啃着用开水煮过的野菜和树皮，嘴角还沾着草根。' },
+                    { type: 'dialogue', speaker: '赵小二',
+                        text: '"大锤叔！你天天背着这么重的铁锅走几百里路，你连一口饱饭都不吃！你把粮食给了我，你吃这个会死人的啊？！"' },
+                    { type: 'dialogue', speaker: '王大锤',
+                        text: '"哭什么！老子当长工的兄弟就是因为去地主家讨一碗米汤，被活活咬死在门口！老子挺直了腰杆不给当官的下跪，红军拿我当兄弟！小二，这口锅就是全连战友的命。老子可以死，红军不能饿死！你是连队的未来，你得替老子……好好走出去！"' },
+                    { type: 'narr',
+                        text: '当晚，王大锤再也没有站起来。他安详地闭上了眼睛，胃里只有几口没消化的野菜和树皮，手里却还死死攥着一小袋没舍得用的面粉。他是宁可自己饿死，也绝不让红军挨饿！我没有流泪，我默默走过去，小心地保管好这袋面粉。王大锤用生命教导了我什么是无私奉献与后勤坚守。行军的间隙，我依然用树枝在泥地里默写林晓月姐教我的字，也把大锤叔牢牢地记在了心里。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：四渡赤水作战',
+                    text: '1935年1月至5月，中央红军在毛泽东、周恩来、王稼祥组成的军事指挥小组指挥下，在川黔滇交界处的赤水河流域与国民党40万追兵展开了高频转战。四渡赤水彻底摆脱了长征以来的被动局面。受敌军军事围剿、经济封锁以及连续作战消耗影响，该阶段红军粮草供应全面中断，全体指战员长期处于饥饿状态。'
+                }, {
+                    title: '红军中的"Ta"们 —— 炊事员',
+                    text: '长征期间，红军炊事员是基层连队中体力负荷极重、减员极为严重的后勤群体。行军时，他们除随身装备外，还需用扁担挑运大锅、铁铲、劈柴及全连粮食，实际负重常达30至40公斤；由于部队频繁长途转战，炊事员必须在宿营后立即寻柴生火、全军出发前提前做饭，长期处于严重睡眠不足与体力透支的状态。在翻越雪山草地期间，这种超负荷劳作导致炊事员因高原反应、虚脱和极度饥饿而倒毙牺牲的比例居高不下。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/pot3/200/150', desc: '铁锅，炊事兵的象征' },
+                        { img: 'https://picsum.photos/seed/veg3/200/150', desc: '野菜，充饥的救命粮' },
+                        { img: 'https://picsum.photos/seed/pottery/200/150', desc: '二渡赤水时的碎陶罐' }
+                    ]
+                }],
+                guide: '一口铁锅，一份嘱托。大锤叔走了，但他的精神留在了赵小二心里。',
+                nextRaw: 'unit3_3'
+            }, {
+                id: 'unit3_3',
+                type: 'scene',
+                unit: '第三单元 · 觉醒',
+                title: '巧渡金沙江，六只破船',
+                number: '场景 3 / 4',
+                bg: 'scene-bg-3',
+                nodeIndex: 4,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '告别赤水流域，我们顶着烈日昼夜不停向金沙江方向赶路，即使体力不支，我始终不敢有丝毫懈怠。队伍抵达皎平渡口时，全军只征集到六艘民用木船。' },
+                    { type: 'narr',
+                        text: '渡江行动从夜间开始，我负责清点物资、引导战友有序登船。江水流势湍急，船只数次触碰暗礁、险象环生，战士们齐心协力化解危机。五天五夜，六只破船，两万多人马，无一损失，全部渡过了金沙江。' },
+                    { type: 'narr', text: '我们刚过完江，追兵就赶到了岸边。他们望着滔滔江水，只捡到了我们丢弃的一只破草鞋。那天晚上，大家围着篝火又笑又哭。我心里默默地说：大锤叔，你看到了吗？我们过来了。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：巧渡金沙江战役',
+                    text: '1935年4月至5月，中央红军实施了"巧渡金沙江"这一战略转移中的决定性战役。从5月3日至9日，在刘伯承、陈云等坐镇的渡江司令部严密组织下，3万红军仅靠7条木船（实际可用6条）历时七天七夜安全渡江，彻底甩掉了数十万追兵，粉碎了蒋介石围歼红军于川黔滇边境的计划。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/jinsha3/200/150', desc: '巧渡金沙江场景' }
+                    ]
+                }],
+                guide: '六只破船，渡过了千军万马。奇迹，是用信念创造的。',
+                nextRaw: 'unit3_4'
+            }, {
+                id: 'unit3_4',
+                type: 'scene',
+                unit: '第三单元 · 觉醒',
+                title: '天险飞渡：大渡河与泸定桥',
+                number: '场景 4 / 4',
+                bg: 'scene-bg-3',
+                nodeIndex: 5,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二', text: '1935年5月中旬，大渡河根本不是河，是吃人的深渊。浪头几米高，对岸碉堡吐着火舌，水面像开了锅。' },
+                    { type: 'narr',
+                        text: '我守在后方物资站，看不清小船上的细节。但那震天的军号声、枪炮声和呐喊声，一浪一浪砸过来。后来伤员抬下来，我凑上去听。他们说：十七个勇士，挤一条破船，顶着弹雨硬冲。有人中弹倒下，旁边的立刻按住；炮弹像长了眼睛，炸飞了对岸的碉堡。船靠岸了，勇士们跳进齐腰深的急流，挥着大刀扑上滩头。对岸的国民党兵吓得掉头就跑。' },
+                    { type: 'narr', text: '红旗插上山头。十七个，都活着！\n我攥紧拳头，手心全是汗。那一刻，我心里烧起一把火：原来红军不怕死，是真的。',
+                        highlight: true },
+                    { type: 'narr',
+                        text: '由于安顺场船只数量有限，全军立刻踏上昼夜二百四十里的急行军。赶到泸定桥头时，眼前的惨烈更令人倒吸凉气：十三根光秃秃的冰冷铁索悬在激流上，木板被拆光，对岸桥头堡火光冲天。' },
+                    { type: 'narr',
+                        text: '战役打响后，我在后方临时救治点飞奔递送药品，一抬头，只能看到铁索上蠕动的黑影和火光中冲锋的身影。子弹打在铁索上火花四溅，不断有勇士中弹坠入滔滔江水，而后面的战友踩着血迹继续疯狂往前爬，最终化作燃烧的火人义无反顾地冲进桥头火海，生生夺下了泸定桥。' },
+                    { type: 'narr', text: '看着被鲜血染红的铁索和抬下来的重伤员，我泪流满面。这两场硬仗将"不怕牺牲、冲锋在前"的突击队精神刻进了我的骨髓。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：大渡河系列战役',
+                    text: '1935年5月，中央红军先遣队于24日袭占安顺场渡口。25日晨，17名勇士组成渡河突击队，冒着密集枪弹强渡登岸。但因只找到1只木船，红军大部队无法全部渡河，毛泽东果断决定兵分两路，夺取上游泸定桥。\n红4团奉命为左路军先锋团，一昼夜疾行240里，于29日凌晨赶到泸定桥西岸。此时桥上木板已被拆除，只剩下13根铁索链。29日下午4时，22名勇士冒着弹雨攀爬铁索，冲过火海夺下桥头，占领了泸定城。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/luding3/200/150', desc: '飞夺泸定桥' },
+                        { img: 'https://picsum.photos/seed/chain3/200/150', desc: '泸定桥铁锁链' },
+                        { img: 'https://picsum.photos/seed/gun3/200/150', desc: '仿启拉利机枪' }
+                    ]
+                }],
+                guide: '赤水河畔的转战、大渡河上的铁索，赵小二在战火中觉醒。然而，真正的绝境还在前方。',
+                nextRaw: 'unit4_intro'
+            }, {
+                id: 'unit4_intro',
+                type: 'intro',
+                unit: '第四单元',
+                title: '坚韧 · 生死绝境',
+                bg: 'scene-bg-4',
+                nodeIndex: 6,
+                introText: '中央红军接连打赢强渡大渡河、飞夺泸定桥等关键战斗，顺利闯过多处天险。在一路转战的间隙，赵小二始终坚持刻苦识字，慢慢掌握了基础文化知识，随后主动申请调入宣传队。\n枪林弹雨的考验暂时落幕，但前路并非一片坦途，还有更为严峻的艰难险阻，在等待着他与全体红军战士。',
+                guide: '雪山草地的生死考验，即将开始。',
+                nextRaw: 'unit4_1'
+            }, {
+                id: 'unit4_1',
+                type: 'scene',
+                unit: '第四单元 · 坚韧',
+                title: '风雪夹金山',
+                number: '场景 1 / 4',
+                bg: 'scene-bg-4',
+                nodeIndex: 6,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '1935年6月，红军开始翻越终年积雪的夹金山。6月12日清晨，炊事班烧了几大锅辣椒汤，我们每人喝下一大碗，顿时浑身冒汗，从嗓子眼一直辣到脚底板，我们就是顶着这股辣劲儿，开始爬雪山的。' },
+                    { type: 'narr',
+                        text: '刚上山时，并没有觉得多累，脚下是坚硬的雪壳，阳光照在积雪上格外刺眼，宣传队的小宋跟在我身后，总是一副乐呵呵的样子，一边走一边哼着江西老家的山歌。可越往山顶行进，山势愈发陡峭，空气也变得稀薄，我心跳得厉害，嘴唇发紫，脸色发青，两腿发软，胸口像压了块大石头，走几步就要停下来大口大口地喘气。' },
+                    { type: 'narr',
+                        text: '行至半山腰，老天爷翻了脸，狂风裹挟着冰雹骤然袭来，天地间白茫茫一片，分不清方向。体力透支的我一头栽倒在雪地里，浑身冻得麻木。' },
+                    { type: 'narr',
+                        text: '"小二！小二！"有人在喊我。我迷迷糊糊睁开眼，看到一个身影蹲在我身边——是苏博文，队伍里那个上海来的知识分子。他出身于富商家庭，出国留学归来，当他看到了贫民被官兵和地主压迫的时候，他决定追随自己的理想，一路从上海追到了苏区，加入了红军。' },
+                    { type: 'narr',
+                        text: '他戴着深度近视眼镜，镜片上糊满了雪，脸色冻得青紫，嘴唇已经发黑。他平时身体就弱，走这种路比我们更吃力。风雪之中，他执意把大衣披在我的身上。我浑身哆嗦，被他架着一步一步往上拖。他的眼镜掉了一只，没顾上捡；另一只镜片上全是冰碴，他索性摘下来扔掉。' },
+                    { type: 'dialogue', speaker: '苏博文',
+                        text: '"小二，勇敢是筋骨，学识是脊梁！红军既要能吃苦，更要懂理想！你是宣传队的苗子，你得替我们这些人……把路走下去！"' },
+                    { type: 'narr',
+                        text: '他的话像一把火，烧进了我的心里。我咬着牙，撑着膝盖站起来，一步、两步、三步……可苏博文的脚步越来越慢，呼吸越来越重。他的脸色从青紫变成了灰白，嘴唇几乎没有了血色。' },
+                    { type: 'dialogue', speaker: '赵小二', text: '"苏教员！苏教员！"' },
+                    { type: 'narr', text: '他冲我笑了笑，那笑容在风雪里显得那么虚弱：' },
+                    { type: 'dialogue', speaker: '苏博文', text: '"小二……我走不动了。你先走……别管我。"' },
+                    { type: 'narr',
+                        text: '最终，这位学识渊博的战友耗尽了全部力气，永远留在了这座雪山之上。小宋从后面赶上来，看到这一幕，腿一软跪在雪地里，抱着苏博文的胳膊哭得说不出话。我狠狠抹了一把眼泪，把小宋从地上拽起来：' },
+                    { type: 'dialogue', speaker: '赵小二', text: '"走！苏教员走了，我们得替他走出去！他的路，我们接着走！"' },
+                    { type: 'narr',
+                        text: '越往山顶走，看到的景象越让人心碎。路边、雪坑里，三三两两躺着已经牺牲的战友。我们强忍悲痛继续攀登，整整七个小时才抵达山顶。下山之后，我们与红四方面军的战友胜利会合，山谷里响起阵阵欢呼。' }
+                ],
+                archives: [{
+                    title: '历史档案：翻越夹金山与懋功会师',
+                    text: '夹金山主峰海拔4900余米，终年积雪，有"死亡之山"之称。6月12日至18日，中央红军主力全部翻过夹金山，在达维镇与红四方面军先头部队胜利会师。翻越过程中，红军遭受了大量非战斗减员，仅夹金山一役，非战斗性减员在两千人以上。'
+                }, {
+                    title: '红军中的知识分子',
+                    text: '长征队伍中有一批并非因贫困求生、而是出于革命理想自觉投身革命的红军战士。他们大多出身优渥，接受过良好教育，许多人还有留学经历，却在民族危亡之际毅然抛弃个人前程，走上革命道路。以周恩来为典型，这类知识分子在长征中人数虽少，却在军事指挥、情报、宣传、医疗等领域发挥关键作用。文学家成仿吾、钱壮飞、陈伯钧、冯雪峰等，都是这支队伍中"火种"般的核心力量。',
+                    isSidecard: true,
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/snow4/200/150', desc: '过雪山雕塑' },
+                        { img: 'https://picsum.photos/seed/glasses4/200/150', desc: '谢觉哉长征戴的眼镜' },
+                        { img: 'https://picsum.photos/seed/lamp4/200/150', desc: '林伯渠用的油灯' }
+                    ]
+                }],
+                guide: '雪山之上，有人永远留在了那里。但他们的信念，被活下来的人带走了。',
+                nextRaw: 'unit4_2'
+            }, {
+                id: 'unit4_2',
+                type: 'scene',
+                unit: '第四单元 · 坚韧',
+                title: '茫茫松潘草地',
+                number: '场景 2 / 4',
+                bg: 'scene-bg-4',
+                nodeIndex: 7,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '8月，红军进入了长征中最艰难的自然考验——徒步穿越荒无人烟、危机四伏的松潘大草地。' },
+                    { type: 'narr',
+                        text: '出发前，首长让我组织收容队，走在全军最后，负责救护掉队的人，掩埋牺牲的战友。每人准备了十天干粮。' },
+                    { type: 'narr',
+                        text: '8月23日一早，我们随主力出发，收容队走在最后。一进草地，天地间只有齐腰深的野草和黑色积水，雾气弥漫，不见村舍。部长警告：水不能喝，脚不能划破，走路必须踩草根，否则陷进泥潭就没命。' },
+                    { type: 'narr',
+                        text: '收容队每天从清晨忙到深夜：搜救掉队的人，包扎伤口，架着走不动的战友，掩埋再也没有醒来的遗体。天气说变就变，暴雨一来，草地变成汪洋，冰冷的积水没过膝盖。我亲眼看见两个队员陷进泥潭，越挣扎沉得越快，大家用绑腿拧成绳子才把他们拖出来。那一刻，我才知道什么叫"每一步都像在刀尖上跳舞"。',
+                        highlight: true },
+                    { type: 'narr',
+                        text: '天黑宿营，遍地是水，火柴全湿了，半夜才点着一堆火。我累得坐下就昏睡过去，清晨醒来，发现自己整个屁股陷进泥里，水淹到了肚子——是战友把我拽出来的。从那以后，我连睡觉都得睁一只眼。' },
+                    { type: 'narr',
+                        text: '第三天，粮食告急。收容队人数在增加，粮食却在减少。我狠心规定：每人每天只给一小把青稞。第四天傍晚，粮食彻底断了。我们杀掉两匹马，每人分到一小块肉，那是救命的。\n断粮的日子，胃像被手拧着。我们开始吃树皮、草芯、煮皮靴。树皮又硬又苦，老战士教我用火烤软、糊上泥巴、夹着草芯，才能勉强咽下去。草鞋的皮底子煮软了嚼，像胶皮，但总比饿着强。' }
+                ],
+                archives: [{
+                    title: '历史档案：红军过草地',
+                    text: '因松潘战役计划受阻，红军被迫穿越川西北的松潘草地，该区域面积约1.52万平方公里，平均海拔3500米以上。草地行军面临沼泽陷溺、暴雨失温、粮食断绝等致命威胁。据不完全统计，红一方面军过草地减员6207人，红二方面军减员3092人，红四方面军因三次穿越草地减员超过15000人。即将走出草地时，在班佑河畔曾有七百余名红军战士因体力耗尽、背靠背坐在一起牺牲。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/grass4/200/150', desc: '吃剩的皮带' },
+                        { img: 'https://picsum.photos/seed/grass5/200/150', desc: '草地行军场景' }
+                    ]
+                }],
+                guide: '草地的每一寸土地，都吞噬过生命。但收容队从未放弃任何一个人。',
+                nextRaw: 'unit4_3'
+            }, {
+                id: 'unit4_3',
+                type: 'scene',
+                unit: '第四单元 · 坚韧',
+                title: '草地顽疾',
+                number: '场景 3 / 4',
+                bg: 'scene-bg-4',
+                nodeIndex: 7,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '第五天，我病倒了。一会儿冷得浑身哆嗦，裹两层毯子像掉进冰窟窿；一会儿烧得神志不清，说胡话。腿软得像面条，站都站不稳。我知道这是"打摆子"——疟疾，在江西时见过，可没想到会在草地里摊上。' },
+                    { type: 'narr',
+                        text: '迷迷糊糊中，我看到一张满是泥水的大胡子脸凑了过来。那是米勒医生，我们私下都叫他"大鼻子"。他是一位外国来的医生，金发碧眼，穿着一件脏兮兮的白大褂，手里拎着一个破旧的药箱。红军长征时他执意跟着走，说医生的职责是跟着伤员。' },
+                    { type: 'narr',
+                        text: '他用生硬的中国话说："别动。"翻了翻我的眼皮，从药箱里倒出一点灰褐色的粉末——柴胡粉，不多了。喂我喝下去，又苦又涩。他说疟疾没特效药，只能靠自己扛。可草地里哪能休息？队伍不能停。' },
+                    { type: 'narr',
+                        text: '他沉默了一会儿，从药箱底层翻出一小块干硬的红糖，掰下一角塞进我嘴里。"含着，补充点力气。"然后对队员说："轮流架着他走，别让他掉队。"' },
+                    { type: 'dialogue', speaker: '米勒医生',
+                        text: '"药是死的，人是活的。红军的命，比什么都硬。你撑得住。"' },
+                    { type: 'narr',
+                        text: '从那以后，两个队员轮流架着我，一步一步在泥水里挪。高烧烧得眼前发黑，我就咬嘴唇，咬破了，血渗进嘴里，咸腥的。发冷时裹紧毯子，缩成一团。米勒医生每天都来看我，药箱越来越空。后来连柴胡粉也没了，他就找野草煮水给我喝。我知道未必管用，但每次喝下去，心里就多一分底气——有人在救我，我不能倒下。' },
+                    { type: 'narr', text: '第八天清晨，烧终于退了。我撑着棍子站起来，腿还在打颤。米勒医生难得地笑了笑："我说过，红军的命，比什么都硬。"' }
+                ],
+                archives: [{
+                    title: '红军中的国际友人',
+                    text: '长征队伍中包括一定数量的外国人员，构成较为多元。李德是走完长征全程的少数西方人之一；朝鲜籍的毕士悌和武亭随红军参加长征；洪水是唯一走完长征全程的越南籍战士。此外，瑞士人薄复礼亲笔写下了首本宣传中国红军的长篇著作；马海德和傅莱长征到达陕北后投入到部队医疗工作中；斯诺于1936年向全世界第一次全面报道了长征。'
+                }, {
+                    title: '历史档案：打摆子',
+                    text: '疟疾俗称"打摆子"，由蚊虫叮咬传播，症状为周期性发冷、高热、大量出汗。长征途中，疟疾频繁爆发，成为非战斗减员的主要疾病之一。由于治疗疟疾的特效药奎宁极为稀缺，多数患者只能依靠身体自愈与顽强意志硬撑。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/doctor4/200/150', desc: '傅连暲治疗红军用的洗脚杯' },
+                        { img: 'https://picsum.photos/seed/stretcher4/200/150', desc: '担架，救命的工具' },
+                        { img: 'https://picsum.photos/seed/pen4/200/150', desc: '斯诺赠送的钢笔' }
+                    ]
+                }],
+                guide: '在生死边缘，有人用尽全力把你拉回来。这就是信仰的力量。',
+                nextRaw: 'unit4_4'
+            }, {
+                id: 'unit4_4',
+                type: 'scene',
+                unit: '第四单元 · 坚韧',
+                title: '忠骨留荒原',
+                number: '场景 4 / 4',
+                bg: 'scene-bg-4',
+                nodeIndex: 7,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '第八天中午，小宋撑不住了。他躺在泥地上，脸色蜡黄，瘦得脱了相。我抱住他，他睁开眼，嘴角扯出一丝笑意：' },
+                    { type: 'dialogue', speaker: '小宋', text: '"队长……我怕是走不出去了……"' },
+                    { type: 'narr', text: '我拼命喊他撑住，可他像一摊泥。' },
+                    { type: 'dialogue', speaker: '小宋', text: '"小二哥……我想家……想我娘……"' },
+                    { type: 'narr', text: '话没说完，头一歪，手垂了下去。' },
+                    { type: 'narr',
+                        text: '他活过了雪山，却没走出这片泥沼。我抱着他，浑身发抖，眼泪止不住。我用刺刀挖了个坑，把他放进去，个子小得像只猫。我正了正他的军帽，用青草盖住他的脸：' },
+                    { type: 'dialogue', speaker: '赵小二',
+                        text: '"等革命胜利了，我替你去看看你娘——她儿子是英雄。"' },
+                    { type: 'narr',
+                        text: '下午，更大的噩耗。国民党骑兵偷袭收容队，好几个战友倒下。我冲过去扶起一个满身是血的人——是陈小石头，我的老连长！他胸口被子弹打穿，血往外涌。他看清是我，欣慰地笑了一下，头一歪，再也没了动静。我抱着他，哭不出声。我把他的遗体背到高坡上，和其他战友一起掩埋。一铲一铲土盖上去，我的手在抖，心在滴血。可我告诉自己：不能哭，还有活着的人要救。' },
+                    { type: 'narr',
+                        text: '八天八夜，我们掩埋了四百多具遗体。米勒医生也负了伤，自己包扎后又去救别人。草地像一座巨大的坟场，可我们凭着信念走了出来。带着牺牲战友的嘱托，活了下来。' },
+                    { type: 'narr', text: '我常常想起小宋，想起老连长，想起苏博文。他们在最黑的夜里，用自己的命，点亮了别人的路。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：红军中的非战斗减员',
+                    text: '非战斗减员指非直接作战造成的损失，主要包括因疲劳掉队、伤残疾病、缺粮饿死、恶劣环境致病致死等。雪山草地是非战斗减员最为集中的阶段，红军三大主力在此期间非战斗减员至少在万人以上。长征平均每公里就有3至4名红军将士牺牲，平均每4人中仅有1人到达陕甘根据地。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/fall4/200/150', desc: '英勇不屈' },
+                        { img: 'https://picsum.photos/seed/wall4/200/150', desc: '血肉长城' }
+                    ]
+                }],
+                guide: '雪山草地的生死考验，让赵小二完成了最后的蜕变。胜利的曙光，就在前方。',
+                nextRaw: 'unit5_intro'
+            }, {
+                id: 'unit5_intro',
+                type: 'intro',
+                unit: '第五单元',
+                title: '星火永存',
+                bg: 'scene-bg-5',
+                nodeIndex: 8,
+                introText: '闯过松潘草地，中央红军攻克腊子口天险，于1935年10月抵达陕北吴起镇。1936年10月，红军三大主力胜利会师，二万五千里长征宣告胜利结束。\n少年赵小二走完万里征途，回望一路艰辛与并肩前行的战友，完成了从懵懂孩童到信仰坚定的红军战士的蜕变。长征的伟大胜利，在中国革命史上写下浓墨重彩的篇章。',
+                guide: '长征结束了，但赵小二的故事并未完结。属于我们每个人的新时代长征，才刚刚开始。',
+                nextRaw: 'unit5_1'
+            }, {
+                id: 'unit5_1',
+                type: 'scene',
+                unit: '第五单元 · 星火',
+                title: '激战腊子口',
+                number: '场景 1 / 2',
+                bg: 'scene-bg-5',
+                nodeIndex: 9,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '走出茫茫草地，我们立刻投入到腊子口的战斗中。这里两山壁立，隘口狭窄，是北上的唯一通道，敌军依托险要地势严防死守。' },
+                    { type: 'narr', text: '我跟随医疗和收容队伍往返阵地之间，冒着乱飞的流弹转运伤员、递送物资。亲眼看着战友们沿着绝壁迂回包抄，在隘口浴血拼杀。经历过雪山、草地的万般磨难，再直面枪林弹雨，我的内心早已不再胆怯。这场战斗为北上打通了最后一道关口，也让我更加明白，胜利从来都是用坚守换来的。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：腊子口战役',
+                    text: '1935年9月16日至17日，中央红军发起腊子口战役。腊子口地处甘肃迭部，峡谷狭窄、两侧山崖陡峭，是川西北进入甘肃的咽喉要道。红军采取正面强攻与侧翼迂回相结合的战术，突破敌军防线，攻克腊子口。此战是中央红军长征途中最后一场关键性隘口战斗，彻底扫清北上道路。'
+                }],
+                guide: '腊子口的天险，挡不住红军的脚步。胜利，已经不远了。',
+                nextRaw: 'unit5_2'
+            }, {
+                id: 'unit5_2',
+                type: 'scene',
+                unit: '第五单元 · 星火',
+                title: '吴起镇会师 · 少年终成长',
+                number: '场景 2 / 2',
+                bg: 'scene-bg-5',
+                nodeIndex: 9,
+                blocks: [
+                    { type: 'narr', speaker: '赵小二',
+                        text: '翻过一道道山岭，我们终于踏上了黄土高原。1935年10月，队伍抵达吴起镇，脚下不再是冰雪与泥潭，空气中飘着庄稼的气息，连日的紧绷终于放松下来。' },
+                    { type: 'narr',
+                        text: '陕北乡亲们热情地送来黄米糕、热饭食，暖意涌上心头。我看着身边欢呼的战友，一路的疲惫烟消云散。闯过了枪林弹雨、雪山草地，我们终于有了安稳的落脚之地，这份劫后余生的喜悦，深深烙印在心底。' },
+                    { type: 'narr',
+                        text: '一年之后，红二、四方面军也奔赴而来，三大主力在甘肃会宁胜利会合。漫山遍野的红旗、震天的口号，让所有人热泪盈眶。' },
+                    { type: 'narr',
+                        text: '两万五千里的风雨兼程终于画上圆满句号。这段征途里，有人永远留在了雪山草地，但他们的信念永远传承。最初我参军，只是想讨一口饱饭、不再流浪。走过这二万五千里，历经生死离别，我终于明白我们前行的意义。如今的我，早已不是那个只为活下去的孤儿，而是一名心怀信仰、愿意为穷苦大众奋斗的红军战士。看到路边流浪的孩童，我仿佛看到了曾经的自己，也懂得了肩上沉甸甸的责任。',
+                        highlight: true }
+                ],
+                archives: [{
+                    title: '历史档案：吴起镇会师',
+                    text: '1935年10月19日，中央红军陕甘支队抵达陕西吴起镇。至此，中央红军历时一年、行程二万五千里的战略转移阶段性结束。1936年10月，红一方面军、红二方面军、红四方面军在甘肃会宁胜利会师，中国工农红军二万五千里长征全面胜利结束。\n长征的胜利，是中国革命转危为安的关键。它保存了中国革命和红军的骨干力量，铸就了伟大的长征精神。',
+                    artifacts: [
+                        { img: 'https://picsum.photos/seed/victory5/200/150', desc: '胜利抵达陕北' },
+                        { img: 'https://picsum.photos/seed/victory6/200/150', desc: '陕北会师场景' }
+                    ]
+                }],
+                guide: '长征结束了，但赵小二的故事并未完结。属于我们每个人的新时代长征，才刚刚开始。',
+                nextRaw: 'epilogue'
+            }, {
+                id: 'epilogue',
+                type: 'epilogue',
+                unit: '结语',
+                title: '星火永存 · 新时代长征',
+                bg: 'scene-bg-epilogue',
+                nodeIndex: 9,
+                blocks: [
+                    { type: 'narr',
+                        text: '二万五千里长征，是一场跨越千山万水的伟大远征。红军从江西于都出发，冲破层层封锁，转战数省，闯过枪林弹雨，翻越皑皑雪山，跋涉茫茫草地，历经无数艰难险阻，最终三大主力胜利会师陕北。长征的伟大胜利，彻底扭转了中国革命的危局，为革命事业保存下弥足珍贵的骨干力量。' },
+                    { type: 'narr',
+                        text: '漫漫征途中，大批出身贫苦的流浪少年、穷苦子弟投身红军。以本展主人公赵小二为代表的红小鬼，和奋战在各个岗位的全体红军将士一道，在严酷的行军与战斗中坚守使命。无数先烈为了革命理想舍生取义、无私奉献，而昔日懵懂的孩童，也在血与火的磨砺中锤炼意志，一步步成长为信仰坚定的革命战士。' }
+                ],
+                guide: '赵小二的万里长征已然落幕。属于我们每个人的新时代长征，才刚刚启程。'
+            }];
+
+            // ================================================================
+            // 2. 构建页面列表（叙事页 + 档案页分离）
+            // ================================================================
+
+            function buildPages(rawScenes) {
+                const pages = [];
+                const idMap = {};
+
+                rawScenes.forEach((raw, idx) => {
+                    const isSceneWithArchives = raw.type === 'scene' && raw.archives && raw.archives.length > 0;
+
+                    if (isSceneWithArchives) {
+                        // ---- 叙事页 ----
+                        const narrId = raw.id + '_narr';
+                        const archId = raw.id + '_arch';
+                        const narrPage = {
+                            id: narrId,
+                            type: 'narrative',
+                            unit: raw.unit,
+                            title: raw.title,
+                            number: raw.number,
+                            bg: raw.bg,
+                            nodeIndex: raw.nodeIndex,
+                            blocks: raw.blocks,
+                            guide: raw.guide,
+                            next: archId,
+                            rawId: raw.id
+                        };
+                        pages.push(narrPage);
+                        idMap[narrId] = narrPage;
+
+                        // ---- 档案页 ----
+                        const archPage = {
+                            id: archId,
+                            type: 'archive',
+                            unit: raw.unit,
+                            title: raw.title,
+                            number: raw.number,
+                            bg: raw.bg,
+                            nodeIndex: raw.nodeIndex,
+                            archives: raw.archives,
+                            guide: raw.guide,
+                            next: raw.nextRaw || null,
+                            rawId: raw.id
+                        };
+                        pages.push(archPage);
+                        idMap[archId] = archPage;
+
+                        raw._narrId = narrId;
+                        raw._archId = archId;
+                    } else {
+                        // ---- 非场景（intro, hero, epilogue）直接作为页面 ----
+                        const page = {
+                            id: raw.id,
+                            type: raw.type,
+                            unit: raw.unit,
+                            title: raw.title,
+                            bg: raw.bg,
+                            nodeIndex: raw.nodeIndex || 0,
+                            guide: raw.guide,
+                            next: raw.nextRaw || null,
+                            rawId: raw.id
+                        };
+                        if (raw.type === 'intro') {
+                            page.introText = raw.introText;
+                        } else if (raw.type === 'hero' || raw.type === 'epilogue') {
+                            page.blocks = raw.blocks;
+                        }
+                        pages.push(page);
+                        idMap[raw.id] = page;
+                        raw._pageId = raw.id;
+                    }
+                });
+
+                // 修正 next 引用
+                pages.forEach(p => {
+                    if (p.next && p.next.startsWith('unit') && !p.next.includes('_')) {
+                        const raw = rawScenes.find(r => r.id === p.next);
+                        if (raw) {
+                            if (raw.type === 'scene' && raw.archives && raw.archives.length > 0) {
+                                p.next = raw.id + '_narr';
+                            } else {
+                                p.next = raw.id;
+                            }
+                        }
+                    }
+                    if (!p.next) {
+                        p.next = p.id;
+                    }
+                });
+
+                return { pages, idMap };
+            }
+
+            const { pages, idMap } = buildPages(rawScenes);
+            const pageIds = pages.map(p => p.id);
+
+            // ================================================================
+            // 3. 路线图
+            // ================================================================
+
+            const nodeLabels = ['于都', '湘江', '遵义', '赤水', '金沙江', '泸定桥', '夹金山', '草地', '腊子口', '吴起镇'];
+            const pts = [
+                { x: 60, y: 480 },
+                { x: 50, y: 410 },
+                { x: 70, y: 350 },
+                { x: 40, y: 290 },
+                { x: 60, y: 230 },
+                { x: 80, y: 180 },
+                { x: 50, y: 130 },
+                { x: 60, y: 75 },
+                { x: 70, y: 40 },
+                { x: 85, y: 15 },
+            ];
+
+            function renderMap(activeNodeIdx) {
+                // 边界保护
+                const safeIdx = Math.min(Math.max(activeNodeIdx, 0), pts.length - 1);
+
+                let svg =
+                    `<svg viewBox="0 0 120 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-height:520px;">`;
+
+                for (let i = 0; i < pts.length - 1; i++) {
+                    const done = i < safeIdx;
+                    svg += `<line x1="${pts[i].x}" y1="${pts[i].y}" x2="${pts[i+1].x}" y2="${pts[i+1].y}" 
+                              class="map-path ${done ? 'done' : ''}" />`;
+                }
+
+                pts.forEach((p, i) => {
+                    const isActive = (i === safeIdx);
+                    const isVisited = (i < safeIdx);
+                    const label = nodeLabels[i] || '';
+                    svg += `<g class="map-node ${isActive ? 'active' : ''} ${isVisited ? 'visited' : ''}" data-node="${i}" style="cursor:pointer;">`;
+                    svg += `<circle cx="${p.x}" cy="${p.y}" r="${isActive ? 7 : 5}" />`;
+                    svg +=
+                        `<text x="${p.x}" y="${p.y + (i % 2 === 0 ? -14 : 16)}" font-size="6" fill="#6a5a4a" text-anchor="middle" dominant-baseline="central">${label}</text>`;
+                    svg += `</g>`;
+                });
+
+                svg += `</svg>`;
+                document.getElementById('mapSvgWrap').innerHTML = svg;
+
+                document.querySelectorAll('.map-node').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const nodeIdx = parseInt(this.dataset.node);
+                        let targetId = null;
+                        for (const p of pages) {
+                            if (p.nodeIndex === nodeIdx) {
+                                targetId = p.id;
+                                break;
+                            }
+                        }
+                        if (targetId) {
+                            const idx = pageIds.indexOf(targetId);
+                            if (idx !== -1) goToPage(idx);
+                        }
+                    });
+                });
+            }
+
+            // ================================================================
+            // 4. 渲染页面
+            // ================================================================
+
+            let currentIdx = 0;
+            let isTransitioning = false;
+            const container = document.getElementById('sceneContainer');
+            const unitIndicator = document.getElementById('unitIndicator');
+            const content = document.getElementById('content');
+
+            function renderPage(idx) {
+                const data = pages[idx];
+                if (!data) return;
+
+                content.className = data.bg || 'scene-bg-1';
+
+                let html = `<div class="scene-card">`;
+
+                // ---- 头部 ----
+                html += `<div class="scene-header">`;
+                if (data.unit) html += `<div class="unit-tag">${data.unit}</div>`;
+                html += `<h3>${data.title}</h3>`;
+                if (data.number) html += `<div class="scene-number">${data.number}</div>`;
+
+                let typeLabel = '';
+                if (data.type === 'narrative') typeLabel = '📖 赵小二的故事';
+                else if (data.type === 'archive') typeLabel = '📜 历史档案 · 文物';
+                else if (data.type === 'intro') typeLabel = '单元导语';
+                else if (data.type === 'hero') typeLabel = '序厅';
+                else if (data.type === 'epilogue') typeLabel = '结语';
+                if (typeLabel) html += `<div class="page-type-tag">${typeLabel}</div>`;
+
+                html += `</div>`;
+
+                // ---- 内容 ----
+                if (data.type === 'intro') {
+                    html += `<div class="intro-title">${data.title}</div>`;
+                    html += `<div class="intro-divider">✦ ✦ ✦</div>`;
+                    html += `<div class="intro-text">`;
+                    const paras = data.introText.split('\n');
+                    paras.forEach(p => { if (p.trim()) html += `<p>${p}</p>`; });
+                    html += `</div>`;
+                } else if (data.type === 'hero' || data.type === 'epilogue') {
+                    if (data.blocks) {
+                        html += `<div style="font-size:0.95rem;line-height:2.1;">`;
+                        data.blocks.forEach(b => {
+                            if (b.type === 'narr') {
+                                const lines = b.text.split('\n');
+                                lines.forEach(line => {
+                                    if (line.trim()) {
+                                        if (line.startsWith('策展缘由') || line.startsWith('展览前言')) {
+                                            html += `<p><strong style="color:#e6b17e;">${line}</strong></p>`;
+                                        } else {
+                                            html += `<p>${line}</p>`;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        html += `</div>`;
+                    }
+                    if (data.type === 'epilogue') {
+                        html += `<div class="scene-divider">——— ✦ ———</div>`;
+                        html +=
+                            `<div style="text-align:center;font-family:'Ma Shan Zheng',cursive;font-size:clamp(1.2rem,2.5vw,1.7rem);color:#c4a88a;padding:4px 0;">✦ 赵小二的万里长征已然落幕 ✦</div>`;
+                        html +=
+                            `<div style="text-align:center;font-style:italic;font-size:0.95rem;color:#a08878;padding:2px 0 12px;line-height:2;">属于我们每个人的新时代长征，才刚刚启程。<br />如何坚守初心、砥砺前行，走好脚下的长征路，<br />这是值得我们用一生去认真作答的人生课题。</div>`;
+                        html += `<div class="epilogue-msg">`;
+                        html += `<h4>走好新时代长征路</h4>`;
+                        html += `<textarea id="messageInput" placeholder="写下您的感想……"></textarea>`;
+                        html += `<button id="sendMessage">留下足迹</button>`;
+                        html += `<div class="fb" id="feedback"></div>`;
+                        html += `</div>`;
+                    }
+                } else if (data.type === 'narrative') {
+                    // ---- 叙事页 ----
+                    html += `<div class="narrative" id="narr_${data.id}">`;
+                    data.blocks.forEach((b, bi) => {
+                        const cls = `narr-block ${bi === 0 ? 'visible' : ''}`;
+                        html += `<div class="${cls}" data-order="${bi}">`;
+                        if (b.type === 'narr') {
+                            if (b.speaker) html += `<span class=”speaker”>${b.speaker}</span>`;
+                            html += `<span class=”qm”>”</span>`;
+                            if (b.highlight) {
+                                const parts = b.text.split(/(?<=[。！？])/);
+                                if (parts.length > 1) {
+                                    const last = parts.pop();
+                                    html += parts.join('');
+                                    html += `<span class=”hl”>${last}</span>`;
+                                } else {
+                                    html += `<span class=”hl”>${b.text}</span>`;
+                                }
+                            } else {
+                                html += b.text;
+                            }
+                            html += `<span class=”qm end”>”</span>`;
+                        } else if (b.type === 'dialogue') {
+                            html += `<span class="dialogue"><span class="who">${b.speaker}：</span>${b.text}</span>`;
+                        }
+                        html += `</div>`;
+                    });
+                    html += `<span class="continue-hint show" data-target="narr_${data.id}">▼ 点击继续</span>`;
+                    html += `</div>`;
+                    html += `<div class="scene-divider">——— ✦ ———</div>`;
+                    html +=
+                        `<div style="text-align:center;font-size:0.8rem;opacity:0.3;letter-spacing:2px;padding:2px 0 4px;">赵小二的讲述 · 点击下方了解历史背景</div>`;
+                } else if (data.type === 'archive') {
+                    // ---- 档案页 ----
+                    html += `<div class="archive-section">`;
+                    data.archives.forEach((arch, ai) => {
+                        const isSidecard = arch.isSidecard || false;
+                        if (ai > 0) html += `<div class="archive-sub">`;
+
+                        if (isSidecard) {
+                            html += `<div class="side-card">`;
+                            html += `<h4>📖 ${arch.title}</h4>`;
+                            html += `<p>${arch.text}</p>`;
+                            if (arch.artifacts && arch.artifacts.length) {
+                                html += `<div class="artifact-grid">`;
+                                arch.artifacts.forEach(a => {
+                                    html +=
+                                        `<div class="art-item" style="background-image:url('${a.img}');" data-desc="${a.desc}"><div class="label">${a.desc}</div></div>`;
+                                });
+                                html += `</div>`;
+                            }
+                            html += `</div>`;
+                        } else {
+                            html += `<div class="archive-title"><span class="icon">📜</span>${arch.title}</div>`;
+                            html += `<div class="archive-text">`;
+                            const paras = arch.text.split('\n');
+                            paras.forEach(p => { if (p.trim()) html += `<p>${p}</p>`; });
+                            html += `</div>`;
+                            if (arch.artifacts && arch.artifacts.length) {
+                                html += `<div class="artifact-grid">`;
+                                arch.artifacts.forEach(a => {
+                                    html +=
+                                        `<div class="art-item" style="background-image:url('${a.img}');" data-desc="${a.desc}"><div class="label">${a.desc}</div></div>`;
+                                });
+                                html += `</div>`;
+                            }
+                        }
+                        if (ai > 0) html += `</div>`;
+                    });
+                    html += `</div>`;
+                }
+
+                // ---- 底部引导 ----
+                if (data.guide) {
+                    html += `<div class="scene-guide">`;
+                    const guideText = data.guide.replace(/\n/g, '<br />');
+                    html += `<div class="guide-text">${guideText}</div>`;
+
+                    let btnLabel = '继续 →';
+                    let btnClass = 'btn-next';
+                    let extraHtml = '';
+
+                    if (data.type === 'narrative') {
+                        btnLabel = '📜 了解历史背景 →';
+                        btnClass = 'btn-next btn-next-narrative';
+                    } else if (data.type === 'archive') {
+                        btnLabel = '📖 继续赵小二的故事 →';
+                        btnClass = 'btn-next';
+                        extraHtml =
+                            `<span class="transition-hint">历史档案读毕 · 回到赵小二的视角</span>`;
+                    } else if (data.type === 'intro') {
+                        btnLabel = '🚩 进入单元 →';
+                        btnClass = 'btn-next';
+                        extraHtml =
+                            `<span class="transition-hint">单元导语读毕 · 走进赵小二的故事</span>`;
+                    } else if (data.type === 'hero') {
+                        btnLabel = '🚩 走进第一单元 →';
+                        btnClass = 'btn-next';
+                    } else if (data.type === 'epilogue') {
+                        btnLabel = '⬆ 回到序厅';
+                        btnClass = 'btn-next';
+                    }
+
+                    const nextId = data.next;
+                    if (nextId && nextId !== data.id && idMap[nextId]) {
+                        if (data.type === 'narrative') {
+                            html +=
+                                `<button id="btn-next-${data.id}" class="${btnClass}" data-next="${nextId}" style="display:none;">${btnLabel} <span class="arrow">→</span></button>`;
+                        } else {
+                            html += `<div class="btn-with-label">`;
+                            if (extraHtml) html += extraHtml;
+                            html +=
+                                `<button class="${btnClass}" data-next="${nextId}">${btnLabel} <span class="arrow">→</span><span class="pulse-ring-btn"></span></button>`;
+                            html += `</div>`;
+                        }
+                    } else if (data.type === 'epilogue') {
+                        html +=
+                            `<button class="btn-next" data-next="hero">⬆ 回到序厅 <span class="arrow">→</span></button>`;
+                    }
+                    html += `</div>`;
+                }
+
+                html += `</div>`;
+                container.innerHTML = html;
+
+                // ---- 更新顶部 ----
+                const unitName = data.unit || '序厅';
+                unitIndicator.innerHTML = `<strong>${unitName}</strong>`;
+
+                // ---- 导航按钮 ----
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                prevBtn.style.opacity = idx > 0 ? '1' : '0.3';
+                nextBtn.style.opacity = idx < pageIds.length - 1 ? '1' : '0.3';
+
+                // ---- 路线图 ----
+                renderMap(data.nodeIndex || 0);
+
+                // ---- 绑定事件 ----
+                bindPageEvents(data.id);
+
+                // ---- 叙事逐段显现（仅叙事页） ----
+                if (data.type === 'narrative') {
+                    setupNarrative(data.id);
+                }
+
+                // ---- 结语留言 ----
+                if (data.type === 'epilogue') {
+                    setupEpilogue();
+                }
+
+                // ---- 文物点击 ----
+                document.querySelectorAll('.art-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const bg = this.style.backgroundImage;
+                        const desc = this.dataset.desc || '文物展品';
+                        const urlMatch = bg.match(/url\(["']?(.*?)["']?\)/);
+                        if (urlMatch && urlMatch[1]) {
+                            document.getElementById('modalImg').src = urlMatch[1];
+                        } else {
+                            document.getElementById('modalImg').src = 'https://picsum.photos/seed/default/600/400';
+                        }
+                        document.getElementById('modalDesc').textContent = desc;
+                        document.getElementById('modal').classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+
+                content.scrollTop = 0;
+            }
+
+            // ================================================================
+            // 5. 逐段显现（叙事页专用）
+            // ================================================================
+
+            function setupNarrative(pageId) {
+                const container = document.getElementById(`narr_${pageId}`);
+                if (!container) return;
+                const blocks = container.querySelectorAll('.narr-block');
+                const hint = container.querySelector('.continue-hint');
+                const btn = document.getElementById(`btn-next-${pageId}`);
+                if (!blocks.length) return;
+
+                let currentBlock = 1;
+                let isComplete = false;
+
+                if (blocks.length <= 1) {
+                    isComplete = true;
+                    if (btn) {
+                        btn.style.display = 'inline-block';
+                        btn.classList.add('show');
+                    }
+                    hint.classList.remove('show');
+                    return;
+                }
+
+                function showNext() {
+                    if (currentBlock < blocks.length) {
+                        blocks[currentBlock].classList.add('visible');
+                        currentBlock++;
+                        if (currentBlock < blocks.length) {
+                            hint.classList.add('show');
+                        } else {
+                            hint.classList.remove('show');
+                            isComplete = true;
+                            if (btn) {
+                                btn.style.display = 'inline-block';
+                                btn.classList.add('show');
+                            }
+                        }
+                    } else {
+                        hint.classList.remove('show');
+                        isComplete = true;
+                        if (btn) {
+                            btn.style.display = 'inline-block';
+                            btn.classList.add('show');
+                        }
+                    }
+                }
+
+                hint.addEventListener('click', showNext);
+                container.addEventListener('click', function(e) {
+                    if (e.target.closest('.btn-next')) return;
+                    if (!isComplete && currentBlock <= blocks.length) {
+                        showNext();
+                    }
+                });
+
+                if (blocks.length > 1) {
+                    hint.classList.add('show');
+                } else {
+                    hint.classList.remove('show');
+                }
+            }
+
+            // ================================================================
+            // 6. 结语留言
+            // ================================================================
+
+            function setupEpilogue() {
+                const msgInput = document.getElementById('messageInput');
+                const sendBtn = document.getElementById('sendMessage');
+                const feedback = document.getElementById('feedback');
+                if (sendBtn) {
+                    sendBtn.addEventListener('click', function() {
+                        const msg = msgInput.value.trim();
+                        if (msg) {
+                            feedback.textContent = '❤️ 感谢您的留言：“' + msg + '” 长征精神永放光芒！';
+                            msgInput.value = '';
+                            try { localStorage.setItem('red_小鬼留言', msg); } catch (e) {}
+                        } else {
+                            feedback.textContent = '请写下您的感想再提交。';
+                        }
+                    });
+                }
+                try {
+                    const saved = localStorage.getItem('red_小鬼留言');
+                    if (saved && feedback) feedback.textContent = '❤️ 您曾留言：“' + saved + '”';
+                } catch (e) {}
+            }
+
+            // ================================================================
+            // 7. 页面切换
+            // ================================================================
+
+            function goToPage(idx) {
+                if (isTransitioning || idx === currentIdx) return;
+                if (idx < 0 || idx >= pageIds.length) return;
+                isTransitioning = true;
+                currentIdx = idx;
+                renderPage(idx);
+                setTimeout(() => { isTransitioning = false; }, 400);
+            }
+
+            function bindPageEvents(pageId) {
+                document.querySelectorAll('.btn-next').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const target = this.dataset.next;
+                        if (target && idMap[target]) {
+                            const idx = pageIds.indexOf(target);
+                            if (idx !== -1) goToPage(idx);
+                        }
+                    });
+                });
+            }
+
+            // ================================================================
+            // 8. 导航按钮
+            // ================================================================
+
+            document.getElementById('prevBtn').addEventListener('click', function() {
+                if (currentIdx > 0) goToPage(currentIdx - 1);
+            });
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                if (currentIdx < pageIds.length - 1) goToPage(currentIdx + 1);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (currentIdx < pageIds.length - 1) goToPage(currentIdx + 1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (currentIdx > 0) goToPage(currentIdx - 1);
+                }
+            });
+
+            // ================================================================
+            // 9. 模态框
+            // ================================================================
+
+            document.getElementById('modalClose').addEventListener('click', function() {
+                document.getElementById('modal').classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            document.getElementById('modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.getElementById('modal').classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // ================================================================
+            // 10. 封面进入
+            // ================================================================
+
+            document.getElementById('enterBtn').addEventListener('click', function() {
+                document.getElementById('cover').classList.remove('active');
+                document.getElementById('cover').style.display = 'none';
+                document.getElementById('app').classList.add('visible');
+                document.body.style.overflow = 'hidden';
+                renderPage(0);
+            });
+
+            document.body.style.overflow = 'hidden';
+            document.getElementById('cover').style.display = 'flex';
+
+            console.log('✦ 红小鬼 · 长征线上展览 最终版 ✦');
+            console.log('📄 共 ' + pageIds.length + ' 个页面');
+            console.log('🔘 导语页 → 单元 | 档案页 → 叙事，均有明确交互引导');
+            console.log('⌨️  键盘 ← → 切换页面');
+
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雄关漫道真如铁——一个"红小鬼"的长征路</title>
+<style>
+/* ===== 全局样式 ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #8B1A1A;
+  --red-dark: #5C0E0E;
+  --red-light: #B53434;
+  --yellow: #F5E6C8;
+  --yellow-dark: #D4C4A0;
+  --ink: #1A1A1A;
+  --gold: #C8963E;
+  --white: #FAF7F2;
+  --shadow: 0 4px 24px rgba(0,0,0,0.12);
+  --radius: 16px;
+  --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", "宋体", Georgia, serif;
+  color: var(--ink);
+  background: #0d0d0d;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* 全局背景 */
+#bg-layer {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+  transition: background var(--transition);
+}
+.bg-preface  { background: linear-gradient(135deg, #2c2416 0%, #1a1510 40%, #2c2416 100%); }
+.bg-unit1    { background: linear-gradient(135deg, #3a3530 0%, #2a2520 40%, #353028 100%); }
+.bg-unit2    { background: linear-gradient(135deg, #2d1518 0%, #1a0f10 40%, #2d1518 100%); }
+.bg-unit3    { background: linear-gradient(135deg, #2a2520 0%, #1f1a15 40%, #2a2218 100%); }
+.bg-unit4    { background: linear-gradient(135deg, #1a2a1f 0%, #101a14 40%, #1a2a1f 100%); }
+.bg-unit5    { background: linear-gradient(135deg, #2a2015 0%, #1a150a 40%, #2a2015 100%); }
+.bg-epilogue { background: linear-gradient(135deg, #1a1520 0%, #12101a 40%, #1a1520 100%); }
+
+/* 颗粒纹理覆盖层 */
+#grain {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+  pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== 导航栏 ===== */
+#navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: rgba(10,8,6,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(139,26,26,0.3);
+  padding: 0 20px; display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 0;
+}
+#navbar .nav-inner {
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center;
+  max-width: 1200px; width: 100%;
+}
+#navbar .nav-brand {
+  font-family: "Ma Shan Zheng", "华文行楷", "STXingkai", cursive;
+  font-size: 1.1rem; color: var(--gold); white-space: nowrap;
+  padding: 12px 20px 12px 0; margin-right: auto;
+  letter-spacing: 2px;
+}
+#navbar a {
+  color: #c8b898; text-decoration: none; font-size: 0.85rem;
+  padding: 14px 12px; cursor: pointer; transition: all 0.3s;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  letter-spacing: 1px; position: relative;
+}
+#navbar a:hover, #navbar a.active { color: var(--yellow); border-bottom-color: var(--red); }
+#navbar a.active::after {
+  content: ''; position: absolute; bottom: -1px; left: 12px; right: 12px;
+  height: 2px; background: var(--red-light);
+}
+
+/* 音乐按钮 */
+#music-toggle {
+  position: fixed; top: 70px; right: 20px; z-index: 1001;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(10,8,6,0.8); backdrop-filter: blur(8px);
+  border: 1px solid rgba(200,180,140,0.3); color: #c8b898;
+  cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+#music-toggle:hover { border-color: var(--gold); color: var(--gold); }
+#music-toggle.playing { border-color: var(--red-light); color: var(--red-light); }
+
+/* ===== 主内容区 ===== */
+#main-content { position: relative; z-index: 1; margin-top: 56px; }
+
+.section {
+  min-height: 100vh; padding: 80px 20px 60px; display: none;
+  opacity: 0; transition: opacity var(--transition);
+}
+.section.visible { display: block; opacity: 1; }
+.section.enter { display: block; animation: fadeSlideIn 0.6s ease forwards; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* ===== 卡片样式 ===== */
+.card {
+  background: rgba(255,252,245,0.06); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,252,245,0.1); border-radius: var(--radius);
+  padding: 40px 36px; margin-bottom: 36px;
+  box-shadow: var(--shadow); transition: all 0.3s;
+}
+.card:hover { border-color: rgba(200,180,140,0.2); }
+
+/* 单元标题 */
+.unit-title {
+  font-family: "Ma Shan Zheng", "华文行楷", "STXingkai", cursive;
+  font-size: 2.4rem; color: var(--yellow); text-align: center;
+  margin-bottom: 8px; letter-spacing: 4px;
+}
+.unit-subtitle {
+  font-size: 1.1rem; color: var(--gold); text-align: center;
+  margin-bottom: 32px; letter-spacing: 2px; font-weight: 300;
+}
+
+/* 单元导语 */
+.unit-intro {
+  background: rgba(139,26,26,0.08); border-left: 3px solid var(--red);
+  padding: 24px 28px; border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 40px; color: #d5c8a8; font-size: 0.95rem; line-height: 2;
+}
+
+/* 分组双栏 */
+.group { margin-bottom: 48px; }
+.group-header {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px;
+  padding-bottom: 12px; border-bottom: 1px solid rgba(200,180,140,0.15);
+}
+.group-num {
+  font-family: "Ma Shan Zheng", cursive; font-size: 1.8rem;
+  color: var(--red-light); letter-spacing: 2px;
+}
+.group-name {
+  font-size: 1.3rem; color: var(--yellow); letter-spacing: 2px; font-weight: 600;
+}
+.group-event {
+  font-size: 0.8rem; color: rgba(200,180,140,0.6); margin-left: auto; font-style: italic;
+}
+
+.dual-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+}
+
+/* 左侧 - 第一人称叙事 */
+.col-left {
+  background: linear-gradient(135deg, rgba(245,230,200,0.12) 0%, rgba(200,170,120,0.08) 100%);
+  border: 1px solid rgba(245,230,200,0.18); border-radius: var(--radius);
+  padding: 28px; position: relative; overflow: hidden;
+}
+.col-left::before {
+  content: '第一人称 · 个人叙事';
+  display: block; font-size: 0.75rem; color: var(--gold); letter-spacing: 2px;
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(200,180,140,0.2);
+}
+.col-left p {
+  font-family: "Ma Shan Zheng", "KaiTi", "STKaiti", "楷体", cursive;
+  font-size: 1.05rem; color: #e8dcc8; line-height: 2.1;
+  text-indent: 2em;
+}
+
+/* 右侧 - 历史档案 */
+.col-right {
+  background: linear-gradient(135deg, rgba(180,200,210,0.08) 0%, rgba(140,160,180,0.06) 100%);
+  border: 1px solid rgba(160,180,200,0.15); border-radius: var(--radius);
+  padding: 28px; position: relative; overflow: hidden;
+}
+.col-right::before {
+  content: '历史档案';
+  display: block; font-size: 0.75rem; color: #8aacb8; letter-spacing: 2px;
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(140,170,190,0.2);
+}
+.col-right p {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", "宋体", serif;
+  font-size: 0.9rem; color: #c5d5de; line-height: 1.9;
+  text-indent: 2em;
+}
+
+/* 红军中的Ta们特殊标注 */
+.col-right .ta-label {
+  display: inline-block; background: rgba(139,26,26,0.3); color: var(--red-light);
+  font-size: 0.78rem; padding: 2px 10px; border-radius: 4px;
+  margin-bottom: 10px; letter-spacing: 1px;
+}
+
+/* 图片占位 */
+.img-placeholder {
+  width: 100%; aspect-ratio: 4/3; background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.1); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 16px 0; cursor: pointer; transition: all 0.3s;
+  overflow: hidden; position: relative;
+}
+.img-placeholder:hover { border-color: var(--gold); background: rgba(200,180,140,0.05); }
+.img-placeholder .img-icon {
+  font-size: 2.5rem; opacity: 0.3; transition: opacity 0.3s;
+}
+.img-placeholder:hover .img-icon { opacity: 0.6; }
+.img-placeholder .img-caption {
+  position: absolute; bottom: 10px; left: 0; right: 0; text-align: center;
+  font-size: 0.7rem; color: rgba(200,180,140,0.5);
+}
+
+/* ===== 序厅特化样式 ===== */
+.preface-header {
+  text-align: center; padding: 40px 0;
+}
+.preface-header .main-title {
+  font-family: "Ma Shan Zheng", "华文行楷", "STXingkai", cursive;
+  font-size: 3rem; color: var(--yellow); letter-spacing: 6px;
+  margin-bottom: 12px; line-height: 1.3;
+}
+.preface-header .dash {
+  color: var(--red-light); font-size: 1.2rem; letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+.preface-header .sub-info {
+  color: rgba(200,180,140,0.7); font-size: 0.85rem; letter-spacing: 2px;
+  line-height: 1.8;
+}
+.preface-card h3 {
+  font-family: "Ma Shan Zheng", cursive; color: var(--gold);
+  font-size: 1.4rem; margin-bottom: 16px; letter-spacing: 2px;
+}
+.preface-card p {
+  color: #c8b898; line-height: 2; font-size: 0.93rem; text-indent: 2em;
+}
+.preface-card .highlight {
+  color: var(--yellow); font-weight: 600;
+}
+
+/* ===== 结语特化 ===== */
+.epilogue-content {
+  text-align: center; max-width: 700px; margin: 0 auto;
+}
+.epilogue-content h2 {
+  font-family: "Ma Shan Zheng", cursive; font-size: 2.4rem;
+  color: var(--yellow); letter-spacing: 4px; margin-bottom: 32px;
+}
+.epilogue-content p {
+  color: #c8b898; line-height: 2.2; font-size: 1.05rem; text-indent: 2em;
+  text-align: left; margin-bottom: 20px;
+}
+.epilogue-content .closing-line {
+  font-size: 1.3rem; color: var(--gold); margin-top: 40px;
+  letter-spacing: 3px; font-weight: 600;
+}
+
+/* ===== 模态框 ===== */
+#image-modal {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2000; background: rgba(0,0,0,0.88); align-items: center; justify-content: center;
+  flex-direction: column;
+}
+#image-modal.show { display: flex; }
+#image-modal .modal-img {
+  max-width: 80%; max-height: 60%; border-radius: 8px;
+  background: rgba(255,255,255,0.03); padding: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.2); font-size: 1.2rem;
+}
+#image-modal .modal-caption {
+  color: #c8b898; margin-top: 16px; font-size: 0.9rem; max-width: 600px;
+  text-align: center; line-height: 1.8;
+}
+#image-modal .modal-close {
+  position: absolute; top: 24px; right: 32px; font-size: 2rem;
+  color: rgba(255,255,255,0.5); cursor: pointer; background: none; border: none;
+  transition: color 0.3s;
+}
+#image-modal .modal-close:hover { color: #fff; }
+
+/* ===== 留言区 ===== */
+#message-board {
+  padding: 60px 20px; max-width: 700px; margin: 0 auto;
+}
+#message-board h3 {
+  font-family: "Ma Shan Zheng", cursive; color: var(--yellow);
+  font-size: 1.8rem; text-align: center; letter-spacing: 3px; margin-bottom: 28px;
+}
+#message-board .msg-form {
+  display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap;
+}
+#message-board input {
+  flex: 1; min-width: 140px; padding: 12px 18px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; color: #c8b898; font-size: 0.9rem;
+  font-family: inherit; outline: none; transition: border-color 0.3s;
+}
+#message-board input:focus { border-color: var(--gold); }
+#message-board textarea {
+  width: 100%; padding: 12px 18px; margin-bottom: 12px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; color: #c8b898; font-size: 0.9rem; resize: vertical;
+  min-height: 80px; font-family: inherit; outline: none; transition: border-color 0.3s;
+}
+#message-board textarea:focus { border-color: var(--gold); }
+#message-board button {
+  padding: 10px 32px; background: var(--red); color: var(--yellow);
+  border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem;
+  letter-spacing: 2px; font-family: inherit; transition: all 0.3s;
+}
+#message-board button:hover { background: var(--red-light); }
+.msg-item {
+  background: rgba(255,255,255,0.03); border-radius: 8px; padding: 16px 20px;
+  margin-bottom: 12px; border-left: 2px solid var(--red);
+}
+.msg-item .msg-author { color: var(--gold); font-size: 0.85rem; font-weight: 600; }
+.msg-item .msg-time { color: rgba(200,180,140,0.4); font-size: 0.7rem; margin-left: 10px; }
+.msg-item .msg-body { color: #b0a080; font-size: 0.9rem; margin-top: 6px; }
+
+/* ===== 页脚 ===== */
+footer {
+  text-align: center; padding: 40px 20px; color: rgba(200,180,140,0.3);
+  font-size: 0.78rem; letter-spacing: 2px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .dual-col { grid-template-columns: 1fr; }
+  .unit-title { font-size: 1.6rem; }
+  #navbar .nav-brand { font-size: 0.85rem; padding: 8px 8px 8px 0; }
+  #navbar a { font-size: 0.72rem; padding: 10px 7px; }
+  .card { padding: 24px 16px; }
+  .col-left, .col-right { padding: 20px 16px; }
+  .col-left p { font-size: 0.95rem; }
+  .col-right p { font-size: 0.82rem; }
+  .section { padding: 60px 12px 40px; }
+  .preface-header .main-title { font-size: 2rem; }
+  #music-toggle { top: 62px; right: 10px; width: 34px; height: 34px; font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+  #navbar .nav-brand { width: 100%; text-align: center; padding: 10px 0 4px; margin-right: 0; }
+  #navbar a { padding: 8px 6px; font-size: 0.68rem; letter-spacing: 0; }
+  .section { padding: 50px 8px 30px; }
+}
+</style>
+<!-- 书法字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- 背景层 -->
+<div id="bg-layer" class="bg-preface"></div>
+<div id="grain"></div>
+
+<!-- 音乐开关 -->
+<button id="music-toggle" title="背景音乐" onclick="toggleMusic()">&#9835;</button>
+
+<!-- 导航栏 -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">雄关漫道真如铁</span>
+    <a data-target="preface" class="active">序 厅</a>
+    <a data-target="unit1">单元一</a>
+    <a data-target="unit2">单元二</a>
+    <a data-target="unit3">单元三</a>
+    <a data-target="unit4">单元四</a>
+    <a data-target="unit5">单元五</a>
+    <a data-target="epilogue">结 语</a>
+  </div>
+</nav>
+
+<!-- 主内容区 -->
+<div id="main-content">
+
+<!-- ==================== 序厅 ==================== -->
+<section id="preface" class="section visible">
+<div class="container">
+  <div class="preface-header">
+    <h1 class="main-title">雄关漫道真如铁</h1>
+    <div class="dash">—— 一个"红小鬼"的长征路 ——</div>
+    <p class="sub-info">纪念中国红军长征胜利90周年 · 线上虚拟展览</p>
+  </div>
+
+  <div class="card preface-card">
+    <h3>策展缘由</h3>
+    <p>"为有牺牲多壮志，敢教日月换新天"。长征是人类历史上的伟大奇迹，它的战略转移为中国革命保留了希望，为中国革命胜利奠定了重要基础。今年是中国红军长征胜利90周年，为了纪念红军长征并让观众了解长征路上的艰苦岁月，感悟先辈们为了中国革命的胜利所做出的牺牲和奉献，特此推出长征文化展。</p>
+    <p style="margin-top:12px;"><span class="highlight">受众：</span>该展览面向广大观众，主要面向青少年。</p>
+    <p><span class="highlight">策展理念：</span>在展览主题上，摒弃了宏大叙事下对于人物个体的忽视，我们聚焦于长征路上广大普通红军这一群体。通过以虚构的"红小鬼"这一形象人物的成长来串联起整个长征的历程，从个体视角出发，以第一人称讲述的方式，来展现长征路上红军们的生活和感人事迹。</p>
+    <p><span class="highlight">核心价值：</span>希望通过以个体视角来引发观众的共鸣，让观众感受到红军在长征路上的艰难困苦和革命精神，了解长征的整个过程，理解先辈们的付出，珍惜现在的和平生活。</p>
+  </div>
+
+  <div class="card preface-card">
+    <h3>参考案例</h3>
+    <p style="color:var(--gold); font-weight:600;">遇见黄东：一个清代广州"事仔"的"大世界"</p>
+    <p>本展览在传统的展示模式基础上，采用戏剧分幕的方式，以黄东的第一人称视角回忆往事，介绍他在十三行遇到布莱克、远赴英国、在英国的见闻等情况，用形象生动的情境构建，为藏品的阐释拓展边界，将"物"的孤立表达转化为"事"的关联叙事，将观众带入其中。</p>
+  </div>
+
+  <div class="card preface-card">
+    <h3>展览前言</h3>
+    <p>1934年10月，中共中央和中革军委率中央红军主力从江西于都出发，开始战略转移。至1936年10月三大主力会师，历时两年，途经十余省，翻越雪山，穿过草地，进行重要战役战斗六百余次，总行程约二万五千里。史称长征。</p>
+    <p>长征队伍中包含一定数量的少年战士，年龄多在8至16岁之间，通常被称为"红小鬼"。据不完全统计，仅中央红军中就有约一万余名。他们多来自苏区贫苦农民家庭，部分为烈士遗孤或流浪孤儿，担任号手、通信员、宣传员、卫生员、炊事员等职务，承担与成年战士相同的行军与作战任务。由于年龄小、体力弱，他们在长途行军中面临更高的生存风险，其伤亡比例往往高于成年战士。红小鬼群体是长征不可忽视的组成部分。</p>
+    <p>本展览以虚构人物"赵小二"为叙述者，其经历综合自长征亲历者的口述史、回忆录及档案记载，是红小鬼群体共同记忆的凝结。展览以赵小二的第一人称视角展开，呈现长征的完整历程、极端环境下的行军生活，以及长征路上不同岗位的普通战士（连长、号手、炊事员、宣传员、卫生员、收容队员等）的具体处境与行为选择。展览内容依据史实展开，以长征的时间进程为线索，结合客观战役背景与个体叙事，力求在历史真实与叙事可感性之间建立有效的认知通道。</p>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 单元一：倔强·初入红军 ==================== -->
+<section id="unit1" class="section">
+<div class="container">
+  <h2 class="unit-title">第一单元</h2>
+  <p class="unit-subtitle">倔强 · 初入红军</p>
+
+  <div class="unit-intro">
+    <p>1933年9月，国民党调集重兵对中央苏区发动第五次大规模"围剿"，依靠碉堡封锁与经济围困，逐步压缩根据地范围。受"左"倾错误军事指挥影响，中央红军放弃灵活战术，与强敌开展阵地消耗战，苦战一年后反"围剿"最终失利。1934年上半年，中央苏区多处重要防线失守，内外形势日趋严峻。为保存革命有生力量，中共中央决定实施战略转移，并选定地理与敌情条件相对有利的江西于都作为集结出发地。1934年10月，八万余名中央红军主力将士齐聚于都，筹备撤离中央苏区，举世闻名的长征由此启程。当大部队要从瑞金转移到于都、准备离开根据地时，十三岁的孤儿赵小二不愿再重回流浪生活，几番坚持后如愿加入红军，被分配为小号手学徒。这名倔强的红小鬼，从此与数万红军战士一道，走进了艰苦卓绝的烽火征程。</p>
+  </div>
+
+  <!-- 1.1 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">1.1</span>
+      <span class="group-name">我叫赵小二</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>我叫赵小二，生长在赣南的乡村。黑暗的年月里，苦难早早找上了我。父亲参加农会投身革命，被国民党靖卫团残忍杀害；母亲积劳成疾，没钱医治，最终也撒手离去。短短时间，我成了无依无靠的孤儿。往后的日子，我只能靠放牛、沿街乞讨谋生，常年食不果腹、颠沛流离。</p>
+        <p>直到红军进驻苏区，废除了压在百姓身上的苛捐杂税，穷苦人终于有了活路。在这里，我第一次吃上热腾腾的饱饭，不再看人脸色过日子。那时的我年纪尚小，听不懂高深的革命道理，心里只有最简单的想法：红军收留了我，给了我温暖和温饱，这里就是我的家。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：长征前夕的赣南苏区</div>
+        <p>土地革命战争时期，赣南是中央革命根据地的核心区域。国民党当局对苏区轮番开展军事"围剿"，实行全方位经济封锁，同时大肆征收苛捐杂税，当地底层民众在战乱与盘剥中艰难度日。红军抵达赣南并建立苏维埃政权后，大力开展土地革命，将土地分给贫苦农民，彻底废除各类苛捐杂税。苏区政府设立专门机构与群众团体，对孤寡、流浪孤儿等困难群体开展常态化救助，切实保障穷苦群众的基本生活。翻身得解放的苏区群众衷心拥护红军，大批无家可归的流浪孤儿、贫苦少年主动投身革命，加入红军队伍，成为长征路上一支重要的少年力量，这一群体被亲切地称作"红小鬼"。</p>
+        <div class="img-placeholder" onclick="openModal('苏区少年参军历史照片')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">苏区少年参军历史照片（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.2 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">1.2</span>
+      <span class="group-name">死缠烂打，我要当兵</span>
+      <span class="group-event">1934年10月 · 于都集结</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>当大部队要从瑞金转移到于都、准备离开根据地时，我执意要参军，哪怕因为年纪太小被干部拒绝了无数次，我也死死拽着队伍不撒手。终于在我的软磨硬泡之下，连队收了我。那天的我特别开心，感觉当上红军神气得很。我刚开始想当小号手，没想到连长真的安排我跟老号手学吹号。我胸前吊着一把沉甸甸的黄铜军号，虽然还吹不全号谱，可连长说："有这心气，早晚是块料。"</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：中央红军于都集结与司号兵</div>
+        <p>1934年10月上旬，中央红军主力各部陆续集结于江西于都河畔，总计八万六千余名指战员在此休整、整编，为战略转移做最后的准备。红军司号手是连队重要岗位，军号是当年军队的"通讯工具"，不同号谱对应集合、行军、冲锋、收兵等指令，号手的一举一动直接影响整支队伍的行动。红军中不少司号手都是年纪尚小的少年战士。</p>
+        <div class="img-placeholder" onclick="openModal('红军军号文物')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">红军黄铜军号（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.3 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">1.3</span>
+      <span class="group-name">第一堂纪律课</span>
+      <span class="group-event">1934年10月 · 于都雨夜行军</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>队伍正式出发的深夜，于都下起了冰冷的秋雨。雨点砸在脸上，又冷又疼。八万多人的队伍踏着泥泞前行，黑暗里满是脚步与骡马的声响。连续几十里的急行军，远远超出了我的承受能力。脚上的草鞋很快磨烂，脚底密密麻麻长满血泡，每走一步都钻心地疼。我再也撑不住，瘫坐在路边抹起眼泪，心里又累又委屈。</p>
+        <p>一只布满老茧的手敲了敲我的脑袋，是十九岁的连长陈小石头。他十三岁便参军入伍，身经百战，是队伍里人人敬重的"老革命"。他没有柔声安慰，拿出烧红的缝衣针，狠心帮我挑破血泡，又仔细为我扎紧绑腿。"哭解决不了任何问题，更打不退敌人。"他严肃地对我说，"军号就是全连的耳朵，号手一旦掉队，整个连队都会陷入危险。红军的纪律是队伍的根基，身为战士，眼泪要藏在心里，脚步绝不能停下，掉队就意味着死亡。"我攥紧胸前的军号，硬生生把泪水咽了回去。这一刻我猛然明白：我不再是随性撒娇的流浪孩童，而是一名真正的红军战士，从拿起军号的那一刻起，我就要扛起属于自己的责任。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">红军中的"Ta"们——少年"老革命"</div>
+        <p>红军队伍里的"老革命"，并非指代年长战士，而是战友们对参军时间早、作战经验丰富、意志坚定的年轻指战员的尊称。中央红军整体队伍十分年轻，长征出发时大量基层官兵十余岁便投身革命。他们大多成长于中央苏区，早年加入儿童团、少先队，随后正式入伍，全程参与了数次反"围剿"战斗。数年的战火磨砺，让他们虽然年纪尚轻，却早已具备成熟的军人素养与实战能力。像本故事中13岁参军、19岁担任连长的陈小石头，就是少年"老革命"的典型缩影。彼时红军中这样的战士比比皆是，他们年少从军、久历沙场，以稚嫩肩膀扛起战斗与行军的重任，是长征路上一支特殊的骨干力量。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 单元二：惶恐·血火挣扎 ==================== -->
+<section id="unit2" class="section">
+<div class="container">
+  <h2 class="unit-title">第二单元</h2>
+  <p class="unit-subtitle">惶恐 · 血火挣扎</p>
+
+  <div class="unit-intro">
+    <p>1934年11月下旬，中央红军在湘江与国民党军展开殊死决战，惨烈的战斗造成大量伤亡。突围之后，红军连夜翻越老山界，向贵州境内的乌江行进。少年赵小二在湘江战场不幸掉队，被女战士营救后重新踏上征途。连日的浴血奋战与长途跋涉让他心生迷茫，直至抵达乌江岸边，他跟随宣传队员学习文化、理解革命意义，在血与火的历练中悄然成长。</p>
+  </div>
+
+  <!-- 2.1 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">2.1</span>
+      <span class="group-name">湘江！血肉绞肉机</span>
+      <span class="group-event">1934年11月底 · 湘江战役</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>那根本不是人间，那是血肉绞肉机。1934年11月底，我们连队奉命在江岸阻击敌人。国民党的道格拉斯飞机在头顶发出刺耳的尖叫，一发发航空炸弹砸进湘江，掀起十几米高的血浪。江面上漂浮着密密麻麻的灰色军装。连长满脸是血，对着我怒吼："小二！吹冲锋号！吹！"</p>
+        <p>我抖索着双手，把冰冷的号嘴凑到嘴边，可还没等我吐出第一个音符，一发巨大的航空炸弹就在身边轰然炸响。恐怖的气浪瞬间将我打翻，狠狠砸进了一个满是残肢断臂的烂泥坑里。眼前的世界陷入了一片血红与黑暗。不知过了多久，当我满身血泥地从死人堆里爬出来时，大部队已经渡江，白匪的侧击部队正在打扫战场、枪杀重伤员。我彻底跟大部队走散了。我紧紧抱着那把残存的黄铜军号，在硝烟弥漫的树林里疯狂逃窜。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：血战湘江——长征最惨烈的一战</div>
+        <p>1934年11月下旬至12月初，中央红军在广西境内打响湘江战役，这是红军长征途中突破国民党军第四道封锁线的关键战斗，也是人民军队战史上牺牲最为惨重的战役之一。蒋介石调集30余万兵力，依托湘江天险构筑封锁线，企图将八万余红军围歼于湘江东岸。经过数日浴血拼杀，中央红军成功突破封锁线，但付出了巨大代价：长征出发时8.6万余人的队伍，渡过湘江后锐减至3万余人。担负后卫阻击任务的红五军团第三十四师、红三军团第十八团被敌军截断在湘江东岸，大部壮烈牺牲，红三十四师师长陈树湘被俘后宁死不屈，断肠殉国。湘江一战粉碎了国民党围歼红军的阴谋，却也暴露了"左"倾错误军事路线的严重危害，为后续通道会议、黎平会议及遵义会议的召开埋下伏笔。</p>
+        <div class="img-placeholder" onclick="openModal('湘江战役场景复原')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">湘江战役历史场景（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.2 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">2.2</span>
+      <span class="group-name">汉阳造与女战士</span>
+      <span class="group-event">1934年12月 · 湘江突围</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>就在一个白匪端着刺刀狞笑着朝我刺来时，"砰"的一声沉闷枪响，白匪应声倒地。一把热烫的步枪挡在我的面前，那是负责掩护大部队、在后方打阻击的女战士李桂英，大家都管她叫"汉阳造"。她身形挺拔，手里紧紧攥着一杆打得烫手的汉阳造步枪。她出身工人家庭，12岁遭恶霸欺辱，16岁时心爱的丈夫被资本家迫害惨死，18岁父亲被厂主逼死。她是带着父亲临终前"必须拥有一把自己的枪，不再任人宰割"的遗言参加红军的。</p>
+        <p>我抓着她满是黑灰的衣角哭喊，诉说自己和连队失散的遭遇。李桂英一把拉开枪栓，在敌机轰炸中将我死死护在身下。她告诉我，害怕是人之常情，但红军的勇敢，是哪怕心生畏惧，也要坚守责任。她带着我在枪林弹雨里边打边撤，一发子弹击穿了她的肩膀，她依旧持枪迎敌。看着她流淌的热血，我内心的懦弱渐渐消散，紧紧抱着军号，跟随她一同寻找大部队的踪迹。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">红军中的她们：中央红军长征女战士</div>
+        <p>1934年10月中央红军实施战略转移前夕，中共中央经筛选拟定32名随军女同志名单，最终2人因身体原因留守中央苏区，共计30名女战士随主力从江西于都出发长征。该群体初期统一组建妇女队，由刘群先担任队长，金维映担任政治委员。部队行至贵州黎平后，妇女队整体编入干部休养连；另有部分女战士分散编入后卫、卫生、后勤等一线分队，随作战部队行动。</p>
+        <p>湘江战役中，中央红军以红五军团等部队担任全军后卫，湘桂边境战场出现大量负伤、掉队及失散人员。编入一线分队的女战士同步参与后方勤务工作。土地革命战争时期，汉阳造步枪是中央红军基层部队的主要列装武器，主要来源于战场缴获。</p>
+        <div class="img-placeholder" onclick="openModal('汉阳造步枪文物')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">汉阳造步枪（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.3 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">2.3</span>
+      <span class="group-name">老山界黑夜行军</span>
+      <span class="group-event">1934年12月 · 翻越老山界</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>我们跟随队伍一路辗转，翻越了高耸险峻的老山界。连日阴雨连绵，山路陡峭得近乎垂直，两侧便是万丈深渊。为躲避敌机侦察与敌军追击，全军严禁点火，我们只能在漆黑的夜色里，拽着前方战友的衣角艰难挪动。一路流血牺牲、日夜奔波，前路望不到尽头。我心中的迷茫越来越重：我们日复一日吃苦、牺牲，这样的长征，究竟要走向何方？我们所承受的一切，又到底是为了什么？</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：翻越老山界——长征第一座险山</div>
+        <p>老山界属于越城岭山脉，是中央红军长征途中翻越的第一座高山，山势陡峭、道路狭窄，主峰海拔超过2000米，自古便是险途。1934年12月4日至8日，刚刚经历湘江血战的中央红军分三路翻越老山界，目的是快速摆脱尾随的国民党追兵，向贵州方向挺进。为规避空中侦察与地面敌军袭扰，红军全程采用夜间隐蔽行军模式，队伍在无灯火的深山险路中跋涉。战士们刚经历重大伤亡，身心俱疲，加之山路艰险、气候多变，行军难度倍增。翻越老山界不仅是一次地理上的跋涉，更是红军在惨重损失后，重整队伍、继续西进的重要转折点。</p>
+        <div class="img-placeholder" onclick="openModal('老山界山区地貌')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">老山界险峻山路（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.4 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">2.4</span>
+      <span class="group-name">乌江归队，第一次识字</span>
+      <span class="group-event">1935年1月初 · 乌江渡口</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>1934年12月初，我们翻越了广西境内的老山界，又辗转经过黎平、剑河、台拱、黄平、瓮安，一路追着主力留下的路标和标语，整整一个多月，终于在1935年1月初乌江边追上了大部队。宿营时，微弱的火堆旁，红军文工团的宣传员林晓月拉过了我的手。她家境贫寒，家里有好几个弟弟。父母养不活那么多孩子，就把她卖到了妓院。她最终逃了出来，听说红军男女平等，就加入了红军。</p>
+        <p>她用一根树枝，在我的手心里一笔一画地写下"革命"和"自主"两个字。她告诉我，"小二，在旧社会里，女人、穷人，命就像牲口一样被买卖践踏。逃出来当红军，是姐一生最勇敢的反抗。我们现在走的每一步夜路，吃的每一份苦，都是为了让天下的穷人都能自主掌控命运，不受人随意践踏，那才配叫作人！把你的号擦干净，总有一天，我们要吹响胜利的号声。"从那天起，我捡起铅笔头、收集报纸残页，利用行军休息的间隙认字学习。革命的火苗，第一次在我的心底真正点燃。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">红军中的"Ta"们——长征时期红军宣传队</div>
+        <p>红军宣传队归属各级政治部管理，团级单位设专职宣传队，文艺分队统一并入宣传体系。依据1934年红军总政治部相关政治指令，宣传队在长征途中承担三类固定工作。对内服务指战员：利用行军、宿营间隙开展口头动员、文化扫盲、纪律宣讲与文艺活动，就地取用树枝、木炭等物资开展识字教学。对外联系群众：沿途书写标语、张贴布告、散发传单，走访民众并开展民情调查、向导联络等工作。对敌开展工作：作战期间实施战场喊话、传唱宣传曲目。1935年1月初，中央红军于乌江休整期间，宣传队持续开展识字教学、思想宣讲等常态化工作。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 单元三：觉醒·赤水铁索 ==================== -->
+<section id="unit3" class="section">
+<div class="container">
+  <h2 class="unit-title">第三单元</h2>
+  <p class="unit-subtitle">觉醒 · 赤水铁索</p>
+
+  <div class="unit-intro">
+    <p>1935年1月，遵义会议召开，中央红军迎来历史转折。此后红军四渡赤水、巧渡金沙江，接连突破敌军封锁，行军全程物资极度短缺。部队继续北上，先后强渡大渡河、飞夺泸定桥，攻克多处天险。一系列战斗结束后，部队进行人员整编与岗位调整。"红小鬼"赵小二在转战途中见证牺牲与坚守，思想逐步觉醒，最终正式成为一名随军宣传队员。</p>
+  </div>
+
+  <!-- 3.1 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">3.1</span>
+      <span class="group-name">遵义休整，遇见大锤叔</span>
+      <span class="group-event">1935年1月 · 遵义</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>1935年1月，红军占领遵义，召开了遵义会议。我们基层战士并不清楚会上发生了什么，只是隐约感到队伍里多了几分生气，纪律更严了，行军更有章法了。在这里，我遇到了年近四十的炊事老兵王大锤，他常年背着行军铁锅，脊梁被压得微微弯曲。他一辈子安分守己过日子，却因新官上任时强制全城商户跪拜献礼、摊派苛捐杂税，唯独他挺直腰杆不肯下跪，结果被官府当街拷打，血在他脸上不停地往下流。最后红军解放了县城救了他，他成为了炊事班第十八任炊事员。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：遵义会议与红军整训</div>
+        <p>1934年红军在第五次反"围剿"和长征初期因博古、李德的教条主义错误指挥而遭遇惨败、陷入生死存亡的危急关头，为此中共中央于1935年1月15日至17日在贵州遵义召开了政治局扩大会议。会议严厉批评了博古和李德在军事上的单纯防御路线，取消了他们的最高军事指挥权，并增选毛泽东为中央政治局常委，随后成立了由毛泽东、周恩来、王稼祥组成的新军事"三人团"。遵义会议是中国共产党第一次独立自主地运用马克思主义基本原理解决自身路线和组织问题的伟大转折点，在极端危急的关头挽救了党和红军。会议结束后，中央红军在遵义及周边地区开展短期休整，主要进行部队整编、纪律整肃、物资补充与政治学习。</p>
+        <div class="img-placeholder" onclick="openModal('遵义会议会址')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">遵义会议会址（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.2 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">3.2</span>
+      <span class="group-name">四渡赤水，接过铁锅</span>
+      <span class="group-event">1935年2—3月 · 四渡赤水</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>二月到三月，我们跟随队伍在川黔滇边境来回转战，这便是四渡赤水。连续的急行军让所有人疲惫不堪，更残酷的是粮草彻底断绝。战士们只能煮皮带、啃野菜充饥。我连日饥饿，眼前一黑，重重栽倒在乱石滩上。当我醒来时，发现自己躺在枯草堆上，嘴里正被强行塞进一块硬邦邦、带着浓重汗味的青稞饼。那是不知多珍贵的最后一口干粮。而旁边的王大锤正弓着干瘪的脊梁，满脸黑青，大口大口地啃着用开水煮过的野菜和树皮，嘴角还沾着草根。</p>
+        <p>我哇地一声哭了出来，拼命用手去抠他的嘴巴："大锤叔！你天天背着这么重的铁锅走几百里路，你连一口饱饭都不吃！你把粮食给了我，你吃这个会死人的啊？！"王大锤那双被柴烟熏得常年流泪的眼睛死死瞪着我，用尽全身力气把我推开，声音沙哑却异常有力："哭什么！老子当长工的兄弟就是因为去地主家讨一碗米汤，被活活咬死在门口！老子挺直了腰杆不给当官的下跪，红军拿我当兄弟！小二，这口锅就是全连战友的命。老子可以死，红军不能饿死！你是连队的未来，你得替老子……好好走出去！"</p>
+        <p>当晚，王大锤再也没有站起来。他安详地闭上了眼睛，胃里只有几口没消化的野菜和树皮，手里却还死死攥着一小袋没舍得用的面粉。他是宁可自己饿死，也绝不让红军挨饿！我没有流泪，我默默走过去，小心地保管好这袋面粉。王大锤用生命教导了我什么是无私奉献与后勤坚守。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：四渡赤水作战</div>
+        <p>1935年1月至5月，中央红军在毛泽东、周恩来、王稼祥组成的军事指挥小组指挥下，在川黔滇交界处的赤水河流域与国民党40万追兵展开了高频转战。由于土城战役受挫，红军放弃原定北渡长江计划（一渡赤水），乘黔北空虚回师重占遵义（二渡赤水），随后面对蒋介石重兵围剿佯攻川南（三渡赤水），在成功调动国民党主力西进后，迅速回头东渡（四渡赤水）直插云南并巧渡金沙江，彻底摆脱了长征以来的被动局面。受敌军军事围剿、经济封锁以及连续作战消耗影响，该阶段红军粮草供应全面中断，全体指战员长期处于饥饿状态。</p>
+        <div class="ta-label" style="margin-top:14px;">红军中的"Ta"们——炊事员</div>
+        <p>长征期间，红军炊事员（时称"伙夫"）是基层连队中体力负荷极重、减员极为严重的后勤群体。行军时，他们除随身装备外，还需用扁担挑运大锅、铁铲、劈柴及全连粮食，实际负重常达30至40公斤；由于部队频繁长途转战，炊事员必须在宿营后立即寻柴生火、全军出发前提前做饭，长期处于严重睡眠不足与体力透支的状态。在翻越雪山及穿越草地期间，超负荷劳作导致炊事员因高原反应、虚脱和极度饥饿而倒毙牺牲的比例在后勤人员中居高不下。</p>
+        <div class="img-placeholder" onclick="openModal('红军行军锅文物')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">红军行军铁锅（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.3 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">3.3</span>
+      <span class="group-name">巧渡金沙江，六只破船</span>
+      <span class="group-event">1935年5月初 · 皎平渡</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>告别赤水流域，我们顶着烈日昼夜不停向金沙江方向赶路，即使体力不支，我始终不敢有丝毫懈怠。队伍抵达皎平渡口时，全军只征集到六艘民用木船。渡江行动从夜间开始，我负责清点物资、引导战友有序登船。江水流势湍急，船只数次触碰暗礁、险象环生，战士们齐心协力化解危机。</p>
+        <p>五天五夜，六只破船，两万多人马，无一损失，全部渡过了金沙江。我们刚过完江，追兵就赶到了岸边。他们望着滔滔江水，只捡到了我们丢弃的一只破草鞋。那天晚上，大家围着篝火又笑又哭。我心里默默地说：大锤叔，你看到了吗？我们过来了。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：巧渡金沙江战役</div>
+        <p>1935年4月至5月，中央红军在毛泽东等指挥下实施了"巧渡金沙江"这一战略转移中的决定性战役。红军通过佯攻贵阳、威逼昆明等"声东击西"的战术，成功将滇军主力及国民党追兵调离，随后乘虚迅速调头北上直扑金沙江。从5月3日至9日，在刘伯承、陈云等坐镇的渡江司令部严密组织下，3万红军严格遵守《渡江守则》，在当地37名船工打破"不夜渡"传统昼夜不停的全力摆渡下，仅靠7条木船（实际可用6条）历时七天七夜安全渡江，彻底甩掉了数十万追兵，粉碎了蒋介石围歼红军于川黔滇边境的计划。</p>
+        <div class="img-placeholder" onclick="openModal('金沙江皎平渡口')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">金沙江皎平渡口（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.4 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">3.4</span>
+      <span class="group-name">天险飞渡：大渡河与泸定桥</span>
+      <span class="group-event">1935年5月下旬 · 大渡河/泸定桥</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>1935年5月中旬，大渡河根本不是河，是吃人的深渊。浪头几米高，对岸碉堡吐着火舌，水面像开了锅。我守在后方物资站，看不清小船上的细节。但那震天的军号声、枪炮声和呐喊声，一浪一浪砸过来。后来伤员抬下来，我凑上去听。他们说：十七个勇士，挤一条破船，顶着弹雨硬冲。有人中弹倒下，旁边的立刻按住；炮弹像长了眼睛，炸飞了对岸的碉堡。船靠岸了，勇士们跳进齐腰深的急流，挥着大刀扑上滩头。红旗插上山头。十七个，都活着！我攥紧拳头，手心全是汗。那一刻，我心里烧起一把火：原来红军不怕死，是真的。</p>
+        <p>由于安顺场船只数量有限，全军立刻踏上昼夜二百四十里的急行军。赶到泸定桥头时，眼前的惨烈更令人倒吸凉气：十三根光秃秃的冰冷铁索悬在激流上，木板被拆光，对岸桥头堡火光冲天。子弹打在铁索上火花四溅，不断有勇士中弹坠入滔滔江水，而后面的战友踩着血迹继续疯狂往前爬，最终化作燃烧的火人义无反顾地冲进桥头火海，生生夺下了泸定桥。看着被鲜血染红的铁索和抬下来的重伤员，我泪流满面。这两场硬仗将"不怕牺牲、冲锋在前"的突击队精神刻进了我的骨髓。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：大渡河系列战役</div>
+        <p>1935年5月，中央红军渡过金沙江后，为彻底粉碎蒋介石企图凭借大渡河消灭中央红军的计划，红军先遣队于24日突然袭占大渡河南岸安顺场渡口，歼灭守军2个连。25日晨，红1团团长杨得志、1营营长孙继先从第2连挑选17名勇士组成渡河突击队，连长熊尚林任队长。7时强渡开始，炮手赵章成两发迫击炮弹命中对岸碉堡，突击队冒着密集弹雨强渡登岸，一举击溃川军1个营，控制了渡口。</p>
+        <p>因只找到1只木船，红军大部队无法全部渡河，毛泽东果断决定兵分两路，沿大渡河而上夺取上游泸定桥。红4团奉命为左路军先锋团，5月28日凌晨接到"提前一天夺取泸定桥"的命令，此时距泸定桥还有240里。部队一昼夜疾行240里，于29日凌晨赶到泸定桥西岸。此时桥上木板已被敌军拆除，只剩下13根光秃秃的铁索链。红4团决定由第2连22名勇士组成夺桥突击队。29日下午4时，22名勇士冒着敌人的密集弹雨，手攀铁索向对岸匍匐前进，冲过火海夺取桥头。大渡河战役的胜利，为中央红军北上开辟了通道，粉碎了蒋介石歼灭红军于大渡河以南的企图。</p>
+        <div class="img-placeholder" onclick="openModal('泸定桥历史照片')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">泸定桥铁索（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 单元四：坚韧·生死绝境 ==================== -->
+<section id="unit4" class="section">
+<div class="container">
+  <h2 class="unit-title">第四单元</h2>
+  <p class="unit-subtitle">坚韧 · 生死绝境</p>
+
+  <div class="unit-intro">
+    <p>中央红军接连打赢强渡大渡河、飞夺泸定桥等关键战斗，顺利闯过多处天险。在一路转战的间隙，赵小二始终坚持刻苦识字，慢慢掌握了基础文化知识，随后主动申请调入宣传队。枪林弹雨的考验暂时落幕，但前路并非一片坦途，还有更为严峻的艰难险阻，在等待着他与全体红军战士。</p>
+  </div>
+
+  <!-- 4.1 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">4.1</span>
+      <span class="group-name">风雪夹金山</span>
+      <span class="group-event">1935年6月 · 翻越夹金山</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>1935年6月，红军开始翻越终年积雪的夹金山。6月12日清晨，炊事班烧了几大锅辣椒汤，我们每人喝下一大碗，顿时浑身冒汗，从嗓子眼一直辣到脚底板，我们就是顶着这股辣劲儿，开始爬雪山的。</p>
+        <p>可越往山顶行进，山势愈发陡峭，空气也变得稀薄，我心跳得厉害，嘴唇发紫，脸色发青，两腿发软，胸口像压了块大石头，走几步就要停下来大口大口地喘气。行至半山腰，狂风裹挟着冰雹骤然袭来。体力透支的我一头栽倒在雪地里，浑身冻得麻木。</p>
+        <p>"小二！小二！"有人在喊我。我迷迷糊糊睁开眼——是苏博文，队伍里那个上海来的知识分子。听说他出身于富商家庭，出国留学归来，当他看到了贫民被官兵和地主压迫的时候，他决定追随自己的理想加入红军。风雪之中，他执意把大衣披在我的身上。他一边走，一边在我耳边喊："小二，勇敢是筋骨，学识是脊梁！红军既要能吃苦，更要懂理想！你是宣传队的苗子，你得替我们这些人……把路走下去！"</p>
+        <p>可苏博文的脚步越来越慢，呼吸越来越重。他的脸色从青紫变成了灰白。"苏教员！苏教员！"我回头喊他。他冲我笑了笑："小二……我走不动了。你先走……别管我。"最终，这位学识渊博的战友耗尽了全部力气，永远留在了这座雪山之上。</p>
+        <p>越往山顶走，看到的景象越让人心碎。路边、雪坑里，三三两两躺着已经牺牲的战友。那些抬担架的担架员，肩上还压着担架杆，人已经冻成了冰雕。整整七个小时才抵达山顶。下山之后，我们与红四方面军的战友胜利会合，山谷里响起阵阵欢呼。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：翻越夹金山与懋功会师</div>
+        <p>夹金山位于四川宝兴县西北、懋功（今小金县）以南，主峰海拔4900余米，垭口海拔4114米，终年积雪，空气稀薄，有"死亡之山"之称。当地歌谣唱道："夹金山，夹金山，鸟儿飞不过，凡人不敢攀。要想越过夹金山，除非神仙到人间。"6月12日，中央红军先头部队红四团从宝兴县硗碛村出发，拉开了翻越雪山的序幕。翻越过程中，红军面临着极寒、缺氧、冻伤、雪盲等极端考验。6月12日至18日，历时七天七夜，中央红军主力全部翻过夹金山。据不完全统计，仅夹金山一役，红军非战斗性减员在两千人以上。6月18日，中央红军主力抵达四川懋功，与红四方面军实现胜利会师。</p>
+        <div class="ta-label" style="margin-top:14px;">红军中的"Ta"们——红军中的知识分子</div>
+        <p>长征队伍中有一批并非因贫困求生、而是出于革命理想自觉投身革命的红军战士。他们大多出身优渥，接受过良好教育，许多人还有留学经历，却在民族危亡之际毅然抛弃个人前程，走上革命道路。以周恩来为典型——他留学日本、法国、德国后选择马克思主义。文学家成仿吾放弃文学事业，成为长征中唯一的教授；钱壮飞凭借无线电技术多次破译敌军密电。他们用自身经历感染了无数普通战士，是长征队伍中"火种"般的核心力量。</p>
+        <div class="img-placeholder" onclick="openModal('夹金山雪山景观')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">夹金山雪山（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.2 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">4.2</span>
+      <span class="group-name">茫茫松潘草地</span>
+      <span class="group-event">1935年8月 · 松潘草地</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>8月，红军进入了长征中最艰难的自然考验——徒步穿越荒无人烟、危机四伏的松潘大草地。出发前，首长让我组织收容队，走在全军最后，负责救护掉队的人，掩埋牺牲的战友。一进草地，天地间只有齐腰深的野草和黑色积水，雾气弥漫，不见村舍。</p>
+        <p>收容队每天从清晨忙到深夜：搜救掉队的人，包扎伤口，架着走不动的战友，掩埋再也没有醒来的遗体。天气说变就变，暴雨一来，草地变成汪洋，冰冷的积水没过膝盖。我亲眼看见两个队员陷进泥潭，越挣扎沉得越快，大家用绑腿拧成绳子才把他们拖出来。</p>
+        <p>第三天，粮食告急。我狠心规定：每人每天只给一小把青稞。第四天傍晚，粮食彻底断了。我们杀掉两匹马，每人分到一小块肉，那是救命的。断粮的日子，胃像被手拧着。我们开始吃树皮、草芯、煮皮靴——树皮又硬又苦，老战士教我用火烤软、糊上泥巴、夹着草芯，才能勉强咽下去。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：红军过草地</div>
+        <p>因松潘战役计划受阻，红军被迫穿越川西北的松潘草地（今若尔盖地区），该区域面积约1.52万平方公里，平均海拔3500米以上，属青藏高原寒冷气候区，夏季昼夜温差可达30℃，雨季沼泽范围显著扩张。1935年8月21日，右路军自毛儿盖进入草地，历时七天抵达班佑地区。草地行军面临沼泽陷溺、暴雨失温、粮食断绝等致命威胁。据不完全统计，红一方面军过草地减员6207人，红二方面军减员3092人，红四方面军因三次穿越草地减员超过15000人，红军三大主力过草地非战斗减员总计超两万人。即将走出草地时，在班佑河畔曾有七百余名红军战士因体力耗尽、背靠背坐在一起牺牲。</p>
+        <div class="img-placeholder" onclick="openModal('松潘草地景观')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">松潘草地沼泽（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.3 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">4.3</span>
+      <span class="group-name">草地顽疾</span>
+      <span class="group-event">草地行军期间 · 疟疾救治</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>第五天，我病倒了。一会儿冷得浑身哆嗦，一会儿烧得神志不清。我知道这是"打摆子"——疟疾。迷迷糊糊中，我看到一张满是泥水的大胡子脸凑了过来。那是米勒医生，我们私下都叫他"大鼻子"。他是一位外国来的医生，金发碧眼，穿着一件脏兮兮的白大褂。他用生硬的中国话说："别动。"翻了翻我的眼皮，从药箱里倒出一点灰褐色的粉末——柴胡粉，不多了。</p>
+        <p>他说疟疾没特效药，只能靠自己扛。可草地里哪能休息？他沉默了一会儿，从药箱底层翻出一小块干硬的红糖，掰下一角塞进我嘴里。"含着，补充点力气。"然后对队员说："轮流架着他走，别让他掉队。"我含着那块红糖，苦味里透出一丝甜。他拍拍我的肩，说了一句我一辈子都忘不了的话："药是死的，人是活的。红军的命，比什么都硬。你撑得住。"</p>
+        <p>第八天清晨，烧终于退了。米勒医生难得地笑了笑："我说过，红军的命，比什么都硬。"</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">红军中的"Ta"们——红军中的国际友人</div>
+        <p>长征队伍中包括一定数量的外国人员，构成较为多元。李德（德国人，共产国际派驻的军事顾问）是走完长征全程的少数西方人之一；朝鲜籍的毕士悌和武亭随红军参加长征，毕士悌担任干部团参谋长，武亭被誉为我军炮兵创始人之一；洪水是唯一走完长征全程的越南籍战士。此外，瑞士人薄复礼是与红军同行了十八个月的外籍传教士，亲笔写下了首本宣传中国红军的长篇著作；马海德（美国医生）和傅莱（奥地利医生）长征到达陕北后投入到部队医疗工作中；斯诺于1936年陕北采访后向全世界第一次全面报道了长征。</p>
+        <div class="ta-label" style="margin-top:14px;">历史档案：打摆子</div>
+        <p>疟疾俗称"打摆子"，由蚊虫叮咬传播，症状为周期性发冷、高热、大量出汗，反复发作可致人极度虚弱甚至死亡。长征途中，部队长期行军、野外露宿、营养匮乏、免疫力下降，加之药品极度短缺，疟疾频繁爆发，成为造成非战斗减员的主要疾病之一。毛泽东在长征初期即患疟疾，一度只能靠担架行军；红四团政委杨成武也曾因疟疾高烧不退，仍坚持指挥作战。由于治疗疟疾的特效药奎宁极为稀缺，多数患者只能依靠身体自愈与顽强意志硬撑。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.4 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">4.4</span>
+      <span class="group-name">忠骨留荒原</span>
+      <span class="group-event">草地后期 · 战友牺牲</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>第八天中午，小宋撑不住了。他躺在泥地上，脸色蜡黄，瘦得脱了相。我抱住他，他睁开眼，嘴角扯出一丝笑意："队长……我怕是走不出去了……"我拼命喊他撑住，可他像一摊泥。"小二哥……我想家……想我娘……"话没说完，头一歪，手垂了下去。他活过了雪山，却没走出这片泥沼。我用刺刀挖了个坑，把他放进去，个子小得像只猫。我正了正他的军帽，用青草盖住他的脸："等革命胜利了，我替你去看看你娘——她儿子是英雄。"</p>
+        <p>下午，更大的噩耗。国民党骑兵偷袭收容队，好几个战友倒下。我冲过去扶起一个满身是血的人——是陈小石头，我的老连长！他胸口被子弹打穿，血往外涌。他看清是我，欣慰地笑了一下，头一歪，再也没了动静。</p>
+        <p>八天八夜，我们掩埋了四百多具遗体。米勒医生也负了伤，自己包扎后又去救别人。草地像一座巨大的坟场，可我们凭着信念走了出来。带着牺牲战友的嘱托，活了下来。我常常想起小宋，想起老连长，想起苏博文。他们在最黑的夜里，用自己的命，点亮了别人的路。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：红军中的非战斗减员</div>
+        <p>非战斗减员指非直接作战造成的损失，主要包括因疲劳掉队、伤残疾病、缺粮饿死、恶劣环境致病致死，以及极少数丧失信心离队等情况。雪山草地是非战斗减员最为集中的阶段，红军三大主力在此期间非战斗减员至少在万人以上。1935年6月，近2万人的中央红军开始翻越雪山，至8月下旬穿越草地后，右路仅剩8000人，左路剩约5000人，减员7000余人。死亡最多的群体是担架员和炊事员——他们不愿丢下伤员和战友，很多人坐下后再也没能站起来。红二方面军走出草地时，全军损失3000人。总体而言，长征平均每公里就有3至4名红军将士牺牲，平均每4人中仅有1人到达陕甘根据地。非战斗减员构成了长征牺牲的重要部分。</p>
+        <div class="img-placeholder" onclick="openModal('草地纪念碑')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">松潘草地红军烈士纪念碑（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 单元五：星火永存 ==================== -->
+<section id="unit5" class="section">
+<div class="container">
+  <h2 class="unit-title">第五单元</h2>
+  <p class="unit-subtitle">星火永存</p>
+
+  <div class="unit-intro">
+    <p>闯过松潘草地，中央红军攻克腊子口天险，于1935年10月抵达陕北吴起镇。1936年10月，红军三大主力胜利会师，二万五千里长征宣告胜利结束。少年赵小二走完万里征途，回望一路艰辛与并肩前行的战友，完成了从懵懂孩童到信仰坚定的红军战士的蜕变。长征的伟大胜利，在中国革命史上写下浓墨重彩的篇章。</p>
+  </div>
+
+  <!-- 5.1 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">5.1</span>
+      <span class="group-name">激战腊子口</span>
+      <span class="group-event">1935年9月 · 腊子口战役</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>走出茫茫草地，我们立刻投入到腊子口的战斗中。这里两山壁立，隘口狭窄，是北上的唯一通道，敌军依托险要地势严防死守。我跟随医疗和收容队伍往返阵地之间，冒着乱飞的流弹转运伤员、递送物资。亲眼看着战友们沿着绝壁迂回包抄，在隘口浴血拼杀。经历过雪山、草地的万般磨难，再直面枪林弹雨，我的内心早已不再胆怯。这场战斗为北上打通了最后一道关口，也让我更加明白，胜利从来都是用坚守换来的。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：腊子口战役</div>
+        <p>1935年9月16日至17日，中央红军发起腊子口战役。腊子口地处甘肃迭部，峡谷狭窄、两侧山崖陡峭，是川西北进入甘肃的咽喉要道，敌军在此构筑防御工事进行阻击。红军采取正面强攻与侧翼迂回相结合的战术，突破敌军防线，攻克腊子口。此战是中央红军长征途中最后一场关键性隘口战斗，彻底扫清北上道路。</p>
+        <div class="img-placeholder" onclick="openModal('腊子口天险')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">腊子口天险（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.2 -->
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">5.2</span>
+      <span class="group-name">少年终成长</span>
+      <span class="group-event">1935年10月 · 吴起镇会师</span>
+    </div>
+    <div class="dual-col">
+      <div class="col-left">
+        <p>翻过一道道山岭，我们终于踏上了黄土高原。1935年10月，队伍抵达吴起镇，脚下不再是冰雪与泥潭，空气中飘着庄稼的气息，连日的紧绷终于放松下来。陕北乡亲们热情地送来黄米糕、热饭食，暖意涌上心头。我看着身边欢呼的战友，一路的疲惫烟消云散。闯过了枪林弹雨、雪山草地，我们终于有了安稳的落脚之地。</p>
+        <p>一年之后，红二、四方面军也奔赴而来，三大主力在甘肃会宁胜利会合。漫山遍野的红旗、震天的口号，让所有人热泪盈眶。两万五千里的风雨兼程终于画上圆满句号。</p>
+        <p>最初我参军，只是想讨一口饱饭、不再流浪。走过这二万五千里，历经生死离别，我终于明白我们前行的意义。如今的我，早已不是那个只为活下去的孤儿，而是一名心怀信仰、愿意为穷苦大众奋斗的红军战士。看到路边流浪的孩童，我仿佛看到了曾经的自己，也懂得了肩上沉甸甸的责任。</p>
+      </div>
+      <div class="col-right">
+        <div class="ta-label">历史档案：吴起镇会师</div>
+        <p>1935年10月19日，中央红军陕甘支队抵达陕西吴起镇。至此，中央红军历时一年、行程二万五千里的战略转移阶段性结束，完成向陕甘革命根据地的战略落脚。中央红军落脚陕北，为中国革命找到了新的大本营，是长征进程中重要的里程碑。1936年10月，红一方面军、红二方面军、红四方面军在甘肃会宁胜利会师。至此，中国工农红军二万五千里长征全面胜利结束。长征的胜利，是中国革命转危为安的关键。它保存了中国革命和红军的骨干力量，实现了革命大本营的战略转移，铸就了伟大的长征精神，为后来抗日战争、解放战争的胜利奠定坚实基础，是中国共产党历史上的伟大壮举。</p>
+        <div class="img-placeholder" onclick="openModal('红军会师历史照片')">
+          <span class="img-icon">&#128444;</span>
+          <span class="img-caption">红军三大主力会师（占位图）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 结语 ==================== -->
+<section id="epilogue" class="section">
+<div class="container">
+  <div class="epilogue-content">
+    <h2>展览结语</h2>
+    <p>二万五千里长征，是一场跨越千山万水的伟大远征。红军从江西于都出发，冲破层层封锁，转战数省，闯过枪林弹雨，翻越皑皑雪山，跋涉茫茫草地，历经无数艰难险阻，最终三大主力胜利会师陕北。长征的伟大胜利，彻底扭转了中国革命的危局，为革命事业保存下弥足珍贵的骨干力量。</p>
+    <p>漫漫征途中，大批出身贫苦的流浪少年、穷苦子弟投身红军。以本展主人公赵小二为代表的红小鬼，和奋战在各个岗位的全体红军将士一道，在严酷的行军与战斗中坚守使命。无数先烈为了革命理想舍生取义、无私奉献，而昔日懵懂的孩童，也在血与火的磨砺中锤炼意志，一步步成长为信仰坚定的革命战士。</p>
+    <p>赵小二的万里长征已然落幕，属于我们每个人的新时代长征才刚刚启程。</p>
+    <p class="closing-line">如何坚守初心、砥砺前行，走好脚下的长征路，这是值得我们用一生去认真作答的人生课题。</p>
+  </div>
+
+  <!-- 留言区 -->
+  <div id="message-board">
+    <h3>观众留言</h3>
+    <div class="msg-form">
+      <input type="text" id="msg-name" placeholder="您的名字">
+      <input type="text" id="msg-title" placeholder="留言标题">
+    </div>
+    <textarea id="msg-body" placeholder="写下您的观展感受……"></textarea>
+    <button onclick="submitMessage()">提交留言</button>
+    <div id="msg-list"></div>
+  </div>
+</div>
+</section>
+
+</div><!-- /#main-content -->
+
+<footer>
+  <p>雄关漫道真如铁——一个"红小鬼"的长征路 &copy; 2026 线上虚拟展览</p>
+  <p>纪念中国红军长征胜利90周年</p>
+</footer>
+
+<!-- 图片模态框 -->
+<div id="image-modal">
+  <button class="modal-close" onclick="closeModal()">&times;</button>
+  <div class="modal-img">图片预览区域</div>
+  <div class="modal-caption"></div>
+</div>
+
+<!-- 隐藏的音频元素 -->
+<audio id="bg-music" loop preload="none">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<script>
+// ===== 导航切换 =====
+const sections = {
+  preface:  document.getElementById('preface'),
+  unit1:    document.getElementById('unit1'),
+  unit2:    document.getElementById('unit2'),
+  unit3:    document.getElementById('unit3'),
+  unit4:    document.getElementById('unit4'),
+  unit5:    document.getElementById('unit5'),
+  epilogue: document.getElementById('epilogue')
+};
+
+const bgLayer = document.getElementById('bg-layer');
+const navLinks = document.querySelectorAll('#navbar a[data-target]');
+const bgClasses = {
+  preface:  'bg-preface',
+  unit1:    'bg-unit1',
+  unit2:    'bg-unit2',
+  unit3:    'bg-unit3',
+  unit4:    'bg-unit4',
+  unit5:    'bg-unit5',
+  epilogue: 'bg-epilogue'
+};
+
+let currentSection = 'preface';
+
+function switchSection(target) {
+  if (currentSection === target) return;
+
+  // 隐藏当前
+  const cur = sections[currentSection];
+  if (cur) { cur.classList.remove('visible', 'enter'); cur.style.display = 'none'; }
+
+  // 显示目标
+  const next = sections[target];
+  if (next) {
+    next.style.display = 'block';
+    next.classList.add('enter');
+    // 动画结束后设置 visible
+    setTimeout(() => { next.classList.remove('enter'); next.classList.add('visible'); }, 600);
+  }
+
+  // 更新背景
+  bgLayer.className = bgClasses[target] || '';
+
+  // 更新导航高亮
+  navLinks.forEach(a => a.classList.remove('active'));
+  const activeLink = document.querySelector(`#navbar a[data-target="${target}"]`);
+  if (activeLink) activeLink.classList.add('active');
+
+  currentSection = target;
+
+  // 滚动到顶部
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchSection(link.dataset.target);
+  });
+});
+
+// 键盘导航
+document.addEventListener('keydown', (e) => {
+  const order = ['preface','unit1','unit2','unit3','unit4','unit5','epilogue'];
+  const idx = order.indexOf(currentSection);
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (idx < order.length - 1) switchSection(order[idx + 1]);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    if (idx > 0) switchSection(order[idx - 1]);
+  }
+});
+
+// ===== 图片模态框 =====
+function openModal(caption) {
+  const modal = document.getElementById('image-modal');
+  modal.querySelector('.modal-caption').textContent = caption;
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('image-modal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('image-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ===== 背景音乐 =====
+let musicPlaying = false;
+const bgMusic = document.getElementById('bg-music');
+const musicToggle = document.getElementById('music-toggle');
+
+function toggleMusic() {
+  if (musicPlaying) {
+    bgMusic.pause();
+    musicToggle.classList.remove('playing');
+    musicToggle.innerHTML = '&#9835;';
+  } else {
+    // 尝试播放（需要用户交互后才能真正播放）
+    bgMusic.play().catch(() => {
+      // 无音频源时的静默处理
+    });
+    musicToggle.classList.add('playing');
+    musicToggle.innerHTML = '&#9835;';
+  }
+  musicPlaying = !musicPlaying;
+}
+
+// ===== 留言功能 =====
+function submitMessage() {
+  const nameEl = document.getElementById('msg-name');
+  const titleEl = document.getElementById('msg-title');
+  const bodyEl = document.getElementById('msg-body');
+  const name = nameEl.value.trim();
+  const title = titleEl.value.trim();
+  const body = bodyEl.value.trim();
+
+  if (!body) { alert('请输入留言内容'); return; }
+
+  const now = new Date();
+  const timeStr = now.getFullYear() + '-' +
+    String(now.getMonth() + 1).padStart(2, '0') + '-' +
+    String(now.getDate()).padStart(2, '0') + ' ' +
+    String(now.getHours()).padStart(2, '0') + ':' +
+    String(now.getMinutes()).padStart(2, '0');
+
+  const msgList = document.getElementById('msg-list');
+  const msgItem = document.createElement('div');
+  msgItem.className = 'msg-item';
+  msgItem.innerHTML = `
+    <span class="msg-author">${name || '匿名观众'}</span>
+    <span class="msg-time">${timeStr}</span>
+    ${title ? `<div style="color:#c8b898;font-size:0.85rem;font-weight:600;">${title}</div>` : ''}
+    <div class="msg-body">${body}</div>
+  `;
+  msgList.prepend(msgItem);
+
+  // 清空表单
+  nameEl.value = '';
+  titleEl.value = '';
+  bodyEl.value = '';
+
+  // 存储留言（localStorage）
+  saveMessages();
+}
+
+function saveMessages() {
+  const items = [];
+  document.querySelectorAll('.msg-item').forEach(item => {
+    items.push(item.innerHTML);
+  });
+  localStorage.setItem('exhibition_messages', JSON.stringify(items));
+}
+
+function loadMessages() {
+  try {
+    const items = JSON.parse(localStorage.getItem('exhibition_messages') || '[]');
+    const msgList = document.getElementById('msg-list');
+    items.forEach(html => {
+      const div = document.createElement('div');
+      div.className = 'msg-item';
+      div.innerHTML = html;
+      msgList.appendChild(div);
+    });
+  } catch(e) {}
+}
+
+// 初始加载留言
+loadMessages();
+
+// ===== 初始状态 =====
+console.log('雄关漫道真如铁——一个"红小鬼"的长征路');
+console.log('线上虚拟展览已就绪');
+console.log('使用顶部导航栏或键盘方向键浏览展览');
+</script>
+
+</body>
+</html>
