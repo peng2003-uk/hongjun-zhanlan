@@ -650,7 +650,7 @@
         /* ================================================================
            方案二：女战士剪影剧场 —— 青铜史诗全景双栏 3D 文献台
            ================================================================ */
-        .nvyong-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; background: linear-gradient(165deg, #1c1610 0%, #16100c 30%, #1a1410 60%, #120e0a 100%); }
+        .nvyong-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; background: linear-gradient(165deg, #8B1A1A 0%, #A3302A 30%, #B8433A 60%, #8B1A1A 100%); }
 
         .nvyong-theater .theater-bg-silhouette {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -658,18 +658,18 @@
             background-size: cover;
             background-position: center 40%;
             background-repeat: no-repeat;
-            opacity: 0.18;
-            mix-blend-mode: soft-light;
+            mix-blend-mode: multiply;
+            opacity: 0.72;
             z-index: 1;
         }
 
-        /* 青铜暖光叠加层 —— 让剪影与底层背景自然融合 */
+        /* 血色光晕叠层 */
         .nvyong-theater .theater-bg-silhouette::after {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 45% 40%, rgba(180, 140, 100, 0.06) 0%, transparent 55%),
-                        radial-gradient(ellipse at 70% 70%, rgba(140, 100, 60, 0.04) 0%, transparent 50%),
-                        linear-gradient(180deg, rgba(20, 14, 8, 0.15) 0%, transparent 30%, transparent 70%, rgba(14, 8, 4, 0.30) 100%);
+            background: radial-gradient(ellipse at 45% 40%, rgba(220, 60, 40, 0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 70%, rgba(160, 40, 20, 0.04) 0%, transparent 45%),
+                        linear-gradient(180deg, rgba(100, 15, 10, 0.10) 0%, transparent 30%, transparent 70%, rgba(60, 8, 5, 0.20) 100%);
             z-index: 1;
             pointer-events: none;
         }
@@ -678,7 +678,7 @@
 
         .nvyong-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 3vw; z-index: 3; }
 
-        .nvyong-theater .theater-story { width: 40%; height: 100%; background: rgba(28, 22, 18, 0.88); color: #f0e0d0; border: 1px solid rgba(168, 144, 112, 0.20); border-radius: 20px 8px 20px 8px; box-shadow: 0 0 60px rgba(120, 80, 40, 0.10), 0 4px 24px rgba(0, 0, 0, 0.40); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .nvyong-theater .theater-story { width: 40%; height: 100%; background: rgba(28, 14, 12, 0.88); color: #f0e0d0; border: 1px solid rgba(200, 70, 50, 0.22); border-radius: 20px 8px 20px 8px; box-shadow: 0 0 60px rgba(180, 40, 30, 0.12), 0 4px 24px rgba(0, 0, 0, 0.40); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
         .nvyong-theater .theater-story::-webkit-scrollbar { width: 4px; }
         .nvyong-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
         .nvyong-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(168, 144, 112, 0.3); border-radius: 2px; }
@@ -694,12 +694,12 @@
         .nvyong-theater .theater-story .continue-hint:hover { border-color: var(--gold); color: var(--gold); }
 
         .nvyong-theater .theater-evidence { width: 60%; height: 100%; position: relative; perspective: 1200px; transform-style: preserve-3d; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
-        .nvyong-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 82%; max-width: 520px; max-height: 80%; background: #1c1814; border: 1px solid rgba(196, 168, 138, 0.18); background-image: radial-gradient(rgba(196, 168, 138, 0.04) 15%, transparent 80%); box-shadow: 0 25px 55px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0,0,0,0.7); padding: 4vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .nvyong-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 82%; max-width: 520px; max-height: 80%; background: #1c0e0c; border: 1px solid rgba(184, 67, 58, 0.18); background-image: radial-gradient(rgba(155, 44, 44, 0.06) 15%, transparent 80%); box-shadow: 0 25px 55px rgba(0, 0, 0, 0.9), inset 0 0 40px rgba(0,0,0,0.7); padding: 4vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
         .nvyong-theater .theater-archive::-webkit-scrollbar { width: 3px; }
         .nvyong-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
         .nvyong-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(168, 144, 112, 0.2); border-radius: 2px; }
-        .nvyong-theater .theater-archive .archive-head { font-size: 1.15rem; color: #c4a88a; font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196, 168, 138, 0.18); padding-bottom: 1.2vh; }
-        .nvyong-theater .theater-archive .archive-body { font-size: 0.85rem; line-height: 1.95; color: #c8b898; text-align: justify; }
+        .nvyong-theater .theater-archive .archive-head { font-size: 1.15rem; color: #a89070; font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196, 168, 138, 0.18); padding-bottom: 1.2vh; }
+        .nvyong-theater .theater-archive .archive-body { font-size: 0.85rem; line-height: 1.95; color: #b0a596; text-align: justify; }
 
         .nvyong-theater .theater-photo { position: absolute; background: #241b1b; padding: 8px 8px 20px 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.03); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
         .nvyong-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%) brightness(65%) sepia(12%); transition: filter 0.4s ease; }
@@ -709,7 +709,7 @@
         .nvyong-theater .theater-photo.pos-bl { bottom: 8%; left: 1%; width: 185px; height: 170px; transform: rotate(2deg) translateZ(18px); }
         .nvyong-theater .theater-photo.pos-br { bottom: 6%; right: 2%; width: 180px; height: 185px; transform: rotate(-4deg) translateZ(25px); }
 
-        .nvyong-theater .theater-evidence:hover .theater-archive { background: #241c18; border-color: rgba(196, 168, 138, 0.30); }
+        .nvyong-theater .theater-evidence:hover .theater-archive { background: #241010; border-color: rgba(184, 67, 58, 0.28); }
         .nvyong-theater .theater-evidence:hover .pos-tl { transform: translate(-12px, -10px) rotate(0deg) scale(1.02) translateZ(50px); }
         .nvyong-theater .theater-evidence:hover .pos-tr { transform: translate(12px, -10px) rotate(0deg) scale(1.02) translateZ(50px); }
         .nvyong-theater .theater-evidence:hover .pos-bl { transform: translate(-12px, 10px) rotate(0deg) scale(1.02) translateZ(50px); }
@@ -717,9 +717,9 @@
         .nvyong-theater .theater-evidence:hover .theater-photo img { filter: grayscale(0%) brightness(85%) sepia(0%); }
 
         .nvyong-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
-        .nvyong-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 50px; background: rgba(28, 22, 18, 0.85); border: 1px solid rgba(196, 168, 138, 0.25); font-family: var(--font-text); font-size: 1rem; font-weight: 600; color: #c4a88a; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s, border-color 0.3s, color 0.3s; box-shadow: 0 12px 35px rgba(0,0,0,0.7); }
+        .nvyong-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 50px; background: rgba(28, 16, 16, 0.85); border: 1px solid rgba(168, 144, 112, 0.25); font-family: var(--font-text); font-size: 1rem; font-weight: 600; color: #a89070; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s, border-color 0.3s, color 0.3s; box-shadow: 0 12px 35px rgba(0,0,0,0.7); }
         .nvyong-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(196, 168, 138, 0.20) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
-        .nvyong-theater .theater-passage-btn:hover { color: #e6c9a8; border-color: rgba(196, 168, 138, 0.7); transform: translateY(2px) scale(0.995); }
+        .nvyong-theater .theater-passage-btn:hover { color: #e6c9a8; border-color: rgba(155, 44, 44, 0.7); transform: translateY(2px) scale(0.995); }
         .nvyong-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #c4a88a, #8B6B4A, transparent); transition: none; pointer-events: none; }
         .nvyong-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
         .nvyong-theater .scene-guide { display: none; }
