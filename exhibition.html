@@ -560,7 +560,8 @@
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
         #sceneContainer:not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
-        .theme-scene-1 #content { background: linear-gradient(175deg, #2a0a08 0%, #1a0604 40%, #1f0a06 70%, #1f0f08 100%); }
+        /* 湘江血火红底 —— 用饱满的暗红渐变替代极暗色，衬托黑色人物剪影 */
+        .theme-scene-1 #content { background: linear-gradient(175deg, #4A0D0D 0%, #6B1212 25%, #8B1A1A 50%, #6B1212 75%, #3D0A0A 100%); }
         .theme-scene-1 #content::before { background: none !important; }
 
         .xiangjiang-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; }
@@ -572,7 +573,18 @@
             background-size: cover;
             background-position: center bottom;
             background-repeat: no-repeat;
+            mix-blend-mode: multiply;
+            opacity: 0.85;
             z-index: 1;
+        }
+
+        /* 血色光晕笼罩 —— 强化血战氛围，同时衬托黑色剪影轮廓 */
+        .xiangjiang-theater .theater-bg-silhouette::after {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 50% 35%, rgba(180, 30, 20, 0.12) 0%, rgba(120, 15, 10, 0.20) 40%, rgba(60, 8, 6, 0.45) 75%, rgba(30, 4, 2, 0.65) 100%);
+            z-index: 1;
+            pointer-events: none;
         }
 
         /* 聚光灯暗色滤镜：已关闭 */
