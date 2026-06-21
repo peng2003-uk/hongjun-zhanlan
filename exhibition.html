@@ -962,7 +962,7 @@
         const hasTheater=data.theaterData&&data.type==='narrative';
         const hasHeroImage=!hasTheater&&data.heroImage&&data.type==='narrative';
         let html='';
-        if(hasTheater){html+=`<div class="${td.theaterClass || 'xiangjiang-theater'}" id="theater_${data.id}"><div class="theater-bg-silhouette"></div><div class="theater-stage">`;}
+        if(hasTheater){html+=`<div class="${data.theaterData.theaterClass || 'xiangjiang-theater'}" id="theater_${data.id}"><div class="theater-bg-silhouette"></div><div class="theater-stage">`;}
         else if(hasHeroImage){html+=`<div class="scene-card-container">`;}
         html+=hasTheater?'':`<div class="scene-card${direction!==undefined&&direction!==0?(direction>0?' slide-forward':' slide-backward'):''}">`;
         if(!hasTheater){
