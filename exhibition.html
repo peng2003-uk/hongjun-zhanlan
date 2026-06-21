@@ -558,6 +558,8 @@
            方案一：湘江剪影剧场 — 暗红悲壮全景双栏 3D 文献台
            ================================================================ */
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
+        #sceneContainer:not(:has(.xiangjiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
+        #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
         .theme-scene-1 #content { background: linear-gradient(175deg, #2a0a08 0%, #1a0604 40%, #1f0a06 70%, #1f0f08 100%); }
         .theme-scene-1 #content::before { background: none !important; }
 
@@ -605,16 +607,16 @@
         .theater-photo { position: absolute; background: #241b1b; padding: 8px 8px 20px 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.03); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
         .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(25%) brightness(60%) sepia(15%); transition: filter 0.4s ease; }
         .theater-photo .photo-caption { position: absolute; bottom: 4px; left: 6px; right: 6px; font-size: 0.42rem; color: #8a7a6a; text-align: center; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .theater-photo.pos-tl { top: 6%; left: 4%; width: 130px; height: 100px; transform: rotate(-3.5deg) translateZ(20px); }
-        .theater-photo.pos-tr { top: 6%; right: 4%; width: 120px; height: 105px; transform: rotate(4deg) translateZ(30px); }
-        .theater-photo.pos-bl { bottom: 8%; left: 4%; width: 115px; height: 110px; transform: rotate(3deg) translateZ(18px); }
-        .theater-photo.pos-br { bottom: 8%; right: 4%; width: 110px; height: 120px; transform: rotate(-3deg) translateZ(25px); }
+        .theater-photo.pos-tl { top: 8%; left: 1%; width: 200px; height: 155px; transform: rotate(-3.5deg) translateZ(20px); }
+        .theater-photo.pos-tr { top: 6%; right: 2%; width: 190px; height: 160px; transform: rotate(4deg) translateZ(30px); }
+        .theater-photo.pos-bl { bottom: 10%; left: 1%; width: 185px; height: 170px; transform: rotate(3deg) translateZ(18px); }
+        .theater-photo.pos-br { bottom: 8%; right: 2%; width: 180px; height: 185px; transform: rotate(-3.5deg) translateZ(25px); }
 
         .theater-evidence:hover .theater-archive { background: #1f1212; border-color: rgba(168, 144, 112, 0.28); }
-        .theater-evidence:hover .pos-tl { transform: translate(-10px, -8px) rotate(0deg) translateZ(40px); }
-        .theater-evidence:hover .pos-tr { transform: translate(10px, -8px) rotate(0deg) translateZ(40px); }
-        .theater-evidence:hover .pos-bl { transform: translate(-10px, 8px) rotate(0deg) translateZ(40px); }
-        .theater-evidence:hover .pos-br { transform: translate(10px, 8px) rotate(0deg) translateZ(40px); }
+        .theater-evidence:hover .pos-tl { transform: translate(-12px, -10px) rotate(0deg) scale(1.02) translateZ(50px); }
+        .theater-evidence:hover .pos-tr { transform: translate(12px, -10px) rotate(0deg) scale(1.02) translateZ(50px); }
+        .theater-evidence:hover .pos-bl { transform: translate(-12px, 10px) rotate(0deg) scale(1.02) translateZ(50px); }
+        .theater-evidence:hover .pos-br { transform: translate(12px, 10px) rotate(0deg) scale(1.02) translateZ(50px); }
         .theater-evidence:hover .theater-photo img { filter: grayscale(5%) brightness(80%) sepia(5%); }
 
         .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
@@ -639,10 +641,10 @@
             .theater-story { width: 100%; height: auto; max-height: 45vh; padding: 3vh 3vw; }
             .theater-evidence { width: 100%; flex: 1; min-height: 380px; perspective: none; }
             .theater-photo { padding: 4px 4px 14px 4px; }
-            .theater-photo.pos-tl { top: 4%; left: 2%; width: 90px; height: 70px; transform: rotate(-2deg); }
-            .theater-photo.pos-tr { top: 4%; right: 2%; width: 85px; height: 75px; transform: rotate(2deg); }
-            .theater-photo.pos-bl { bottom: 6%; left: 2%; width: 80px; height: 75px; transform: rotate(2deg); }
-            .theater-photo.pos-br { bottom: 6%; right: 2%; width: 75px; height: 85px; transform: rotate(-2deg); }
+            .theater-photo.pos-tl { top: 2%; left: -2%; width: 130px; height: 100px; transform: rotate(-2deg); }
+            .theater-photo.pos-tr { top: 2%; right: -2%; width: 120px; height: 105px; transform: rotate(2deg); }
+            .theater-photo.pos-bl { bottom: 4%; left: -2%; width: 120px; height: 110px; transform: rotate(2deg); }
+            .theater-photo.pos-br { bottom: 4%; right: -4%; width: 115px; height: 120px; transform: rotate(-2deg); }
             .theater-evidence:hover .theater-photo { transform: none !important; }
         }
         @media (max-width: 640px) {
@@ -807,6 +809,8 @@
         return {pages, idMap};
     }
     const {pages, idMap} = buildPages(rawScenes);
+            const unit2_1ArchIdx = pages.findIndex(p => p.id === 'unit2_1_arch');
+            if (unit2_1ArchIdx !== -1) { pages.splice(unit2_1ArchIdx, 1); const np = pages.find(p => p.id === 'unit2_1_narr'); if (np) np.next = 'unit2_2_narr'; }
     const pageIds = pages.map(p=>p.id);
 
     const nodeLabels=['于都','湘江','遵义','赤水','金沙江','泸定桥','夹金山','草地','腊子口','吴起镇'];
