@@ -822,7 +822,7 @@
         .laogeming-theater .theater-story .continue-hint { color: #888; border-color: rgba(0,0,0,0.10); }
         .laogeming-theater .theater-story .continue-hint:hover { border-color: var(--red-accent); color: var(--red-accent); }
 
-        .laogeming-theater .theater-evidence { width: 65%; height: 100%; position: relative; perspective: 1200px; transform-style: preserve-3d; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
+        .laogeming-theater .theater-evidence { width: 65%; height: 100%; position: relative; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
         .laogeming-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 62%; max-width: 500px; max-height: 78%; background: rgba(250, 242, 225, 0.78); border: 1px solid rgba(139, 42, 42, 0.12); border-radius: 4px; box-shadow: 0 0 0 3px rgba(139,42,42,0.06), 0 25px 55px rgba(80,40,20,0.20); padding: 3vh 2.5vw; overflow-y: auto; z-index: 15; transition: background 0.5s, border-color 0.5s; }
         .laogeming-theater .theater-archive::-webkit-scrollbar { width: 3px; }
         .laogeming-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
@@ -835,23 +835,21 @@
         .laogeming-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.3) brightness(0.90); transition: filter 0.4s ease; }
         .laogeming-theater .theater-photo .photo-caption { position: absolute; bottom: 2px; left: 2px; right: 2px; font-size: 0.32rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         /* 上排4张 */
-        .laogeming-theater .theater-photo.pos-tl  { top: 1%; left: 1%;   width: 88px; height: 70px; transform: rotate(-3deg) translateZ(13px); }
-        .laogeming-theater .theater-photo.pos-tcl { top: 1%; left: 22%;  width: 84px; height: 66px; transform: rotate(-1deg) translateZ(11px); }
-        .laogeming-theater .theater-photo.pos-tr  { top: 1%; right: 1%;  width: 88px; height: 70px; transform: rotate(3deg) translateZ(13px); }
-        .laogeming-theater .theater-photo.pos-tcr { top: 1%; right: 22%; width: 84px; height: 66px; transform: rotate(1deg) translateZ(11px); }
+        .laogeming-theater .theater-photo.pos-tl  { top: 1%; left: 1%;   width: 88px; height: 70px; transform: rotate(-3deg); }
+        .laogeming-theater .theater-photo.pos-tcl { top: 1%; left: 22%;  width: 84px; height: 66px; transform: rotate(-1deg); }
+        .laogeming-theater .theater-photo.pos-tr  { top: 1%; right: 1%;  width: 88px; height: 70px; transform: rotate(3deg); }
+        .laogeming-theater .theater-photo.pos-tcr { top: 1%; right: 22%; width: 84px; height: 66px; transform: rotate(1deg); }
         /* 下排4张 */
-        .laogeming-theater .theater-photo.pos-bl  { bottom: 4%; left: 1%;   width: 88px; height: 70px; transform: rotate(2deg) translateZ(12px); }
-        .laogeming-theater .theater-photo.pos-bcl { bottom: 4%; left: 22%;  width: 84px; height: 66px; transform: rotate(-1deg) translateZ(10px); }
-        .laogeming-theater .theater-photo.pos-br  { bottom: 4%; right: 1%;  width: 88px; height: 70px; transform: rotate(-2deg) translateZ(12px); }
-        .laogeming-theater .theater-photo.pos-bcr { bottom: 4%; right: 22%; width: 84px; height: 66px; transform: rotate(1deg) translateZ(10px); }
+        .laogeming-theater .theater-photo.pos-bl  { bottom: 4%; left: 1%;   width: 88px; height: 70px; transform: rotate(2deg); }
+        .laogeming-theater .theater-photo.pos-bcl { bottom: 4%; left: 22%;  width: 84px; height: 66px; transform: rotate(-1deg); }
+        .laogeming-theater .theater-photo.pos-br  { bottom: 4%; right: 1%;  width: 88px; height: 70px; transform: rotate(-2deg); }
+        .laogeming-theater .theater-photo.pos-bcr { bottom: 4%; right: 22%; width: 84px; height: 66px; transform: rotate(1deg); }
         /* pos-tc/pos-bc重映射到左右两侧中段 */
-        .laogeming-theater .theater-photo.pos-tc { top: 38%; left: -1%;  width: 80px; height: 64px; transform: rotate(2deg) translateZ(10px); }
-        .laogeming-theater .theater-photo.pos-bc { top: 38%; right: -1%; width: 80px; height: 64px; transform: rotate(-2deg) translateZ(10px); }
+        .laogeming-theater .theater-photo.pos-tc { top: 38%; left: -1%;  width: 80px; height: 64px; transform: rotate(2deg); }
+        .laogeming-theater .theater-photo.pos-bc { top: 38%; right: -1%; width: 80px; height: 64px; transform: rotate(-2deg); }
 
         .laogeming-theater .theater-evidence:hover .theater-archive { background: rgba(255, 248, 235, 0.96); border-color: rgba(139, 42, 42, 0.20); }
-        .laogeming-theater .theater-evidence:hover .theater-photo { transform: rotate(0deg) scale(1.04) translateZ(40px) !important; }
-        .laogeming-theater .theater-evidence:hover .pos-tc,
-        .laogeming-theater .theater-evidence:hover .pos-bc { transform: rotate(0deg) scale(1.04) translateZ(40px) !important; }
+        .laogeming-theater .theater-evidence:hover .theater-photo { transform: rotate(0deg) scale(1.04) !important; }
         .laogeming-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
         .laogeming-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
 
