@@ -615,7 +615,7 @@
         .zhaoxiaoer-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(139, 42, 42, 0.25); border-radius: 2px; }
         .zhaoxiaoer-theater .theater-story .story-inner-header { margin-bottom: 2.5vh; }
         .zhaoxiaoer-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--ink-dim); display: block; margin-bottom: 4px; }
-        .zhaoxiaoer-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.6rem; color: var(--red-mid); letter-spacing: 3px; margin: 0; }
+        .zhaoxiaoer-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.6rem; color: var(--ink); letter-spacing: 3px; margin: 0; }
         .zhaoxiaoer-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(139, 42, 42, 0.07); color: var(--red-mid); margin-top: 6px; border: 1px solid rgba(139, 42, 42, 0.06); }
         .zhaoxiaoer-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: var(--ink); }
         .zhaoxiaoer-theater .theater-story .narrative .narr-block .speaker { color: var(--red-deep); border-left-color: var(--red-accent); }
@@ -1377,7 +1377,7 @@
             var zxOld=zxTheater.querySelector('.zx-sil-overlay');
             if(zxOld)zxOld.remove();
             zxTheater.insertAdjacentHTML('afterbegin',
-'<svg class="zx-sil-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">'+
+'<svg class="zx-sil-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
 '<defs><filter id="zxBlack" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-7" intercept="1.3"/></feComponentTransfer></filter></defs>'+
 '<image href="images/被压迫的少年.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" filter="url(#zxBlack)" opacity="0.30"/></svg>');
         }
