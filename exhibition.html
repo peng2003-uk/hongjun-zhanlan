@@ -607,7 +607,8 @@
             background-position: center bottom;
             background-repeat: no-repeat;
             mix-blend-mode: multiply;
-            opacity: 0.65;
+            filter: brightness(0.35) saturate(0);
+            opacity: 0.75;
         }
 
         .zhaoxiaoer-theater .theater-bg-silhouette::after { display: none; }
@@ -690,10 +691,105 @@
         }
 
         /* ================================================================
+           方案〇点二：于都河集结剧场 — 暖纸剪影全景双栏 3D 文献台
+           ================================================================ */
+        .theme-scene-0 #sceneContainer:has(.yudu-theater) { max-width: 100%; padding: 0; }
+        .yudu-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; background: #F2E0C0; }
+
+        .yudu-theater .theater-bg-silhouette {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            background-image: url('images/于都河集结.png');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            mix-blend-mode: multiply;
+            filter: brightness(0.35) saturate(0);
+            opacity: 0.75;
+        }
+        .yudu-theater .theater-bg-silhouette::after { display: none; }
+        .yudu-theater .theater-smoke-lens { display: none; }
+
+        .yudu-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 3vw; z-index: 3; }
+
+        .yudu-theater .theater-story { width: 35%; height: 100%; background: rgba(252, 244, 230, 0.90); color: var(--ink); border: 1px solid rgba(139, 42, 42, 0.12); border-radius: 8px 20px 8px 20px; box-shadow: 0 8px 32px rgba(80, 40, 20, 0.10), 0 2px 8px rgba(60, 30, 15, 0.06); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .yudu-theater .theater-story::-webkit-scrollbar { width: 4px; }
+        .yudu-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
+        .yudu-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(139, 42, 42, 0.25); border-radius: 2px; }
+        .yudu-theater .theater-story .story-inner-header { margin-bottom: 2.5vh; }
+        .yudu-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--ink-dim); display: block; margin-bottom: 4px; }
+        .yudu-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.6rem; color: var(--ink); letter-spacing: 3px; margin: 0; }
+        .yudu-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(139, 42, 42, 0.07); color: var(--red-mid); margin-top: 6px; border: 1px solid rgba(139, 42, 42, 0.06); }
+        .yudu-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: var(--ink); }
+        .yudu-theater .theater-story .narrative .narr-block .speaker { color: var(--red-deep); border-left-color: var(--red-accent); }
+        .yudu-theater .theater-story .narrative .dialogue { border-left-color: var(--red-accent); background: linear-gradient(90deg, rgba(184,67,58,0.06) 0%, rgba(184,67,58,0.01) 100%); color: var(--ink-light); }
+        .yudu-theater .theater-story .narrative .dialogue .who { color: var(--red-deep); }
+        .yudu-theater .theater-story .continue-hint { color: #888; border-color: rgba(0,0,0,0.10); }
+        .yudu-theater .theater-story .continue-hint:hover { border-color: var(--red-accent); color: var(--red-accent); }
+
+        .yudu-theater .theater-evidence { width: 65%; height: 100%; position: relative; perspective: 1200px; transform-style: preserve-3d; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
+        .yudu-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68%; max-width: 480px; max-height: 78%; background: rgba(250, 242, 225, 0.94); border: 1px solid rgba(139, 42, 42, 0.12); border-radius: 4px; box-shadow: 0 0 0 3px rgba(139,42,42,0.06), 0 25px 55px rgba(80,40,20,0.20); padding: 3.5vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .yudu-theater .theater-archive::-webkit-scrollbar { width: 3px; }
+        .yudu-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
+        .yudu-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(139, 42, 42, 0.2); border-radius: 2px; }
+        .yudu-theater .theater-archive .archive-head { font-size: 1.1rem; color: var(--red-deep); font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(139, 42, 42, 0.12); padding-bottom: 1vh; }
+        .yudu-theater .theater-archive .archive-body { font-size: 0.82rem; line-height: 1.9; color: var(--ink-light); text-align: justify; }
+
+        .yudu-theater .theater-photo { position: absolute; background: #f5ebe0; padding: 6px 6px 16px 6px; box-shadow: 0 18px 35px rgba(80,40,20,0.20); border: 1px solid rgba(139,42,42,0.08); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
+        .yudu-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.3) brightness(0.90); transition: filter 0.4s ease; }
+        .yudu-theater .theater-photo .photo-caption { position: absolute; bottom: 3px; left: 4px; right: 4px; font-size: 0.38rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .yudu-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 130px; height: 105px; transform: rotate(-3deg) translateZ(18px); }
+        .yudu-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 130px; height: 105px; transform: rotate(3deg) translateZ(18px); }
+        .yudu-theater .theater-photo.pos-bl { bottom: 5%; left: 1%; width: 125px; height: 110px; transform: rotate(2deg) translateZ(16px); }
+        .yudu-theater .theater-photo.pos-br { bottom: 5%; right: 1%; width: 125px; height: 110px; transform: rotate(-2deg) translateZ(16px); }
+
+        .yudu-theater .theater-evidence:hover .theater-archive { background: rgba(255, 248, 235, 0.96); border-color: rgba(139, 42, 42, 0.20); }
+        .yudu-theater .theater-evidence:hover .pos-tl { transform: translate(-10px, -8px) rotate(0deg) scale(1.02) translateZ(40px); }
+        .yudu-theater .theater-evidence:hover .pos-tr { transform: translate(10px, -8px) rotate(0deg) scale(1.02) translateZ(40px); }
+        .yudu-theater .theater-evidence:hover .pos-bl { transform: translate(-10px, 8px) rotate(0deg) scale(1.02) translateZ(40px); }
+        .yudu-theater .theater-evidence:hover .pos-br { transform: translate(10px, 8px) rotate(0deg) scale(1.02) translateZ(40px); }
+        .yudu-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
+
+        .yudu-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
+        .yudu-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 50px; background: rgba(250, 242, 225, 0.90); border: 1px solid rgba(139, 42, 42, 0.18); font-family: var(--font-text); font-size: 1rem; font-weight: 600; color: var(--red-deep); letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 8px 24px rgba(80,40,20,0.10); }
+        .yudu-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(184, 67, 58, 0.10) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
+        .yudu-theater .theater-passage-btn:hover { color: var(--red-accent); border-color: rgba(184, 67, 58, 0.6); transform: translateY(2px) scale(0.995); }
+        .yudu-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--red-accent), var(--red-mid), transparent); transition: none; pointer-events: none; }
+        .yudu-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
+        .yudu-theater .scene-guide { display: none; }
+
+        @media (max-width: 1024px) {
+            .theme-scene-0 #sceneContainer:has(.yudu-theater) { max-width: 100%; padding: 0; }
+            .yudu-theater { padding: 2vh 2vw 2vh 2vw; }
+            .yudu-theater .theater-stage { flex-direction: column; gap: 20px; }
+            .yudu-theater .theater-story { width: 100%; height: auto; max-height: 45vh; padding: 3vh 3vw; }
+            .yudu-theater .theater-evidence { width: 100%; flex: 1; min-height: 400px; perspective: none; }
+            .yudu-theater .theater-photo { padding: 4px 4px 12px 4px; }
+            .yudu-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 80px; height: 65px; transform: rotate(-2deg); }
+            .yudu-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 80px; height: 65px; transform: rotate(2deg); }
+            .yudu-theater .theater-photo.pos-bl { bottom: 4%; left: 1%; width: 75px; height: 70px; transform: rotate(2deg); }
+            .yudu-theater .theater-photo.pos-br { bottom: 4%; right: 1%; width: 75px; height: 70px; transform: rotate(-2deg); }
+            .yudu-theater .theater-evidence:hover .theater-photo { transform: none !important; }
+        }
+        @media (max-width: 640px) {
+            .yudu-theater { padding: 1.5vh 10px 1.5vh 10px; }
+            .yudu-theater .theater-stage { gap: 14px; }
+            .yudu-theater .theater-story { max-height: 40vh; padding: 2.5vh 16px; }
+            .yudu-theater .theater-story .story-inner-header h3 { font-size: 1.3rem; }
+            .yudu-theater .theater-story .narrative { font-size: 0.85rem; line-height: 2.0; }
+            .yudu-theater .theater-evidence { min-height: 320px; }
+            .yudu-theater .theater-archive { padding: 2.5vh 4vw; }
+            .yudu-theater .theater-archive .archive-head { font-size: 0.9rem; }
+            .yudu-theater .theater-archive .archive-body { font-size: 0.72rem; }
+            .yudu-theater .theater-photo { display: none; }
+            .yudu-theater .theater-passage-btn { font-size: 0.85rem; letter-spacing: 2px; height: 44px; }
+        }
+
+        /* ================================================================
            方案一：湘江剪影剧场 — 暗红悲壮全景双栏 3D 文献台
            ================================================================ */
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
-        #sceneContainer:not(:has(.zhaoxiaoer-theater)):not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
+        #sceneContainer:not(:has(.zhaoxiaoer-theater)):not(:has(.yudu-theater)):not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
         /* 第二单元红底色 —— 革命复古红 #C1121F 纯色 */
         #content.theme-scene-1 { background: #C1121F !important; }
@@ -1227,7 +1323,7 @@
     { id:'hero', type:'hero', unit:'序厅', title:'雄关漫道真如铁', subtitle:'一个"红小鬼"的长征路', bg:'scene-bg-hero', nodeIndex:0, blocks:[{type:'narr',text:'策展缘由\n"为有牺牲多壮志，敢教日月换新天"。长征是人类历史上的伟大奇迹。今年是中国红军长征胜利90周年，为了纪念红军长征并让观众了解长征路上的艰苦岁月，感悟先辈们的牺牲和奉献，特此推出长征文化展。'},{type:'narr',text:'展览前言\n1934年10月，中共中央和中革军委率中央红军主力从江西于都出发，开始战略转移。至1936年10月三大主力会师，历时两年，途经十余省，翻越雪山，穿过草地，进行重要战役战斗六百余次，总行程约二万五千里。史称长征。'},{type:'narr',text:'长征队伍中包含一定数量的少年战士，年龄多在8至16岁之间，通常被称为"红小鬼"。据不完全统计，仅中央红军中就有约一万余名。本展览以虚构人物"赵小二"为叙述者，其经历综合自长征亲历者的口述史、回忆录及档案记载，是红小鬼群体共同记忆的凝结。'}], guide:'一个十三岁的孤儿，死缠烂打加入了红军。他还不懂什么是革命，只知道——红军给了他一个家。', nextRaw:'unit1_intro' },
     { id:'unit1_intro', type:'intro', unit:'第一单元', title:'倔强 · 初入红军', bg:'scene-bg-1', nodeIndex:0, introText:'1933年9月，国民党调集重兵对中央苏区发动第五次大规模"围剿"，依靠碉堡封锁与经济围困，逐步压缩根据地范围。受"左"倾错误军事指挥影响，中央红军放弃灵活战术，与强敌开展阵地消耗战，苦战一年后反"围剿"最终失利。\n1934年上半年，中央苏区多处重要防线失守，内外形势日趋严峻。为保存革命有生力量，中共中央决定实施战略转移，并选定地理与敌情条件相对有利的江西于都作为集结出发地。1934年10月，八万余名中央红军主力将士齐聚于都，筹备撤离中央苏区，举世闻名的长征由此启程。\n当大部队要从瑞金转移到于都、准备离开根据地时，十三岁的孤儿赵小二不愿再重回流浪生活，几番坚持后如愿加入红军，被分配为小号手学徒。这名倔强的红小鬼，从此与数万红军战士一道，走进了艰苦卓绝的烽火征程。', guide:'一个孤儿，一把军号，一段改变命运的征途。', nextRaw:'unit1_1' },
     { id:'unit1_1', type:'scene', unit:'第一单元 · 倔强', title:'我叫赵小二', number:'场景 1 / 3', bg:'scene-bg-1', nodeIndex:0, blocks:[{type:'narr',speaker:'赵小二',text:'我叫赵小二，生长在赣南的乡村。黑暗的年月里，苦难早早找上了我。父亲参加农会投身革命，被国民党靖卫团残忍杀害；母亲积劳成疾，没钱医治，最终也撒手离去。短短时间，我成了无依无靠的孤儿。'},{type:'narr',text:'往后的日子，我只能靠放牛、沿街乞讨谋生，常年食不果腹、颠沛流离。直到红军进驻苏区，废除了压在百姓身上的苛捐杂税，穷苦人终于有了活路。在这里，我第一次吃上热腾腾的饱饭，不再看人脸色过日子。'},{type:'narr',text:'那时的我年纪尚小，听不懂高深的革命道理，心里只有最简单的想法：红军收留了我，给了我温暖和温饱，这里就是我的家。',highlight:true}], theaterData:{theaterClass:'zhaoxiaoer-theater', buttonText:'向着部队的方向 · 踏上参军之路', boardTitle:'历史档案 · 长征前夕的赣南苏区', boardText:'土地革命战争时期，赣南是中央革命根据地的核心区域。国民党当局对苏区轮番开展军事"围剿"，实行全方位经济封锁，同时大肆征收苛捐杂税，当地底层民众在战乱与盘剥中艰难度日。\n红军抵达赣南并建立苏维埃政权后，大力开展土地革命，将土地分给贫苦农民，彻底废除各类苛捐杂税。苏区政府设立专门机构与群众团体，对孤寡、流浪孤儿等困难群体开展常态化救助。', layers:{polaroid:{src:'images/苦难的人民.png', caption:'苦难的人民 · 战乱中艰难度日'}, photo2:{src:'images/烧地契.png', caption:'烧地契 · 土地革命的烈火'}, chen:{src:'images/苏区户籍门牌jpg.jpg', caption:'苏区户籍门牌 · 人民当家作主'}, photo4:{src:'images/苏维埃法令.jpg', caption:'苏维埃法令 · 废除苛捐杂税'}}}, archives:[{title:'',text:''}], guide:'他还不懂什么是革命，但他知道——红军给了他活下去的勇气。', nextRaw:'unit1_2' },
-    { id:'unit1_2', type:'scene', unit:'第一单元 · 倔强', title:'死缠烂打，我要当兵', number:'场景 2 / 3', bg:'scene-bg-1', nodeIndex:0, blocks:[{type:'narr',speaker:'赵小二',text:'当大部队要从瑞金转移到于都、准备离开根据地时，我执意要参军，哪怕因为年纪太小被干部拒绝了无数次，我也死死拽着队伍不撒手。终于在我的软磨硬泡之下，连队收了我。'},{type:'narr',text:'那天的我特别开心，感觉当上红军神气得很。我刚开始想当小号手，没想到连长真的安排我跟老号手学吹号。我胸前吊着一把沉甸甸的黄铜军号，虽然还吹不全号谱，可连长说："有这心气，早晚是块料。"',highlight:true}], archives:[{title:'历史档案：中央红军于都集结与司号兵',text:'1934年10月上旬，中央红军主力各部陆续集结于江西于都河畔，总计八万六千余名指战员在此休整、整编，为战略转移做最后的准备。\n红军司号手是连队重要岗位，军号是当年军队的"通讯工具"，不同号谱对应集合、行军、冲锋、收兵等指令。红军中不少司号手都是年纪尚小的少年战士。',artifacts:[{img:'https://picsum.photos/seed/trumpet1/200/150',desc:'黄铜军号'},{img:'https://picsum.photos/seed/leave1/200/150',desc:'离开苏区'},{img:'https://picsum.photos/seed/sweater1/200/150',desc:'何叔衡赠林伯渠的毛衣'}]}], guide:'一把军号，一腔热血。红小鬼的征途，从这一刻开始。', nextRaw:'unit1_3' },
+    { id:'unit1_2', type:'scene', unit:'第一单元 · 倔强', title:'死缠烂打，我要当兵', number:'场景 2 / 3', bg:'scene-bg-1', nodeIndex:0, blocks:[{type:'narr',speaker:'赵小二',text:'当大部队要从瑞金转移到于都、准备离开根据地时，我执意要参军，哪怕因为年纪太小被干部拒绝了无数次，我也死死拽着队伍不撒手。终于在我的软磨硬泡之下，连队收了我。'},{type:'narr',text:'那天的我特别开心，感觉当上红军神气得很。我刚开始想当小号手，没想到连长真的安排我跟老号手学吹号。我胸前吊着一把沉甸甸的黄铜军号，虽然还吹不全号谱，可连长说："有这心气，早晚是块料。"',highlight:true}], theaterData:{theaterClass:'yudu-theater', buttonText:'吹响军号 · 踏上漫漫征途', boardTitle:'历史档案 · 中央红军于都集结与司号兵', boardText:'1934年10月上旬，中央红军主力各部陆续集结于江西于都河畔，总计八万六千余名指战员在此休整、整编，为战略转移做最后的准备。\n红军司号手是连队重要岗位，军号是当年军队的"通讯工具"，不同号谱对应集合、行军、冲锋、收兵等指令。红军中不少司号手都是年纪尚小的少年战士。', layers:{polaroid:{src:'images/黄铜军号.jpg', caption:'黄铜军号 · 红军司号兵的标志'}, photo2:{src:'images/离开苏区.png', caption:'离开苏区 · 踏上征途'}, chen:{src:'images/何叔衡在长征出发时赠给林伯渠的毛衣.png', caption:'何叔衡赠林伯渠的毛衣'}, photo4:{src:'images/屏幕截图 2026-06-11 101222.png', caption:'于都河畔 · 大军集结'}}}, archives:[{title:'',text:''}], guide:'一把军号，一腔热血。红小鬼的征途，从这一刻开始。', nextRaw:'unit1_3' },
     { id:'unit1_3', type:'scene', unit:'第一单元 · 倔强', title:'第一堂纪律课', number:'场景 3 / 3', bg:'scene-bg-1', nodeIndex:0, blocks:[{type:'narr',speaker:'赵小二',text:'队伍正式出发的深夜，于都下起了冰冷的秋雨。雨点砸在脸上，又冷又疼。八万多人的队伍踏着泥泞前行，黑暗里满是脚步与骡马的声响。'},{type:'narr',text:'连续几十里的急行军，远远超出了我的承受能力。脚上的草鞋很快磨烂，脚底密密麻麻长满血泡，每走一步都钻心地疼。我再也撑不住，瘫坐在路边抹起眼泪，心里又累又委屈。'},{type:'narr',text:'一只布满老茧的手敲了敲我的脑袋，是十九岁的连长陈小石头。他十三岁便参军入伍，身经百战，是队伍里人人敬重的"老革命"。他没有柔声安慰，拿出烧红的缝衣针，狠心帮我挑破血泡，又仔细为我扎紧绑腿。'},{type:'dialogue',speaker:'陈小石头',text:'"哭解决不了任何问题，更打不退敌人。军号就是全连的耳朵，号手一旦掉队，整个连队都会陷入危险。红军的纪律是队伍的根基，身为战士，眼泪要藏在心里，脚步绝不能停下，掉队就意味着死亡。"'},{type:'narr',text:'我攥紧胸前的军号，硬生生把泪水咽了回去。这一刻我猛然明白：我不再是随性撒娇的流浪孩童，而是一名真正的红军战士。',highlight:true}], archives:[{title:'红军中的"Ta"们 —— 少年"老革命"',text:'红军队伍里的"老革命"，并非指代年长战士，而是战友们对参军时间早、作战经验丰富、意志坚定的年轻指战员的尊称。\n中央红军整体队伍十分年轻，长征出发时大量基层官兵十余岁便投身革命。他们大多成长于中央苏区，早年加入儿童团、少先队，随后正式入伍，全程参与了数次反"围剿"战斗。数年的战火磨砺，让他们虽然年纪尚轻，却早已具备成熟的军人素养与实战能力。',artifacts:[{img:'https://picsum.photos/seed/discipline1/200/150',desc:'红军纪律条令草案'},{img:'https://picsum.photos/seed/note1/200/150',desc:'长征补偿字条'},{img:'https://picsum.photos/seed/young1/200/150',desc:'少共国际师袖章'}]}], guide:'告别赣南，赵小二踏上了未知的征途。前方，是血与火的考验。', nextRaw:'unit2_intro' },
     { id:'unit2_intro', type:'intro', unit:'第二单元', title:'惶恐 · 血火挣扎', bg:'scene-bg-2', nodeIndex:1, introText:'1934年11月下旬，中央红军在湘江与国民党军展开殊死决战，惨烈的战斗造成大量伤亡。突围之后，红军连夜翻越老山界，向贵州境内的乌江行进。\n少年赵小二在湘江战场不幸掉队，被女战士营救后重新踏上征途。连日的浴血奋战与长途跋涉让他心生迷茫，直至抵达乌江岸边，他跟随宣传队员学习文化、理解革命意义，在血与火的历练中悄然成长。', guide:'湘江的血水，冲走了无数战友。但赵小二，活了下来。', nextRaw:'unit2_1' },
     { id:'unit2_1', type:'scene', unit:'第二单元 · 惶恐', title:'湘江！血肉绞肉机', number:'场景 1 / 4', bg:'scene-bg-2', nodeIndex:1, heroImage:'images/血战湘江ai图片.png', imageCaption:{title:'湘江战役 · 历史影像',text:'1934年11月27日至12月1日，中央红军在湘江上游广西境内与国民党军苦战五昼夜，强渡湘江，突破了国民党军的第四道封锁线。此役是中央红军长征中牺牲最为惨重的一战，出发时8.6万余人的队伍，渡过湘江后锐减至3万余人。'}, theaterData:{stampText:'生死湘江',diaryTitle:'战地日记 · 十四岁的冲锋',theaterClass:'xiangjiang-theater', diaryText:'在突破第四道封锁线的湘江战役中，年仅14岁的红小鬼赵小二紧紧跟随着主力部队的步伐。天空中，国民党军的飞机轰鸣着俯冲而下，投下的炸弹在清澈的江水中炸开一道道巨大的水柱，江水瞬间被战士们的鲜血染得通红。面对密集的弹雨和摇晃剧烈的浮桥，赵小二心中没有恐惧，只有一定要冲过去的坚定信念。他亲眼看见身边的战友一个个倒下，但冲锋的号角依然在耳边激荡。他冒着迎面扑来的滚滚浓烟，紧握着手中的钢枪，不顾一切地向前奔跑，年轻的脸庞上写满了超越年龄的坚毅与不怕牺牲的勇敢。',boardTitle:'历史档案 · 湘江战役',theaterClass:'xiangjiang-theater', balladText:'三年不饮湘江水，十年不食湘江鱼', boardText:'湘江战役是红军长征出发以来最壮烈的一战。红军将士在浴血奋战中，以巨大的牺牲突破了国民党军精心构筑的第四道封锁线，粉碎了敌人围歼红军于湘江以东的企图。战役中，国民党军调集重兵，并在飞机的疯狂轰炸下，对正渡江的红军发起猛烈进攻。江水被鲜血染红，红五军团三十四师师长陈树湘率领部队绝境断后，苏醒后断肠牺牲。红一军团二师五团政委易荡平也在此役中壮烈牺牲。',layers:{bgScroll:'images/血战湘江.jpg',polaroid:{src:'images/血战湘江.jpg',caption:'《湘江突围》· 艺术还原'},chen:{src:'images/湘江战役陈树湘.jpg',caption:'师长陈树湘 · 绝境断后'},artifact:{src:'images/易荡平的蓑衣.png',label:'一级文物：易荡平的蓑衣',sublabel:'红一军团二师五团政委 · 湘江战役遗物',museum:'Museum Exhibit Archive'}}}, blocks:[{type:'narr',speaker:'赵小二',text:'那根本不是人间，那是血肉绞肉机。'},{type:'narr',text:'1934年11月底，我们连队奉命在江岸阻击敌人。国民党的道格拉斯飞机在头顶发出刺耳的尖叫，一发发航空炸弹砸进湘江，掀起十几米高的血浪。江面上漂浮着密密麻麻的灰色军装。连长满脸是血，对着我怒吼：'},{type:'dialogue',speaker:'连长',text:'"小二！吹冲锋号！吹！"'},{type:'narr',text:'我抖索着双手，把冰冷的号嘴凑到嘴边，可还没等我吐出第一个音符，一发巨大的航空炸弹就在身边轰然炸响。恐怖的气浪瞬间将我打翻，狠狠砸进了一个满是残肢断臂的烂泥坑里。眼前的世界陷入了一片血红与黑暗。'},{type:'narr',text:'不知过了多久，当我满身血泥地从死人堆里爬出来时，大部队已经渡江，白匪的侧击部队正在打扫战场、枪杀重伤员。我彻底跟大部队走散了。我紧紧抱着那把残存的黄铜军号，在硝烟弥漫的树林里疯狂逃窜。'}], archives:[{title:'历史档案：血战湘江 —— 长征最惨烈的一战',text:'1934年11月下旬至12月初，中央红军在广西境内打响湘江战役，这是红军长征途中突破国民党军第四道封锁线的关键战斗，也是人民军队战史上牺牲最为惨重的战役之一。蒋介石调集30余万兵力，依托湘江天险构筑封锁线，企图将八万余红军围歼于湘江东岸。\n经过数日浴血拼杀，中央红军成功突破封锁线，但付出了巨大代价：长征出发时8.6万余人的队伍，渡过湘江后锐减至3万余人。担负后卫阻击任务的红五军团第三十四师、红三军团第十八团被敌军截断在湘江东岸，大部壮烈牺牲，红三十四师师长陈树湘被俘后宁死不屈，断肠殉国。',artifacts:[{img:'https://picsum.photos/seed/xiang1/200/150',desc:'易荡平穿过的蓑衣'},{img:'https://picsum.photos/seed/xiang2/200/150',desc:'陈树湘，断肠殉国'},{img:'https://picsum.photos/seed/xiang3/200/150',desc:'血战湘江战场'}]}], guide:'湘江的血水，冲走了无数战友。但赵小二，活了下来。', nextRaw:'unit2_2' },
@@ -1269,7 +1365,7 @@
         return {pages, idMap};
     }
     const {pages, idMap} = buildPages(rawScenes);
-            (function cleanupTheaterArchives() { var removals = [{archId:"unit1_1_arch",narrId:"unit1_1_narr",nextId:"unit1_2_narr"},{archId:"unit2_1_arch",narrId:"unit2_1_narr",nextId:"unit2_2_narr"},{archId:"unit2_2_arch",narrId:"unit2_2_narr",nextId:"unit2_3_narr"},{archId:"unit2_3_arch",narrId:"unit2_3_narr",nextId:"unit2_4_narr"},{archId:"unit2_4_arch",narrId:"unit2_4_narr",nextId:"unit3_intro"}]; removals.forEach(function(r) { var ai = pages.findIndex(function(p) { return p.id === r.archId; }); if (ai !== -1) { pages.splice(ai, 1); var np = pages.find(function(p) { return p.id === r.narrId; }); if (np) np.next = r.nextId; } }); })();
+            (function cleanupTheaterArchives() { var removals = [{archId:"unit1_1_arch",narrId:"unit1_1_narr",nextId:"unit1_2_narr"},{archId:"unit1_2_arch",narrId:"unit1_2_narr",nextId:"unit1_3_narr"},{archId:"unit2_1_arch",narrId:"unit2_1_narr",nextId:"unit2_2_narr"},{archId:"unit2_2_arch",narrId:"unit2_2_narr",nextId:"unit2_3_narr"},{archId:"unit2_3_arch",narrId:"unit2_3_narr",nextId:"unit2_4_narr"},{archId:"unit2_4_arch",narrId:"unit2_4_narr",nextId:"unit3_intro"}]; removals.forEach(function(r) { var ai = pages.findIndex(function(p) { return p.id === r.archId; }); if (ai !== -1) { pages.splice(ai, 1); var np = pages.find(function(p) { return p.id === r.narrId; }); if (np) np.next = r.nextId; } }); })();
             const pageIds = pages.map(p=>p.id);
 
     const nodeLabels=['于都','湘江','遵义','赤水','金沙江','泸定桥','夹金山','草地','腊子口','吴起镇'];
