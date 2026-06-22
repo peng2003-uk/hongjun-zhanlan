@@ -213,24 +213,24 @@
 
         #content { flex: 1; height: 100vh; overflow-y: auto; overflow-x: hidden; background: var(--paper); padding: 0; position: relative; scroll-behavior: smooth; transition: background-color 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
-        .theme-scene-1 #content::before { display: none; }
+        #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 底层背景红色剪影 ===== */
-        .intro-bg-silhouettes {
+        /* ===== 第二单元导语页 - 底层红色背景 + PNG人物剪影 ===== */
+        .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
         }
-        .intro-sil {
+        .intro-sil-img {
             position: absolute; bottom: 0;
-            opacity: 0.10;
+            opacity: 0.13;
+            mix-blend-mode: multiply;
             transition: opacity 0.8s ease;
         }
-        .intro-sil svg { display: block; height: 100%; width: auto; }
-        .intro-sil-left { left: 2%; height: 72%; bottom: 2%; }
-        .intro-sil-right-top { right: 3%; height: 60%; bottom: 22%; }
-        .intro-sil-right-bottom { right: 12%; height: 55%; bottom: 0; }
-        .theme-scene-3 #content::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
-        .theme-scene-epilogue #content::before { background: radial-gradient(ellipse at 50% 25%, rgba(200,160,120,0.03) 0%, transparent 30%, rgba(0,0,0,0.25) 100%); }
+        .intro-sil-bugler { left: 2%; height: 66%; bottom: 4%; }
+        .intro-sil-soldier { right: 15%; height: 58%; bottom: 3%; }
+        .intro-sil-propagandist { right: 1%; height: 54%; bottom: 5%; }
+        #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
+        #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 25%, rgba(200,160,120,0.03) 0%, transparent 30%, rgba(0,0,0,0.25) 100%); }
         #content::-webkit-scrollbar { width: 6px; }
         #content::-webkit-scrollbar-thumb { background: var(--red-mid); border-radius: 4px; }
         #content::-webkit-scrollbar-thumb:hover { background: var(--red-accent); }
@@ -340,21 +340,21 @@
         .sil-two-figures .fig-r .body { width: 3px; height: 42px; background: #2a1a10; margin: 0 auto; border-radius: 2px; }
 
         /* 主题系统 */
-        .theme-scene-0 #content { background: #F2E0C0; }
+        #content.theme-scene-0 { background: #F2E0C0; }
         .theme-scene-0 .scene-card { background: rgba(252,244,230,0.68); border: 2px solid rgba(196,168,138,0.25); border-radius: 6px; box-shadow: 0 1px 0 rgba(255,255,255,0.55) inset, 0 4px 24px rgba(60,30,15,0.05), 0 12px 48px rgba(60,30,15,0.04); outline: 1px solid rgba(184,67,58,0.08); outline-offset: 4px; }
         .theme-scene-0 #topBar { background: rgba(245,230,200,0.80); backdrop-filter: blur(16px) saturate(110%); border-bottom-color: rgba(139,42,42,0.06); }
         .theme-scene-0 #topBar .brand { color: var(--ink); }
         .theme-scene-0 #topBar .unit-indicator { color: var(--ink-light); }
 
-        .theme-scene-1 #content { background: #120C0C; }
-        .theme-scene-1 #content::before { display: none !important; }
+        #content.theme-scene-1 { background: #120C0C; }
+        #content.theme-scene-1::before { display: none !important; }
         .theme-scene-1 .scene-card { background: rgba(24,12,10,0.84); color: #f0e0d0; border: 1px solid rgba(160,50,40,0.18); border-radius: 8px 20px 8px 20px; clip-path: polygon(0% 2%, 3% 0%, 97% 1%, 100% 3%, 99% 97%, 97% 100%, 2% 99%, 0% 96%); box-shadow: 0 0 60px rgba(160,40,30,0.12), 0 4px 24px rgba(0,0,0,0.40); }
         .theme-scene-1 .scene-card::before { background: linear-gradient(90deg, transparent, rgba(200,80,60,0.4), transparent) !important; height: 2px !important; }
         .theme-scene-1 #topBar { background: rgba(20,10,8,0.90); backdrop-filter: blur(16px); border-bottom-color: rgba(160,50,40,0.18); }
         .theme-scene-1 #topBar .brand { color: #f0e0d0; }
         .theme-scene-1 #topBar .unit-indicator { color: var(--gold-dim); }
 
-        .theme-scene-2 #content { background: #D8C8B0; }
+        #content.theme-scene-2 { background: #D8C8B0; }
         .theme-scene-2 .scene-card { background: rgba(245,238,225,0.72); border: 1px solid rgba(139,42,42,0.12); border-radius: 4px; box-shadow: 0 0 0 3px rgba(139,42,42,0.06), 0 0 0 7px rgba(139,42,42,0.03), 0 8px 32px rgba(80,40,20,0.08); position: relative; }
         .theme-scene-2 .scene-card::after { content: ''; position: absolute; inset: 8px; pointer-events: none; z-index: 1; border: 1px solid rgba(139,42,42,0.08); border-radius: 2px; }
         .theme-scene-2 .scene-card::before { background: linear-gradient(90deg, transparent, var(--red-deep), transparent) !important; height: 4px !important; width: 80px !important; }
@@ -363,8 +363,8 @@
         .theme-scene-2 #topBar .brand { color: var(--red-deep); }
         .theme-scene-2 #topBar .unit-indicator { color: var(--ink-light); }
 
-        .theme-scene-3 #content { background: #141E18; }
-        .theme-scene-3 #content::before { background: radial-gradient(ellipse at 50% 25%, rgba(140,180,160,0.04) 0%, transparent 40%, rgba(0,0,0,0.22) 100%) !important; }
+        #content.theme-scene-3 { background: #141E18; }
+        #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(140,180,160,0.04) 0%, transparent 40%, rgba(0,0,0,0.22) 100%) !important; }
         .theme-scene-3 .scene-card { background: rgba(20,32,24,0.78); color: #e8e0d0; border: 1px solid rgba(160,190,170,0.12); border-radius: var(--radius); backdrop-filter: blur(30px) saturate(80%); -webkit-backdrop-filter: blur(30px) saturate(80%); transform: rotate(-0.8deg); box-shadow: 0 1px 0 rgba(200,220,210,0.06) inset, 0 0 0 1px rgba(180,200,190,0.04), 0 8px 40px rgba(0,0,0,0.30); background-image: linear-gradient(25deg, rgba(200,220,210,0.03) 1px, transparent 1px), linear-gradient(-25deg, rgba(200,220,210,0.02) 1px, transparent 1px); background-size: 30px 30px, 26px 26px; }
         .theme-scene-3 .scene-card::before { background: linear-gradient(90deg, transparent, rgba(180,210,200,0.5), transparent) !important; }
         .theme-scene-3 .scene-card .card-deco-wrap { opacity: 0.6; }
@@ -372,7 +372,7 @@
         .theme-scene-3 #topBar .brand { color: #e8e0d0; }
         .theme-scene-3 #topBar .unit-indicator { color: var(--gold-dim); }
 
-        .theme-scene-4 #content { background: #C4A878; }
+        #content.theme-scene-4 { background: #C4A878; }
         .theme-scene-4 .scene-card { background: rgba(230,210,175,0.76); border: 3px solid #1a1a1a; border-radius: 2px; box-shadow: 6px 6px 0 rgba(139,42,42,0.15), 0 10px 36px rgba(80,40,20,0.10); }
         .theme-scene-4 .scene-card::before { background: linear-gradient(90deg, transparent, #1a1a1a, transparent) !important; height: 3px !important; width: 80px !important; }
         .theme-scene-4 .scene-header h3 { color: #1a1a1a; font-weight: 900; }
@@ -381,7 +381,7 @@
         .theme-scene-4 #topBar .brand { color: #1a1a1a; }
         .theme-scene-4 #topBar .unit-indicator { color: var(--ink); opacity: 0.7; }
 
-        .theme-scene-epilogue #content { background: #141010; }
+        #content.theme-scene-epilogue { background: #141010; }
         .theme-scene-epilogue .scene-card { background: rgba(26,22,18,0.84); color: #e8ddd0; border: 1px solid rgba(184,67,58,0.08); box-shadow: 0 1px 0 rgba(200,160,120,0.08) inset, 0 4px 24px rgba(0,0,0,0.30), 0 12px 48px rgba(0,0,0,0.22); }
         .theme-scene-epilogue .scene-card::before { background: linear-gradient(90deg, transparent, var(--red-accent), transparent) !important; }
         .theme-scene-epilogue #topBar { background: rgba(20,16,14,0.88); backdrop-filter: blur(16px); border-bottom-color: rgba(184,67,58,0.10); }
@@ -533,9 +533,9 @@
             .artifact-grid .art-item { flex: 1 0 calc(50% - 5px); max-width: 100%; height: 75px; }
             .btn-next { font-size: 0.8rem; padding: 8px 26px; }
             .btn-with-label .btn-label { font-size: 0.5rem; }
-            .intro-sil-left { height: 58%; left: 1%; bottom: 4%; }
-            .intro-sil-right-top { height: 48%; right: 2%; bottom: 23%; }
-            .intro-sil-right-bottom { height: 44%; right: 8%; bottom: 1%; }
+            .intro-sil-bugler { height: 56%; left: 1%; bottom: 5%; }
+            .intro-sil-soldier { height: 48%; right: 12%; bottom: 4%; }
+            .intro-sil-propagandist { height: 44%; right: 1%; bottom: 6%; }
         }
         @media (max-width: 640px) {
             #app { flex-direction: column; }
@@ -571,9 +571,9 @@
             .btn-transition-wrap .btn-transition-label { font-size: 0.65rem; }
             .btn-transition-wrap .btn-next { font-size: 0.85rem; padding: 10px 30px; }
             .scene-header .intro-page-title { font-size: 1.5rem; }
-            .intro-sil-left { height: 50%; left: 1%; bottom: 5%; }
-            .intro-sil-right-top { height: 42%; right: 1%; bottom: 24%; }
-            .intro-sil-right-bottom { height: 38%; right: 6%; bottom: 2%; }
+            .intro-sil-bugler { height: 46%; left: 0; bottom: 6%; }
+            .intro-sil-soldier { height: 38%; right: 10%; bottom: 5%; }
+            .intro-sil-propagandist { height: 34%; right: 0; bottom: 7%; }
         }
 
         /* ================================================================
@@ -583,9 +583,9 @@
         #sceneContainer:not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
         /* 湘江血火红底 —— 饱满鲜明的血色渐变，与全局红色系统一致 */
-        .theme-scene-1 #content { background: linear-gradient(175deg, #B22222 0%, #C0392B 25%, #D4493A 50%, #C0392B 75%, #8B1A1A 100%) !important; }
+        #content.theme-scene-1 { background: linear-gradient(175deg, #B22222 0%, #C0392B 25%, #D4493A 50%, #C0392B 75%, #8B1A1A 100%) !important; }
         /* 彻底移除全局 #content::before 暗色覆盖层 */
-        .theme-scene-1 #content::before { display: none !important; }
+        #content.theme-scene-1::before { display: none !important; }
 
         .xiangjiang-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; }
 
@@ -1202,50 +1202,17 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 单元导语页：清理旧背景剪影 + 添加新剪影
-        const existingSil=content.querySelector('.intro-bg-silhouettes');
+        // 第二单元导语页：清理旧剪影 + 添加PNG人物剪影
+        const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         if(data.type==='intro' && bgClass==='scene-bg-2'){
             const sil=document.createElement('div');
-            sil.className='intro-bg-silhouettes';
+            sil.className='intro-silhouettes-wrap';
             sil.innerHTML=`
-            <div class="intro-sil intro-sil-left"><svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="105" cy="110" rx="38" ry="42" fill="#000"/>
-                <path d="M60 110 Q63 78 105 72 Q147 78 150 110 L148 106 Q145 82 105 78 Q65 82 62 106 Z" fill="#000"/>
-                <path d="M53 114 Q78 100 105 96 Q132 100 157 114 L153 120 Q132 106 105 103 Q78 106 57 120 Z" fill="#000"/>
-                <path d="M62 155 Q70 230 78 330 L98 330 Q95 230 88 155 Z" fill="#000"/>
-                <path d="M115 155 Q122 230 125 330 L148 330 Q142 230 133 155 Z" fill="#000"/>
-                <path d="M78 175 Q65 205 68 245 Q70 255 76 252 Q73 240 72 215 Q78 190 85 178 Z" fill="#000"/>
-                <path d="M128 170 Q142 150 160 125 Q168 110 162 104 Q156 100 152 112 Q140 140 125 165 Z" fill="#000"/>
-                <rect x="150" y="65" width="58" height="11" rx="4" transform="rotate(-22 150 65)" fill="#000"/>
-                <ellipse cx="205" cy="42" rx="7" ry="15" fill="#000" transform="rotate(-22 205 42)"/>
-                <circle cx="160" cy="132" r="9" fill="#000"/>
-            </svg></div>
-            <div class="intro-sil intro-sil-right-top"><svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="95" cy="112" rx="36" ry="40" fill="#000"/>
-                <ellipse cx="62" cy="108" rx="10" ry="16" fill="#000"/>
-                <path d="M54 112 Q58 80 95 74 Q132 80 136 112 L134 108 Q130 84 95 80 Q60 84 56 108 Z" fill="#000"/>
-                <path d="M48 116 Q72 102 95 98 Q118 102 142 116 L138 122 Q118 108 95 105 Q72 108 52 122 Z" fill="#000"/>
-                <path d="M60 158 Q55 230 65 330 L85 330 Q82 230 78 158 Z" fill="#000"/>
-                <path d="M110 158 Q118 230 122 330 L148 330 Q142 230 132 158 Z" fill="#000"/>
-                <rect x="52" y="90" width="7" height="240" rx="2" fill="#000"/>
-                <path d="M48 320 L64 320 L62 340 L50 340 Z" fill="#000"/>
-                <path d="M68 170 Q55 200 58 240 L64 244 L68 240 Q65 208 72 180 Z" fill="#000"/>
-                <path d="M125 170 Q138 195 130 230 Q127 238 120 236 Q125 225 128 205 Q120 185 118 170 Z" fill="#000"/>
-            </svg></div>
-            <div class="intro-sil intro-sil-right-bottom"><svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="90" cy="110" rx="35" ry="39" fill="#000"/>
-                <ellipse cx="58" cy="106" rx="9" ry="15" fill="#000"/>
-                <path d="M50 110 Q54 78 90 72 Q126 78 130 110 L128 106 Q124 82 90 78 Q56 82 52 106 Z" fill="#000"/>
-                <path d="M44 114 Q68 100 90 96 Q112 100 136 114 L132 120 Q112 106 90 103 Q68 106 48 120 Z" fill="#000"/>
-                <path d="M55 155 Q50 230 60 330 L80 330 Q77 230 73 155 Z" fill="#000"/>
-                <path d="M105 155 Q113 230 117 330 L142 330 Q136 230 125 155 Z" fill="#000"/>
-                <path d="M63 170 Q52 195 56 235 L62 238 L64 232 Q60 200 67 178 Z" fill="#000"/>
-                <path d="M118 165 Q135 140 150 105 Q155 90 148 82 Q142 78 138 90 Q128 120 115 152 Z" fill="#000"/>
-                <rect x="128" y="40" width="70" height="50" rx="2" fill="#000" transform="rotate(8 128 40)"/>
-                <rect x="132" y="44" width="62" height="42" rx="1" fill="#fff" fill-opacity="0.06" transform="rotate(8 132 44)"/>
-                <circle cx="148" cy="86" r="8" fill="#000"/>
-            </svg></div>`;
+                <img class="intro-sil-img intro-sil-bugler" src="images/红军小司号员吹号剪影.png" alt="" />
+                <img class="intro-sil-img intro-sil-soldier" src="images/红军女战士剪影.png" alt="" />
+                <img class="intro-sil-img intro-sil-propagandist" src="images/红军女宣传队员剪影.png" alt="" />
+            `;
             content.appendChild(sil);
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
