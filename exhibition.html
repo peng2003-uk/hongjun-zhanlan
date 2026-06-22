@@ -1472,7 +1472,6 @@
         else if(hasHeroImage){const im=data.imageCaption||{};html+=`<div class="scene-1-image-wrapper"><img class="battle-photo" src="${data.heroImage}" alt="${im.title||'湘江战役'}" loading="lazy" /><div class="image-caption-plate"><span class="caption-title">${im.title||''}</span><span class="caption-divider"></span><span class="caption-text">${im.text||''}</span></div></div></div>`;}
         container.innerHTML=html;
         const cardEl=container.querySelector('.scene-card');
-        const cardEl=container.querySelector('.scene-card');
         if(cardEl){applyCardDecor(bgClass,cardEl);const isNarr=data.type==='narrative';if(!isNarr&&!document.querySelector('.scene-card-stamp')){const st=document.createElement('div');st.className='scene-card-stamp';st.textContent='红军长征';cardEl.appendChild(st);}if(!cardEl.querySelector('.year-watermark')){const wm=document.createElement('div');wm.className='year-watermark wm-bottom-right';wm.textContent=yearWatermarks[bgClass]||'';cardEl.appendChild(wm);}}
         unitIndicator.innerHTML=`<strong>${data.unit||'序厅'}</strong>`;
         document.getElementById('prevBtn').style.opacity=idx>0?'1':'0.3';
