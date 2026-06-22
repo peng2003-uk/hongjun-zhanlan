@@ -213,6 +213,7 @@
 
         #content { flex: 1; height: 100vh; overflow-y: auto; overflow-x: hidden; background: var(--paper); padding: 0; position: relative; scroll-behavior: smooth; transition: background-color 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
+        #content.theme-scene-0::before { display: none; }
         #content.theme-scene-1::before { display: none; }
 
         /* ===== 单元导语页 - SVG滤波纯黑剪影（通用容器） ===== */
