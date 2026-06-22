@@ -1383,9 +1383,9 @@
             var zxOld=zxTheater.querySelector('.zx-sil-overlay');
             if(zxOld)zxOld.remove();
             zxTheater.insertAdjacentHTML('afterbegin',
-'<svg class="zx-sil-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">'+
-'<defs><filter id="zxBlack" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 -0.03" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-4" intercept="0.96"/></feComponentTransfer></filter></defs>'+
-'<image href="images/被压迫的少年.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMax meet" filter="url(#zxBlack)" opacity="0.28"/></svg>');
+'<svg class="zx-sil-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="zxBlack" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-3" intercept="0.75"/></feComponentTransfer></filter></defs>'+
+'<image href="images/被压迫的少年.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMax slice" filter="url(#zxBlack)" opacity="0.35"/></svg>');
         }
         const cardEl=container.querySelector('.scene-card');
         if(cardEl){applyCardDecor(bgClass,cardEl);const isNarr=data.type==='narrative';if(!isNarr&&!document.querySelector('.scene-card-stamp')){const st=document.createElement('div');st.className='scene-card-stamp';st.textContent='红军长征';cardEl.appendChild(st);}if(!cardEl.querySelector('.year-watermark')){const wm=document.createElement('div');wm.className='year-watermark wm-bottom-right';wm.textContent=yearWatermarks[bgClass]||'';cardEl.appendChild(wm);}}
