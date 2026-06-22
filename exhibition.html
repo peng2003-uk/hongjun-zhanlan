@@ -215,18 +215,21 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 革命复古红 + 纯黑SVG剪影 ===== */
+        /* ===== 第二单元导语页 - 革命复古红 + 人物剪影 ===== */
         .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
         }
-        .intro-sil-svg {
+        .intro-sil-fig {
             position: absolute; bottom: 0;
-            opacity: 0.38;
+            opacity: 0.52;
             transition: opacity 0.8s ease;
         }
-        .intro-sil-svg svg { display: block; height: 100%; width: auto; }
-        .intro-sil-bugler { left: 1%; height: 60%; bottom: 0; }
+        .intro-sil-fig img {
+            display: block; height: 100%; width: auto;
+            mix-blend-mode: multiply;
+        }
+        .intro-sil-bugler { left: 1%; height: 62%; bottom: 0; }
         .intro-sil-soldier { right: 14%; height: 54%; bottom: 0; }
         .intro-sil-propagandist { right: -1%; height: 48%; bottom: 0; }
         /* 第二单元导语页文本框收窄，让两侧人物剪影露出 */
@@ -1206,7 +1209,7 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 第二单元导语页：清理旧剪影 + 添加纯黑SVG剪影 + 文本框收窄
+        // 第二单元导语页：清理旧剪影 + 添加人物剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         const sc=document.getElementById('sceneContainer');
@@ -1216,74 +1219,9 @@
             const sil=document.createElement('div');
             sil.className='intro-silhouettes-wrap';
             sil.innerHTML=`
-<div class="intro-sil-svg intro-sil-bugler"><svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg">
-  <defs><clipPath id="bcl"><rect x="0" y="0" width="200" height="480"/></clipPath></defs>
-  <g clip-path="url(#bcl)" fill="#000">
-    <ellipse cx="98" cy="58" rx="31" ry="34"/>
-    <path d="M62 48 Q60 22 98 20 Q136 22 134 48 Q133 52 130 55 Q118 42 98 40 Q78 42 66 55 Q63 52 62 48Z"/>
-    <path d="M58 62 Q70 46 98 44 Q126 46 138 62 L134 66 Q118 52 98 50 Q78 52 62 66Z"/>
-    <rect x="62" y="28" width="72" height="14" rx="3"/>
-    <ellipse cx="98" cy="20" rx="18" ry="6"/>
-    <path d="M64 92 Q60 160 62 260 L82 260 Q80 168 78 108 Q86 100 98 98 Q110 100 118 108 Q116 168 114 260 L134 260 Q136 160 132 92 Q115 80 98 78 Q81 80 64 92Z"/>
-    <path d="M68 104 Q64 120 66 145 Q68 152 72 150 Q71 138 70 120 Q74 108 80 106 Q84 112 82 130 Q79 142 81 150 Q86 148 84 136 Q86 120 86 108 Q92 106 98 106 Q104 106 110 108 Q110 122 112 136 Q114 148 118 150 Q120 142 117 128 Q116 112 116 104 Q122 106 126 120 Q128 138 126 150 Q130 152 132 145 Q133 130 128 104Z"/>
-    <path d="M68 260 Q64 320 66 430 L88 430 Q86 360 84 300 L92 296 L96 300 Q94 360 92 430 L116 430 Q114 360 112 300 L118 296 L126 300 Q124 360 122 430 L140 430 Q142 360 138 300 Q135 280 128 264 Q118 250 108 248 Q96 246 86 252 Q74 264 68 260Z"/>
-    <rect x="116" y="86" width="12" height="70" rx="5" transform="rotate(8 116 86)"/>
-    <path d="M120 82 L128 80 L130 84 L122 86Z" fill="#000"/>
-    <ellipse cx="132" cy="78" rx="6" ry="14" transform="rotate(12 132 78)"/>
-    <ellipse cx="140" cy="64" rx="5" ry="12" transform="rotate(16 140 64)"/>
-    <path d="M128 76 Q142 60 155 40 Q160 30 153 26 Q148 24 144 32 Q132 52 124 70Z"/>
-    <path d="M155 40 L195 22 L190 16 L155 34Z"/>
-    <path d="M190 16 Q208 4 210 8 Q212 12 195 22Z"/>
-    <path d="M155 40 L160 42 L156 44Z"/>
-    <path d="M60 430 L66 478 L92 478 L98 430Z"/>
-    <path d="M120 430 L126 478 L152 478 L158 430Z"/>
-    <path d="M82 478 L78 480 L74 478Z"/>
-    <path d="M130 478 L126 480 L122 478Z"/>
-  </g>
-</svg></div>
-<div class="intro-sil-svg intro-sil-soldier"><svg viewBox="0 0 180 480" xmlns="http://www.w3.org/2000/svg">
-  <defs><clipPath id="scl"><rect x="0" y="0" width="180" height="480"/></clipPath></defs>
-  <g clip-path="url(#scl)" fill="#000">
-    <ellipse cx="78" cy="60" rx="28" ry="32"/>
-    <path d="M48 62 L42 68 Q48 74 52 68Z"/>
-    <ellipse cx="50" cy="54" rx="9" ry="11"/>
-    <path d="M44 56 Q42 30 78 28 Q114 30 112 56 Q110 60 106 67 Q96 44 78 42 Q60 44 50 67 Q46 60 44 56Z"/>
-    <path d="M46 68 Q60 50 78 48 Q96 50 110 68 L106 72 Q94 56 78 54 Q62 56 50 72Z"/>
-    <path d="M50 92 Q44 170 46 280 L68 280 Q66 180 64 110 Q72 104 78 102 Q84 104 92 110 Q90 180 88 280 L112 280 Q114 180 110 110 Q118 104 124 102 Q130 104 135 110 Q133 180 131 280 L148 280 Q150 190 148 120 Q144 102 132 92 Q120 84 108 80 Q92 76 82 78 Q68 82 58 90Z"/>
-    <path d="M60 106 Q58 122 58 148 Q56 156 62 154 Q61 140 62 120 Q65 110 70 108 Q75 114 74 130 Q72 142 73 152 Q78 150 76 138 Q78 122 78 112 Q82 108 86 110 Q86 122 84 138 Q82 150 84 152 Q88 150 86 138 Q86 122 86 110 Q90 108 94 110 Q94 122 92 138 Q90 150 92 152 Q96 150 94 138 Q94 122 94 108 Q100 110 104 120 Q106 138 104 152 Q108 154 110 146 Q112 130 112 110 Q108 106 100 104 Q94 102 88 102 Q82 102 76 104 Q68 106 60 106Z"/>
-    <path d="M50 280 Q46 360 48 430 L72 430 Q70 380 68 320 Q78 306 82 308 Q84 320 82 430 L106 430 Q104 380 102 320 Q108 308 112 310 Q110 320 108 430 L132 430 Q134 360 132 290 Q128 270 118 258 Q108 250 98 252 Q84 258 76 268Z"/>
-    <rect x="30" y="130" width="7" height="300" rx="2"/>
-    <rect x="26" y="425" width="15" height="5" rx="1"/>
-    <path d="M35 130 L39 128 L37 430 L33 430Z"/>
-    <path d="M112 180 Q130 160 148 135 Q154 122 148 118 Q143 115 140 124 Q126 148 114 170Z"/>
-    <path d="M112 180 Q118 168 122 164 L126 168 Q120 174 116 184Z"/>
-    <path d="M148 118 L170 100 Q175 96 172 92 Q168 88 164 94 L148 112Z"/>
-    <path d="M48 430 L54 480 L72 480 L80 430Z"/>
-    <path d="M115 430 L122 480 L140 480 L145 430Z"/>
-    <path d="M62 480 L58 482 L54 480Z"/>
-    <path d="M128 480 L124 482 L120 480Z"/>
-  </g>
-</svg></div>
-<div class="intro-sil-svg intro-sil-propagandist"><svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg">
-  <defs><clipPath id="pcl"><rect x="0" y="0" width="200" height="480"/></clipPath></defs>
-  <g clip-path="url(#pcl)" fill="#000">
-    <ellipse cx="72" cy="58" rx="26" ry="30"/>
-    <path d="M44 60 Q42 32 72 30 Q102 32 100 60 Q98 64 94 70 Q86 50 72 48 Q58 50 50 70 Q46 64 44 60Z"/>
-    <path d="M40 72 Q54 54 72 52 Q90 54 104 72 L100 76 Q88 60 72 58 Q56 60 44 76Z"/>
-    <path d="M44 94 Q38 175 40 285 L62 285 Q60 180 58 115 Q66 106 72 104 Q78 106 84 115 Q82 180 80 285 L102 285 Q100 180 98 115 Q106 106 112 104 Q118 106 124 115 Q122 180 120 285 L142 285 Q144 195 138 125 Q132 106 118 96 Q106 88 94 84 Q80 82 72 84 Q58 88 50 98Z"/>
-    <path d="M52 108 Q50 124 50 150 Q48 158 54 156 Q53 142 54 122 Q57 112 62 110 Q67 116 66 132 Q64 144 65 154 Q70 152 68 140 Q70 124 70 114 Q74 110 78 112 Q78 124 76 140 Q74 152 76 154 Q80 152 78 140 Q80 124 80 112 Q84 110 88 112 Q88 124 86 140 Q84 152 86 154 Q91 152 89 140 Q91 124 91 110 Q96 112 100 122 Q102 142 100 154 Q105 156 107 148 Q110 132 110 114 Q106 108 98 106 Q92 104 86 104 Q80 104 74 106 Q66 108 52 108Z"/>
-    <path d="M44 285 Q40 360 42 430 L66 430 Q64 380 62 320 Q70 308 74 310 Q73 320 74 430 L96 430 Q94 380 92 320 Q98 308 102 310 Q100 320 102 430 L126 430 Q128 360 126 295 Q122 278 112 266 Q102 258 92 260 Q78 266 70 276Z"/>
-    <path d="M96 155 Q112 130 132 98 Q138 86 132 80 Q127 76 123 86 Q110 114 98 140Z"/>
-    <path d="M98 145 Q108 120 118 100 Q122 92 116 88 Q111 86 108 94 Q100 116 92 140Z"/>
-    <path d="M132 80 L152 62 Q156 58 153 54 Q149 50 145 56 L128 74Z"/>
-    <path d="M116 88 Q128 68 140 55 L148 62 Q136 76 123 96Z"/>
-    <rect x="82" y="10" width="68" height="44" rx="2" transform="rotate(10 82 10)"/>
-    <path d="M45 430 L50 480 L70 480 L78 430Z"/>
-    <path d="M108 430 L115 480 L132 480 L138 430Z"/>
-    <path d="M58 480 L54 482 L50 480Z"/>
-    <path d="M120 480 L116 482 L112 480Z"/>
-  </g>
-</svg></div>`;
+                <div class="intro-sil-fig intro-sil-bugler"><img src="images/红军小司号员吹号剪影.png" alt="" /></div>
+                <div class="intro-sil-fig intro-sil-soldier"><img src="images/红军女战士剪影.png" alt="" /></div>
+                <div class="intro-sil-fig intro-sil-propagandist"><img src="images/红军女宣传队员剪影.png" alt="" /></div>`;
             content.appendChild(sil);
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
