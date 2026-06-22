@@ -215,7 +215,7 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 红色背景 + PNG人物剪影（multiply融合） ===== */
+        /* ===== 第二单元导语页 - 革命复古红背景 + 人物剪影底部站立 ===== */
         .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
@@ -223,12 +223,12 @@
         .intro-sil-img {
             position: absolute; bottom: 0;
             mix-blend-mode: multiply;
-            opacity: 0.82;
+            opacity: 0.55;
             transition: opacity 0.8s ease;
         }
-        .intro-sil-bugler { left: 1%; height: 68%; bottom: 3%; }
-        .intro-sil-soldier { right: 13%; height: 60%; bottom: 2%; }
-        .intro-sil-propagandist { right: -1%; height: 56%; bottom: 4%; }
+        .intro-sil-bugler { left: 1%; height: 62%; bottom: 0; }
+        .intro-sil-soldier { right: 14%; height: 55%; bottom: 0; }
+        .intro-sil-propagandist { right: -1%; height: 50%; bottom: 0; }
         /* 第二单元导语页文本框收窄，让两侧人物剪影露出 */
         #sceneContainer.intro-unit2-mode { max-width: 620px !important; }
         #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
@@ -348,7 +348,7 @@
         .theme-scene-0 #topBar .brand { color: var(--ink); }
         .theme-scene-0 #topBar .unit-indicator { color: var(--ink-light); }
 
-        #content.theme-scene-1 { background: #2B0909; }
+        #content.theme-scene-1 { background: #1D0608; }
         #content.theme-scene-1::before { display: none !important; }
         .theme-scene-1 .scene-card { background: rgba(24,12,10,0.84); color: #f0e0d0; border: 1px solid rgba(160,50,40,0.18); border-radius: 8px 20px 8px 20px; clip-path: polygon(0% 2%, 3% 0%, 97% 1%, 100% 3%, 99% 97%, 97% 100%, 2% 99%, 0% 96%); box-shadow: 0 0 60px rgba(160,40,30,0.12), 0 4px 24px rgba(0,0,0,0.40); }
         .theme-scene-1 .scene-card::before { background: linear-gradient(90deg, transparent, rgba(200,80,60,0.4), transparent) !important; height: 2px !important; }
@@ -535,9 +535,9 @@
             .artifact-grid .art-item { flex: 1 0 calc(50% - 5px); max-width: 100%; height: 75px; }
             .btn-next { font-size: 0.8rem; padding: 8px 26px; }
             .btn-with-label .btn-label { font-size: 0.5rem; }
-            .intro-sil-bugler { height: 56%; left: 1%; bottom: 5%; }
-            .intro-sil-soldier { height: 48%; right: 12%; bottom: 4%; }
-            .intro-sil-propagandist { height: 44%; right: 1%; bottom: 6%; }
+            .intro-sil-bugler { height: 52%; left: 0; bottom: 0; }
+            .intro-sil-soldier { height: 46%; right: 10%; bottom: 0; }
+            .intro-sil-propagandist { height: 42%; right: -1%; bottom: 0; }
             #sceneContainer.intro-unit2-mode { max-width: 540px !important; }
         }
         @media (max-width: 640px) {
@@ -574,9 +574,9 @@
             .btn-transition-wrap .btn-transition-label { font-size: 0.65rem; }
             .btn-transition-wrap .btn-next { font-size: 0.85rem; padding: 10px 30px; }
             .scene-header .intro-page-title { font-size: 1.5rem; }
-            .intro-sil-bugler { height: 46%; left: 0; bottom: 6%; }
-            .intro-sil-soldier { height: 38%; right: 10%; bottom: 5%; }
-            .intro-sil-propagandist { height: 34%; right: 0; bottom: 7%; }
+            .intro-sil-bugler { height: 42%; left: 0; bottom: 0; }
+            .intro-sil-soldier { height: 36%; right: 8%; bottom: 0; }
+            .intro-sil-propagandist { height: 32%; right: -1%; bottom: 0; }
             #sceneContainer.intro-unit2-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
         }
 
@@ -586,8 +586,8 @@
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
         #sceneContainer:not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
-        /* 第二单元红底色 —— 经典中国红渐变，与剪影原图红色基调一致 */
-        #content.theme-scene-1 { background: linear-gradient(175deg, #A52020 0%, #C23535 25%, #D44040 50%, #B82A2A 75%, #8B1A1A 100%) !important; }
+        /* 第二单元红底色 —— 革命复古红 #C1121F */
+        #content.theme-scene-1 { background: linear-gradient(175deg, #8B0D16 0%, #C1121F 25%, #D42A35 50%, #B81520 75%, #7A0A12 100%) !important; }
         /* 彻底移除全局 #content::before 暗色覆盖层 */
         #content.theme-scene-1::before { display: none !important; }
 
