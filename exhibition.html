@@ -215,7 +215,7 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 革命复古红纯色 + SVG滤波纯黑剪影 ===== */
+        /* ===== 单元导语页 - SVG滤波纯黑剪影（通用容器） ===== */
         .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 1; pointer-events: none;
             overflow: hidden;
@@ -223,11 +223,16 @@
         .intro-sil-svg {
             position: absolute; bottom: 0;
         }
-        .intro-sil-bugler { left: 1%; height: 62%; bottom: 0; }
-        .intro-sil-soldier { right: 14%; height: 54%; bottom: 0; }
-        .intro-sil-propagandist { right: -1%; height: 48%; bottom: 0; }
-        /* 第二单元导语页文本框收窄，让两侧人物剪影露出 */
+        /* 第二单元剪影位置 */
+        .sil-u2-bugler { left: 1%; height: 62%; bottom: 0; }
+        .sil-u2-soldier { right: 14%; height: 54%; bottom: 0; }
+        .sil-u2-propagandist { right: -1%; height: 48%; bottom: 0; }
         #sceneContainer.intro-unit2-mode { max-width: 620px !important; }
+        /* 第一单元剪影位置 */
+        .sil-u1-boy { left: 1%; height: 64%; bottom: 0; }
+        .sil-u1-bugler { right: 20%; height: 56%; bottom: 0; }
+        .sil-u1-veteran { right: 0; height: 48%; bottom: 0; }
+        #sceneContainer.intro-unit1-mode { max-width: 600px !important; }
         #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
         #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 25%, rgba(200,160,120,0.03) 0%, transparent 30%, rgba(0,0,0,0.25) 100%); }
         #content::-webkit-scrollbar { width: 6px; }
@@ -532,10 +537,14 @@
             .artifact-grid .art-item { flex: 1 0 calc(50% - 5px); max-width: 100%; height: 75px; }
             .btn-next { font-size: 0.8rem; padding: 8px 26px; }
             .btn-with-label .btn-label { font-size: 0.5rem; }
-            .intro-sil-bugler { height: 52%; left: 0; bottom: 0; }
-            .intro-sil-soldier { height: 46%; right: 10%; bottom: 0; }
-            .intro-sil-propagandist { height: 42%; right: -1%; bottom: 0; }
+            .sil-u2-bugler { height: 52%; left: 0; bottom: 0; }
+            .sil-u2-soldier { height: 46%; right: 10%; bottom: 0; }
+            .sil-u2-propagandist { height: 42%; right: -1%; bottom: 0; }
+            .sil-u1-boy { height: 54%; left: 0; bottom: 0; }
+            .sil-u1-bugler { height: 48%; right: 16%; bottom: 0; }
+            .sil-u1-veteran { height: 40%; right: 0; bottom: 0; }
             #sceneContainer.intro-unit2-mode { max-width: 540px !important; }
+            #sceneContainer.intro-unit1-mode { max-width: 480px !important; }
         }
         @media (max-width: 640px) {
             #app { flex-direction: column; }
@@ -571,10 +580,14 @@
             .btn-transition-wrap .btn-transition-label { font-size: 0.65rem; }
             .btn-transition-wrap .btn-next { font-size: 0.85rem; padding: 10px 30px; }
             .scene-header .intro-page-title { font-size: 1.5rem; }
-            .intro-sil-bugler { height: 42%; left: 0; bottom: 0; }
-            .intro-sil-soldier { height: 36%; right: 8%; bottom: 0; }
-            .intro-sil-propagandist { height: 32%; right: -1%; bottom: 0; }
+            .sil-u2-bugler { height: 42%; left: 0; bottom: 0; }
+            .sil-u2-soldier { height: 36%; right: 8%; bottom: 0; }
+            .sil-u2-propagandist { height: 32%; right: -1%; bottom: 0; }
+            .sil-u1-boy { height: 44%; left: 0; bottom: 0; }
+            .sil-u1-bugler { height: 38%; right: 12%; bottom: 0; }
+            .sil-u1-veteran { height: 32%; right: 0; bottom: 0; }
             #sceneContainer.intro-unit2-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
+            #sceneContainer.intro-unit1-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
         }
 
         /* ================================================================
@@ -1203,25 +1216,41 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 第二单元导语页：SVG filter提取纯黑剪影 + 文本框收窄
+        // 单元导语页：SVG filter提取纯黑剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         const sc=document.getElementById('sceneContainer');
-        sc.classList.remove('intro-unit2-mode');
-        if(data.type==='intro' && bgClass==='scene-bg-2'){
-            sc.classList.add('intro-unit2-mode');
-            content.insertAdjacentHTML('beforeend',
+        sc.classList.remove('intro-unit2-mode','intro-unit1-mode');
+        if(data.type==='intro'){
+            if(bgClass==='scene-bg-2'){
+                sc.classList.add('intro-unit2-mode');
+                content.insertAdjacentHTML('beforeend',
 '<div class="intro-silhouettes-wrap">'+
-'<svg class="intro-sil-svg intro-sil-bugler" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
-'<defs><filter id="extractBlack1" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-5" intercept="1.25"/></feComponentTransfer></filter></defs>'+
-'<image href="images/红军小司号员吹号剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#extractBlack1)"/></svg>'+
-'<svg class="intro-sil-svg intro-sil-soldier" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
-'<defs><filter id="extractBlack2" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-5" intercept="1.25"/></feComponentTransfer></filter></defs>'+
-'<image href="images/红军女战士剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#extractBlack2)"/></svg>'+
-'<svg class="intro-sil-svg intro-sil-propagandist" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
-'<defs><filter id="extractBlack3" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-5" intercept="1.25"/></feComponentTransfer></filter></defs>'+
-'<image href="images/红军女宣传队员剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#extractBlack3)"/></svg>'+
+'<svg class="intro-sil-svg sil-u2-bugler" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="eb1" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<image href="images/红军小司号员吹号剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb1)"/></svg>'+
+'<svg class="intro-sil-svg sil-u2-soldier" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="eb2" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<image href="images/红军女战士剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb2)"/></svg>'+
+'<svg class="intro-sil-svg sil-u2-propagandist" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="eb3" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<image href="images/红军女宣传队员剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb3)"/></svg>'+
 '</div>');
+            }else if(bgClass==='scene-bg-1'){
+                sc.classList.add('intro-unit1-mode');
+                content.insertAdjacentHTML('beforeend',
+'<div class="intro-silhouettes-wrap">'+
+'<svg class="intro-sil-svg sil-u1-boy" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="eb4" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<image href="images/农村少年剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb4)"/></svg>'+
+'<svg class="intro-sil-svg sil-u1-bugler" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="eb5" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<image href="images/少年司号员.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb5)"/></svg>'+
+'<svg class="intro-sil-svg sil-u1-veteran" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="eb6" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<image href="images/老革命.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb6)"/></svg>'+
+'</div>');
+            }
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
         const hasHeroImage=!hasTheater&&data.heroImage&&data.type==='narrative';
