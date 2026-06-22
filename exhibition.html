@@ -215,14 +215,13 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 革命复古红纯色 + Canvas纯黑剪影 ===== */
+        /* ===== 第二单元导语页 - 革命复古红纯色 + SVG滤波纯黑剪影 ===== */
         .intro-silhouettes-wrap {
-            position: absolute; inset: 0; z-index: 0; pointer-events: none;
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
             overflow: hidden;
         }
-        .intro-sil-canvas {
+        .intro-sil-svg {
             position: absolute; bottom: 0;
-            transition: opacity 0.8s ease;
         }
         .intro-sil-bugler { left: 1%; height: 62%; bottom: 0; }
         .intro-sil-soldier { right: 14%; height: 54%; bottom: 0; }
@@ -1204,53 +1203,25 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 第二单元导语页：清理旧剪影 + Canvas像素提取纯黑剪影 + 文本框收窄
+        // 第二单元导语页：SVG filter提取纯黑剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         const sc=document.getElementById('sceneContainer');
         sc.classList.remove('intro-unit2-mode');
         if(data.type==='intro' && bgClass==='scene-bg-2'){
             sc.classList.add('intro-unit2-mode');
-            const wrap=document.createElement('div');
-            wrap.className='intro-silhouettes-wrap';
-            var figs=[
-                {cls:'intro-sil-bugler', src:'images/红军小司号员吹号剪影.png'},
-                {cls:'intro-sil-soldier', src:'images/红军女战士剪影.png'},
-                {cls:'intro-sil-propagandist', src:'images/红军女宣传队员剪影.png'}
-            ];
-            var loaded=0;
-            figs.forEach(function(f){
-                var cvs=document.createElement('canvas');
-                cvs.className='intro-sil-canvas '+f.cls;
-                wrap.appendChild(cvs);
-                var img=new Image();
-                img.onload=function(){
-                    var h=Math.round(600*(img.naturalHeight/img.naturalWidth));
-                    cvs.width=600; cvs.height=h;
-                    var ctx=cvs.getContext('2d');
-                    ctx.drawImage(img,0,0,600,h);
-                    var d=ctx.getImageData(0,0,600,h).data;
-                    var out=ctx.createImageData(600,h);
-                    for(var i=0;i<d.length;i+=4){
-                        var r=d[i], g=d[i+1], b=d[i+2];
-                        var lum=0.2126*r+0.7152*g+0.0722*b;
-                        if(lum<40){
-                            out.data[i]=0; out.data[i+1]=0; out.data[i+2]=0;
-                            out.data[i+3]=255;
-                        }else if(lum>160){
-                            out.data[i+3]=0;
-                        }else{
-                            var a=255-Math.round((lum-40)*(255/120));
-                            out.data[i]=0; out.data[i+1]=0; out.data[i+2]=0;
-                            out.data[i+3]=a<0?0:(a>255?255:a);
-                        }
-                    }
-                    ctx.putImageData(out,0,0);
-                    loaded++;
-                };
-                img.src=f.src;
-            });
-            content.appendChild(wrap);
+            content.insertAdjacentHTML('beforeend',
+'<div class="intro-silhouettes-wrap">'+
+'<svg class="intro-sil-svg intro-sil-bugler" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="extractBlack1" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-5" intercept="1.25"/></feComponentTransfer></filter></defs>'+
+'<image href="images/红军小司号员吹号剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#extractBlack1)"/></svg>'+
+'<svg class="intro-sil-svg intro-sil-soldier" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="extractBlack2" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-5" intercept="1.25"/></feComponentTransfer></filter></defs>'+
+'<image href="images/红军女战士剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#extractBlack2)"/></svg>'+
+'<svg class="intro-sil-svg intro-sil-propagandist" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+'<defs><filter id="extractBlack3" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-5" intercept="1.25"/></feComponentTransfer></filter></defs>'+
+'<image href="images/红军女宣传队员剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#extractBlack3)"/></svg>'+
+'</div>');
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
         const hasHeroImage=!hasTheater&&data.heroImage&&data.type==='narrative';
