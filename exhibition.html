@@ -215,20 +215,14 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 革命复古红 + CSS滤镜提取剪影 ===== */
+        /* ===== 第二单元导语页 - 革命复古红纯色 + Canvas纯黑剪影 ===== */
         .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
         }
-        .intro-sil-fig {
+        .intro-sil-canvas {
             position: absolute; bottom: 0;
-            opacity: 0.58;
             transition: opacity 0.8s ease;
-        }
-        .intro-sil-fig img {
-            display: block; height: 100%; width: auto;
-            filter: sepia(1) brightness(4) contrast(10);
-            mix-blend-mode: multiply;
         }
         .intro-sil-bugler { left: 1%; height: 62%; bottom: 0; }
         .intro-sil-soldier { right: 14%; height: 54%; bottom: 0; }
@@ -352,7 +346,7 @@
         .theme-scene-0 #topBar .brand { color: var(--ink); }
         .theme-scene-0 #topBar .unit-indicator { color: var(--ink-light); }
 
-        #content.theme-scene-1 { background: #1D0608; }
+        #content.theme-scene-1 { background: #8B0D16; }
         #content.theme-scene-1::before { display: none !important; }
         .theme-scene-1 .scene-card { background: rgba(24,12,10,0.84); color: #f0e0d0; border: 1px solid rgba(160,50,40,0.18); border-radius: 8px 20px 8px 20px; clip-path: polygon(0% 2%, 3% 0%, 97% 1%, 100% 3%, 99% 97%, 97% 100%, 2% 99%, 0% 96%); box-shadow: 0 0 60px rgba(160,40,30,0.12), 0 4px 24px rgba(0,0,0,0.40); }
         .theme-scene-1 .scene-card::before { background: linear-gradient(90deg, transparent, rgba(200,80,60,0.4), transparent) !important; height: 2px !important; }
@@ -590,8 +584,8 @@
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
         #sceneContainer:not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
-        /* 第二单元红底色 —— 革命复古红 #C1121F */
-        #content.theme-scene-1 { background: linear-gradient(175deg, #8B0D16 0%, #C1121F 25%, #D42A35 50%, #B81520 75%, #7A0A12 100%) !important; }
+        /* 第二单元红底色 —— 革命复古红 #C1121F 纯色 */
+        #content.theme-scene-1 { background: #C1121F !important; }
         /* 彻底移除全局 #content::before 暗色覆盖层 */
         #content.theme-scene-1::before { display: none !important; }
 
@@ -1210,7 +1204,7 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 第二单元导语页：清理旧剪影 + 添加人物剪影 + 文本框收窄
+        // 第二单元导语页：清理旧剪影 + Canvas像素提取纯黑剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         const sc=document.getElementById('sceneContainer');
@@ -1219,7 +1213,43 @@
             sc.classList.add('intro-unit2-mode');
             const wrap=document.createElement('div');
             wrap.className='intro-silhouettes-wrap';
-            wrap.innerHTML='<div class="intro-sil-fig intro-sil-bugler"><img src="images/红军小司号员吹号剪影.png" alt="" /></div><div class="intro-sil-fig intro-sil-soldier"><img src="images/红军女战士剪影.png" alt="" /></div><div class="intro-sil-fig intro-sil-propagandist"><img src="images/红军女宣传队员剪影.png" alt="" /></div>';
+            var figs=[
+                {cls:'intro-sil-bugler', src:'images/红军小司号员吹号剪影.png'},
+                {cls:'intro-sil-soldier', src:'images/红军女战士剪影.png'},
+                {cls:'intro-sil-propagandist', src:'images/红军女宣传队员剪影.png'}
+            ];
+            var loaded=0;
+            figs.forEach(function(f){
+                var cvs=document.createElement('canvas');
+                cvs.className='intro-sil-canvas '+f.cls;
+                wrap.appendChild(cvs);
+                var img=new Image();
+                img.onload=function(){
+                    var h=Math.round(600*(img.naturalHeight/img.naturalWidth));
+                    cvs.width=600; cvs.height=h;
+                    var ctx=cvs.getContext('2d');
+                    ctx.drawImage(img,0,0,600,h);
+                    var d=ctx.getImageData(0,0,600,h).data;
+                    var out=ctx.createImageData(600,h);
+                    for(var i=0;i<d.length;i+=4){
+                        var r=d[i], g=d[i+1], b=d[i+2];
+                        var lum=0.2126*r+0.7152*g+0.0722*b;
+                        if(lum<40){
+                            out.data[i]=0; out.data[i+1]=0; out.data[i+2]=0;
+                            out.data[i+3]=255;
+                        }else if(lum>160){
+                            out.data[i+3]=0;
+                        }else{
+                            var a=255-Math.round((lum-40)*(255/120));
+                            out.data[i]=0; out.data[i+1]=0; out.data[i+2]=0;
+                            out.data[i+3]=a<0?0:(a>255?255:a);
+                        }
+                    }
+                    ctx.putImageData(out,0,0);
+                    loaded++;
+                };
+                img.src=f.src;
+            });
             content.appendChild(wrap);
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
