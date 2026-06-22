@@ -830,26 +830,29 @@
         .laogeming-theater .theater-archive .archive-head { font-size: 1.1rem; color: var(--red-deep); font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(139, 42, 42, 0.12); padding-bottom: 1vh; }
         .laogeming-theater .theater-archive .archive-body { font-size: 0.82rem; line-height: 1.95; color: var(--ink-light); text-align: justify; }
 
-        /* 8张照片环绕档案板 */
-        .laogeming-theater .theater-photo { position: absolute; background: #f5ebe0; padding: 3px 3px 10px 3px; box-shadow: 0 8px 20px rgba(80,40,20,0.14); border: 1px solid rgba(139,42,42,0.07); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 8; }
+        /* 8张照片环绕档案板——放大靠近，不遮挡 */
+        .laogeming-theater .theater-photo { position: absolute; background: #f5ebe0; padding: 3px 3px 10px 3px; box-shadow: 0 8px 22px rgba(80,40,20,0.15); border: 1px solid rgba(139,42,42,0.07); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 8; }
         .laogeming-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.3) brightness(0.90); transition: filter 0.4s ease; }
-        .laogeming-theater .theater-photo .photo-caption { position: absolute; bottom: 2px; left: 2px; right: 2px; font-size: 0.30rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        /* 上排4张 + 下排4张 环绕 */
-        .laogeming-theater .theater-photo.pos-tl  { top: 1%; left: 2%;   width: 76px; height: 60px; transform: rotate(-3deg) translateZ(13px); }
-        .laogeming-theater .theater-photo.pos-tcl { top: 1%; left: 24%;  width: 72px; height: 58px; transform: rotate(-1deg) translateZ(11px); }
-        .laogeming-theater .theater-photo.pos-tr  { top: 1%; right: 2%;  width: 76px; height: 60px; transform: rotate(3deg) translateZ(13px); }
-        .laogeming-theater .theater-photo.pos-tcr { top: 1%; right: 24%; width: 72px; height: 58px; transform: rotate(1deg) translateZ(11px); }
-        .laogeming-theater .theater-photo.pos-bl  { bottom: 4%; left: 2%;   width: 76px; height: 60px; transform: rotate(2deg) translateZ(12px); }
-        .laogeming-theater .theater-photo.pos-bcl { bottom: 4%; left: 24%;  width: 72px; height: 58px; transform: rotate(-1deg) translateZ(10px); }
-        .laogeming-theater .theater-photo.pos-br  { bottom: 4%; right: 2%;  width: 76px; height: 60px; transform: rotate(-2deg) translateZ(12px); }
-        .laogeming-theater .theater-photo.pos-bcr { bottom: 4%; right: 24%; width: 72px; height: 58px; transform: rotate(1deg) translateZ(10px); }
-        /* pos-tc/pos-bc在此剧场重新映射，不与档案板重叠 */
-        .laogeming-theater .theater-photo.pos-tc { top: 40%; left: -2%;  width: 70px; height: 56px; transform: rotate(2deg) translateZ(10px); }
-        .laogeming-theater .theater-photo.pos-bc { top: 40%; right: -2%; width: 70px; height: 56px; transform: rotate(-2deg) translateZ(10px); }
+        .laogeming-theater .theater-photo .photo-caption { position: absolute; bottom: 2px; left: 2px; right: 2px; font-size: 0.32rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* 上排4张 */
+        .laogeming-theater .theater-photo.pos-tl  { top: 1%; left: 1%;   width: 88px; height: 70px; transform: rotate(-3deg) translateZ(13px); }
+        .laogeming-theater .theater-photo.pos-tcl { top: 1%; left: 22%;  width: 84px; height: 66px; transform: rotate(-1deg) translateZ(11px); }
+        .laogeming-theater .theater-photo.pos-tr  { top: 1%; right: 1%;  width: 88px; height: 70px; transform: rotate(3deg) translateZ(13px); }
+        .laogeming-theater .theater-photo.pos-tcr { top: 1%; right: 22%; width: 84px; height: 66px; transform: rotate(1deg) translateZ(11px); }
+        /* 下排4张 */
+        .laogeming-theater .theater-photo.pos-bl  { bottom: 4%; left: 1%;   width: 88px; height: 70px; transform: rotate(2deg) translateZ(12px); }
+        .laogeming-theater .theater-photo.pos-bcl { bottom: 4%; left: 22%;  width: 84px; height: 66px; transform: rotate(-1deg) translateZ(10px); }
+        .laogeming-theater .theater-photo.pos-br  { bottom: 4%; right: 1%;  width: 88px; height: 70px; transform: rotate(-2deg) translateZ(12px); }
+        .laogeming-theater .theater-photo.pos-bcr { bottom: 4%; right: 22%; width: 84px; height: 66px; transform: rotate(1deg) translateZ(10px); }
+        /* pos-tc/pos-bc重映射到左右两侧中段 */
+        .laogeming-theater .theater-photo.pos-tc { top: 38%; left: -1%;  width: 80px; height: 64px; transform: rotate(2deg) translateZ(10px); }
+        .laogeming-theater .theater-photo.pos-bc { top: 38%; right: -1%; width: 80px; height: 64px; transform: rotate(-2deg) translateZ(10px); }
 
         .laogeming-theater .theater-evidence:hover .theater-archive { background: rgba(255, 248, 235, 0.96); border-color: rgba(139, 42, 42, 0.20); }
         .laogeming-theater .theater-evidence:hover .theater-photo { transform: rotate(0deg) scale(1.04) translateZ(40px) !important; }
-        .laogeming-theater .theater-evidence:hover .theater-photo.pos-tc { transform: translateX(-50%) rotate(0deg) scale(1.04) translateZ(40px) !important; }
+        .laogeming-theater .theater-evidence:hover .pos-tc,
+        .laogeming-theater .theater-evidence:hover .pos-bc { transform: rotate(0deg) scale(1.04) translateZ(40px) !important; }
+        .laogeming-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
         .laogeming-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
 
         .laogeming-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
