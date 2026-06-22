@@ -215,21 +215,18 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 革命复古红 + 人物剪影 ===== */
+        /* ===== 第二单元导语页 - 革命复古红 + 纯黑SVG剪影 ===== */
         .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
         }
-        .intro-sil-fig {
+        .intro-sil-svg {
             position: absolute; bottom: 0;
-            opacity: 0.52;
+            opacity: 0.34;
             transition: opacity 0.8s ease;
         }
-        .intro-sil-fig img {
-            display: block; height: 100%; width: auto;
-            mix-blend-mode: multiply;
-        }
-        .intro-sil-bugler { left: 1%; height: 62%; bottom: 0; }
+        .intro-sil-svg svg { display: block; height: 100%; width: auto; }
+        .intro-sil-bugler { left: 1%; height: 60%; bottom: 0; }
         .intro-sil-soldier { right: 14%; height: 54%; bottom: 0; }
         .intro-sil-propagandist { right: -1%; height: 48%; bottom: 0; }
         /* 第二单元导语页文本框收窄，让两侧人物剪影露出 */
@@ -1209,7 +1206,7 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 第二单元导语页：清理旧剪影 + 添加人物剪影 + 文本框收窄
+        // 第二单元导语页：清理旧剪影 + 添加纯黑SVG剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         const sc=document.getElementById('sceneContainer');
@@ -1219,9 +1216,110 @@
             const sil=document.createElement('div');
             sil.className='intro-silhouettes-wrap';
             sil.innerHTML=`
-                <div class="intro-sil-fig intro-sil-bugler"><img src="images/红军小司号员吹号剪影.png" alt="" /></div>
-                <div class="intro-sil-fig intro-sil-soldier"><img src="images/红军女战士剪影.png" alt="" /></div>
-                <div class="intro-sil-fig intro-sil-propagandist"><img src="images/红军女宣传队员剪影.png" alt="" /></div>`;
+<svg class="intro-sil-svg intro-sil-bugler" viewBox="0 0 160 440" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#000">
+    <!-- 军帽 -->
+    <path d="M46 74 L42 56 Q44 38 76 34 Q108 36 110 56 L108 74 Q100 60 76 56 Q52 58 46 74Z"/>
+    <path d="M42 56 Q48 44 76 40 Q104 42 110 56 Q106 48 76 44 Q46 46 42 56Z"/>
+    <!-- 头部 -->
+    <ellipse cx="74" cy="84" rx="28" ry="30"/>
+    <!-- 脖子→躯干 -->
+    <path d="M54 112 Q48 130 44 230 L106 230 Q104 130 98 112 Q88 108 78 106 Q68 106 54 112Z"/>
+    <!-- 腰带 -->
+    <rect x="46" y="200" width="58" height="10" rx="3"/>
+    <!-- 右臂(持号) -->
+    <path d="M104 140 Q124 130 136 118 Q142 112 138 106 Q132 102 128 110 Q118 122 106 132Z"/>
+    <!-- 军号管 -->
+    <path d="M128 110 L144 84 Q148 74 158 64 L165 62 L163 66 Q156 76 150 86 L136 106Z" fill-rule="evenodd"/>
+    <!-- 号嘴+喇叭口 -->
+    <ellipse cx="164" cy="63" rx="5" ry="10" transform="rotate(-25 164 63)"/>
+    <path d="M150 86 Q158 70 166 54 L172 56 L158 64 Q152 76 146 92Z"/>
+    <!-- 左手(支撑号) -->
+    <path d="M115 136 Q126 130 132 120 Q134 116 130 112 Q126 110 124 116 Q120 126 112 132Z"/>
+    <circle cx="130" cy="116" r="5"/>
+    <!-- 左臂 -->
+    <path d="M98 142 Q118 138 128 128 Q130 120 126 114 Q120 112 114 120 Q108 130 100 136Z"/>
+    <!-- 右腿 -->
+    <path d="M44 230 Q48 280 50 340 L52 410 L80 410 L78 340 Q76 290 74 240Z"/>
+    <!-- 左腿 -->
+    <path d="M76 240 Q80 290 82 340 L84 410 L112 410 L108 340 Q106 280 104 230Z"/>
+    <!-- 绑腿 -->
+    <path d="M50 340 L52 370 L78 370 L76 340Z"/>
+    <path d="M82 340 L84 370 L108 370 L106 340Z"/>
+    <!-- 脚 -->
+    <path d="M48 410 Q44 418 52 420 Q62 420 82 420 L82 410Z"/>
+    <path d="M80 410 L80 420 Q100 420 110 420 L112 410Q108 418 94 418Z"/>
+  </g>
+</svg>
+<svg class="intro-sil-svg intro-sil-soldier" viewBox="0 0 160 440" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#000">
+    <!-- 发髻 -->
+    <ellipse cx="100" cy="62" rx="10" ry="8"/>
+    <!-- 头部 -->
+    <ellipse cx="82" cy="82" rx="26" ry="28"/>
+    <!-- 军帽 -->
+    <path d="M54 80 L52 58 Q54 42 82 40 Q110 42 112 58 L110 80 Q102 66 82 62 Q62 64 54 80Z"/>
+    <!-- 脖子-躯干 -->
+    <path d="M64 108 Q56 130 52 240 L118 240 Q116 130 108 108 Q100 104 86 104 Q74 104 64 108Z"/>
+    <!-- 腰带 -->
+    <rect x="54" y="210" width="62" height="10" rx="3"/>
+    <!-- 步枪(竖直) -->
+    <rect x="32" y="120" width="6" height="290" rx="2"/>
+    <rect x="28" y="406" width="14" height="6" rx="1"/>
+    <!-- 右手握枪 -->
+    <ellipse cx="38" cy="175" rx="7" ry="6"/>
+    <path d="M88 165 Q64 170 48 178 L46 170 Q64 162 88 158Z"/>
+    <!-- 左手握枪 -->
+    <ellipse cx="38" cy="240" rx="7" ry="6"/>
+    <path d="M86 238 Q66 242 48 248 L46 240 Q64 234 86 232Z"/>
+    <!-- 左手臂下垂 -->
+    <path d="M108 140 Q124 160 128 190 L122 192 Q118 164 104 148Z"/>
+    <!-- 右腿 -->
+    <path d="M54 240 Q56 290 58 350 L60 410 L86 410 L84 350 Q82 290 80 248Z"/>
+    <!-- 左腿 -->
+    <path d="M88 248 Q90 290 92 350 L94 410 L120 410 L116 350 Q114 290 112 240Z"/>
+    <!-- 绑腿 -->
+    <path d="M58 350 L60 380 L84 380 L82 350Z"/>
+    <path d="M90 350 L92 380 L114 380 L112 350Z"/>
+    <!-- 脚 -->
+    <path d="M56 410 Q52 418 60 420 Q70 420 88 420 L88 410Z"/>
+    <path d="M88 410 L88 420 Q108 420 118 420 L120 410 Q116 418 104 418Z"/>
+  </g>
+</svg>
+<svg class="intro-sil-svg intro-sil-propagandist" viewBox="0 0 180 440" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#000">
+    <!-- 头部 -->
+    <ellipse cx="68" cy="82" rx="24" ry="26"/>
+    <!-- 短发/帽子 -->
+    <path d="M42 80 Q42 58 68 54 Q94 58 94 80 Q88 66 68 62 Q48 64 42 80Z"/>
+    <!-- 脖子-躯干 -->
+    <path d="M52 106 Q44 130 42 240 L100 240 Q98 130 90 106 Q82 102 72 102 Q62 102 52 106Z"/>
+    <!-- 腰 -->
+    <rect x="44" y="210" width="54" height="8" rx="2"/>
+    <!-- 右臂(高举持海报) -->
+    <path d="M92 130 Q112 110 128 78 Q132 68 128 62 Q124 58 120 66 Q108 90 94 118Z"/>
+    <circle cx="124" cy="64" r="5"/>
+    <!-- 大字报/海报 -->
+    <path d="M110 16 L168 22 L152 84 L96 78Z"/>
+    <!-- 左手(支撑海报底部) -->
+    <path d="M84 140 Q96 128 102 110 Q104 104 100 100 Q96 98 94 104 Q90 116 82 132Z"/>
+    <circle cx="98" cy="104" r="4"/>
+    <!-- 左手前臂 -->
+    <path d="M64 126 Q82 120 92 112 Q94 106 90 102 Q84 100 78 108 Q68 118 60 122Z"/>
+    <!-- 围巾/衣领 -->
+    <path d="M52 108 Q68 114 82 112 Q72 116 52 112Z"/>
+    <!-- 右腿 -->
+    <path d="M44 240 Q46 290 48 350 L50 410 L74 410 L72 350 Q70 290 68 248Z"/>
+    <!-- 左腿 -->
+    <path d="M74 248 Q76 290 78 350 L80 410 L108 410 L104 350 Q102 290 100 240Z"/>
+    <!-- 绑腿 -->
+    <path d="M48 350 L50 380 L72 380 L70 350Z"/>
+    <path d="M78 350 L80 380 L104 380 L102 350Z"/>
+    <!-- 脚 -->
+    <path d="M46 410 Q42 418 50 420 Q60 420 76 420 L76 410Z"/>
+    <path d="M76 410 L76 420 Q96 420 106 420 L108 410 Q104 418 92 418Z"/>
+  </g>
+</svg>`;
             content.appendChild(sil);
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
