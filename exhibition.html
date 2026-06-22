@@ -1384,7 +1384,7 @@
             if(zxOld)zxOld.remove();
             zxTheater.insertAdjacentHTML('afterbegin',
 '<svg class="zx-sil-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">'+
-'<defs><filter id="zxBlack" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
+'<defs><filter id="zxBlack" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 -0.03" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-4" intercept="0.96"/></feComponentTransfer></filter></defs>'+
 '<image href="images/被压迫的少年.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMax meet" filter="url(#zxBlack)" opacity="0.28"/></svg>');
         }
         const cardEl=container.querySelector('.scene-card');
