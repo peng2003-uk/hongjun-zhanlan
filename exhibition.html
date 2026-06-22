@@ -215,20 +215,22 @@
         #content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(0,0,0,0.06) 100%); transition: opacity 0.8s ease; }
         #content.theme-scene-1::before { display: none; }
 
-        /* ===== 第二单元导语页 - 底层红色背景 + PNG人物剪影 ===== */
+        /* ===== 第二单元导语页 - 暗红底层背景 + 黑色人物剪影 ===== */
         .intro-silhouettes-wrap {
             position: absolute; inset: 0; z-index: 0; pointer-events: none;
             overflow: hidden;
         }
         .intro-sil-img {
             position: absolute; bottom: 0;
-            opacity: 0.13;
-            mix-blend-mode: multiply;
+            filter: brightness(0);
+            opacity: 0.22;
             transition: opacity 0.8s ease;
         }
-        .intro-sil-bugler { left: 2%; height: 66%; bottom: 4%; }
-        .intro-sil-soldier { right: 15%; height: 58%; bottom: 3%; }
-        .intro-sil-propagandist { right: 1%; height: 54%; bottom: 5%; }
+        .intro-sil-bugler { left: 2%; height: 68%; bottom: 3%; }
+        .intro-sil-soldier { right: 14%; height: 60%; bottom: 2%; }
+        .intro-sil-propagandist { right: 0; height: 55%; bottom: 4%; }
+        /* 第二单元导语页文本框收窄，让两侧人物剪影露出 */
+        #sceneContainer.intro-unit2-mode { max-width: 620px !important; }
         #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
         #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 25%, rgba(200,160,120,0.03) 0%, transparent 30%, rgba(0,0,0,0.25) 100%); }
         #content::-webkit-scrollbar { width: 6px; }
@@ -346,7 +348,7 @@
         .theme-scene-0 #topBar .brand { color: var(--ink); }
         .theme-scene-0 #topBar .unit-indicator { color: var(--ink-light); }
 
-        #content.theme-scene-1 { background: #120C0C; }
+        #content.theme-scene-1 { background: #1A0808; }
         #content.theme-scene-1::before { display: none !important; }
         .theme-scene-1 .scene-card { background: rgba(24,12,10,0.84); color: #f0e0d0; border: 1px solid rgba(160,50,40,0.18); border-radius: 8px 20px 8px 20px; clip-path: polygon(0% 2%, 3% 0%, 97% 1%, 100% 3%, 99% 97%, 97% 100%, 2% 99%, 0% 96%); box-shadow: 0 0 60px rgba(160,40,30,0.12), 0 4px 24px rgba(0,0,0,0.40); }
         .theme-scene-1 .scene-card::before { background: linear-gradient(90deg, transparent, rgba(200,80,60,0.4), transparent) !important; height: 2px !important; }
@@ -536,6 +538,7 @@
             .intro-sil-bugler { height: 56%; left: 1%; bottom: 5%; }
             .intro-sil-soldier { height: 48%; right: 12%; bottom: 4%; }
             .intro-sil-propagandist { height: 44%; right: 1%; bottom: 6%; }
+            #sceneContainer.intro-unit2-mode { max-width: 540px !important; }
         }
         @media (max-width: 640px) {
             #app { flex-direction: column; }
@@ -574,6 +577,7 @@
             .intro-sil-bugler { height: 46%; left: 0; bottom: 6%; }
             .intro-sil-soldier { height: 38%; right: 10%; bottom: 5%; }
             .intro-sil-propagandist { height: 34%; right: 0; bottom: 7%; }
+            #sceneContainer.intro-unit2-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
         }
 
         /* ================================================================
@@ -582,8 +586,8 @@
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
         #sceneContainer:not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
-        /* 湘江血火红底 —— 饱满鲜明的血色渐变，与全局红色系统一致 */
-        #content.theme-scene-1 { background: linear-gradient(175deg, #B22222 0%, #C0392B 25%, #D4493A 50%, #C0392B 75%, #8B1A1A 100%) !important; }
+        /* 第二单元暗红底色 —— 深沉暗红渐变，人物剪影更显清晰 */
+        #content.theme-scene-1 { background: linear-gradient(175deg, #3D0C0C 0%, #5C1414 25%, #6B1818 50%, #4E1010 75%, #2E0808 100%) !important; }
         /* 彻底移除全局 #content::before 暗色覆盖层 */
         #content.theme-scene-1::before { display: none !important; }
 
@@ -1202,10 +1206,13 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
-        // 第二单元导语页：清理旧剪影 + 添加PNG人物剪影
+        // 第二单元导语页：清理旧剪影 + 添加PNG人物剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
+        const sc=document.getElementById('sceneContainer');
+        sc.classList.remove('intro-unit2-mode');
         if(data.type==='intro' && bgClass==='scene-bg-2'){
+            sc.classList.add('intro-unit2-mode');
             const sil=document.createElement('div');
             sil.className='intro-silhouettes-wrap';
             sil.innerHTML=`
