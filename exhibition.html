@@ -600,7 +600,13 @@
         .zhaoxiaoer-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 3vh 3vw 1.5vh 3vw; overflow: hidden; background: #F2E0C0; }
 
         .zhaoxiaoer-theater .theater-bg-silhouette {
-            display: none;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            opacity: 0.25;
+            background-image: url('images/被压迫的少年.png');
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
         }
 
         .zhaoxiaoer-theater .theater-bg-silhouette::after {
@@ -1377,16 +1383,6 @@
         if(hasTheater){const td=data.theaterData;const ly=td.layers||{};html+=`<div class="theater-evidence"><div class="theater-archive"><h3 class="archive-head">${td.boardTitle||''}</h3><div class="archive-body"><p>${td.boardText||''}</p>${td.balladText?`<span class="archive-ballad">${td.balladText}</span>`:""}</div></div>`;if(ly.polaroid)html+=`<div class="theater-photo pos-tl"><img src="${ly.polaroid.src||''}" alt="浮桥冲锋" loading="lazy" /><span class="photo-caption">${ly.polaroid.caption||''}</span></div>`;if(ly.chen)html+=`<div class="theater-photo pos-bl"><img src="${ly.chen.src||''}" alt="${ly.chen.caption||''}" loading="lazy" /><span class="photo-caption">${ly.chen.caption||''}</span></div>`;if(ly.photo2)html+=`<div class="theater-photo pos-tr"><img src="${ly.photo2.src||''}" alt="${ly.photo2.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo2.caption||''}</span></div>`;if(ly.photo3)html+=`<div class="theater-photo pos-bl"><img src="${ly.photo3.src||''}" alt="${ly.photo3.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo3.caption||''}</span></div>`;if(ly.photo4)html+=`<div class="theater-photo pos-br"><img src="${ly.photo4.src||''}" alt="${ly.photo4.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo4.caption||''}</span></div>`;if(ly.photo5)html+=`<div class="theater-photo pos-tc"><img src="${ly.photo5.src||''}" alt="${ly.photo5.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo5.caption||''}</span></div>`;if(ly.photo6)html+=`<div class="theater-photo pos-bc"><img src="${ly.photo6.src||''}" alt="${ly.photo6.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo6.caption||''}</span></div>`;if(ly.artifact)html+=`<div class="theater-photo pos-br"><img src="${ly.artifact.src||''}" alt="蓑衣文物" loading="lazy" /><span class="photo-caption">${ly.artifact.label||''}</span></div>`;html+=`</div></div><div class="theater-passage-wrap"><button class="theater-passage-btn" data-next="${data.next||''}">${td.buttonText||'越过血染之江 · 启程漫漫长征路'}</button></div></div>`;}
         else if(hasHeroImage){const im=data.imageCaption||{};html+=`<div class="scene-1-image-wrapper"><img class="battle-photo" src="${data.heroImage}" alt="${im.title||'湘江战役'}" loading="lazy" /><div class="image-caption-plate"><span class="caption-title">${im.title||''}</span><span class="caption-divider"></span><span class="caption-text">${im.text||''}</span></div></div></div>`;}
         container.innerHTML=html;
-        // zhaoxiaoer剧场：SVG filter从PNG提取纯黑剪影，叠在#F2E0C0背景上
-        var zxTheater=container.querySelector('.zhaoxiaoer-theater');
-        if(zxTheater){
-            var zxOld=zxTheater.querySelector('.zx-sil-overlay');
-            if(zxOld)zxOld.remove();
-            zxTheater.insertAdjacentHTML('afterbegin',
-'<svg class="zx-sil-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">'+
-'<defs><filter id="zxBlack" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-3" intercept="0.75"/></feComponentTransfer></filter></defs>'+
-'<image href="images/被压迫的少年.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMax slice" filter="url(#zxBlack)" opacity="0.35"/></svg>');
-        }
         const cardEl=container.querySelector('.scene-card');
         if(cardEl){applyCardDecor(bgClass,cardEl);const isNarr=data.type==='narrative';if(!isNarr&&!document.querySelector('.scene-card-stamp')){const st=document.createElement('div');st.className='scene-card-stamp';st.textContent='红军长征';cardEl.appendChild(st);}if(!cardEl.querySelector('.year-watermark')){const wm=document.createElement('div');wm.className='year-watermark wm-bottom-right';wm.textContent=yearWatermarks[bgClass]||'';cardEl.appendChild(wm);}}
         unitIndicator.innerHTML=`<strong>${data.unit||'序厅'}</strong>`;
