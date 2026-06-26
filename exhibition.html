@@ -226,6 +226,8 @@
         }
         /* 第一单元剪影淡色处理 */
         .sil-u1-boy, .sil-u1-bugler, .sil-u1-veteran { opacity: 0.28; }
+        /* 第三单元剪影色调 */
+        .sil-u3-supply, .sil-u3-propagandist, .sil-u3-cook { opacity: 0.42; }
         /* 第二单元剪影位置 */
         .sil-u2-bugler { left: 1%; height: 62%; bottom: 0; }
         .sil-u2-soldier { right: 14%; height: 54%; bottom: 0; }
@@ -236,6 +238,11 @@
         .sil-u1-bugler { right: 8%; height: 38%; bottom: 0; }
         .sil-u1-veteran { right: -2%; height: 48%; bottom: 0; }
         #sceneContainer.intro-unit1-mode { max-width: 700px !important; }
+        /* 第三单元剪影位置 — 晨光纸色F0F0F0，后勤物资岗左/宣传队员+炊事员右 */
+        .sil-u3-supply { left: 1%; height: 35%; bottom: 0; }
+        .sil-u3-propagandist { right: 18%; height: 40%; bottom: 0; }
+        .sil-u3-cook { right: 3%; height: 48%; bottom: 0; }
+        #sceneContainer.intro-unit3-mode { max-width: 660px !important; }
         #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(220,200,160,0.04) 0%, transparent 35%, rgba(0,0,0,0.22) 100%); }
         #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 25%, rgba(200,160,120,0.03) 0%, transparent 30%, rgba(0,0,0,0.25) 100%); }
         #content::-webkit-scrollbar { width: 6px; }
@@ -271,19 +278,21 @@
         .theme-scene-3 .scene-card-stamp::after { border-color: rgba(180,200,190,0.25); }
         .theme-scene-4 .scene-card-stamp { border-color: rgba(30,30,30,0.50); color: rgba(30,30,30,0.50); border-radius: 0; }
         .theme-scene-4 .scene-card-stamp::after { border-color: rgba(30,30,30,0.35); border-radius: 0; }
+        .theme-scene-2 .scene-card-stamp { border-color: rgba(196,148,90,0.40); color: rgba(196,148,90,0.45); box-shadow: 0 0 8px rgba(196,148,90,0.10); }
+        .theme-scene-2 .scene-card-stamp::after { border-color: rgba(196,148,90,0.25); }
 
         .year-watermark { position: absolute; pointer-events: none; z-index: 0; font-family: 'Georgia', 'Times New Roman', serif; font-size: clamp(6rem, 16vw, 14rem); font-weight: 900; opacity: 0.025; letter-spacing: -0.02em; white-space: nowrap; user-select: none; }
         .year-watermark.wm-bottom-right { bottom: -20px; right: -10px; }
         .year-watermark.wm-top-left { top: -10px; left: -10px; }
         .theme-scene-0 .year-watermark { color: #3a2010; }
         .theme-scene-1 .year-watermark { color: #D0A090; opacity: 0.03; }
-        .theme-scene-2 .year-watermark { color: #4a3020; }
+        .theme-scene-2 .year-watermark { color: rgba(227,217,199,0.05); }
         .theme-scene-3 .year-watermark { color: #C8D8C0; opacity: 0.03; }
         .theme-scene-4 .year-watermark { color: #1a1a1a; opacity: 0.04; }
         .theme-scene-epilogue .year-watermark { color: #C0A080; opacity: 0.025; }
 
         .scene-header h3 { font-family: var(--font-title); font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: 5px; margin: 6px 0 4px; position: relative; display: inline-block; padding-bottom: 8px; background: linear-gradient(180deg, transparent 65%, rgba(184,67,58,0.10) 65%, rgba(184,67,58,0.18) 100%); -webkit-background-clip: text; background-clip: text; }
-        .theme-scene-2 .scene-header h3 { background: linear-gradient(180deg, transparent 65%, rgba(107,26,26,0.14) 65%, rgba(107,26,26,0.25) 100%); -webkit-background-clip: text; background-clip: text; }
+        .theme-scene-2 .scene-header h3 { background: linear-gradient(180deg, transparent 65%, rgba(196,148,90,0.16) 65%, rgba(160,88,48,0.28) 100%); -webkit-background-clip: text; background-clip: text; }
         .theme-scene-4 .scene-header h3 { background: linear-gradient(180deg, transparent 65%, rgba(30,30,30,0.12) 65%, rgba(30,30,30,0.22) 100%); -webkit-background-clip: text; background-clip: text; }
 
         #sceneContainer { padding: 0 24px 60px; max-width: 860px; margin: 0 auto; position: relative; z-index: 2; }
@@ -361,14 +370,18 @@
         .theme-scene-1 #topBar .brand { color: #f0e0d0; }
         .theme-scene-1 #topBar .unit-indicator { color: var(--gold-dim); }
 
-        #content.theme-scene-2 { background: #D8C8B0; }
-        .theme-scene-2 .scene-card { background: rgba(245,238,225,0.72); border: 1px solid rgba(139,42,42,0.12); border-radius: 4px; box-shadow: 0 0 0 3px rgba(139,42,42,0.06), 0 0 0 7px rgba(139,42,42,0.03), 0 8px 32px rgba(80,40,20,0.08); position: relative; }
-        .theme-scene-2 .scene-card::after { content: ''; position: absolute; inset: 8px; pointer-events: none; z-index: 1; border: 1px solid rgba(139,42,42,0.08); border-radius: 2px; }
-        .theme-scene-2 .scene-card::before { background: linear-gradient(90deg, transparent, var(--red-deep), transparent) !important; height: 4px !important; width: 80px !important; }
-        .theme-scene-2 .scene-header h3 { color: var(--red-deep); }
-        .theme-scene-2 #topBar { background: rgba(216,200,176,0.82); backdrop-filter: blur(14px); border-bottom-color: rgba(139,42,42,0.08); }
-        .theme-scene-2 #topBar .brand { color: var(--red-deep); }
-        .theme-scene-2 #topBar .unit-indicator { color: var(--ink-light); }
+        #content.theme-scene-2 { background: #434548; }
+        #content.theme-scene-2::before { background: radial-gradient(ellipse at 50% 30%, rgba(196,148,90,0.07) 0%, transparent 50%, rgba(0,0,0,0.12) 100%) !important; }
+        .theme-scene-2 .scene-card { background: rgba(237,228,214,0.90); border: 1px solid rgba(196,148,90,0.22); border-radius: 4px; box-shadow: 0 0 0 3px rgba(196,148,90,0.06), 0 0 0 7px rgba(196,148,90,0.03), 0 6px 24px rgba(0,0,0,0.20), 0 0 60px rgba(196,148,90,0.05); position: relative; }
+        .theme-scene-2 .scene-card::after { content: ''; position: absolute; inset: 8px; pointer-events: none; z-index: 1; border: 1px solid rgba(196,148,90,0.12); border-radius: 2px; }
+        .theme-scene-2 .scene-card::before { background: linear-gradient(90deg, transparent, #C4945A, #A05830, transparent) !important; height: 4px !important; width: 80px !important; }
+        .theme-scene-2 .scene-header h3 { color: #A07840; }
+        .theme-scene-2 #topBar { background: rgba(52,54,57,0.92); backdrop-filter: blur(14px); border-bottom-color: rgba(196,148,90,0.14); }
+        .theme-scene-2 #topBar .brand { color: #E9E1D2; }
+        .theme-scene-2 #topBar .unit-indicator { color: rgba(196,148,90,0.75); }
+        .theme-scene-2 .scene-header h3::before,
+        .theme-scene-2 .scene-header h3::after { background: #C4945A; opacity: 0.35; }
+        .theme-scene-2 .scene-header .page-type-tag { background: rgba(196,148,90,0.08); color: #A05830; border-color: rgba(196,148,90,0.10); }
 
         #content.theme-scene-3 { background: #141E18; }
         #content.theme-scene-3::before { background: radial-gradient(ellipse at 50% 25%, rgba(140,180,160,0.04) 0%, transparent 40%, rgba(0,0,0,0.22) 100%) !important; }
@@ -548,6 +561,10 @@
             .sil-u1-veteran { height: 40%; right: -1%; bottom: 0; }
             #sceneContainer.intro-unit2-mode { max-width: 540px !important; }
             #sceneContainer.intro-unit1-mode { max-width: 560px !important; }
+            .sil-u3-supply { height: 28%; left: 0; bottom: 0; }
+            .sil-u3-propagandist { height: 32%; right: 14%; bottom: 0; }
+            .sil-u3-cook { height: 40%; right: 2%; bottom: 0; }
+            #sceneContainer.intro-unit3-mode { max-width: 560px !important; }
         }
         @media (max-width: 640px) {
             #app { flex-direction: column; }
@@ -591,6 +608,10 @@
             .sil-u1-veteran { height: 34%; right: -1%; bottom: 0; }
             #sceneContainer.intro-unit2-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
             #sceneContainer.intro-unit1-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
+            .sil-u3-supply { height: 22%; left: 0; bottom: 0; }
+            .sil-u3-propagandist { height: 26%; right: 12%; bottom: 0; }
+            .sil-u3-cook { height: 34%; right: 1%; bottom: 0; }
+            #sceneContainer.intro-unit3-mode { max-width: 100% !important; padding: 0 8px 30px !important; }
         }
 
         /* ================================================================
@@ -893,7 +914,7 @@
            方案一：湘江剪影剧场 — 暗红悲壮全景双栏 3D 文献台
            ================================================================ */
         .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; transition: max-width var(--transition), padding var(--transition); }
-        #sceneContainer:not(:has(.zhaoxiaoer-theater)):not(:has(.yudu-theater)):not(:has(.laogeming-theater)):not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)) { max-width: 860px; padding: 0 24px 60px; }
+        #sceneContainer:not(:has(.zhaoxiaoer-theater)):not(:has(.yudu-theater)):not(:has(.laogeming-theater)):not(:has(.xiangjiang-theater)):not(:has(.nvyong-theater)):not(:has(.laoshanjie-theater)):not(:has(.wujiang-theater)):not(:has(.zunyi-theater)):not(:has(.chishui-theater)):not(:has(.jinsha-theater)):not(:has(.luding-theater)) { max-width: 860px; padding: 0 24px 60px; }
         #sceneContainer:not(:has(.xiangjiang-theater)) .scene-card { margin: 24px 0 34px; }
         /* 第二单元红底色 —— 革命复古红 #C1121F 纯色 */
         #content.theme-scene-1 { background: #C1121F !important; }
@@ -1294,6 +1315,383 @@
 
         @keyframes stageSlideIn { 0% { opacity: 0; transform: translateX(60px); } 100% { opacity: 1; transform: translateX(0); } }
 
+        /* ================================================================
+           方案五：遵义剧院 — 合并叙事+档案，左故事右档案
+           ================================================================ */
+        .theme-scene-2 #sceneContainer:has(.zunyi-theater) { max-width: 100%; padding: 0; }
+        .zunyi-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 2vh 3vw 1.5vh 3vw; overflow: hidden; }
+        .zunyi-theater .theater-bg-silhouette {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-image: url('images/遵义会议剪影_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.38;
+        }
+        .zunyi-theater .theater-bg-silhouette::after { display: none; }
+        .zunyi-theater .theater-smoke-lens { display: none; }
+        .zunyi-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 2.5vw; z-index: 3; }
+
+        .zunyi-theater .theater-story { width: 35%; height: 100%; background: rgba(227,217,199,0.76); color: var(--ink); border: 1px solid rgba(196,148,90,0.22); border-radius: 8px 20px 8px 20px; box-shadow: 0 0 40px rgba(196,148,90,0.08), 0 6px 20px rgba(0,0,0,0.18); padding: 3vh 2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .zunyi-theater .theater-story::-webkit-scrollbar { width: 4px; }
+        .zunyi-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
+        .zunyi-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .zunyi-theater .theater-story .story-inner-header { margin-bottom: 2vh; }
+        .zunyi-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--ink-dim); display: block; margin-bottom: 4px; }
+        .zunyi-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.5rem; color: #A07840; letter-spacing: 3px; margin: 0; }
+        .zunyi-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(196,148,90,0.08); color: #A05830; margin-top: 6px; border: 1px solid rgba(196,148,90,0.10); }
+        .zunyi-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: var(--ink); }
+        .zunyi-theater .theater-story .narrative .narr-block .speaker { color: #A07840; border-left-color: #C4945A; }
+        .zunyi-theater .theater-story .narrative .dialogue { border-left-color: #C4945A; background: linear-gradient(90deg, rgba(196,148,90,0.08) 0%, rgba(196,148,90,0.01) 100%); color: var(--ink-light); }
+        .zunyi-theater .theater-story .narrative .dialogue .who { color: #A07840; }
+        .zunyi-theater .theater-story .continue-hint { color: #888; border-color: rgba(0,0,0,0.10); }
+        .zunyi-theater .theater-story .continue-hint:hover { border-color: #C4945A; color: #A07840; }
+
+        .zunyi-theater .theater-evidence { width: 65%; height: 100%; position: relative; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
+        .zunyi-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68%; max-width: 520px; max-height: 78%; background: rgba(237,228,214,0.78); border: 1px solid rgba(196,148,90,0.22); border-radius: 4px; box-shadow: 0 0 0 3px rgba(196,148,90,0.06), 0 0 0 7px rgba(196,148,90,0.03), 0 12px 40px rgba(0,0,0,0.25); padding: 3vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .zunyi-theater .theater-archive::-webkit-scrollbar { width: 4px; }
+        .zunyi-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
+        .zunyi-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .zunyi-theater .theater-archive .archive-head { font-size: 1.05rem; color: #A07840; font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196,148,90,0.18); padding-bottom: 1.2vh; }
+        .zunyi-theater .theater-archive .archive-body { font-size: 0.82rem; line-height: 1.95; color: var(--ink-light); text-align: justify; }
+
+        /* 6张照片环抱——统一样式 */
+        .zunyi-theater .theater-photo { position: absolute; background: #f5ebe0; padding: 6px 6px 16px 6px; box-shadow: 0 18px 35px rgba(80,40,20,0.20); border: 1px solid rgba(196,148,90,0.10); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
+        .zunyi-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.2) brightness(0.90); transition: filter 0.4s ease; }
+        .zunyi-theater .theater-photo .photo-caption { position: absolute; bottom: 3px; left: 4px; right: 4px; font-size: 0.38rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .zunyi-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 130px; height: 105px; transform: rotate(-3deg); }
+        .zunyi-theater .theater-photo.pos-tc { top: 2%; left: 50%; width: 125px; height: 100px; transform: translateX(-50%) rotate(1deg); }
+        .zunyi-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 130px; height: 105px; transform: rotate(3deg); }
+        .zunyi-theater .theater-photo.pos-bl { bottom: 5%; left: 1%; width: 125px; height: 110px; transform: rotate(2deg); }
+        .zunyi-theater .theater-photo.pos-bc { bottom: 4%; left: 50%; width: 120px; height: 105px; transform: translateX(-50%) rotate(-1deg); }
+        .zunyi-theater .theater-photo.pos-br { bottom: 5%; right: 1%; width: 125px; height: 110px; transform: rotate(-2deg); }
+
+        .zunyi-theater .theater-evidence:hover .theater-archive { background: rgba(245,238,225,0.96); border-color: rgba(196,148,90,0.30); }
+        .zunyi-theater .theater-evidence:hover .pos-tl { transform: translate(-8px, -6px) rotate(0deg) scale(1.02); }
+        .zunyi-theater .theater-evidence:hover .pos-tc { transform: translateX(-50%) translateY(-6px) rotate(0deg) scale(1.02); }
+        .zunyi-theater .theater-evidence:hover .pos-tr { transform: translate(8px, -6px) rotate(0deg) scale(1.02); }
+        .zunyi-theater .theater-evidence:hover .pos-bl { transform: translate(-8px, 6px) rotate(0deg) scale(1.02); }
+        .zunyi-theater .theater-evidence:hover .pos-bc { transform: translateX(-50%) translateY(6px) rotate(0deg) scale(1.02); }
+        .zunyi-theater .theater-evidence:hover .pos-br { transform: translate(8px, 6px) rotate(0deg) scale(1.02); }
+        .zunyi-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
+
+        .zunyi-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
+        .zunyi-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 48px; background: rgba(227,217,199,0.88); border: 1px solid rgba(196,148,90,0.25); font-family: var(--font-text); font-size: 0.95rem; font-weight: 600; color: #A07840; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .zunyi-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(196,148,90,0.12) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
+        .zunyi-theater .theater-passage-btn:hover { color: #A05830; border-color: rgba(160,88,48,0.5); transform: translateY(2px) scale(0.995); }
+        .zunyi-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #C4945A, #A05830, transparent); transition: none; pointer-events: none; }
+        .zunyi-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
+        .zunyi-theater .scene-guide { display: none; }
+
+        @media (max-width: 1024px) {
+            .theme-scene-2 #sceneContainer:has(.zunyi-theater) { max-width: 100%; padding: 0; }
+            .zunyi-theater { padding: 2vh 2vw 2vh 2vw; }
+            .zunyi-theater .theater-stage { flex-direction: column; gap: 18px; }
+            .zunyi-theater .theater-story { width: 100%; height: auto; max-height: 40vh; padding: 2.5vh 3vw; }
+            .zunyi-theater .theater-evidence { width: 100%; flex: 1; min-height: 380px; }
+            .zunyi-theater .theater-photo { padding: 4px 4px 12px 4px; }
+            .zunyi-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 80px; height: 65px; transform: rotate(-2deg); }
+            .zunyi-theater .theater-photo.pos-tc { top: 2%; left: 50%; width: 75px; height: 60px; transform: translateX(-50%) rotate(1deg); }
+            .zunyi-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 80px; height: 65px; transform: rotate(2deg); }
+            .zunyi-theater .theater-photo.pos-bl { bottom: 4%; left: 1%; width: 75px; height: 70px; transform: rotate(2deg); }
+            .zunyi-theater .theater-photo.pos-bc { bottom: 3%; left: 50%; width: 70px; height: 65px; transform: translateX(-50%) rotate(-1deg); }
+            .zunyi-theater .theater-photo.pos-br { bottom: 4%; right: 1%; width: 75px; height: 70px; transform: rotate(-2deg); }
+            .zunyi-theater .theater-evidence:hover .theater-photo { transform: none !important; }
+        }
+        @media (max-width: 640px) {
+            .zunyi-theater { padding: 1.5vh 10px 1.5vh 10px; }
+            .zunyi-theater .theater-stage { gap: 12px; }
+            .zunyi-theater .theater-story { max-height: 38vh; padding: 2vh 14px; }
+            .zunyi-theater .theater-story .story-inner-header h3 { font-size: 1.2rem; }
+            .zunyi-theater .theater-story .narrative { font-size: 0.85rem; line-height: 2.0; }
+            .zunyi-theater .theater-evidence { min-height: 300px; }
+            .zunyi-theater .theater-archive { padding: 2.5vh 4vw; }
+            .zunyi-theater .theater-archive .archive-head { font-size: 0.9rem; }
+            .zunyi-theater .theater-archive .archive-body { font-size: 0.72rem; }
+            .zunyi-theater .theater-photo { display: none; }
+            .zunyi-theater .theater-passage-btn { font-size: 0.85rem; letter-spacing: 2px; height: 42px; }
+        }
+
+        /* ================================================================
+           方案六：金沙江剧院 — 6照片环抱中央档案板
+           ================================================================ */
+        .theme-scene-2 #sceneContainer:has(.jinsha-theater) { max-width: 100%; padding: 0; }
+        .jinsha-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 2vh 3vw 1.5vh 3vw; overflow: hidden; }
+        .jinsha-theater .theater-bg-silhouette {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-image: url('images/巧渡金沙江_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.36;
+        }
+        .jinsha-theater .theater-bg-silhouette::after { display: none; }
+        .jinsha-theater .theater-smoke-lens { display: none; }
+        .jinsha-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 2.5vw; z-index: 3; }
+
+        .jinsha-theater .theater-story { width: 35%; height: 100%; background: rgba(227,217,199,0.76); color: var(--ink); border: 1px solid rgba(196,148,90,0.22); border-radius: 8px 20px 8px 20px; box-shadow: 0 0 40px rgba(196,148,90,0.08), 0 6px 20px rgba(0,0,0,0.18); padding: 3vh 2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .jinsha-theater .theater-story::-webkit-scrollbar { width: 4px; }
+        .jinsha-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
+        .jinsha-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .jinsha-theater .theater-story .story-inner-header { margin-bottom: 2vh; }
+        .jinsha-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--ink-dim); display: block; margin-bottom: 4px; }
+        .jinsha-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.5rem; color: #A07840; letter-spacing: 3px; margin: 0; }
+        .jinsha-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(196,148,90,0.08); color: #A05830; margin-top: 6px; border: 1px solid rgba(196,148,90,0.10); }
+        .jinsha-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: var(--ink); }
+        .jinsha-theater .theater-story .narrative .narr-block .speaker { color: #A07840; border-left-color: #C4945A; }
+        .jinsha-theater .theater-story .narrative .dialogue { border-left-color: #C4945A; background: linear-gradient(90deg, rgba(196,148,90,0.08) 0%, rgba(196,148,90,0.01) 100%); color: var(--ink-light); }
+        .jinsha-theater .theater-story .narrative .dialogue .who { color: #A07840; }
+        .jinsha-theater .theater-story .continue-hint { color: #888; border-color: rgba(0,0,0,0.10); }
+        .jinsha-theater .theater-story .continue-hint:hover { border-color: #C4945A; color: #A07840; }
+
+        .jinsha-theater .theater-evidence { width: 65%; height: 100%; position: relative; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
+        .jinsha-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68%; max-width: 520px; max-height: 78%; background: rgba(237,228,214,0.78); border: 1px solid rgba(196,148,90,0.22); border-radius: 4px; box-shadow: 0 0 0 3px rgba(196,148,90,0.06), 0 0 0 7px rgba(196,148,90,0.03), 0 12px 40px rgba(0,0,0,0.25); padding: 3vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .jinsha-theater .theater-archive::-webkit-scrollbar { width: 4px; }
+        .jinsha-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
+        .jinsha-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .jinsha-theater .theater-archive .archive-head { font-size: 1.05rem; color: #A07840; font-weight: 600; text-align: center; margin-bottom: 2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196,148,90,0.18); padding-bottom: 1.2vh; }
+        .jinsha-theater .theater-archive .archive-body { font-size: 0.82rem; line-height: 1.95; color: var(--ink-light); text-align: justify; }
+
+        .jinsha-theater .theater-photo { position: absolute; background: #f5ebe0; padding: 6px 6px 16px 6px; box-shadow: 0 18px 35px rgba(80,40,20,0.20); border: 1px solid rgba(196,148,90,0.10); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease; cursor: default; z-index: 10; }
+        .jinsha-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.2) brightness(0.90); transition: filter 0.4s ease; }
+        .jinsha-theater .theater-photo .photo-caption { position: absolute; bottom: 3px; left: 4px; right: 4px; font-size: 0.38rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .jinsha-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 130px; height: 105px; transform: rotate(-3deg); }
+        .jinsha-theater .theater-photo.pos-tc { top: 2%; left: 50%; width: 125px; height: 100px; transform: translateX(-50%) rotate(1deg); }
+        .jinsha-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 130px; height: 105px; transform: rotate(3deg); }
+        .jinsha-theater .theater-photo.pos-bl { bottom: 5%; left: 1%; width: 125px; height: 110px; transform: rotate(2deg); }
+        .jinsha-theater .theater-photo.pos-bc { bottom: 4%; left: 50%; width: 120px; height: 105px; transform: translateX(-50%) rotate(-1deg); }
+        .jinsha-theater .theater-photo.pos-br { bottom: 5%; right: 1%; width: 125px; height: 110px; transform: rotate(-2deg); }
+
+        .jinsha-theater .theater-evidence:hover .theater-archive { background: rgba(245,238,225,0.96); border-color: rgba(196,148,90,0.30); }
+        .jinsha-theater .theater-evidence:hover .pos-tl { transform: translate(-8px, -6px) rotate(0deg) scale(1.02); }
+        .jinsha-theater .theater-evidence:hover .pos-tc { transform: translateX(-50%) translateY(-6px) rotate(0deg) scale(1.02); }
+        .jinsha-theater .theater-evidence:hover .pos-tr { transform: translate(8px, -6px) rotate(0deg) scale(1.02); }
+        .jinsha-theater .theater-evidence:hover .pos-bl { transform: translate(-8px, 6px) rotate(0deg) scale(1.02); }
+        .jinsha-theater .theater-evidence:hover .pos-bc { transform: translateX(-50%) translateY(6px) rotate(0deg) scale(1.02); }
+        .jinsha-theater .theater-evidence:hover .pos-br { transform: translate(8px, 6px) rotate(0deg) scale(1.02); }
+        .jinsha-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
+
+        .jinsha-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
+        .jinsha-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 48px; background: rgba(227,217,199,0.88); border: 1px solid rgba(196,148,90,0.25); font-family: var(--font-text); font-size: 0.95rem; font-weight: 600; color: #A07840; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .jinsha-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(196,148,90,0.12) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
+        .jinsha-theater .theater-passage-btn:hover { color: #A05830; border-color: rgba(160,88,48,0.5); transform: translateY(2px) scale(0.995); }
+        .jinsha-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #C4945A, #A05830, transparent); transition: none; pointer-events: none; }
+        .jinsha-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
+        .jinsha-theater .scene-guide { display: none; }
+
+        @media (max-width: 1024px) {
+            .theme-scene-2 #sceneContainer:has(.jinsha-theater) { max-width: 100%; padding: 0; }
+            .jinsha-theater { padding: 2vh 2vw 2vh 2vw; }
+            .jinsha-theater .theater-stage { flex-direction: column; gap: 18px; }
+            .jinsha-theater .theater-story { width: 100%; height: auto; max-height: 40vh; padding: 2.5vh 3vw; }
+            .jinsha-theater .theater-evidence { width: 100%; flex: 1; min-height: 380px; }
+            .jinsha-theater .theater-photo { padding: 4px 4px 12px 4px; }
+            .jinsha-theater .theater-photo.pos-tl { top: 3%; left: 1%; width: 80px; height: 65px; transform: rotate(-2deg); }
+            .jinsha-theater .theater-photo.pos-tc { top: 2%; left: 50%; width: 75px; height: 60px; transform: translateX(-50%) rotate(1deg); }
+            .jinsha-theater .theater-photo.pos-tr { top: 3%; right: 1%; width: 80px; height: 65px; transform: rotate(2deg); }
+            .jinsha-theater .theater-photo.pos-bl { bottom: 4%; left: 1%; width: 75px; height: 70px; transform: rotate(2deg); }
+            .jinsha-theater .theater-photo.pos-bc { bottom: 3%; left: 50%; width: 70px; height: 65px; transform: translateX(-50%) rotate(-1deg); }
+            .jinsha-theater .theater-photo.pos-br { bottom: 4%; right: 1%; width: 75px; height: 70px; transform: rotate(-2deg); }
+            .jinsha-theater .theater-evidence:hover .theater-photo { transform: none !important; }
+        }
+        @media (max-width: 640px) {
+            .jinsha-theater { padding: 1.5vh 10px 1.5vh 10px; }
+            .jinsha-theater .theater-stage { gap: 12px; }
+            .jinsha-theater .theater-story { max-height: 38vh; padding: 2vh 14px; }
+            .jinsha-theater .theater-story .story-inner-header h3 { font-size: 1.2rem; }
+            .jinsha-theater .theater-story .narrative { font-size: 0.85rem; line-height: 2.0; }
+            .jinsha-theater .theater-evidence { min-height: 300px; }
+            .jinsha-theater .theater-archive { padding: 2.5vh 4vw; }
+            .jinsha-theater .theater-archive .archive-head { font-size: 0.9rem; }
+            .jinsha-theater .theater-archive .archive-body { font-size: 0.72rem; }
+            .jinsha-theater .theater-photo { display: none; }
+            .jinsha-theater .theater-passage-btn { font-size: 0.85rem; letter-spacing: 2px; height: 42px; }
+        }
+
+        /* ================================================================
+           方案五：泸定剧院 — 单档案+8张照片4x2网格
+           ================================================================ */
+        .theme-scene-2 #sceneContainer:has(.luding-theater) { max-width: 100%; padding: 0; }
+        .luding-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 2vh 3vw 1.5vh 3vw; overflow: hidden; }
+        .luding-theater .theater-bg-silhouette {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-image: url('images/飞夺泸定桥_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.36;
+        }
+        .luding-theater .theater-bg-silhouette::after { display: none; }
+        .luding-theater .theater-smoke-lens { display: none; }
+        .luding-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 2.5vw; z-index: 3; }
+
+        .luding-theater .theater-story { width: 35%; height: 100%; background: rgba(227,217,199,0.76); color: var(--ink); border: 1px solid rgba(196,148,90,0.22); border-radius: 8px 20px 8px 20px; box-shadow: 0 0 40px rgba(196,148,90,0.08), 0 6px 20px rgba(0,0,0,0.18); padding: 3vh 2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .luding-theater .theater-story::-webkit-scrollbar { width: 4px; }
+        .luding-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
+        .luding-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .luding-theater .theater-story .story-inner-header { margin-bottom: 2vh; }
+        .luding-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--ink-dim); display: block; margin-bottom: 4px; }
+        .luding-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.5rem; color: #A07840; letter-spacing: 3px; margin: 0; }
+        .luding-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(196,148,90,0.08); color: #A05830; margin-top: 6px; border: 1px solid rgba(196,148,90,0.10); }
+        .luding-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: var(--ink); }
+        .luding-theater .theater-story .narrative .narr-block .speaker { color: #A07840; border-left-color: #C4945A; }
+        .luding-theater .theater-story .narrative .dialogue { border-left-color: #C4945A; background: linear-gradient(90deg, rgba(196,148,90,0.08) 0%, rgba(196,148,90,0.01) 100%); color: var(--ink-light); }
+        .luding-theater .theater-story .narrative .dialogue .who { color: #A07840; }
+        .luding-theater .theater-story .continue-hint { color: #888; border-color: rgba(0,0,0,0.10); }
+        .luding-theater .theater-story .continue-hint:hover { border-color: #C4945A; color: #A07840; }
+
+        .luding-theater .theater-evidence { width: 65%; height: 100%; position: relative; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
+        .luding-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68%; max-width: 520px; max-height: 72%; background: rgba(237,228,214,0.82); border: 1px solid rgba(196,148,90,0.22); border-radius: 4px; box-shadow: 0 0 0 3px rgba(196,148,90,0.06), 0 0 0 7px rgba(196,148,90,0.03), 0 12px 40px rgba(0,0,0,0.25); padding: 2.5vh 2.5vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .luding-theater .theater-archive::-webkit-scrollbar { width: 4px; }
+        .luding-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
+        .luding-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .luding-theater .theater-archive .archive-head { font-size: 1rem; color: #A07840; font-weight: 600; text-align: center; margin-bottom: 1.5vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196,148,90,0.18); padding-bottom: 1vh; }
+        .luding-theater .theater-archive .archive-body { font-size: 0.80rem; line-height: 1.9; color: var(--ink-light); text-align: justify; }
+
+        /* 8张照片3-2-3环绕 */
+        .luding-theater .theater-photo { position: absolute; background: #f5ebe0; padding: 5px 5px 14px 5px; box-shadow: 0 16px 30px rgba(80,40,20,0.18); border: 1px solid rgba(196,148,90,0.10); transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); cursor: default; z-index: 10; }
+        .luding-theater .theater-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.2) brightness(0.90); transition: filter 0.4s ease; }
+        .luding-theater .theater-photo .photo-caption { position: absolute; bottom: 2px; left: 3px; right: 3px; font-size: 0.36rem; color: var(--ink-dim); text-align: center; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* 上排3张 */
+        .luding-theater .theater-photo.pos-tl  { top: 2%; left: 1%; width: 105px; height: 85px; transform: rotate(-3deg); }
+        .luding-theater .theater-photo.pos-tc  { top: 1%; left: 50%; width: 100px; height: 80px; transform: translateX(-50%) rotate(0.5deg); }
+        .luding-theater .theater-photo.pos-tr  { top: 2%; right: 1%; width: 105px; height: 85px; transform: rotate(3deg); }
+        /* 中排2张 */
+        .luding-theater .theater-photo.pos-ml  { top: 50%; left: -1%; width: 95px; height: 78px; transform: translateY(-50%) rotate(2deg); }
+        .luding-theater .theater-photo.pos-mr  { top: 50%; right: -1%; width: 95px; height: 78px; transform: translateY(-50%) rotate(-2deg); }
+        /* 下排3张 */
+        .luding-theater .theater-photo.pos-bl  { bottom: 3%; left: 1%; width: 105px; height: 85px; transform: rotate(2deg); }
+        .luding-theater .theater-photo.pos-bc  { bottom: 2%; left: 50%; width: 100px; height: 80px; transform: translateX(-50%) rotate(-0.5deg); }
+        .luding-theater .theater-photo.pos-br  { bottom: 3%; right: 1%; width: 105px; height: 85px; transform: rotate(-2deg); }
+
+        .luding-theater .theater-evidence:hover .theater-archive { background: rgba(245,238,225,0.96); border-color: rgba(196,148,90,0.30); }
+        .luding-theater .theater-evidence:hover .pos-tl { transform: translate(-6px, -5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-tc { transform: translateX(-50%) translateY(-5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-tr { transform: translate(6px, -5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-ml { transform: translateY(-50%) translateX(-5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-mr { transform: translateY(-50%) translateX(5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-bl { transform: translate(-6px, 5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-bc { transform: translateX(-50%) translateY(5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .pos-br { transform: translate(6px, 5px) rotate(0deg) scale(1.02); }
+        .luding-theater .theater-evidence:hover .theater-photo img { filter: sepia(0.1) brightness(1); }
+
+        .luding-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
+        .luding-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 48px; background: rgba(227,217,199,0.88); border: 1px solid rgba(196,148,90,0.25); font-family: var(--font-text); font-size: 0.95rem; font-weight: 600; color: #A07840; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .luding-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(196,148,90,0.12) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
+        .luding-theater .theater-passage-btn:hover { color: #A05830; border-color: rgba(160,88,48,0.5); transform: translateY(2px) scale(0.995); }
+        .luding-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #C4945A, #A05830, transparent); transition: none; pointer-events: none; }
+        .luding-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
+        .luding-theater .scene-guide { display: none; }
+
+        @media (max-width: 1024px) {
+            .theme-scene-2 #sceneContainer:has(.luding-theater) { max-width: 100%; padding: 0; }
+            .luding-theater { padding: 2vh 2vw 2vh 2vw; }
+            .luding-theater .theater-stage { flex-direction: column; gap: 18px; }
+            .luding-theater .theater-story { width: 100%; height: auto; max-height: 40vh; padding: 2.5vh 3vw; }
+            .luding-theater .theater-evidence { width: 100%; flex: 1; min-height: 380px; }
+            .luding-theater .theater-photo { padding: 3px 3px 10px 3px; }
+            .luding-theater .theater-photo.pos-tl,.luding-theater .theater-photo.pos-tr,.luding-theater .theater-photo.pos-bl,.luding-theater .theater-photo.pos-br { width: 75px; height: 60px; }
+            .luding-theater .theater-photo.pos-tc,.luding-theater .theater-photo.pos-bc { width: 70px; height: 56px; }
+            .luding-theater .theater-photo.pos-ml,.luding-theater .theater-photo.pos-mr { width: 65px; height: 54px; }
+            .luding-theater .theater-photo.pos-tl { transform: rotate(-2deg); }
+            .luding-theater .theater-photo.pos-tr { transform: rotate(2deg); }
+            .luding-theater .theater-photo.pos-bl { transform: rotate(2deg); }
+            .luding-theater .theater-photo.pos-br { transform: rotate(-2deg); }
+            .luding-theater .theater-photo.pos-ml { transform: translateY(-50%) rotate(1deg); }
+            .luding-theater .theater-photo.pos-mr { transform: translateY(-50%) rotate(-1deg); }
+            .luding-theater .theater-evidence:hover .theater-photo { transform: none !important; }
+        }
+        @media (max-width: 640px) {
+            .luding-theater { padding: 1.5vh 10px 1.5vh 10px; }
+            .luding-theater .theater-stage { gap: 12px; }
+            .luding-theater .theater-story { max-height: 38vh; padding: 2vh 14px; }
+            .luding-theater .theater-story .story-inner-header h3 { font-size: 1.2rem; }
+            .luding-theater .theater-story .narrative { font-size: 0.85rem; line-height: 2.0; }
+            .luding-theater .theater-evidence { min-height: 300px; }
+            .luding-theater .theater-archive { padding: 2.5vh 4vw; }
+            .luding-theater .theater-archive .archive-head { font-size: 0.9rem; }
+            .luding-theater .theater-archive .archive-body { font-size: 0.72rem; }
+            .luding-theater .theater-photo { display: none; }
+            .luding-theater .theater-passage-btn { font-size: 0.85rem; letter-spacing: 2px; height: 42px; }
+        }
+
+        /* ================================================================
+           方案七：赤水剧院 — 双档案框+照片条居中
+           ================================================================ */
+        .theme-scene-2 #sceneContainer:has(.chishui-theater) { max-width: 100%; padding: 0; }
+        .chishui-theater { position: relative; width: 100%; height: calc(100vh - 48px); display: flex; flex-direction: column; justify-content: flex-start; padding: 2vh 3vw 1.5vh 3vw; overflow: hidden; }
+        .chishui-theater .theater-bg-silhouette {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            background-image: url('images/炊事员与小红军.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.36;
+        }
+        .chishui-theater .theater-bg-silhouette::after { display: none; }
+        .chishui-theater .theater-smoke-lens { display: none; }
+        .chishui-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 2.5vw; z-index: 3; }
+
+        .chishui-theater .theater-story { width: 35%; height: 100%; background: rgba(227,217,199,0.76); color: var(--ink); border: 1px solid rgba(196,148,90,0.22); border-radius: 8px 20px 8px 20px; box-shadow: 0 0 40px rgba(196,148,90,0.08), 0 6px 20px rgba(0,0,0,0.18); padding: 3vh 2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .chishui-theater .theater-story::-webkit-scrollbar { width: 4px; }
+        .chishui-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
+        .chishui-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.25); border-radius: 2px; }
+        .chishui-theater .theater-story .story-inner-header { margin-bottom: 2vh; }
+        .chishui-theater .theater-story .story-inner-header .unit-tag { font-size: 0.6rem; letter-spacing: 5px; opacity: 0.45; color: var(--ink-dim); display: block; margin-bottom: 4px; }
+        .chishui-theater .theater-story .story-inner-header h3 { font-family: var(--font-title); font-size: 1.5rem; color: #A07840; letter-spacing: 3px; margin: 0; }
+        .chishui-theater .theater-story .story-inner-header .page-type-tag { display: inline-block; font-size: 0.5rem; letter-spacing: 3px; padding: 2px 12px; border-radius: 20px; background: rgba(196,148,90,0.08); color: #A05830; margin-top: 6px; border: 1px solid rgba(196,148,90,0.10); }
+        .chishui-theater .theater-story .narrative { font-size: 0.92rem; line-height: 2.2; color: var(--ink); }
+        .chishui-theater .theater-story .narrative .narr-block .speaker { color: #A07840; border-left-color: #C4945A; }
+        .chishui-theater .theater-story .narrative .dialogue { border-left-color: #C4945A; background: linear-gradient(90deg, rgba(196,148,90,0.08) 0%, rgba(196,148,90,0.01) 100%); color: var(--ink-light); }
+        .chishui-theater .theater-story .narrative .dialogue .who { color: #A07840; }
+        .chishui-theater .theater-story .continue-hint { color: #888; border-color: rgba(0,0,0,0.10); }
+        .chishui-theater .theater-story .continue-hint:hover { border-color: #C4945A; color: #A07840; }
+
+        .chishui-theater .theater-evidence { width: 65%; height: 100%; display: flex; flex-direction: column; gap: 1.5vh; overflow-y: auto; padding-right: 4px; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
+        .chishui-theater .theater-evidence::-webkit-scrollbar { width: 4px; }
+        .chishui-theater .theater-evidence::-webkit-scrollbar-track { background: transparent; }
+        .chishui-theater .theater-evidence::-webkit-scrollbar-thumb { background: rgba(196,148,90,0.2); border-radius: 2px; }
+        .chishui-theater .archive-box { background: rgba(237,228,214,0.78); border: 1px solid rgba(196,148,90,0.20); border-radius: 4px; box-shadow: 0 0 0 3px rgba(196,148,90,0.05), 0 0 0 6px rgba(196,148,90,0.03), 0 6px 20px rgba(0,0,0,0.15); padding: 2.5vh 2vw; flex-shrink: 0; }
+        .chishui-theater .archive-box .archive-head { font-size: 1rem; color: #A07840; font-weight: 600; text-align: center; margin-bottom: 1.2vh; letter-spacing: 3px; border-bottom: 1px solid rgba(196,148,90,0.15); padding-bottom: 0.8vh; }
+        .chishui-theater .archive-box .archive-body { font-size: 0.80rem; line-height: 1.85; color: var(--ink-light); text-align: justify; }
+        .chishui-theater .theater-photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; flex-shrink: 0; }
+        .chishui-theater .theater-photo-grid .grid-photo { aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 6px; border: 2px solid rgba(196,148,90,0.18); cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease; filter: sepia(0.2) brightness(0.92); position: relative; overflow: hidden; }
+        .chishui-theater .theater-photo-grid .grid-photo:hover { transform: scale(1.05); border-color: rgba(160,88,48,0.5); box-shadow: 0 4px 16px rgba(0,0,0,0.25); filter: sepia(0) brightness(1); z-index: 2; }
+        .chishui-theater .theater-photo-grid .grid-photo .photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.55); color: #ddd; font-size: 0.38rem; padding: 2px 4px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .chishui-theater .theater-passage-wrap { position: relative; z-index: 4; display: flex; justify-content: center; padding-top: 1.5vh; }
+        .chishui-theater .theater-passage-btn { position: relative; width: 100%; max-width: 650px; height: 48px; background: rgba(227,217,199,0.88); border: 1px solid rgba(196,148,90,0.25); font-family: var(--font-text); font-size: 0.95rem; font-weight: 600; color: #A07840; letter-spacing: 4px; cursor: pointer; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, color 0.3s; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .chishui-theater .theater-passage-btn::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(196,148,90,0.12) 0%, transparent 70%); animation: emberBreathing 3.5s infinite ease-in-out; pointer-events: none; }
+        .chishui-theater .theater-passage-btn:hover { color: #A05830; border-color: rgba(160,88,48,0.5); transform: translateY(2px) scale(0.995); }
+        .chishui-theater .theater-passage-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #C4945A, #A05830, transparent); transition: none; pointer-events: none; }
+        .chishui-theater .theater-passage-btn:hover::after { left: 100%; transition: all 0.9s linear; }
+        .chishui-theater .scene-guide { display: none; }
+
+        @media (max-width: 1024px) {
+            .theme-scene-2 #sceneContainer:has(.chishui-theater) { max-width: 100%; padding: 0; }
+            .chishui-theater { padding: 2vh 2vw 2vh 2vw; }
+            .chishui-theater .theater-stage { flex-direction: column; gap: 18px; }
+            .chishui-theater .theater-story { width: 100%; height: auto; max-height: 40vh; padding: 2.5vh 3vw; }
+            .chishui-theater .theater-evidence { width: 100%; flex: 1; min-height: 0; overflow-y: visible; }
+            .chishui-theater .theater-photo-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        }
+        @media (max-width: 640px) {
+            .chishui-theater { padding: 1.5vh 10px 1.5vh 10px; }
+            .chishui-theater .theater-stage { gap: 12px; }
+            .chishui-theater .theater-story { max-height: 38vh; padding: 2vh 14px; }
+            .chishui-theater .theater-story .story-inner-header h3 { font-size: 1.2rem; }
+            .chishui-theater .theater-story .narrative { font-size: 0.85rem; line-height: 2.0; }
+            .chishui-theater .archive-box { padding: 2vh 3vw; }
+            .chishui-theater .archive-box .archive-head { font-size: 0.85rem; }
+            .chishui-theater .archive-box .archive-body { font-size: 0.72rem; }
+            .chishui-theater .theater-photo-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+            .chishui-theater .theater-passage-btn { font-size: 0.85rem; letter-spacing: 2px; height: 42px; }
+        }
+
         @media (max-width: 1024px) {
             .theme-scene-1 #sceneContainer { max-width: 100%; padding: 0; }
             .xiangjiang-theater { padding: 2vh 2vw 2vh 2vw; }
@@ -1435,10 +1833,10 @@
     { id:'unit2_3', type:'scene', unit:'第二单元 · 惶恐', title:'老山界黑夜行军', theaterData:{theaterClass:'laoshanjie-theater', buttonText:'翻越黑夜之岭 · 继续漫漫征途', boardTitle:'历史档案 · 翻越老山界 —— 长征第一座险山', boardText:'老山界属于越城岭山脉，是中央红军长征途中翻越的第一座高山，山势陡峭、道路狭窄，主峰海拔超过2000米，自古便是险途。1934年12月4日至8日，刚刚经历湘江血战的中央红军分三路翻越老山界，目的是快速摆脱尾随的国民党追兵，向贵州方向挺进。\n为规避空中侦察与地面敌军袭扰，红军全程采用夜间隐蔽行军模式，队伍在无灯火的深山险路中跋涉。翻越老山界不仅是一次地理上的跋涉，更是红军在惨重损失后，重整队伍、继续西进的重要转折点。', layers:{polaroid:{src:'images/t012c54b3216dcbcc67.jpg', caption:'老山界 · 黑夜行军纪实'}, photo2:{src:'images/绑腿.jpg', caption:'红军绑腿 · 行军必备'}, photo3:{src:'images/彭绍辉长征日记jpg.jpg', caption:'彭绍辉长征日记 · 老山界篇'}}}, number:'场景 3 / 4', bg:'scene-bg-2', nodeIndex:1, blocks:[{type:'narr',speaker:'赵小二',text:'我们跟随队伍一路辗转，翻越了高耸险峻的老山界。连日阴雨连绵，山路陡峭得近乎垂直，两侧便是万丈深渊。为躲避敌机侦察与敌军追击，全军严禁点火，我们只能在漆黑的夜色里，拽着前方战友的衣角艰难挪动。'},{type:'narr',text:'一路流血牺牲、日夜奔波，前路望不到尽头。我心中的迷茫越来越重：我们日复一日吃苦、牺牲，这样的长征，究竟要走向何方？我们所承受的一切，又到底是为了什么？',highlight:true}], archives:[{title:'历史档案：翻越老山界 —— 长征第一座险山',text:'老山界属于越城岭山脉，是中央红军长征途中翻越的第一座高山，山势陡峭、道路狭窄，主峰海拔超过2000米，自古便是险途。1934年12月4日至8日，刚刚经历湘江血战的中央红军分三路翻越老山界，目的是快速摆脱尾随的国民党追兵，向贵州方向挺进。\n为规避空中侦察与地面敌军袭扰，红军全程采用夜间隐蔽行军模式，队伍在无灯火的深山险路中跋涉。翻越老山界不仅是一次地理上的跋涉，更是红军在惨重损失后，重整队伍、继续西进的重要转折点。'}], guide:'黑暗中的每一步，都踩在未知上。但队伍没有停下。', nextRaw:'unit2_4' },
     { id:'unit2_4', type:'scene', unit:'第二单元 · 惶恐', title:'乌江归队，第一次识字', number:'场景 4 / 4', theaterData:{theaterClass:'wujiang-theater', buttonText:'接过星火之笔 · 走向觉醒之路', boardTitle:'红军中的Ta们 —— 长征时期红军宣传队', boardText:'红军宣传队归属各级政治部管理，团级单位设专职宣传队，文艺分队统一并入宣传体系。依据1934年红军总政治部相关政治指令，宣传队在长征途中承担三类固定工作：对内服务指战员，对外联系群众，对敌开展工作。\n1935年1月初，中央红军于乌江休整期间，宣传队持续开展识字教学、思想宣讲等常态化工作。各分队利用行军、宿营间隙开展口头动员、文化扫盲、纪律宣讲与文艺活动，就地取用树枝、木炭等物资开展识字教学，沿途书写标语、张贴布告、散发传单，走访民众并开展民情调查。', layers:{polaroid:{src:'images/红星画报1.jpg', caption:'红星画报 · 第1期'}, photo2:{src:'images/木板标语打土豪分田地.jpg', caption:'木板标语 · 打土豪分田地'}, photo3:{src:'images/农村阶级划分五言歌.jpg', caption:'农村阶级划分五言歌'}, photo4:{src:'images/红一方面军写的木板标语.png', caption:'红一方面军木板标语'}, photo5:{src:'images/红军战士读本.png', caption:'红军战士读本 · 识字教材'}, photo6:{src:'images/屏幕截图 2026-06-11 101230.png', caption:'宣传队历史影像资料'}}}, bg:'scene-bg-2', nodeIndex:1, blocks:[{type:'narr',speaker:'赵小二',text:'1934年12月初，我们翻越了广西境内的老山界，又辗转经过黎平、剑河、台拱、黄平、瓮安，一路追着主力留下的路标和标语，整整一个多月，终于在1935年1月初乌江边追上了大部队。'},{type:'narr',text:'宿营时，微弱的火堆旁，红军文工团的宣传员林晓月拉过了我的手。她家境贫寒，家里有好几个弟弟。父母养不活那么多孩子，就把她卖到了妓院。她最终逃了出来，听说红军男女平等，就加入了红军。她用一根树枝，在我的手心里一笔一画地写下"革命"和"自主"两个字。'},{type:'dialogue',speaker:'林晓月',text:'"小二，在旧社会里，女人、穷人，命就像牲口一样被买卖践踏。逃出来当红军，是姐一生最勇敢的反抗。我们现在走的每一步夜路，吃的每一份苦，都是为了让天下的穷人都能自主掌控命运，不受人随意践踏，那才配叫作人！把你的号擦干净，总有一天，我们要吹响胜利的号声。"'},{type:'narr',text:'从那天起，我捡起铅笔头、收集报纸残页，利用行军休息的间隙认字学习。革命的火苗，第一次在我的心底真正点燃。归队后，我被编入了后勤物资岗位。',highlight:true}], archives:[{title:'红军中的"Ta"们 —— 长征时期红军宣传队',text:'红军宣传队归属各级政治部管理，团级单位设专职宣传队，文艺分队统一并入宣传体系。依据1934年红军总政治部相关政治指令，宣传队在长征途中承担三类固定工作：对内服务指战员，对外联系群众，对敌开展工作。\n1935年1月初，中央红军于乌江休整期间，宣传队持续开展识字教学、思想宣讲等常态化工作。',artifacts:[{img:'https://picsum.photos/seed/propa1/200/150',desc:'宣传队识字教学'},{img:'https://picsum.photos/seed/slogan1/200/150',desc:'木板标语：打土豪分田地'}]}], guide:'湘江的硝烟渐渐散去，但前方的路更加艰险。赵小二心中的火种，正在燃烧。', nextRaw:'unit3_intro' },
     { id:'unit3_intro', type:'intro', unit:'第三单元', title:'觉醒 · 赤水铁索', bg:'scene-bg-3', nodeIndex:2, introText:'1935年1月，遵义会议召开，中央红军迎来历史转折。此后红军四渡赤水、巧渡金沙江，接连突破敌军封锁，行军全程物资极度短缺。部队继续北上，先后强渡大渡河、飞夺泸定桥，攻克多处天险。\n一系列战斗结束后，部队进行人员整编与岗位调整。"红小鬼"赵小二在转战途中见证牺牲与坚守，思想逐步觉醒，最终正式成为一名随军宣传队员。', guide:'赤水河畔的转战、大渡河上的铁索，赵小二在战火中觉醒。', nextRaw:'unit3_1' },
-    { id:'unit3_1', type:'scene', unit:'第三单元 · 觉醒', title:'遵义休整，遇见大锤叔', number:'场景 1 / 4', bg:'scene-bg-3', nodeIndex:2, blocks:[{type:'narr',speaker:'赵小二',text:'1935年1月，红军占领遵义，召开了遵义会议。我们基层战士并不清楚会上发生了什么，只是隐约感到队伍里多了几分生气，纪律更严了，行军更有章法了。'},{type:'narr',text:'在这里，我遇到了年近四十的炊事老兵王大锤，他常年背着行军铁锅，脊梁被压得微微弯曲。他一辈子安分守己过日子，却因新官上任时强制全城商户跪拜献礼、摊派苛捐杂税，唯独他挺直腰杆不肯下跪，结果被官府当街拷打，血在他脸上不停地往下流。最后红军解放了县城救了他，他成为了炊事班第十八任炊事员。'}], archives:[{title:'历史档案：遵义会议与红军进驻后的整训',text:'1935年1月15日至17日，中共中央在贵州遵义召开了政治局扩大会议。会议严厉批评了博古和李德在军事上的单纯防御路线，取消了他们的最高军事指挥权，通过了《遵义会议决议》，并增选毛泽东为中央政治局常委。遵义会议是中国共产党第一次独立自主地运用马克思主义基本原理解决自身路线和组织问题的伟大转折点。',artifacts:[{img:'https://picsum.photos/seed/zunyi3/200/150',desc:'遵义会议室'},{img:'https://picsum.photos/seed/loushan/200/150',desc:'娄山关'}]}], guide:'遵义城头，红旗漫卷。赵小二在这里，遇见了一个改变他命运的人。', nextRaw:'unit3_2' },
-    { id:'unit3_2', type:'scene', unit:'第三单元 · 觉醒', title:'四渡赤水，接过铁锅', number:'场景 2 / 4', bg:'scene-bg-3', nodeIndex:3, blocks:[{type:'narr',speaker:'赵小二',text:'二月到三月，我们跟随队伍在川黔滇边境来回转战，这便是四渡赤水。连续的急行军让所有人疲惫不堪，更残酷的是粮草彻底断绝。战士们只能煮皮带、啃野菜充饥。我连日饥饿，眼前一黑，重重栽倒在乱石滩上。'},{type:'narr',text:'当我醒来时，发现自己躺在枯草堆上，嘴里正被强行塞进一块硬邦邦、带着浓重汗味的青稞饼。那是不知多珍贵的最后一口干粮。而旁边的王大锤正弓着干瘪的脊梁，满脸黑青，大口大口地啃着用开水煮过的野菜和树皮，嘴角还沾着草根。'},{type:'dialogue',speaker:'赵小二',text:'"大锤叔！你天天背着这么重的铁锅走几百里路，你连一口饱饭都不吃！你把粮食给了我，你吃这个会死人的啊？！"'},{type:'dialogue',speaker:'王大锤',text:'"哭什么！老子当长工的兄弟就是因为去地主家讨一碗米汤，被活活咬死在门口！老子挺直了腰杆不给当官的下跪，红军拿我当兄弟！小二，这口锅就是全连战友的命。老子可以死，红军不能饿死！你是连队的未来，你得替老子……好好走出去！"'},{type:'narr',text:'当晚，王大锤再也没有站起来。他安详地闭上了眼睛，胃里只有几口没消化的野菜和树皮，手里却还死死攥着一小袋没舍得用的面粉。他是宁可自己饿死，也绝不让红军挨饿！我没有流泪，我默默走过去，小心地保管好这袋面粉。王大锤用生命教导了我什么是无私奉献与后勤坚守。行军的间隙，我依然用树枝在泥地里默写林晓月姐教我的字，也把大锤叔牢牢地记在了心里。',highlight:true}], archives:[{title:'历史档案：四渡赤水作战',text:'1935年1月至5月，中央红军在毛泽东、周恩来、王稼祥组成的军事指挥小组指挥下，在川黔滇交界处的赤水河流域与国民党40万追兵展开了高频转战。四渡赤水彻底摆脱了长征以来的被动局面。受敌军军事围剿、经济封锁以及连续作战消耗影响，该阶段红军粮草供应全面中断，全体指战员长期处于饥饿状态。'},{title:'红军中的"Ta"们 —— 炊事员',text:'长征期间，红军炊事员是基层连队中体力负荷极重、减员极为严重的后勤群体。行军时，他们除随身装备外，还需用扁担挑运大锅、铁铲、劈柴及全连粮食，实际负重常达30至40公斤；由于部队频繁长途转战，炊事员必须在宿营后立即寻柴生火、全军出发前提前做饭，长期处于严重睡眠不足与体力透支的状态。在翻越雪山草地期间，这种超负荷劳作导致炊事员因高原反应、虚脱和极度饥饿而倒毙牺牲的比例居高不下。',artifacts:[{img:'https://picsum.photos/seed/pot3/200/150',desc:'铁锅，炊事兵的象征'},{img:'https://picsum.photos/seed/veg3/200/150',desc:'野菜，充饥的救命粮'},{img:'https://picsum.photos/seed/pottery/200/150',desc:'二渡赤水时的碎陶罐'}]}], guide:'一口铁锅，一份嘱托。大锤叔走了，但他的精神留在了赵小二心里。', nextRaw:'unit3_3' },
-    { id:'unit3_3', type:'scene', unit:'第三单元 · 觉醒', title:'巧渡金沙江，六只破船', number:'场景 3 / 4', bg:'scene-bg-3', nodeIndex:4, blocks:[{type:'narr',speaker:'赵小二',text:'告别赤水流域，我们顶着烈日昼夜不停向金沙江方向赶路，即使体力不支，我始终不敢有丝毫懈怠。队伍抵达皎平渡口时，全军只征集到六艘民用木船。'},{type:'narr',text:'渡江行动从夜间开始，我负责清点物资、引导战友有序登船。江水流势湍急，船只数次触碰暗礁、险象环生，战士们齐心协力化解危机。五天五夜，六只破船，两万多人马，无一损失，全部渡过了金沙江。'},{type:'narr',text:'我们刚过完江，追兵就赶到了岸边。他们望着滔滔江水，只捡到了我们丢弃的一只破草鞋。那天晚上，大家围着篝火又笑又哭。我心里默默地说：大锤叔，你看到了吗？我们过来了。',highlight:true}], archives:[{title:'历史档案：巧渡金沙江战役',text:'1935年4月至5月，中央红军实施了"巧渡金沙江"这一战略转移中的决定性战役。从5月3日至9日，在刘伯承、陈云等坐镇的渡江司令部严密组织下，3万红军仅靠7条木船（实际可用6条）历时七天七夜安全渡江，彻底甩掉了数十万追兵，粉碎了蒋介石围歼红军于川黔滇边境的计划。',artifacts:[{img:'https://picsum.photos/seed/jinsha3/200/150',desc:'巧渡金沙江场景'}]}], guide:'六只破船，渡过了千军万马。奇迹，是用信念创造的。', nextRaw:'unit3_4' },
-    { id:'unit3_4', type:'scene', unit:'第三单元 · 觉醒', title:'天险飞渡：大渡河与泸定桥', number:'场景 4 / 4', bg:'scene-bg-3', nodeIndex:5, blocks:[{type:'narr',speaker:'赵小二',text:'1935年5月中旬，大渡河根本不是河，是吃人的深渊。浪头几米高，对岸碉堡吐着火舌，水面像开了锅。'},{type:'narr',text:'我守在后方物资站，看不清小船上的细节。但那震天的军号声、枪炮声和呐喊声，一浪一浪砸过来。后来伤员抬下来，我凑上去听。他们说：十七个勇士，挤一条破船，顶着弹雨硬冲。有人中弹倒下，旁边的立刻按住；炮弹像长了眼睛，炸飞了对岸的碉堡。船靠岸了，勇士们跳进齐腰深的急流，挥着大刀扑上滩头。对岸的国民党兵吓得掉头就跑。'},{type:'narr',text:'红旗插上山头。十七个，都活着！\n我攥紧拳头，手心全是汗。那一刻，我心里烧起一把火：原来红军不怕死，是真的。',highlight:true},{type:'narr',text:'由于安顺场船只数量有限，全军立刻踏上昼夜二百四十里的急行军。赶到泸定桥头时，眼前的惨烈更令人倒吸凉气：十三根光秃秃的冰冷铁索悬在激流上，木板被拆光，对岸桥头堡火光冲天。'},{type:'narr',text:'战役打响后，我在后方临时救治点飞奔递送药品，一抬头，只能看到铁索上蠕动的黑影和火光中冲锋的身影。子弹打在铁索上火花四溅，不断有勇士中弹坠入滔滔江水，而后面的战友踩着血迹继续疯狂往前爬，最终化作燃烧的火人义无反顾地冲进桥头火海，生生夺下了泸定桥。'},{type:'narr',text:'看着被鲜血染红的铁索和抬下来的重伤员，我泪流满面。这两场硬仗将"不怕牺牲、冲锋在前"的突击队精神刻进了我的骨髓。',highlight:true}], archives:[{title:'历史档案：大渡河系列战役',text:'1935年5月，中央红军先遣队于24日袭占安顺场渡口。25日晨，17名勇士组成渡河突击队，冒着密集枪弹强渡登岸。但因只找到1只木船，红军大部队无法全部渡河，毛泽东果断决定兵分两路，夺取上游泸定桥。\n红4团奉命为左路军先锋团，一昼夜疾行240里，于29日凌晨赶到泸定桥西岸。此时桥上木板已被拆除，只剩下13根铁索链。29日下午4时，22名勇士冒着弹雨攀爬铁索，冲过火海夺下桥头，占领了泸定城。',artifacts:[{img:'https://picsum.photos/seed/luding3/200/150',desc:'飞夺泸定桥'},{img:'https://picsum.photos/seed/chain3/200/150',desc:'泸定桥铁锁链'},{img:'https://picsum.photos/seed/gun3/200/150',desc:'仿启拉利机枪'}]}], guide:'赤水河畔的转战、大渡河上的铁索，赵小二在战火中觉醒。然而，真正的绝境还在前方。', nextRaw:'unit4_intro' },
+    { id:'unit3_1', type:'scene', unit:'第三单元 · 觉醒', title:'遵义休整，遇见大锤叔', number:'场景 1 / 4', bg:'scene-bg-3', nodeIndex:2, theaterData:{theaterClass:'zunyi-theater', buttonText:'走进遵义城 · 继续觉醒之路', boardTitle:'历史档案 · 遵义会议与红军进驻后的整训', boardText:'1935年1月15日至17日，中共中央在贵州遵义召开了政治局扩大会议。会议严厉批评了博古和李德在军事上的单纯防御路线，取消了他们的最高军事指挥权，通过了《遵义会议决议》，并增选毛泽东为中央政治局常委。遵义会议是中国共产党第一次独立自主地运用马克思主义基本原理解决自身路线和组织问题的伟大转折点。', photos:[{src:'images/遵义会议.png', label:'遵义会议 · 历史转折'},{src:'images/遵义会议室.png', label:'遵义会议室旧址'},{src:'images/遵义会议会址.jpg', label:'遵义会议会址 · 贵州'},{src:'images/遵义会议2.jpg', label:'遵义会议历史影像'},{src:'images/遵义会议3jpg.jpg', label:'遵义会议历史文献'},{src:'images/娄山关.png', label:'娄山关 · 战役遗址'}]}, blocks:[{type:'narr',speaker:'赵小二',text:'1935年1月，红军占领遵义，召开了遵义会议。我们基层战士并不清楚会上发生了什么，只是隐约感到队伍里多了几分生气，纪律更严了，行军更有章法了。'},{type:'narr',text:'在这里，我遇到了年近四十的炊事老兵王大锤，他常年背着行军铁锅，脊梁被压得微微弯曲。他一辈子安分守己过日子，却因新官上任时强制全城商户跪拜献礼、摊派苛捐杂税，唯独他挺直腰杆不肯下跪，结果被官府当街拷打，血在他脸上不停地往下流。最后红军解放了县城救了他，他成为了炊事班第十八任炊事员。'}], guide:'遵义城头，红旗漫卷。赵小二在这里，遇见了一个改变他命运的人。', nextRaw:'unit3_2' },
+    { id:'unit3_2', type:'scene', unit:'第三单元 · 觉醒', title:'四渡赤水，接过铁锅', number:'场景 2 / 4', bg:'scene-bg-3', nodeIndex:3, theaterData:{theaterClass:'chishui-theater', buttonText:'接过铁锅 · 继续前行', archive1Title:'历史档案：四渡赤水作战', archive1Text:'1935年1月至5月，中央红军在毛泽东、周恩来、王稼祥组成的军事指挥小组指挥下，在川黔滇交界处的赤水河流域与国民党40万追兵展开了高频转战。四渡赤水彻底摆脱了长征以来的被动局面。受敌军军事围剿、经济封锁以及连续作战消耗影响，该阶段红军粮草供应全面中断，全体指战员长期处于饥饿状态。', archive2Title:'红军中的"Ta"们 —— 炊事员', archive2Text:'长征期间，红军炊事员是基层连队中体力负荷极重、减员极为严重的后勤群体。行军时，他们除随身装备外，还需用扁担挑运大锅、铁铲、劈柴及全连粮食，实际负重常达30至40公斤；由于部队频繁长途转战，炊事员必须在宿营后立即寻柴生火、全军出发前提前做饭，长期处于严重睡眠不足与体力透支的状态。在翻越雪山草地期间，这种超负荷劳作导致炊事员因高原反应、虚脱和极度饥饿而倒毙牺牲的比例居高不下。', photos:[{src:'images/炊事班.png', label:'炊事班 · 战地生活'},{src:'images/炊事班的故事.jpg', label:'炊事班的故事'},{src:'images/二渡赤水时的碎陶罐.jpg', label:'二渡赤水 · 碎陶罐'},{src:'images/锅.jpg', label:'行军锅 · 炊事员的命'},{src:'images/艰苦岁月.png', label:'艰苦岁月 · 红军纪实'},{src:'images/小战士认字png.png', label:'小战士认字 · 学习'},{src:'images/行军锅.jpg', label:'行军锅 · 历史实物'},{src:'images/支柱.png', label:'支柱 · 红军精神'}]}, blocks:[{type:'narr',speaker:'赵小二',text:'二月到三月，我们跟随队伍在川黔滇边境来回转战，这便是四渡赤水。连续的急行军让所有人疲惫不堪，更残酷的是粮草彻底断绝。战士们只能煮皮带、啃野菜充饥。我连日饥饿，眼前一黑，重重栽倒在乱石滩上。'},{type:'narr',text:'当我醒来时，发现自己躺在枯草堆上，嘴里正被强行塞进一块硬邦邦、带着浓重汗味的青稞饼。那是不知多珍贵的最后一口干粮。而旁边的王大锤正弓着干瘪的脊梁，满脸黑青，大口大口地啃着用开水煮过的野菜和树皮，嘴角还沾着草根。'},{type:'dialogue',speaker:'赵小二',text:'"大锤叔！你天天背着这么重的铁锅走几百里路，你连一口饱饭都不吃！你把粮食给了我，你吃这个会死人的啊？！"'},{type:'dialogue',speaker:'王大锤',text:'"哭什么！老子当长工的兄弟就是因为去地主家讨一碗米汤，被活活咬死在门口！老子挺直了腰杆不给当官的下跪，红军拿我当兄弟！小二，这口锅就是全连战友的命。老子可以死，红军不能饿死！你是连队的未来，你得替老子……好好走出去！"'},{type:'narr',text:'当晚，王大锤再也没有站起来。他安详地闭上了眼睛，胃里只有几口没消化的野菜和树皮，手里却还死死攥着一小袋没舍得用的面粉。他是宁可自己饿死，也绝不让红军挨饿！我没有流泪，我默默走过去，小心地保管好这袋面粉。王大锤用生命教导了我什么是无私奉献与后勤坚守。行军的间隙，我依然用树枝在泥地里默写林晓月姐教我的字，也把大锤叔牢牢地记在了心里。',highlight:true}], guide:'一口铁锅，一份嘱托。大锤叔走了，但他的精神留在了赵小二心里。', nextRaw:'unit3_3' },
+    { id:'unit3_3', type:'scene', unit:'第三单元 · 觉醒', title:'巧渡金沙江，六只破船', number:'场景 3 / 4', bg:'scene-bg-3', nodeIndex:4, theaterData:{theaterClass:'jinsha-theater', buttonText:'渡过金沙江 · 继续征途', boardTitle:'历史档案：巧渡金沙江战役', boardText:'1935年4月至5月，中央红军实施了"巧渡金沙江"这一战略转移中的决定性战役。从5月3日至9日，在刘伯承、陈云等坐镇的渡江司令部严密组织下，3万红军仅靠7条木船（实际可用6条）历时七天七夜安全渡江，彻底甩掉了数十万追兵，粉碎了蒋介石围歼红军于川黔滇边境的计划。', photos:[{src:'images/巧渡金沙江.png', label:'巧渡金沙江 · 历史场景'},{src:'images/巧渡金沙江2.jpg', label:'金沙江 · 天险渡口'},{src:'images/巧渡金沙江3.jpg', label:'巧渡金沙江 · 木船夜渡'},{src:'images/巧渡金沙江4.jpg', label:'金沙江战役 · 历史影像'},{src:'images/巧渡金沙江5.jpg', label:'皎平渡 · 渡江地点'},{src:'images/巧渡金沙江6.jpg', label:'巧渡金沙江 · 胜利突围'}]}, blocks:[{type:'narr',speaker:'赵小二',text:'告别赤水流域，我们顶着烈日昼夜不停向金沙江方向赶路，即使体力不支，我始终不敢有丝毫懈怠。队伍抵达皎平渡口时，全军只征集到六艘民用木船。'},{type:'narr',text:'渡江行动从夜间开始，我负责清点物资、引导战友有序登船。江水流势湍急，船只数次触碰暗礁、险象环生，战士们齐心协力化解危机。五天五夜，六只破船，两万多人马，无一损失，全部渡过了金沙江。'},{type:'narr',text:'我们刚过完江，追兵就赶到了岸边。他们望着滔滔江水，只捡到了我们丢弃的一只破草鞋。那天晚上，大家围着篝火又笑又哭。我心里默默地说：大锤叔，你看到了吗？我们过来了。',highlight:true}], guide:'六只破船，渡过了千军万马。奇迹，是用信念创造的。', nextRaw:'unit3_4' },
+    { id:'unit3_4', type:'scene', unit:'第三单元 · 觉醒', title:'天险飞渡：大渡河与泸定桥', number:'场景 4 / 4', bg:'scene-bg-3', nodeIndex:5, theaterData:{theaterClass:'luding-theater', buttonText:'跨越天险 · 走向新生', boardTitle:'历史档案：大渡河系列战役', boardText:'1935年5月，中央红军先遣队于24日袭占安顺场渡口。25日晨，17名勇士组成渡河突击队，冒着密集枪弹强渡登岸。但因只找到1只木船，红军大部队无法全部渡河，毛泽东果断决定兵分两路，夺取上游泸定桥。\n红4团奉命为左路军先锋团，一昼夜疾行240里，于29日凌晨赶到泸定桥西岸。此时桥上木板已被拆除，只剩下13根铁索链。29日下午4时，22名勇士冒着弹雨攀爬铁索，冲过火海夺下桥头，占领了泸定城。', photos:[{src:'images/飞夺泸定桥.png', label:'飞夺泸定桥 · 历史场景'},{src:'images/强度大渡河.jpg', label:'强渡大渡河 · 十七勇士'},{src:'images/泸定桥png.png', label:'泸定桥 · 天险铁索'},{src:'images/泸定桥铁锁链.jpg', label:'泸定桥铁锁链 · 历史文物'},{src:'images/红军强渡大渡河时的仿启拉利机枪.jpg', label:'仿启拉利机枪 · 红军武器'},{src:'images/大渡河缴获的指南针.jpg', label:'缴获的指南针 · 战利品'},{src:'images/记载强渡大渡河的报纸.png', label:'报纸记载 · 大渡河战役'},{src:'images/红军带到陕北的唯一一门山炮.jpg', label:'唯一一门山炮 · 带到陕北'}]}, blocks:[{type:'narr',speaker:'赵小二',text:'1935年5月中旬，大渡河根本不是河，是吃人的深渊。浪头几米高，对岸碉堡吐着火舌，水面像开了锅。'},{type:'narr',text:'我守在后方物资站，看不清小船上的细节。但那震天的军号声、枪炮声和呐喊声，一浪一浪砸过来。后来伤员抬下来，我凑上去听。他们说：十七个勇士，挤一条破船，顶着弹雨硬冲。有人中弹倒下，旁边的立刻按住；炮弹像长了眼睛，炸飞了对岸的碉堡。船靠岸了，勇士们跳进齐腰深的急流，挥着大刀扑上滩头。对岸的国民党兵吓得掉头就跑。'},{type:'narr',text:'红旗插上山头。十七个，都活着！\n我攥紧拳头，手心全是汗。那一刻，我心里烧起一把火：原来红军不怕死，是真的。',highlight:true},{type:'narr',text:'由于安顺场船只数量有限，全军立刻踏上昼夜二百四十里的急行军。赶到泸定桥头时，眼前的惨烈更令人倒吸凉气：十三根光秃秃的冰冷铁索悬在激流上，木板被拆光，对岸桥头堡火光冲天。'},{type:'narr',text:'战役打响后，我在后方临时救治点飞奔递送药品，一抬头，只能看到铁索上蠕动的黑影和火光中冲锋的身影。子弹打在铁索上火花四溅，不断有勇士中弹坠入滔滔江水，而后面的战友踩着血迹继续疯狂往前爬，最终化作燃烧的火人义无反顾地冲进桥头火海，生生夺下了泸定桥。'},{type:'narr',text:'看着被鲜血染红的铁索和抬下来的重伤员，我泪流满面。这两场硬仗将"不怕牺牲、冲锋在前"的突击队精神刻进了我的骨髓。',highlight:true}], guide:'赤水河畔的转战、大渡河上的铁索，赵小二在战火中觉醒。然而，真正的绝境还在前方。', nextRaw:'unit4_intro' },
     { id:'unit4_intro', type:'intro', unit:'第四单元', title:'坚韧 · 生死绝境', bg:'scene-bg-4', nodeIndex:6, introText:'中央红军接连打赢强渡大渡河、飞夺泸定桥等关键战斗，顺利闯过多处天险。在一路转战的间隙，赵小二始终坚持刻苦识字，慢慢掌握了基础文化知识，随后主动申请调入宣传队。\n枪林弹雨的考验暂时落幕，但前路并非一片坦途，还有更为严峻的艰难险阻，在等待着他与全体红军战士。', guide:'雪山草地的生死考验，即将开始。', nextRaw:'unit4_1' },
     { id:'unit4_1', type:'scene', unit:'第四单元 · 坚韧', title:'风雪夹金山', number:'场景 1 / 4', bg:'scene-bg-4', nodeIndex:6, blocks:[{type:'narr',speaker:'赵小二',text:'1935年6月，红军开始翻越终年积雪的夹金山。6月12日清晨，炊事班烧了几大锅辣椒汤，我们每人喝下一大碗，顿时浑身冒汗，从嗓子眼一直辣到脚底板，我们就是顶着这股辣劲儿，开始爬雪山的。'},{type:'narr',text:'刚上山时，并没有觉得多累，脚下是坚硬的雪壳，阳光照在积雪上格外刺眼，宣传队的小宋跟在我身后，总是一副乐呵呵的样子，一边走一边哼着江西老家的山歌。可越往山顶行进，山势愈发陡峭，空气也变得稀薄，我心跳得厉害，嘴唇发紫，脸色发青，两腿发软，胸口像压了块大石头，走几步就要停下来大口大口地喘气。'},{type:'narr',text:'行至半山腰，老天爷翻了脸，狂风裹挟着冰雹骤然袭来，天地间白茫茫一片，分不清方向。体力透支的我一头栽倒在雪地里，浑身冻得麻木。'},{type:'narr',text:'"小二！小二！"有人在喊我。我迷迷糊糊睁开眼，看到一个身影蹲在我身边——是苏博文，队伍里那个上海来的知识分子。他出身于富商家庭，出国留学归来，当他看到了贫民被官兵和地主压迫的时候，他决定追随自己的理想，一路从上海追到了苏区，加入了红军。'},{type:'narr',text:'他戴着深度近视眼镜，镜片上糊满了雪，脸色冻得青紫，嘴唇已经发黑。他平时身体就弱，走这种路比我们更吃力。风雪之中，他执意把大衣披在我的身上。我浑身哆嗦，被他架着一步一步往上拖。他的眼镜掉了一只，没顾上捡；另一只镜片上全是冰碴，他索性摘下来扔掉。'},{type:'dialogue',speaker:'苏博文',text:'"小二，勇敢是筋骨，学识是脊梁！红军既要能吃苦，更要懂理想！你是宣传队的苗子，你得替我们这些人……把路走下去！"'},{type:'narr',text:'他的话像一把火，烧进了我的心里。我咬着牙，撑着膝盖站起来，一步、两步、三步……可苏博文的脚步越来越慢，呼吸越来越重。他的脸色从青紫变成了灰白，嘴唇几乎没有了血色。'},{type:'dialogue',speaker:'赵小二',text:'"苏教员！苏教员！"'},{type:'narr',text:'他冲我笑了笑，那笑容在风雪里显得那么虚弱：'},{type:'dialogue',speaker:'苏博文',text:'"小二……我走不动了。你先走……别管我。"'},{type:'narr',text:'最终，这位学识渊博的战友耗尽了全部力气，永远留在了这座雪山之上。小宋从后面赶上来，看到这一幕，腿一软跪在雪地里，抱着苏博文的胳膊哭得说不出话。我狠狠抹了一把眼泪，把小宋从地上拽起来：'},{type:'dialogue',speaker:'赵小二',text:'"走！苏教员走了，我们得替他走出去！他的路，我们接着走！"'},{type:'narr',text:'越往山顶走，看到的景象越让人心碎。路边、雪坑里，三三两两躺着已经牺牲的战友。我们强忍悲痛继续攀登，整整七个小时才抵达山顶。下山之后，我们与红四方面军的战友胜利会合，山谷里响起阵阵欢呼。'}], archives:[{title:'历史档案：翻越夹金山与懋功会师',text:'夹金山主峰海拔4900余米，终年积雪，有"死亡之山"之称。6月12日至18日，中央红军主力全部翻过夹金山，在达维镇与红四方面军先头部队胜利会师。翻越过程中，红军遭受了大量非战斗减员，仅夹金山一役，非战斗性减员在两千人以上。'},{title:'红军中的知识分子',text:'长征队伍中有一批并非因贫困求生、而是出于革命理想自觉投身革命的红军战士。他们大多出身优渥，接受过良好教育，许多人还有留学经历，却在民族危亡之际毅然抛弃个人前程，走上革命道路。以周恩来为典型，这类知识分子在长征中人数虽少，却在军事指挥、情报、宣传、医疗等领域发挥关键作用。文学家成仿吾、钱壮飞、陈伯钧、冯雪峰等，都是这支队伍中"火种"般的核心力量。',isSidecard:true,artifacts:[{img:'https://picsum.photos/seed/snow4/200/150',desc:'过雪山雕塑'},{img:'https://picsum.photos/seed/glasses4/200/150',desc:'谢觉哉长征戴的眼镜'},{img:'https://picsum.photos/seed/lamp4/200/150',desc:'林伯渠用的油灯'}]}], guide:'雪山之上，有人永远留在了那里。但他们的信念，被活下来的人带走了。', nextRaw:'unit4_2' },
     { id:'unit4_2', type:'scene', unit:'第四单元 · 坚韧', title:'茫茫松潘草地', number:'场景 2 / 4', bg:'scene-bg-4', nodeIndex:7, blocks:[{type:'narr',speaker:'赵小二',text:'8月，红军进入了长征中最艰难的自然考验——徒步穿越荒无人烟、危机四伏的松潘大草地。'},{type:'narr',text:'出发前，首长让我组织收容队，走在全军最后，负责救护掉队的人，掩埋牺牲的战友。每人准备了十天干粮。'},{type:'narr',text:'8月23日一早，我们随主力出发，收容队走在最后。一进草地，天地间只有齐腰深的野草和黑色积水，雾气弥漫，不见村舍。部长警告：水不能喝，脚不能划破，走路必须踩草根，否则陷进泥潭就没命。'},{type:'narr',text:'收容队每天从清晨忙到深夜：搜救掉队的人，包扎伤口，架着走不动的战友，掩埋再也没有醒来的遗体。天气说变就变，暴雨一来，草地变成汪洋，冰冷的积水没过膝盖。我亲眼看见两个队员陷进泥潭，越挣扎沉得越快，大家用绑腿拧成绳子才把他们拖出来。那一刻，我才知道什么叫"每一步都像在刀尖上跳舞"。',highlight:true},{type:'narr',text:'天黑宿营，遍地是水，火柴全湿了，半夜才点着一堆火。我累得坐下就昏睡过去，清晨醒来，发现自己整个屁股陷进泥里，水淹到了肚子——是战友把我拽出来的。从那以后，我连睡觉都得睁一只眼。'},{type:'narr',text:'第三天，粮食告急。收容队人数在增加，粮食却在减少。我狠心规定：每人每天只给一小把青稞。第四天傍晚，粮食彻底断了。我们杀掉两匹马，每人分到一小块肉，那是救命的。\n断粮的日子，胃像被手拧着。我们开始吃树皮、草芯、煮皮靴。树皮又硬又苦，老战士教我用火烤软、糊上泥巴、夹着草芯，才能勉强咽下去。草鞋的皮底子煮软了嚼，像胶皮，但总比饿着强。'}], archives:[{title:'历史档案：红军过草地',text:'因松潘战役计划受阻，红军被迫穿越川西北的松潘草地，该区域面积约1.52万平方公里，平均海拔3500米以上。草地行军面临沼泽陷溺、暴雨失温、粮食断绝等致命威胁。据不完全统计，红一方面军过草地减员6207人，红二方面军减员3092人，红四方面军因三次穿越草地减员超过15000人。即将走出草地时，在班佑河畔曾有七百余名红军战士因体力耗尽、背靠背坐在一起牺牲。',artifacts:[{img:'https://picsum.photos/seed/grass4/200/150',desc:'吃剩的皮带'},{img:'https://picsum.photos/seed/grass5/200/150',desc:'草地行军场景'}]}], guide:'草地的每一寸土地，都吞噬过生命。但收容队从未放弃任何一个人。', nextRaw:'unit4_3' },
@@ -1462,6 +1860,7 @@
             } else {
                 const p = { id:raw.id, type:raw.type, unit:raw.unit, title:raw.title, bg:raw.bg, nodeIndex:raw.nodeIndex||0, guide:raw.guide, next:raw.nextRaw||null, rawId:raw.id };
                 if (raw.type==='intro') p.introText=raw.introText; else if (raw.type==='hero'||raw.type==='epilogue') p.blocks=raw.blocks;
+                else if (raw.type==='scene') { p.type='narrative'; p.blocks=raw.blocks; p.theaterData=raw.theaterData||null; p.number=raw.number; p.heroImage=raw.heroImage||null; p.imageCaption=raw.imageCaption||null; }
                 pages.push(p); idMap[raw.id]=p;
             }
         });
@@ -1469,7 +1868,7 @@
         return {pages, idMap};
     }
     const {pages, idMap} = buildPages(rawScenes);
-            (function cleanupTheaterArchives() { var removals = [{archId:"unit1_1_arch",narrId:"unit1_1_narr",nextId:"unit1_2_narr"},{archId:"unit1_2_arch",narrId:"unit1_2_narr",nextId:"unit1_3_narr"},{archId:"unit1_3_arch",narrId:"unit1_3_narr",nextId:"unit2_intro"},{archId:"unit2_1_arch",narrId:"unit2_1_narr",nextId:"unit2_2_narr"},{archId:"unit2_2_arch",narrId:"unit2_2_narr",nextId:"unit2_3_narr"},{archId:"unit2_3_arch",narrId:"unit2_3_narr",nextId:"unit2_4_narr"},{archId:"unit2_4_arch",narrId:"unit2_4_narr",nextId:"unit3_intro"}]; removals.forEach(function(r) { var ai = pages.findIndex(function(p) { return p.id === r.archId; }); if (ai !== -1) { pages.splice(ai, 1); var np = pages.find(function(p) { return p.id === r.narrId; }); if (np) np.next = r.nextId; } }); })();
+            (function cleanupTheaterArchives() { var removals = [{archId:"unit1_1_arch",narrId:"unit1_1_narr",nextId:"unit1_2_narr"},{archId:"unit1_2_arch",narrId:"unit1_2_narr",nextId:"unit1_3_narr"},{archId:"unit1_3_arch",narrId:"unit1_3_narr",nextId:"unit2_intro"},{archId:"unit2_1_arch",narrId:"unit2_1_narr",nextId:"unit2_2_narr"},{archId:"unit2_2_arch",narrId:"unit2_2_narr",nextId:"unit2_3_narr"},{archId:"unit2_3_arch",narrId:"unit2_3_narr",nextId:"unit2_4_narr"},{archId:"unit2_4_arch",narrId:"unit2_4_narr",nextId:"unit3_intro"},{archId:"unit3_1_arch",narrId:"unit3_1_narr",nextId:"unit3_2_narr"},{archId:"unit3_2_arch",narrId:"unit3_2_narr",nextId:"unit3_3_narr"},{archId:"unit3_3_arch",narrId:"unit3_3_narr",nextId:"unit3_4_narr"},{archId:"unit3_4_arch",narrId:"unit3_4_narr",nextId:"unit4_intro"}]; removals.forEach(function(r) { var ai = pages.findIndex(function(p) { return p.id === r.archId; }); if (ai !== -1) { pages.splice(ai, 1); var np = pages.find(function(p) { return p.id === r.narrId; }); if (np) np.next = r.nextId; } }); })();
             const pageIds = pages.map(p=>p.id);
 
     const nodeLabels=['于都','湘江','遵义','赤水','金沙江','泸定桥','夹金山','草地','腊子口','吴起镇'];
@@ -1519,7 +1918,7 @@
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
         const sc=document.getElementById('sceneContainer');
-        sc.classList.remove('intro-unit2-mode','intro-unit1-mode');
+        sc.classList.remove('intro-unit1-mode','intro-unit2-mode','intro-unit3-mode');
         if(data.type==='intro'){
             if(bgClass==='scene-bg-2'){
                 sc.classList.add('intro-unit2-mode');
@@ -1549,6 +1948,20 @@
 '<defs><filter id="eb6" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer></filter></defs>'+
 '<image href="images/老革命.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#eb6)"/></svg>'+
 '</div>');
+            }else if(bgClass==='scene-bg-3'){
+                sc.classList.add('intro-unit3-mode');
+                content.insertAdjacentHTML('beforeend',
+        '<div class="intro-silhouettes-wrap">'+
+        '<svg class="intro-sil-svg sil-u3-supply" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+        '<defs><filter id="ebu3_1" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray" result="alphaMask"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer><feFlood flood-color="#F0F0F0" result="tint"/><feComposite in="tint" in2="alphaMask" operator="in"/></filter></defs>'+
+        '<image href="images/后勤物资岗.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#ebu3_1)"/></svg>'+
+        '<svg class="intro-sil-svg sil-u3-propagandist" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+        '<defs><filter id="ebu3_2" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray" result="alphaMask"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer><feFlood flood-color="#F0F0F0" result="tint"/><feComposite in="tint" in2="alphaMask" operator="in"/></filter></defs>'+
+        '<image href="images/宣传队员剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#ebu3_2)"/></svg>'+
+        '<svg class="intro-sil-svg sil-u3-cook" viewBox="0 0 100 170" preserveAspectRatio="xMinYMax slice" xmlns="http://www.w3.org/2000/svg">'+
+        '<defs><filter id="ebu3_3" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" in="SourceGraphic" result="gray"/><feComponentTransfer in="gray" result="alphaMask"><feFuncA type="linear" slope="-9" intercept="1.4"/></feComponentTransfer><feFlood flood-color="#F0F0F0" result="tint"/><feComposite in="tint" in2="alphaMask" operator="in"/></filter></defs>'+
+        '<image href="images/炊事员剪影.png" x="0" y="0" width="100" height="170" preserveAspectRatio="xMidYMax slice" filter="url(#ebu3_3)"/></svg>'+
+        '</div>');
             }
         }
         const hasTheater=data.theaterData&&data.type==='narrative';
@@ -1575,7 +1988,7 @@
         }else if(data.type==='archive'){html+=`<div class="archive-section">`;data.archives.forEach((arch,ai)=>{const isSC=arch.isSidecard||false;if(ai>0)html+=`<div class="archive-sub">`;if(isSC){html+=`<div class="side-card"><h4>${arch.title}</h4><p>${arch.text}</p>`;if(arch.artifacts&&arch.artifacts.length){html+=`<div class="artifact-grid">`;arch.artifacts.forEach(a=>{html+=`<div class="art-item" style="background-image:url('${a.img}');" data-desc="${a.desc}"><div class="label">${a.desc}</div></div>`;});html+=`</div>`;}html+=`</div>`;}else{if(arch.title)html+=`<div class="archive-title"><span class="icon">${ai>0?'📖':'📜'}</span>${arch.title}</div>`;if(arch.text){html+=`<div class="archive-text">`;arch.text.split('\n').forEach(p=>{if(p.trim())html+=`<p>${p}</p>`;});html+=`</div>`;}if(arch.artifacts&&arch.artifacts.length){html+=`<div class="artifact-grid">`;arch.artifacts.forEach(a=>{html+=`<div class="art-item" style="background-image:url('${a.img}');" data-desc="${a.desc}"><div class="label">${a.desc}</div></div>`;});html+=`</div>`;}}if(ai>0)html+=`</div>`;});html+=`</div>`;}
         if(data.guide){html+=`<div class="scene-guide"><div class="guide-text">${data.guide.replace(/\n/g,'<br />')}</div>`;let bl='继续 →',bc='btn-next',ex='';if(data.type==='narrative'){bl='了解历史背景 →';bc='btn-next btn-next-narrative';}else if(data.type==='archive'){bl='继续赵小二的故事 →';ex=`<span class="transition-hint">历史档案读毕 · 回到赵小二的视角</span>`;}else if(data.type==='intro'){bl='进入单元 →';ex=`<span class="transition-hint">单元导语读毕 · 走进赵小二的故事</span>`;}else if(data.type==='hero')bl='走进第一单元 →';else if(data.type==='epilogue')bl='回到序厅';const nid=data.next;if(nid&&nid!==data.id&&idMap[nid]){if(data.type==='narrative')html+=`<button id="btn-next-${data.id}" class="${bc}" data-next="${nid}" style="display:none;">${bl} <span class="arrow">→</span></button>`;else if(data.type==='intro'||data.type==='archive')html+=`<div class="btn-transition-wrap"><div class="btn-transition-label">${data.type==='intro'?'单元导语读毕 · 走进赵小二的故事':'历史档案读毕 · 回到赵小二的视角'}</div><button class="${bc}" data-next="${nid}">${bl} <span class="arrow">→</span><span class="pulse-ring-btn"></span></button></div>`;else html+=`<div class="btn-with-label">${ex}<button class="${bc}" data-next="${nid}">${bl} <span class="arrow">→</span><span class="pulse-ring-btn"></span></button></div>`;}else if(data.type==='epilogue')html+=`<button class="btn-next" data-next="hero">回到序厅 <span class="arrow">→</span></button>`;html+=`</div>`;}
         if(!hasTheater)html+=`</div>`;
-        if(hasTheater){const td=data.theaterData;const ly=td.layers||{};html+=`<div class="theater-evidence"><div class="theater-archive"><h3 class="archive-head">${td.boardTitle||''}</h3><div class="archive-body"><p>${td.boardText||''}</p>${td.balladText?`<span class="archive-ballad">${td.balladText}</span>`:""}</div></div>`;if(ly.polaroid)html+=`<div class="theater-photo pos-tl"><img src="${ly.polaroid.src||''}" alt="浮桥冲锋" loading="lazy" /><span class="photo-caption">${ly.polaroid.caption||''}</span></div>`;if(ly.chen)html+=`<div class="theater-photo pos-bl"><img src="${ly.chen.src||''}" alt="${ly.chen.caption||''}" loading="lazy" /><span class="photo-caption">${ly.chen.caption||''}</span></div>`;if(ly.photo2)html+=`<div class="theater-photo pos-tr"><img src="${ly.photo2.src||''}" alt="${ly.photo2.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo2.caption||''}</span></div>`;if(ly.photo3)html+=`<div class="theater-photo pos-bl"><img src="${ly.photo3.src||''}" alt="${ly.photo3.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo3.caption||''}</span></div>`;if(ly.photo4)html+=`<div class="theater-photo pos-br"><img src="${ly.photo4.src||''}" alt="${ly.photo4.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo4.caption||''}</span></div>`;if(ly.photo5)html+=`<div class="theater-photo pos-tc"><img src="${ly.photo5.src||''}" alt="${ly.photo5.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo5.caption||''}</span></div>`;if(ly.photo6)html+=`<div class="theater-photo pos-bc"><img src="${ly.photo6.src||''}" alt="${ly.photo6.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo6.caption||''}</span></div>`;if(ly.photo7)html+=`<div class="theater-photo pos-tcl"><img src="${ly.photo7.src||''}" alt="${ly.photo7.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo7.caption||''}</span></div>`;if(ly.photo8)html+=`<div class="theater-photo pos-tcr"><img src="${ly.photo8.src||''}" alt="${ly.photo8.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo8.caption||''}</span></div>`;if(ly.artifact)html+=`<div class="theater-photo pos-br"><img src="${ly.artifact.src||''}" alt="蓑衣文物" loading="lazy" /><span class="photo-caption">${ly.artifact.label||''}</span></div>`;html+=`</div></div><div class="theater-passage-wrap"><button class="theater-passage-btn" data-next="${data.next||''}">${td.buttonText||'越过血染之江 · 启程漫漫长征路'}</button></div></div>`;}
+        if(hasTheater){const td=data.theaterData;const ly=td.layers||{};const isZunyi=td.theaterClass==='zunyi-theater';const isJinsha=td.theaterClass==='jinsha-theater';const isChishui=td.theaterClass==='chishui-theater';const isLuding=td.theaterClass==='luding-theater';if(isZunyi||isJinsha){const POS=['pos-tl','pos-tc','pos-tr','pos-bl','pos-bc','pos-br'];html+=`<div class="theater-evidence"><div class="theater-archive"><h3 class="archive-head">${td.boardTitle||''}</h3><div class="archive-body"><p>${td.boardText||''}</p></div></div>`;if(td.photos&&td.photos.length){td.photos.forEach((p,i)=>{if(i<6)html+=`<div class="theater-photo ${POS[i]}"><img src="${p.src}" alt="${p.label}" loading="lazy" /><span class="photo-caption">${p.label}</span></div>`;});}html+=`</div></div><div class="theater-passage-wrap"><button class="theater-passage-btn" data-next="${data.next||''}">${td.buttonText||'继续征途'}</button></div></div>`;}else if(isChishui){html+=`<div class="theater-evidence">`;html+=`<div class="archive-box"><h3 class="archive-head">${td.archive1Title||''}</h3><div class="archive-body"><p>${td.archive1Text||''}</p></div></div>`;if(td.photos&&td.photos.length){html+=`<div class="theater-photo-grid">`;td.photos.forEach(p=>{html+=`<div class="grid-photo" style="background-image:url('${p.src}');" data-desc="${p.label}"><span class="photo-label">${p.label}</span></div>`;});html+=`</div>`;}html+=`<div class="archive-box"><h3 class="archive-head">${td.archive2Title||''}</h3><div class="archive-body"><p>${td.archive2Text||''}</p></div></div>`;html+=`</div></div><div class="theater-passage-wrap"><button class="theater-passage-btn" data-next="${data.next||''}">${td.buttonText||'继续征途'}</button></div></div>`;}else if(isLuding){const POS8=['pos-tl','pos-tc','pos-tr','pos-ml','pos-mr','pos-bl','pos-bc','pos-br'];html+=`<div class="theater-evidence"><div class="theater-archive"><h3 class="archive-head">${td.boardTitle||''}</h3><div class="archive-body"><p>${td.boardText||''}</p></div></div>`;if(td.photos&&td.photos.length){td.photos.forEach((p,i)=>{if(i<8)html+=`<div class="theater-photo ${POS8[i]}"><img src="${p.src}" alt="${p.label}" loading="lazy" /><span class="photo-caption">${p.label}</span></div>`;});}html+=`</div></div><div class="theater-passage-wrap"><button class="theater-passage-btn" data-next="${data.next||''}">${td.buttonText||'继续征途'}</button></div></div>`;}else{html+=`<div class="theater-evidence"><div class="theater-archive"><h3 class="archive-head">${td.boardTitle||''}</h3><div class="archive-body"><p>${td.boardText||''}</p>${td.balladText?`<span class="archive-ballad">${td.balladText}</span>`:""}</div></div>`;if(ly.polaroid)html+=`<div class="theater-photo pos-tl"><img src="${ly.polaroid.src||''}" alt="照片" loading="lazy" /><span class="photo-caption">${ly.polaroid.caption||''}</span></div>`;if(ly.chen)html+=`<div class="theater-photo pos-bl"><img src="${ly.chen.src||''}" alt="${ly.chen.caption||''}" loading="lazy" /><span class="photo-caption">${ly.chen.caption||''}</span></div>`;if(ly.photo2)html+=`<div class="theater-photo pos-tr"><img src="${ly.photo2.src||''}" alt="${ly.photo2.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo2.caption||''}</span></div>`;if(ly.photo3)html+=`<div class="theater-photo pos-bl"><img src="${ly.photo3.src||''}" alt="${ly.photo3.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo3.caption||''}</span></div>`;if(ly.photo4)html+=`<div class="theater-photo pos-br"><img src="${ly.photo4.src||''}" alt="${ly.photo4.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo4.caption||''}</span></div>`;if(ly.photo5)html+=`<div class="theater-photo pos-tc"><img src="${ly.photo5.src||''}" alt="${ly.photo5.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo5.caption||''}</span></div>`;if(ly.photo6)html+=`<div class="theater-photo pos-bc"><img src="${ly.photo6.src||''}" alt="${ly.photo6.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo6.caption||''}</span></div>`;if(ly.photo7)html+=`<div class="theater-photo pos-tcl"><img src="${ly.photo7.src||''}" alt="${ly.photo7.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo7.caption||''}</span></div>`;if(ly.photo8)html+=`<div class="theater-photo pos-tcr"><img src="${ly.photo8.src||''}" alt="${ly.photo8.caption||''}" loading="lazy" /><span class="photo-caption">${ly.photo8.caption||''}</span></div>`;if(ly.artifact)html+=`<div class="theater-photo pos-br"><img src="${ly.artifact.src||''}" alt="蓑衣文物" loading="lazy" /><span class="photo-caption">${ly.artifact.label||''}</span></div>`;html+=`</div></div><div class="theater-passage-wrap"><button class="theater-passage-btn" data-next="${data.next||''}">${td.buttonText||'越过血染之江 · 启程漫漫长征路'}</button></div></div>`;}}
         else if(hasHeroImage){const im=data.imageCaption||{};html+=`<div class="scene-1-image-wrapper"><img class="battle-photo" src="${data.heroImage}" alt="${im.title||'湘江战役'}" loading="lazy" /><div class="image-caption-plate"><span class="caption-title">${im.title||''}</span><span class="caption-divider"></span><span class="caption-text">${im.text||''}</span></div></div></div>`;}
         container.innerHTML=html;
         const cardEl=container.querySelector('.scene-card');
@@ -1589,6 +2002,8 @@
         if(hasTheater)setupTheaterInteraction(data.id);
         if(data.type==='epilogue')setupEpilogue();
         document.querySelectorAll('.art-item').forEach(el=>{el.addEventListener('click',function(){const bg=this.style.backgroundImage;const urlMatch=bg.match(/url\(["']?(.*?)["']?\)/);document.getElementById('modalImg').src=urlMatch&&urlMatch[1]?urlMatch[1]:'https://picsum.photos/seed/default/600/400';document.getElementById('modalDesc').textContent=this.dataset.desc||'文物展品';document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden';});});
+        document.querySelectorAll('.theater-photo img').forEach(el=>{el.closest('.theater-photo').addEventListener('click',function(){const img=this.querySelector('img');const cap=this.querySelector('.photo-caption');document.getElementById('modalImg').src=img.src;document.getElementById('modalDesc').textContent=cap?cap.textContent:'历史照片';document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden';});});
+        document.querySelectorAll('.strip-photo,.grid-photo').forEach(el=>{el.addEventListener('click',function(){const bg=this.style.backgroundImage;const urlMatch=bg.match(/url\(["']?(.*?)["']?\)/);document.getElementById('modalImg').src=urlMatch&&urlMatch[1]?urlMatch[1]:'';document.getElementById('modalDesc').textContent=this.dataset.desc||'历史照片';document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden';});});
         content.scrollTop=0;
     }
 
