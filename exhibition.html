@@ -443,32 +443,32 @@
         @keyframes snowfallFast { 0%{transform:translate(0,-10px)} 100%{transform:translate(-30px,100vh)} }
 
         /* ===== 草地雾气效果 ===== */
-        .marsh-fog { position: fixed; pointer-events: none; z-index: 99; opacity: 0; display: none; }
+        .marsh-fog { position: fixed; pointer-events: none; z-index: 99; display: none; }
         #content.scene-bg-4 .marsh-fog { display: block; }
 
         .fog-base {
-            bottom: 0; left: -5%; width: 120%; height: 35%;
-            background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(85,95,80,0.55) 0%, rgba(100,110,95,0.25) 40%, transparent 70%);
+            bottom: 0; left: -5%; width: 120%; height: 40%;
+            background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(175,185,170,0.72) 0%, rgba(155,165,150,0.45) 30%, rgba(130,140,125,0.18) 60%, transparent 85%);
             animation: fogDrift1 18s ease-in-out infinite;
         }
         .fog-low {
-            bottom: 10%; left: -10%; width: 130%; height: 28%;
-            background: radial-gradient(ellipse 70% 50% at 40% 60%, rgba(95,105,90,0.35) 0%, rgba(110,120,105,0.15) 35%, transparent 65%);
+            bottom: 5%; left: -10%; width: 130%; height: 32%;
+            background: radial-gradient(ellipse 70% 50% at 35% 55%, rgba(165,175,160,0.52) 0%, rgba(150,160,145,0.28) 35%, rgba(130,140,125,0.10) 65%, transparent 80%);
             animation: fogDrift2 22s ease-in-out infinite;
         }
         .fog-mid {
-            bottom: 30%; left: -5%; width: 110%; height: 25%;
-            background: radial-gradient(ellipse 65% 50% at 55% 50%, rgba(90,100,85,0.22) 0%, rgba(105,115,100,0.10) 40%, transparent 70%);
+            bottom: 25%; left: -8%; width: 115%; height: 28%;
+            background: radial-gradient(ellipse 65% 45% at 55% 45%, rgba(155,165,150,0.36) 0%, rgba(140,150,135,0.15) 40%, transparent 75%);
             animation: fogDrift3 26s ease-in-out infinite;
         }
         .fog-high {
-            bottom: 50%; left: -8%; width: 120%; height: 22%;
-            background: radial-gradient(ellipse 60% 45% at 45% 40%, rgba(95,105,90,0.14) 0%, rgba(110,120,105,0.05) 50%, transparent 75%);
+            bottom: 45%; left: -6%; width: 118%; height: 24%;
+            background: radial-gradient(ellipse 60% 40% at 45% 35%, rgba(150,160,145,0.22) 0%, rgba(135,145,130,0.08) 50%, transparent 80%);
             animation: fogDrift1 30s ease-in-out infinite reverse;
         }
         .fog-wisp {
-            bottom: 65%; left: -6%; width: 110%; height: 18%;
-            background: radial-gradient(ellipse 50% 40% at 50% 30%, rgba(100,110,95,0.08) 0%, rgba(115,125,110,0.03) 50%, transparent 80%);
+            bottom: 60%; left: -10%; width: 125%; height: 20%;
+            background: radial-gradient(ellipse 50% 35% at 50% 25%, rgba(145,155,140,0.14) 0%, rgba(130,140,125,0.05) 50%, transparent 85%);
             animation: fogDrift2 35s ease-in-out infinite;
         }
 
