@@ -442,6 +442,52 @@
         #content.heavy-snow .snowflake.heavy { display: block; opacity: 0.82; }
         @keyframes snowfallFast { 0%{transform:translate(0,-10px)} 100%{transform:translate(-30px,100vh)} }
 
+        /* ===== 草地雾气效果 ===== */
+        .marsh-fog { position: fixed; pointer-events: none; z-index: 99; opacity: 0; display: none; }
+        #content.scene-bg-4 .marsh-fog { display: block; }
+
+        .fog-base {
+            bottom: 0; left: -5%; width: 120%; height: 35%;
+            background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(85,95,80,0.55) 0%, rgba(100,110,95,0.25) 40%, transparent 70%);
+            animation: fogDrift1 18s ease-in-out infinite;
+        }
+        .fog-low {
+            bottom: 10%; left: -10%; width: 130%; height: 28%;
+            background: radial-gradient(ellipse 70% 50% at 40% 60%, rgba(95,105,90,0.35) 0%, rgba(110,120,105,0.15) 35%, transparent 65%);
+            animation: fogDrift2 22s ease-in-out infinite;
+        }
+        .fog-mid {
+            bottom: 30%; left: -5%; width: 110%; height: 25%;
+            background: radial-gradient(ellipse 65% 50% at 55% 50%, rgba(90,100,85,0.22) 0%, rgba(105,115,100,0.10) 40%, transparent 70%);
+            animation: fogDrift3 26s ease-in-out infinite;
+        }
+        .fog-high {
+            bottom: 50%; left: -8%; width: 120%; height: 22%;
+            background: radial-gradient(ellipse 60% 45% at 45% 40%, rgba(95,105,90,0.14) 0%, rgba(110,120,105,0.05) 50%, transparent 75%);
+            animation: fogDrift1 30s ease-in-out infinite reverse;
+        }
+        .fog-wisp {
+            bottom: 65%; left: -6%; width: 110%; height: 18%;
+            background: radial-gradient(ellipse 50% 40% at 50% 30%, rgba(100,110,95,0.08) 0%, rgba(115,125,110,0.03) 50%, transparent 80%);
+            animation: fogDrift2 35s ease-in-out infinite;
+        }
+
+        @keyframes fogDrift1 {
+            0%,100% { transform: translateX(0); opacity: 1; }
+            33% { transform: translateX(3%); opacity: 0.7; }
+            66% { transform: translateX(-2%); opacity: 0.85; }
+        }
+        @keyframes fogDrift2 {
+            0%,100% { transform: translateX(0); opacity: 0.8; }
+            50% { transform: translateX(-4%); opacity: 0.95; }
+            25%,75% { opacity: 0.6; }
+        }
+        @keyframes fogDrift3 {
+            0%,100% { transform: translateX(0) scale(1); opacity: 0.75; }
+            40% { transform: translateX(2%) scale(1.03); opacity: 0.9; }
+            70% { transform: translateX(-3%) scale(0.97); opacity: 0.55; }
+        }
+
         #content.theme-scene-4 { background: #C4A878; }
         .theme-scene-4 .scene-card { background: rgba(230,210,175,0.76); border: 3px solid #1a1a1a; border-radius: 2px; box-shadow: 6px 6px 0 rgba(139,42,42,0.15), 0 10px 36px rgba(80,40,20,0.10); }
         .theme-scene-4 .scene-card::before { background: linear-gradient(90deg, transparent, #1a1a1a, transparent) !important; height: 3px !important; width: 80px !important; }
@@ -2016,6 +2062,11 @@
             <span class="snowflake s5">❅</span><span class="snowflake s6">❆</span><span class="snowflake s7">❄</span><span class="snowflake s8">❅</span>
             <span class="snowflake heavy h1">❆</span><span class="snowflake heavy h2">❄</span><span class="snowflake heavy h3">❅</span><span class="snowflake heavy h4">❆</span>
             <span class="snowflake heavy h5">❄</span><span class="snowflake heavy h6">❅</span><span class="snowflake heavy h7">❆</span><span class="snowflake heavy h8">❄</span>
+        <div class="marsh-fog fog-base"></div>
+        <div class="marsh-fog fog-low"></div>
+        <div class="marsh-fog fog-mid"></div>
+        <div class="marsh-fog fog-high"></div>
+        <div class="marsh-fog fog-wisp"></div>
         </div>
     </div>
 
@@ -2159,7 +2210,7 @@
         else if(bgClass==='scene-bg-5')wrap.innerHTML=`<div class="sil-victory"></div>`;
         else if(bgClass==='scene-bg-epilogue')wrap.innerHTML=`<div class="sil-flame"></div><div class="sil-two-figures"><div class="fig-l"><div class="head"></div><div class="body"></div></div><div class="fig-r"><div class="head"></div><div class="body"></div></div></div>`;
         cardEl.appendChild(wrap);
-        document.querySelectorAll('.snowflake').forEach(sf=>{sf.style.display=bgClass==='scene-bg-4'||bgClass==='scene-bg-4-snow'?'':'none';});
+        document.querySelectorAll('.snowflake').forEach(sf=>{sf.style.display=bgClass==='scene-bg-4-snow'?'':'none';});
         document.getElementById('content').classList.remove('heavy-snow');
     }
 
