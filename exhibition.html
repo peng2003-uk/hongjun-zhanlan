@@ -1664,24 +1664,14 @@
 
         .jiajinshan-theater .theater-bg-silhouette {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
+            z-index: 0;
             background-image: url('images/翻越夹金山剪影.png');
-            background-size: 100% 100%;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            mix-blend-mode: multiply;
-            opacity: 0.62;
+            opacity: 0.36;
         }
-
-        .jiajinshan-theater .theater-bg-silhouette::after {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 50% 55%, rgba(60,90,140,0.05) 0%, transparent 55%),
-                        linear-gradient(180deg, rgba(6,10,18,0.10) 0%, transparent 30%, transparent 70%, rgba(6,10,18,0.30) 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
+        .jiajinshan-theater .theater-bg-silhouette::after { display: none; }
         .jiajinshan-theater .theater-smoke-lens { display: none; }
 
         .jiajinshan-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 3vw; z-index: 3; }
