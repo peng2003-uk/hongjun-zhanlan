@@ -1675,13 +1675,8 @@
 
         .jiajinshan-theater .theater-stage { position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; gap: 3vw; z-index: 3; }
 
-        .jiajinshan-theater .theater-story { width: 35%; height: 100%; background:
-            repeating-linear-gradient(0deg, rgba(200,230,250,0.08) 0px, transparent 1px, transparent 3px, rgba(200,230,250,0.04) 4px),
-            repeating-linear-gradient(90deg, rgba(220,240,255,0.06) 0px, transparent 1px, transparent 5px, rgba(200,230,250,0.03) 6px),
-            radial-gradient(ellipse 70% 80px at 50% 100%, rgba(200,230,250,0.12) 0%, transparent 50%),
-            radial-gradient(ellipse 50% 50px at 25% 0%, rgba(240,248,255,0.20) 0%, transparent 50%),
-            rgba(255,255,255,0.96);
-            color: #1A2A3E; border: 1px solid rgba(220,240,255,0.60); border-radius: 12px 8px 12px 8px; box-shadow: 0 8px 36px rgba(20,40,80,0.15), 0 2px 12px rgba(20,40,80,0.08); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
+        .jiajinshan-theater .theater-story { width: 35%; height: 100%; background: rgba(255,255,255,0.52); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            color: #1A2A3E; border: 1px solid rgba(220,240,255,0.50); border-radius: 12px 8px 12px 8px; box-shadow: 0 8px 36px rgba(20,40,80,0.12), 0 2px 12px rgba(20,40,80,0.06); padding: 4vh 2.2vw; display: flex; flex-direction: column; overflow-y: auto; animation: diarySlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
         .jiajinshan-theater .theater-story::-webkit-scrollbar { width: 4px; }
         .jiajinshan-theater .theater-story::-webkit-scrollbar-track { background: transparent; }
         .jiajinshan-theater .theater-story::-webkit-scrollbar-thumb { background: rgba(26,42,62,0.25); border-radius: 2px; }
@@ -1697,11 +1692,8 @@
         .jiajinshan-theater .theater-story .continue-hint:hover { border-color: var(--red-accent); color: var(--red-accent); }
 
         .jiajinshan-theater .theater-evidence { width: 65%; height: 100%; position: relative; perspective: 1200px; transform-style: preserve-3d; animation: stageSlideIn 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; opacity: 0; }
-        .jiajinshan-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 74%; max-width: 520px; max-height: 80%; background:
-            repeating-linear-gradient(0deg, rgba(200,230,250,0.06) 0px, transparent 1px, transparent 2px, rgba(200,230,250,0.03) 3px),
-            repeating-linear-gradient(90deg, rgba(220,240,255,0.04) 0px, transparent 1px, transparent 4px, rgba(200,230,250,0.02) 5px),
-            rgba(255,255,255,0.94);
-            border: 1px solid rgba(180,210,235,0.50); border-radius: 8px; box-shadow: 0 0 0 2px rgba(200,220,240,0.12), 0 20px 45px rgba(20,40,80,0.18); padding: 4vh 2.8vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
+        .jiajinshan-theater .theater-archive { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 74%; max-width: 520px; max-height: 80%; background: rgba(255,255,255,0.48); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(180,210,235,0.40); border-radius: 8px; box-shadow: 0 0 0 2px rgba(200,220,240,0.08), 0 20px 45px rgba(20,40,80,0.14); padding: 4vh 2.8vw; overflow-y: auto; z-index: 5; transition: background 0.5s, border-color 0.5s; }
         .jiajinshan-theater .theater-archive::-webkit-scrollbar { width: 3px; }
         .jiajinshan-theater .theater-archive::-webkit-scrollbar-track { background: transparent; }
         .jiajinshan-theater .theater-archive::-webkit-scrollbar-thumb { background: rgba(26,42,62,0.18); border-radius: 2px; }
@@ -1718,7 +1710,7 @@
         .jiajinshan-theater .theater-photo.pos-br { bottom: 5%; right: 1%; width: 155px; height: 145px; transform: rotate(-5deg) translateZ(25px); }
         .jiajinshan-theater .theater-photo.pos-bc { bottom: 9%; left: 50%; transform: translateX(-50%) rotate(-1deg) translateZ(15px); width: 150px; height: 125px; }
 
-        .jiajinshan-theater .theater-evidence:hover .theater-archive { background: rgba(255,255,255,0.98); border-color: rgba(180,210,235,0.70); }
+        .jiajinshan-theater .theater-evidence:hover .theater-archive { background: rgba(255,255,255,0.62); border-color: rgba(180,210,235,0.55); }
         .jiajinshan-theater .theater-evidence:hover .pos-tl { transform: translate(-12px, -10px) rotate(0deg) scale(1.02) translateZ(50px); }
         .jiajinshan-theater .theater-evidence:hover .pos-tr { transform: translate(12px, -10px) rotate(0deg) scale(1.02) translateZ(50px); }
         .jiajinshan-theater .theater-evidence:hover .pos-bl { transform: translate(-12px, 10px) rotate(0deg) scale(1.02) translateZ(50px); }
