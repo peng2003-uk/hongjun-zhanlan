@@ -1665,18 +1665,18 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
             background-image: url('images/翻越夹金山剪影.png');
-            background-size: contain;
-            background-position: center bottom;
+            background-size: 100% 100%;
+            background-position: center;
             background-repeat: no-repeat;
-            mix-blend-mode: screen;
-            opacity: 0.52;
+            mix-blend-mode: multiply;
+            opacity: 0.62;
         }
 
         .jiajinshan-theater .theater-bg-silhouette::after {
             content: '';
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 50% 55%, rgba(100,140,200,0.06) 0%, transparent 55%),
-                        linear-gradient(180deg, rgba(8,12,20,0.15) 0%, transparent 30%, transparent 70%, rgba(6,10,18,0.40) 100%);
+            background: radial-gradient(ellipse at 50% 55%, rgba(60,90,140,0.05) 0%, transparent 55%),
+                        linear-gradient(180deg, rgba(6,10,18,0.10) 0%, transparent 30%, transparent 70%, rgba(6,10,18,0.30) 100%);
             z-index: 1;
             pointer-events: none;
         }
