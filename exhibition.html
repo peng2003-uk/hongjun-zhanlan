@@ -532,41 +532,35 @@
             20% { transform: translate(25px,-35px); opacity: 0.15; }
             50% { transform: translate(-30px,-65px); opacity: 0.95; }
             80% { transform: translate(10px,-15px); opacity: 0.25; }
-        }        /* ===== 草地暴雨效果 ===== */
-        .marsh-rain { position: fixed; top: -50%; left: 0; width: 100%; height: 200%; pointer-events: none; z-index: 98; display: none; }
+        }        /* ===== 草地雨滴效果 ===== */
+        .marsh-rain { pointer-events: none; z-index: 98; display: none; }
         #content.scene-bg-4-rain .marsh-rain { display: block; }
 
-        .rain-layer1 {
-            background-image: repeating-linear-gradient(
-                20deg,
-                transparent 0px, transparent 1px,
-                rgba(180,200,190,0.35) 1px, rgba(180,200,190,0.35) 2px,
-                transparent 2px, transparent 4px
-            );
-            animation: rainFall 0.3s linear infinite;
+        .raindrop {
+            position: fixed; top: -30px; width: 1px;
+            animation: dropFall linear infinite;
         }
-        .rain-layer2 {
-            background-image: repeating-linear-gradient(
-                22deg,
-                transparent 0px, transparent 3px,
-                rgba(160,185,175,0.22) 3px, rgba(160,185,175,0.22) 3.8px,
-                transparent 3.8px, transparent 8px
-            );
-            animation: rainFall 0.45s linear infinite;
+        .drop-line {
+            display: block; width: 1px; background: linear-gradient(180deg, rgba(180,200,210,0.10), rgba(180,200,210,0.55) 80%, rgba(190,210,220,0.70));
+            border-radius: 0 0 1px 1px; margin: 0 auto;
         }
-        .rain-layer3 {
-            background-image: repeating-linear-gradient(
-                17deg,
-                transparent 0px, transparent 6px,
-                rgba(170,195,185,0.14) 6px, rgba(170,195,185,0.14) 6.6px,
-                transparent 6.6px, transparent 14px
-            );
-            animation: rainFall 0.7s linear infinite;
+        .drop-splash {
+            display: block; width: 4px; height: 1px; margin: 0 auto;
+            background: rgba(180,200,210,0.4); border-radius: 50%;
+            animation: splashPulse linear infinite;
+            animation-duration: inherit; animation-delay: inherit;
         }
 
-        @keyframes rainFall {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 80px; }
+        @keyframes dropFall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            5% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(calc(100vh + 10px)); opacity: 0; }
+        }
+        @keyframes splashPulse {
+            0%,95% { transform: scale(0); opacity: 0; }
+            97% { transform: scale(3); opacity: 0.5; }
+            100% { transform: scale(6); opacity: 0; }
         }
 
         #content.theme-scene-4 { background: #C4A878; }
@@ -2148,9 +2142,31 @@
         <div class="marsh-fog fog-mid"></div>
         <div class="marsh-fog fog-high"></div>
         <div class="marsh-fog fog-wisp"></div>
-        <div class="marsh-rain rain-layer1"></div>
-        <div class="marsh-rain rain-layer2"></div>
-        <div class="marsh-rain rain-layer3"></div>
+        <div class="marsh-rain raindrop rd1" style="left:88.1%;animation-delay:-1.51s;animation-duration:0.64s;"><span class="drop-line" style="height:14px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd2" style="left:62.5%;animation-delay:-1.36s;animation-duration:0.79s;"><span class="drop-line" style="height:14px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd3" style="left:83.0%;animation-delay:-1.42s;animation-duration:0.75s;"><span class="drop-line" style="height:14px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd4" style="left:98.0%;animation-delay:-0.14s;animation-duration:0.92s;"><span class="drop-line" style="height:14px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd5" style="left:48.9%;animation-delay:-0.78s;animation-duration:0.78s;"><span class="drop-line" style="height:13px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd6" style="left:30.4%;animation-delay:-0.82s;animation-duration:0.75s;"><span class="drop-line" style="height:13px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd7" style="left:37.1%;animation-delay:-0.84s;animation-duration:1.02s;"><span class="drop-line" style="height:22px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd8" style="left:29.1%;animation-delay:-0.81s;animation-duration:0.77s;"><span class="drop-line" style="height:13px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd9" style="left:65.2%;animation-delay:-1.70s;animation-duration:0.90s;"><span class="drop-line" style="height:21px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd10" style="left:17.3%;animation-delay:-0.77s;animation-duration:1.03s;"><span class="drop-line" style="height:16px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd11" style="left:42.6%;animation-delay:-0.65s;animation-duration:0.76s;"><span class="drop-line" style="height:12px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd12" style="left:46.0%;animation-delay:-1.79s;animation-duration:0.71s;"><span class="drop-line" style="height:21px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd13" style="left:50.6%;animation-delay:-0.29s;animation-duration:1.10s;"><span class="drop-line" style="height:11px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd14" style="left:97.2%;animation-delay:-0.90s;animation-duration:0.61s;"><span class="drop-line" style="height:13px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd15" style="left:28.7%;animation-delay:-0.99s;animation-duration:0.97s;"><span class="drop-line" style="height:16px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd16" style="left:72.8%;animation-delay:-1.35s;animation-duration:1.04s;"><span class="drop-line" style="height:17px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd17" style="left:32.1%;animation-delay:-1.59s;animation-duration:0.71s;"><span class="drop-line" style="height:21px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd18" style="left:5.0%;animation-delay:-1.42s;animation-duration:0.62s;"><span class="drop-line" style="height:13px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd19" style="left:33.5%;animation-delay:-1.26s;animation-duration:0.65s;"><span class="drop-line" style="height:11px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd20" style="left:30.5%;animation-delay:-0.87s;animation-duration:0.88s;"><span class="drop-line" style="height:18px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd21" style="left:32.3%;animation-delay:-1.08s;animation-duration:1.01s;"><span class="drop-line" style="height:13px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd22" style="left:10.0%;animation-delay:-0.42s;animation-duration:1.08s;"><span class="drop-line" style="height:12px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd23" style="left:31.5%;animation-delay:-0.43s;animation-duration:0.88s;"><span class="drop-line" style="height:10px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd24" style="left:93.9%;animation-delay:-0.94s;animation-duration:0.63s;"><span class="drop-line" style="height:16px"></span><span class="drop-splash"></span></div>
+        <div class="marsh-rain raindrop rd25" style="left:92.7%;animation-delay:-2.00s;animation-duration:0.62s;"><span class="drop-line" style="height:18px"></span><span class="drop-splash"></span></div>
         <div class="marsh-fireflies"><div class="firefly ff1"></div><div class="firefly ff2"></div><div class="firefly ff3"></div><div class="firefly ff4"></div><div class="firefly ff5"></div><div class="firefly ff6"></div><div class="firefly ff7"></div><div class="firefly ff8"></div><div class="firefly ff9"></div><div class="firefly ff10"></div><div class="firefly ff11"></div><div class="firefly ff12"></div><div class="firefly ff13"></div></div>
         </div>
     </div>
