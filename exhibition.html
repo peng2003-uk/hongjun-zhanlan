@@ -488,6 +488,43 @@
             70% { transform: translateX(-3%) scale(0.97); opacity: 0.55; }
         }
 
+        /* ===== 草地细雨效果 ===== */
+        .marsh-rain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 98; display: none; }
+        #content.scene-bg-4 .marsh-rain { display: block; }
+
+        .rain-layer1 {
+            background-image: repeating-linear-gradient(
+                15deg,
+                transparent 0px, transparent 3px,
+                rgba(140,160,150,0.18) 3px, rgba(140,160,150,0.18) 3.5px,
+                transparent 3.5px, transparent 8px
+            );
+            animation: rainFall 0.55s linear infinite;
+        }
+        .rain-layer2 {
+            background-image: repeating-linear-gradient(
+                18deg,
+                transparent 0px, transparent 5px,
+                rgba(130,150,140,0.10) 5px, rgba(130,150,140,0.10) 5.3px,
+                transparent 5.3px, transparent 14px
+            );
+            animation: rainFall 0.75s linear infinite;
+        }
+        .rain-layer3 {
+            background-image: repeating-linear-gradient(
+                12deg,
+                transparent 0px, transparent 7px,
+                rgba(150,170,160,0.07) 7px, rgba(150,170,160,0.07) 7.2px,
+                transparent 7.2px, transparent 20px
+            );
+            animation: rainFall 1.1s linear infinite;
+        }
+
+        @keyframes rainFall {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 120px; }
+        }
+
         #content.theme-scene-4 { background: #C4A878; }
         .theme-scene-4 .scene-card { background: rgba(230,210,175,0.76); border: 3px solid #1a1a1a; border-radius: 2px; box-shadow: 6px 6px 0 rgba(139,42,42,0.15), 0 10px 36px rgba(80,40,20,0.10); }
         .theme-scene-4 .scene-card::before { background: linear-gradient(90deg, transparent, #1a1a1a, transparent) !important; height: 3px !important; width: 80px !important; }
@@ -2067,6 +2104,9 @@
         <div class="marsh-fog fog-mid"></div>
         <div class="marsh-fog fog-high"></div>
         <div class="marsh-fog fog-wisp"></div>
+        <div class="marsh-rain rain-layer1"></div>
+        <div class="marsh-rain rain-layer2"></div>
+        <div class="marsh-rain rain-layer3"></div>
         </div>
     </div>
 
