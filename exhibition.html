@@ -428,6 +428,19 @@
         .scene-bg-4-snow #custom-cursor { background: #88c8f0; box-shadow: 0 0 14px rgba(136,200,240,0.65); }
         .scene-bg-4-snow #custom-cursor-follower { border-color: rgba(190,225,245,0.60); }
         .scene-bg-4-snow .snowflake { opacity: 0.55; }
+        /* 夹金山剧场 — 大雪模式 */
+        .snowflake.heavy { display: none; opacity: 0; font-size: 1.4rem; }
+        .snowflake.heavy.h1 { left: 8%; animation: snowfallFast 7s linear infinite; animation-delay: -2.5s; font-size: 1.5rem; }
+        .snowflake.heavy.h2 { left: 20%; animation: snowfallFast 6s linear infinite; animation-delay: -5s; font-size: 1.3rem; }
+        .snowflake.heavy.h3 { left: 31%; animation: snowfallFast 8s linear infinite; animation-delay: -1s; font-size: 1.6rem; }
+        .snowflake.heavy.h4 { left: 42%; animation: snowfallFast 6.5s linear infinite; animation-delay: -3.5s; font-size: 1.4rem; }
+        .snowflake.heavy.h5 { left: 54%; animation: snowfallFast 7.5s linear infinite; animation-delay: -6s; font-size: 1.5rem; }
+        .snowflake.heavy.h6 { left: 65%; animation: snowfallFast 5.5s linear infinite; animation-delay: -4s; font-size: 1.3rem; }
+        .snowflake.heavy.h7 { left: 76%; animation: snowfallFast 8.5s linear infinite; animation-delay: -1.5s; font-size: 1.6rem; }
+        .snowflake.heavy.h8 { left: 90%; animation: snowfallFast 6s linear infinite; animation-delay: -3s; font-size: 1.4rem; }
+        #content.heavy-snow .snowflake { opacity: 0.72; }
+        #content.heavy-snow .snowflake.heavy { display: block; opacity: 0.82; }
+        @keyframes snowfallFast { 0%{transform:translate(0,-10px)} 100%{transform:translate(-30px,100vh)} }
 
         #content.theme-scene-4 { background: #C4A878; }
         .theme-scene-4 .scene-card { background: rgba(230,210,175,0.76); border: 3px solid #1a1a1a; border-radius: 2px; box-shadow: 6px 6px 0 rgba(139,42,42,0.15), 0 10px 36px rgba(80,40,20,0.10); }
@@ -1899,6 +1912,8 @@
             <div id="sceneContainer"></div>
             <span class="snowflake s1">❄</span><span class="snowflake s2">❅</span><span class="snowflake s3">❆</span><span class="snowflake s4">❄</span>
             <span class="snowflake s5">❅</span><span class="snowflake s6">❆</span><span class="snowflake s7">❄</span><span class="snowflake s8">❅</span>
+            <span class="snowflake heavy h1">❆</span><span class="snowflake heavy h2">❄</span><span class="snowflake heavy h3">❅</span><span class="snowflake heavy h4">❆</span>
+            <span class="snowflake heavy h5">❄</span><span class="snowflake heavy h6">❅</span><span class="snowflake heavy h7">❆</span><span class="snowflake heavy h8">❄</span>
         </div>
     </div>
 
@@ -2044,6 +2059,7 @@
         else if(bgClass==='scene-bg-epilogue')wrap.innerHTML=`<div class="sil-flame"></div><div class="sil-two-figures"><div class="fig-l"><div class="head"></div><div class="body"></div></div><div class="fig-r"><div class="head"></div><div class="body"></div></div></div>`;
         cardEl.appendChild(wrap);
         document.querySelectorAll('.snowflake').forEach(sf=>{sf.style.display=bgClass==='scene-bg-4'||bgClass==='scene-bg-4-snow'?'':'none';});
+        document.getElementById('content').classList.remove('heavy-snow');
     }
 
     function renderPage(idx,direction){
@@ -2051,6 +2067,7 @@
         const bgClass=data.bg||'scene-bg-1';
         const themeClass=bgToTheme[bgClass]||'theme-scene-0';
         content.className=bgClass+' '+themeClass;
+        content.classList.toggle('heavy-snow',data.theaterData&&data.theaterData.theaterClass==='jiajinshan-theater');
         // 单元导语页：SVG filter提取纯黑剪影 + 文本框收窄
         const existingSil=content.querySelector('.intro-silhouettes-wrap');
         if(existingSil)existingSil.remove();
