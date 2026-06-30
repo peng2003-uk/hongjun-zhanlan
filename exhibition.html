@@ -1238,9 +1238,9 @@
         .theme-scene-5-wall #topBar .unit-indicator { color: rgba(139,42,42,0.35); }
         .theme-scene-5-wall .year-watermark { color: rgba(139,42,42,0.03); }
 
-        /* 结语 — 暖白底，红色文字调，象征希望 */
-        #content.theme-scene-epilogue { background: #ffffff; }
-        #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 30%, rgba(200,140,80,0.06) 0%, transparent 40%, rgba(180,120,60,0.02) 100%); }
+        /* 结语 — 会师图片铺满底层背景 + 白色半透层 */
+        #content.theme-scene-epilogue { background: #ffffff url('images/结语页_bg_clean.jpg') center/cover no-repeat; }
+        #content.theme-scene-epilogue::before { background: linear-gradient(0deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.72) 40%, rgba(255,255,255,0.55) 70%, rgba(255,255,255,0.40) 100%); }
         .theme-scene-epilogue .scene-card { background: #ffffff; color: #5a3a2a; border: 1px solid rgba(184,67,58,0.06); box-shadow: 0 1px 0 rgba(184,67,58,0.03) inset, 0 2px 14px rgba(139,42,42,0.03), 0 6px 30px rgba(139,42,42,0.02); }
         .theme-scene-epilogue .scene-card::before { background: linear-gradient(90deg, transparent, var(--red-accent), transparent) !important; }
         .theme-scene-epilogue #topBar { background: rgba(255,255,255,0.88); backdrop-filter: blur(16px); border-bottom-color: rgba(184,67,58,0.06); }
