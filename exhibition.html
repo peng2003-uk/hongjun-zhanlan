@@ -1023,8 +1023,7 @@
 
         /* ===== 人物剪影 — 纯红，白底之上慢慢浮现 ===== */
         .hw-silhouette { position: fixed; pointer-events: none; z-index: 0; opacity: 0; animation: hwSilFadeIn 1.5s ease-out forwards; }
-        .hw-silhouette img { width: 100%; height: 100%; object-fit: contain; display: block;
-            filter: brightness(0) saturate(100%) invert(10%) sepia(79%) saturate(6300%) hue-rotate(353deg) brightness(92%) contrast(86%); }
+        .hw-silhouette img { width: 100%; height: 100%; object-fit: contain; display: block; }
         @keyframes hwSilFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
         /* 左侧 — 面向右（自然朝向） */
