@@ -938,34 +938,34 @@
         .hongxiaogui-wall { position: relative; width: 100%; max-width: 960px; margin: 0 auto; padding: 3vh 2vw 2vh; display: flex; flex-direction: column; align-items: center; gap: 2.5vh; overflow-y: auto; max-height: 82vh; scroll-behavior: smooth; }
         .hongxiaogui-wall::-webkit-scrollbar { width: 3px; }
         .hongxiaogui-wall::-webkit-scrollbar-track { background: transparent; }
-        .hongxiaogui-wall::-webkit-scrollbar-thumb { background: rgba(180,170,150,0.18); border-radius: 2px; }
+        .hongxiaogui-wall::-webkit-scrollbar-thumb { background: rgba(180,100,80,0.15); border-radius: 2px; }
 
-        /* 背景光晕 */
-        .hw-bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 500px; background: radial-gradient(ellipse, rgba(200,155,100,0.10) 0%, rgba(180,130,80,0.04) 40%, transparent 70%); pointer-events: none; z-index: 0; }
+        /* 背景光晕 — 暖金星火 */
+        .hw-bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 550px; background: radial-gradient(ellipse, rgba(220,170,100,0.18) 0%, rgba(200,140,70,0.08) 35%, transparent 65%); pointer-events: none; z-index: 0; }
 
-        /* 标题区 */
+        /* 标题区 — 赭红调 */
         .hw-header { text-align: center; position: relative; z-index: 1; padding-top: 1vh; }
-        .hw-header .hw-unit-tag { font-size: 0.6rem; letter-spacing: 5px; color: rgba(200,160,120,0.55); display: block; margin-bottom: 6px; }
-        .hw-header h2 { font-family: var(--font-title); font-size: clamp(1.4rem, 3vw, 1.9rem); color: #c8a87c; letter-spacing: 4px; margin: 0; font-weight: 600; }
-        .hw-header .hw-subtitle { font-size: 0.75rem; color: rgba(190,160,130,0.45); letter-spacing: 3px; margin-top: 4px; }
+        .hw-header .hw-unit-tag { font-size: 0.6rem; letter-spacing: 5px; color: var(--red-mid); opacity: 0.7; display: block; margin-bottom: 6px; }
+        .hw-header h2 { font-family: var(--font-title); font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--red-mid); letter-spacing: 4px; margin: 0; font-weight: 600; }
+        .hw-header .hw-subtitle { font-size: 0.75rem; color: rgba(160,80,60,0.40); letter-spacing: 3px; margin-top: 4px; }
 
-        /* 铭文区 */
+        /* 铭文区 — 暖棕 */
         .hw-passage { position: relative; z-index: 1; max-width: 680px; text-align: center; padding: 2vh 0; }
-        .hw-passage p { font-size: 0.88rem; line-height: 2.2; color: #c8b898; margin: 0 0 12px; letter-spacing: 1px; }
+        .hw-passage p { font-size: 0.88rem; line-height: 2.2; color: #5a3a2a; margin: 0 0 12px; letter-spacing: 1px; }
         .hw-passage p:last-child { margin-bottom: 0; }
 
-        /* 照片网格 */
+        /* 照片网格 — 轻盈暖白 */
         .hw-photo-grid { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 14px; padding: 1vh 0; max-width: 880px; }
-        .hw-photo-card { background: #f2ece2; padding: 7px 7px 28px 7px; box-shadow: 0 6px 18px rgba(0,0,0,0.40), 0 1px 3px rgba(0,0,0,0.15); transition: transform 0.45s cubic-bezier(0.25,1,0.5,1), box-shadow 0.45s ease, filter 0.4s ease; cursor: pointer; position: relative; }
+        .hw-photo-card { background: #faf6ef; padding: 7px 7px 28px 7px; box-shadow: 0 4px 14px rgba(120,60,40,0.12), 0 1px 3px rgba(120,60,40,0.06); transition: transform 0.45s cubic-bezier(0.25,1,0.5,1), box-shadow 0.45s ease, filter 0.4s ease; cursor: pointer; position: relative; }
         .hw-photo-card:nth-child(odd) { transform: rotate(-1.5deg); }
         .hw-photo-card:nth-child(even) { transform: rotate(1.8deg); }
         .hw-photo-card:nth-child(3n) { transform: rotate(-2.2deg); }
         .hw-photo-card:nth-child(5n+1) { transform: rotate(2.5deg); }
         .hw-photo-card:nth-child(7n+3) { transform: rotate(-0.8deg); }
-        .hw-photo-card:hover { transform: rotate(0deg) translateY(-8px) scale(1.06) !important; box-shadow: 0 18px 35px rgba(0,0,0,0.50), 0 0 25px rgba(200,155,100,0.18), 0 2px 6px rgba(0,0,0,0.12); z-index: 20; }
-        .hw-photo-card img { display: block; width: 100%; height: 100%; object-fit: cover; filter: sepia(0.25) brightness(0.82); transition: filter 0.45s ease; }
-        .hw-photo-card:hover img { filter: sepia(0) brightness(1.02); }
-        .hw-photo-card .hw-photo-label { position: absolute; bottom: 6px; left: 4px; right: 4px; text-align: center; font-size: 0.45rem; color: #5a4a3a; letter-spacing: 1px; font-family: var(--font-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .hw-photo-card:hover { transform: rotate(0deg) translateY(-8px) scale(1.06) !important; box-shadow: 0 16px 30px rgba(120,60,40,0.20), 0 0 20px rgba(200,140,80,0.15), 0 2px 6px rgba(120,60,40,0.08); z-index: 20; }
+        .hw-photo-card img { display: block; width: 100%; height: 100%; object-fit: cover; filter: sepia(0.15) brightness(0.92); transition: filter 0.45s ease; }
+        .hw-photo-card:hover img { filter: sepia(0) brightness(1.05); }
+        .hw-photo-card .hw-photo-label { position: absolute; bottom: 6px; left: 4px; right: 4px; text-align: center; font-size: 0.45rem; color: #7a5040; letter-spacing: 1px; font-family: var(--font-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* 照片尺寸变体 */
         .hw-photo-card.size-sm { width: 130px; height: 130px; }
@@ -993,22 +993,22 @@
         .hw-photo-card:nth-child(15) { animation-delay: 0.60s; }
         @keyframes hwFadeUp { from { opacity: 0; transform: translateY(22px) rotate(0deg); } to { opacity: 1; } }
 
-        /* 结语金句 */
+        /* 结语金句 — 赭红收束 */
         .hw-closing { position: relative; z-index: 1; text-align: center; padding: 1.5vh 0 0; }
-        .hw-closing .hw-line { display: block; font-family: var(--font-title); font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: #d4b080; letter-spacing: 3px; line-height: 2; }
-        .hw-closing .hw-line.em { font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: #e0c090; font-weight: 600; letter-spacing: 5px; }
+        .hw-closing .hw-line { display: block; font-family: var(--font-title); font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--red-mid); letter-spacing: 3px; line-height: 2; }
+        .hw-closing .hw-line.em { font-size: clamp(1.3rem, 2.6vw, 1.8rem); color: #a04030; font-weight: 600; letter-spacing: 5px; }
 
-        /* 继续按钮 */
+        /* 继续按钮 — 红色调 */
         .hw-guide-wrap { position: relative; z-index: 1; text-align: center; padding: 1vh 0 2vh; }
-        .hw-guide-wrap .hw-guide-text { font-size: 0.8rem; color: #a09078; letter-spacing: 2px; margin-bottom: 8px; }
-        .hw-continue-btn { display: inline-block; padding: 12px 40px; background: rgba(200,155,100,0.08); border: 1px solid rgba(200,155,100,0.25); color: #c8a87c; font-family: var(--font-text); font-size: 0.95rem; letter-spacing: 3px; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; }
-        .hw-continue-btn:hover { background: rgba(200,155,100,0.16); border-color: rgba(200,155,100,0.50); color: #d8b888; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.30); }
-        .hw-continue-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #c8a87c, transparent); transition: left 0.8s linear; }
+        .hw-guide-wrap .hw-guide-text { font-size: 0.8rem; color: #a08070; letter-spacing: 2px; margin-bottom: 8px; }
+        .hw-continue-btn { display: inline-block; padding: 12px 40px; background: var(--red-mid); border: 1px solid rgba(184,67,58,0.30); color: #fffaf5; font-family: var(--font-text); font-size: 0.95rem; letter-spacing: 3px; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; box-shadow: 0 4px 16px rgba(139,42,42,0.12); }
+        .hw-continue-btn:hover { background: var(--red-deep); border-color: var(--red-accent); color: #ffffff; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,42,42,0.22); }
+        .hw-continue-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: left 0.8s linear; }
         .hw-continue-btn:hover::after { left: 100%; }
 
-        /* 星火粒子 */
+        /* 星火粒子 — 亮暖金 */
         .hw-sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .hw-sparkle { position: absolute; width: 2px; height: 2px; background: #d4b080; border-radius: 50%; animation: hwSparkle 4s ease-in-out infinite; opacity: 0; }
+        .hw-sparkle { position: absolute; width: 3px; height: 3px; background: #e0b870; border-radius: 50%; animation: hwSparkle 4s ease-in-out infinite; opacity: 0; box-shadow: 0 0 4px rgba(220,170,100,0.6); }
         .hw-sparkle:nth-child(1) { left: 15%; top: 70%; animation-delay: 0s; }
         .hw-sparkle:nth-child(2) { left: 25%; top: 75%; animation-delay: 0.8s; }
         .hw-sparkle:nth-child(3) { left: 40%; top: 68%; animation-delay: 1.6s; }
@@ -1019,7 +1019,7 @@
         .hw-sparkle:nth-child(8) { left: 50%; top: 76%; animation-delay: 2.8s; }
         .hw-sparkle:nth-child(9) { left: 90%; top: 71%; animation-delay: 0.4s; }
         .hw-sparkle:nth-child(10) { left: 35%; top: 80%; animation-delay: 3.6s; }
-        @keyframes hwSparkle { 0%,100% { opacity: 0; transform: translateY(0); } 20% { opacity: 0.7; } 50% { opacity: 0; transform: translateY(-40px); } }
+        @keyframes hwSparkle { 0%,100% { opacity: 0; transform: translateY(0); } 20% { opacity: 0.8; } 50% { opacity: 0; transform: translateY(-50px); } }
 
         /* 响应式 */
         @media (max-width: 768px) {
@@ -1196,19 +1196,28 @@
         .theme-scene-5-intro .btn-next { background: var(--red-mid); border-color: rgba(196,168,138,0.30); box-shadow: var(--shadow-btn); }
         .theme-scene-5-intro .btn-next:hover { background: var(--red-deep); box-shadow: var(--shadow-btn-hover); }
 
-        /* 红小鬼照片墙主题 */
-        #content.theme-scene-5-wall { background: #16120e; }
-        .theme-scene-5-wall #topBar { background: rgba(22,18,14,0.94); backdrop-filter: blur(14px); border-bottom-color: rgba(200,160,120,0.06); }
-        .theme-scene-5-wall #topBar .brand { color: #c8b898; }
-        .theme-scene-5-wall #topBar .unit-indicator { color: rgba(200,170,130,0.55); }
-        .theme-scene-5-wall .year-watermark { color: rgba(200,160,120,0.04); }
+        /* 红小鬼照片墙主题 — 暖白底，赭红调 */
+        #content.theme-scene-5-wall { background: #faf5ed; }
+        .theme-scene-5-wall #topBar { background: rgba(255,255,255,0.88); backdrop-filter: blur(14px); border-bottom-color: rgba(184,67,58,0.06); }
+        .theme-scene-5-wall #topBar .brand { color: #5a3a2a; }
+        .theme-scene-5-wall #topBar .unit-indicator { color: rgba(139,42,42,0.35); }
+        .theme-scene-5-wall .year-watermark { color: rgba(139,42,42,0.03); }
 
-        #content.theme-scene-epilogue { background: #141010; }
-        .theme-scene-epilogue .scene-card { background: rgba(26,22,18,0.84); color: #e8ddd0; border: 1px solid rgba(184,67,58,0.08); box-shadow: 0 1px 0 rgba(200,160,120,0.08) inset, 0 4px 24px rgba(0,0,0,0.30), 0 12px 48px rgba(0,0,0,0.22); }
+        /* 结语 — 暖白底，红色文字调，象征希望 */
+        #content.theme-scene-epilogue { background: #faf6f0; }
+        #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 30%, rgba(200,140,80,0.08) 0%, transparent 40%, rgba(180,120,60,0.03) 100%); }
+        .theme-scene-epilogue .scene-card { background: #fffaf5; color: #5a3a2a; border: 1px solid rgba(184,67,58,0.08); box-shadow: 0 1px 0 rgba(184,67,58,0.04) inset, 0 4px 20px rgba(139,42,42,0.04), 0 10px 40px rgba(139,42,42,0.02); }
         .theme-scene-epilogue .scene-card::before { background: linear-gradient(90deg, transparent, var(--red-accent), transparent) !important; }
-        .theme-scene-epilogue #topBar { background: rgba(20,16,14,0.88); backdrop-filter: blur(16px); border-bottom-color: rgba(184,67,58,0.10); }
-        .theme-scene-epilogue #topBar .brand { color: var(--gold-light); }
-        .theme-scene-epilogue #topBar .unit-indicator { color: var(--gold-dim); }
+        .theme-scene-epilogue #topBar { background: rgba(255,255,255,0.88); backdrop-filter: blur(16px); border-bottom-color: rgba(184,67,58,0.06); }
+        .theme-scene-epilogue #topBar .brand { color: #5a3a2a; }
+        .theme-scene-epilogue #topBar .unit-indicator { color: rgba(139,42,42,0.40); }
+        .theme-scene-epilogue .year-watermark { color: rgba(139,42,42,0.03); }
+        .theme-scene-epilogue .scene-header h3 { color: var(--red-mid); }
+        .theme-scene-epilogue .scene-header h3::before, .theme-scene-epilogue .scene-header h3::after { background: var(--red-accent); opacity: 0.35; }
+        .theme-scene-epilogue .btn-next { background: var(--red-mid) !important; color: #fffaf5 !important; border-color: rgba(184,67,58,0.20) !important; box-shadow: 0 4px 14px rgba(139,42,42,0.10) !important; }
+        .theme-scene-epilogue .btn-next:hover { background: var(--red-deep) !important; box-shadow: 0 8px 24px rgba(139,42,42,0.18) !important; }
+        .theme-scene-epilogue input, .theme-scene-epilogue textarea { background: #fdf8f3; border: 1px solid rgba(184,67,58,0.12); color: #5a3a2a; }
+        .theme-scene-epilogue input:focus, .theme-scene-epilogue textarea:focus { border-color: var(--red-accent); outline: none; box-shadow: 0 0 0 2px rgba(184,67,58,0.08); }
         .scene-bg-2 .scene-card { padding-bottom: 70px; overflow: visible; }
         .scene-bg-4 .scene-card { padding-bottom: 70px; }
 
@@ -1325,13 +1334,13 @@
         .transition-hint { font-size: 0.75rem; opacity: 0.35; letter-spacing: 2px; margin-top: 4px; display: block; color: var(--ink-light); }
         .scene-bg-2 .transition-hint, .scene-bg-4 .transition-hint { color: var(--gold); opacity: 0.4; }
 
-        .epilogue-msg { max-width: 540px; margin: 28px auto 0; background: rgba(255,255,255,0.03); border-radius: var(--radius); padding: 26px 28px; border: 1px solid rgba(255,255,255,0.05); }
-        .epilogue-msg h4 { font-family: var(--font-title); font-size: 1.5rem; color: var(--gold); text-align: center; margin-bottom: 12px; letter-spacing: 3px; }
-        .epilogue-msg textarea { width: 100%; height: 86px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); color: #e8dcc8; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.9rem; resize: vertical; font-family: var(--font-text); transition: all var(--transition-fast); outline: none; }
-        .epilogue-msg textarea:focus { border-color: var(--red-accent); border-left-width: 4px; box-shadow: 0 0 0 2px rgba(184,67,58,0.12); background: rgba(0,0,0,0.35); }
+        .epilogue-msg { max-width: 540px; margin: 28px auto 0; background: rgba(139,42,42,0.03); border-radius: var(--radius); padding: 26px 28px; border: 1px solid rgba(184,67,58,0.08); }
+        .epilogue-msg h4 { font-family: var(--font-title); font-size: 1.5rem; color: var(--red-mid); text-align: center; margin-bottom: 12px; letter-spacing: 3px; }
+        .epilogue-msg textarea { width: 100%; height: 86px; background: #fdf8f3; border: 1px solid rgba(184,67,58,0.12); color: #5a3a2a; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.9rem; resize: vertical; font-family: var(--font-text); transition: all var(--transition-fast); outline: none; }
+        .epilogue-msg textarea:focus { border-color: var(--red-accent); border-left-width: 4px; box-shadow: 0 0 0 2px rgba(184,67,58,0.08); background: #fffaf5; }
         .epilogue-msg button { margin-top: 12px; background: var(--red-mid); border: none; color: #fff; padding: 10px 30px; border-radius: 40px; font-size: 0.9rem; cursor: pointer; transition: all var(--transition-fast); font-family: var(--font-text); letter-spacing: 2px; font-weight: 600; }
         .epilogue-msg button:hover { background: var(--red-deep); transform: translateY(-1px); }
-        .epilogue-msg .fb { margin-top: 12px; color: var(--gold-light); font-size: 0.84rem; }
+        .epilogue-msg .fb { margin-top: 12px; color: #8b4a3a; font-size: 0.84rem; }
 
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.90); backdrop-filter: blur(16px); z-index: 4000; display: none; align-items: center; justify-content: center; padding: 30px; }
         #modal.active { display: flex; }
@@ -3048,7 +3057,7 @@
             html+=`</div>`;
         }
         if(data.type==='intro'){html+=`<div class="intro-divider"><span class="diamond"></span></div><div class="intro-text">`;data.introText.split('\n').forEach(p=>{if(p.trim())html+=`<p>${p}</p>`;});html+=`</div>`;}
-        else if(data.type==='hero'||data.type==='epilogue'){if(data.blocks){html+=`<div style="font-size:0.95rem;line-height:2.1;">`;data.blocks.forEach(b=>{if(b.type==='narr'){b.text.split('\n').forEach(line=>{if(line.trim()){if(line.startsWith('策展缘由')||line.startsWith('展览前言'))html+=`<p><strong style="color:#e6b17e;">${line}</strong></p>`;else html+=`<p>${line}</p>`;}});}});html+=`</div>`;}if(data.type==='epilogue'){html+=`<div class="scene-divider"><span class="diamond"></span></div><div style="text-align:center;font-family:var(--font-title);font-size:clamp(1.2rem,2.5vw,1.7rem);color:#c4a88a;padding:4px 0;">赵小二的万里长征已然落幕</div><div style="text-align:center;font-style:italic;font-size:0.95rem;color:#a08878;padding:2px 0 12px;line-height:2;">属于我们每个人的新时代长征，才刚刚启程。<br />如何坚守初心、砥砺前行，走好脚下的长征路，<br />这是值得我们用一生去认真作答的人生课题。</div><div class="epilogue-msg"><h4>走好新时代长征路</h4><textarea id="messageInput" placeholder="写下您的感想……"></textarea><button id="sendMessage">留下足迹</button><div class="fb" id="feedback"></div></div>`;}}
+        else if(data.type==='hero'||data.type==='epilogue'){if(data.blocks){html+=`<div style="font-size:0.95rem;line-height:2.1;">`;data.blocks.forEach(b=>{if(b.type==='narr'){b.text.split('\n').forEach(line=>{if(line.trim()){if(line.startsWith('策展缘由')||line.startsWith('展览前言'))html+=`<p><strong style="color:#a04030;">${line}</strong></p>`;else html+=`<p>${line}</p>`;}});}});html+=`</div>`;}if(data.type==='epilogue'){html+=`<div class="scene-divider"><span class="diamond"></span></div><div style="text-align:center;font-family:var(--font-title);font-size:clamp(1.2rem,2.5vw,1.7rem);color:#8b3a2a;padding:4px 0;">赵小二的万里长征已然落幕</div><div style="text-align:center;font-style:italic;font-size:0.95rem;color:#7a5040;padding:2px 0 12px;line-height:2;">属于我们每个人的新时代长征，才刚刚启程。<br />如何坚守初心、砥砺前行，走好脚下的长征路，<br />这是值得我们用一生去认真作答的人生课题。</div><div class="epilogue-msg"><h4>走好新时代长征路</h4><textarea id="messageInput" placeholder="写下您的感想……"></textarea><button id="sendMessage">留下足迹</button><div class="fb" id="feedback"></div></div>`;}}
         else if(data.type==='photowall'){
             const pw=data;
             const SIZES=['size-lg','size-md','size-h','size-w','size-md','size-h','size-lg','size-w','size-sm','size-h','size-md','size-lg','size-w','size-md','size-sm'];
