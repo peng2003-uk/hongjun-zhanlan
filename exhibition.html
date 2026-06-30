@@ -956,7 +956,7 @@
 
         /* 照片网格 — 轻盈暖白 */
         .hw-photo-grid { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 14px; padding: 1vh 0; max-width: 880px; }
-        .hw-photo-card { background: #faf6ef; padding: 7px 7px 28px 7px; box-shadow: 0 4px 14px rgba(120,60,40,0.12), 0 1px 3px rgba(120,60,40,0.06); transition: transform 0.45s cubic-bezier(0.25,1,0.5,1), box-shadow 0.45s ease, filter 0.4s ease; cursor: pointer; position: relative; }
+        .hw-photo-card { background: #ffffff; padding: 7px 7px 28px 7px; box-shadow: 0 4px 14px rgba(120,60,40,0.12), 0 1px 3px rgba(120,60,40,0.06); transition: transform 0.45s cubic-bezier(0.25,1,0.5,1), box-shadow 0.45s ease, filter 0.4s ease; cursor: pointer; position: relative; }
         .hw-photo-card:nth-child(odd) { transform: rotate(-1.5deg); }
         .hw-photo-card:nth-child(even) { transform: rotate(1.8deg); }
         .hw-photo-card:nth-child(3n) { transform: rotate(-2.2deg); }
@@ -1001,7 +1001,7 @@
         /* 继续按钮 — 红色调 */
         .hw-guide-wrap { position: relative; z-index: 1; text-align: center; padding: 1vh 0 2vh; }
         .hw-guide-wrap .hw-guide-text { font-size: 0.8rem; color: #a08070; letter-spacing: 2px; margin-bottom: 8px; }
-        .hw-continue-btn { display: inline-block; padding: 12px 40px; background: var(--red-mid); border: 1px solid rgba(184,67,58,0.30); color: #fffaf5; font-family: var(--font-text); font-size: 0.95rem; letter-spacing: 3px; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; box-shadow: 0 4px 16px rgba(139,42,42,0.12); }
+        .hw-continue-btn { display: inline-block; padding: 12px 40px; background: var(--red-mid); border: 1px solid rgba(184,67,58,0.30); color: #ffffff; font-family: var(--font-text); font-size: 0.95rem; letter-spacing: 3px; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; box-shadow: 0 4px 16px rgba(139,42,42,0.12); }
         .hw-continue-btn:hover { background: var(--red-deep); border-color: var(--red-accent); color: #ffffff; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,42,42,0.22); }
         .hw-continue-btn::after { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: left 0.8s linear; }
         .hw-continue-btn:hover::after { left: 100%; }
@@ -1197,16 +1197,16 @@
         .theme-scene-5-intro .btn-next:hover { background: var(--red-deep); box-shadow: var(--shadow-btn-hover); }
 
         /* 红小鬼照片墙主题 — 暖白底，赭红调 */
-        #content.theme-scene-5-wall { background: #faf5ed; }
+        #content.theme-scene-5-wall { background: #ffffff; }
         .theme-scene-5-wall #topBar { background: rgba(255,255,255,0.88); backdrop-filter: blur(14px); border-bottom-color: rgba(184,67,58,0.06); }
         .theme-scene-5-wall #topBar .brand { color: #5a3a2a; }
         .theme-scene-5-wall #topBar .unit-indicator { color: rgba(139,42,42,0.35); }
         .theme-scene-5-wall .year-watermark { color: rgba(139,42,42,0.03); }
 
         /* 结语 — 暖白底，红色文字调，象征希望 */
-        #content.theme-scene-epilogue { background: #faf6f0; }
-        #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 30%, rgba(200,140,80,0.08) 0%, transparent 40%, rgba(180,120,60,0.03) 100%); }
-        .theme-scene-epilogue .scene-card { background: #fffaf5; color: #5a3a2a; border: 1px solid rgba(184,67,58,0.08); box-shadow: 0 1px 0 rgba(184,67,58,0.04) inset, 0 4px 20px rgba(139,42,42,0.04), 0 10px 40px rgba(139,42,42,0.02); }
+        #content.theme-scene-epilogue { background: #ffffff; }
+        #content.theme-scene-epilogue::before { background: radial-gradient(ellipse at 50% 30%, rgba(200,140,80,0.06) 0%, transparent 40%, rgba(180,120,60,0.02) 100%); }
+        .theme-scene-epilogue .scene-card { background: #ffffff; color: #5a3a2a; border: 1px solid rgba(184,67,58,0.06); box-shadow: 0 1px 0 rgba(184,67,58,0.03) inset, 0 2px 14px rgba(139,42,42,0.03), 0 6px 30px rgba(139,42,42,0.02); }
         .theme-scene-epilogue .scene-card::before { background: linear-gradient(90deg, transparent, var(--red-accent), transparent) !important; }
         .theme-scene-epilogue #topBar { background: rgba(255,255,255,0.88); backdrop-filter: blur(16px); border-bottom-color: rgba(184,67,58,0.06); }
         .theme-scene-epilogue #topBar .brand { color: #5a3a2a; }
@@ -1214,9 +1214,9 @@
         .theme-scene-epilogue .year-watermark { color: rgba(139,42,42,0.03); }
         .theme-scene-epilogue .scene-header h3 { color: var(--red-mid); }
         .theme-scene-epilogue .scene-header h3::before, .theme-scene-epilogue .scene-header h3::after { background: var(--red-accent); opacity: 0.35; }
-        .theme-scene-epilogue .btn-next { background: var(--red-mid) !important; color: #fffaf5 !important; border-color: rgba(184,67,58,0.20) !important; box-shadow: 0 4px 14px rgba(139,42,42,0.10) !important; }
+        .theme-scene-epilogue .btn-next { background: var(--red-mid) !important; color: #ffffff !important; border-color: rgba(184,67,58,0.20) !important; box-shadow: 0 4px 14px rgba(139,42,42,0.10) !important; }
         .theme-scene-epilogue .btn-next:hover { background: var(--red-deep) !important; box-shadow: 0 8px 24px rgba(139,42,42,0.18) !important; }
-        .theme-scene-epilogue input, .theme-scene-epilogue textarea { background: #fdf8f3; border: 1px solid rgba(184,67,58,0.12); color: #5a3a2a; }
+        .theme-scene-epilogue input, .theme-scene-epilogue textarea { background: #fafafa; border: 1px solid rgba(184,67,58,0.12); color: #5a3a2a; }
         .theme-scene-epilogue input:focus, .theme-scene-epilogue textarea:focus { border-color: var(--red-accent); outline: none; box-shadow: 0 0 0 2px rgba(184,67,58,0.08); }
         .scene-bg-2 .scene-card { padding-bottom: 70px; overflow: visible; }
         .scene-bg-4 .scene-card { padding-bottom: 70px; }
@@ -1336,8 +1336,8 @@
 
         .epilogue-msg { max-width: 540px; margin: 28px auto 0; background: rgba(139,42,42,0.03); border-radius: var(--radius); padding: 26px 28px; border: 1px solid rgba(184,67,58,0.08); }
         .epilogue-msg h4 { font-family: var(--font-title); font-size: 1.5rem; color: var(--red-mid); text-align: center; margin-bottom: 12px; letter-spacing: 3px; }
-        .epilogue-msg textarea { width: 100%; height: 86px; background: #fdf8f3; border: 1px solid rgba(184,67,58,0.12); color: #5a3a2a; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.9rem; resize: vertical; font-family: var(--font-text); transition: all var(--transition-fast); outline: none; }
-        .epilogue-msg textarea:focus { border-color: var(--red-accent); border-left-width: 4px; box-shadow: 0 0 0 2px rgba(184,67,58,0.08); background: #fffaf5; }
+        .epilogue-msg textarea { width: 100%; height: 86px; background: #fafafa; border: 1px solid rgba(184,67,58,0.12); color: #5a3a2a; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.9rem; resize: vertical; font-family: var(--font-text); transition: all var(--transition-fast); outline: none; }
+        .epilogue-msg textarea:focus { border-color: var(--red-accent); border-left-width: 4px; box-shadow: 0 0 0 2px rgba(184,67,58,0.08); background: #ffffff; }
         .epilogue-msg button { margin-top: 12px; background: var(--red-mid); border: none; color: #fff; padding: 10px 30px; border-radius: 40px; font-size: 0.9rem; cursor: pointer; transition: all var(--transition-fast); font-family: var(--font-text); letter-spacing: 2px; font-weight: 600; }
         .epilogue-msg button:hover { background: var(--red-deep); transform: translateY(-1px); }
         .epilogue-msg .fb { margin-top: 12px; color: #8b4a3a; font-size: 0.84rem; }
