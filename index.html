@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>雄关漫道真如铁 · 红小鬼的长征路</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -2835,20 +2835,26 @@
         }
         /* ===== 横屏手机适配（高度小、触屏横持）===== */
         @media (orientation: landscape) and (max-height: 500px) {
-            #topBar { min-height: 42px; padding: 5px 16px; }
-            #topBar .brand { font-size: 0.85rem; }
-            #topBar .nav-controls button { width: 28px; height: 28px; font-size: 0.8rem; }
-            #mapNav { width: 96px; min-width: 96px; padding: 38px 0 16px 0; }
-            #mapNav .map-title { font-size: 0.62rem; padding: 0 6px 10px; margin: 0 6px 10px; letter-spacing: 2px; }
-            #mapNav .map-title span { font-size: 0.42rem; }
-            #mapNav .map-svg-wrap { padding: 0 6px; }
-            .map-node text { font-size: 5px; }
-            #sceneContainer { padding: 0 12px 28px; }
-            .scene-card { padding: 18px 16px 22px; margin: 10px 0 16px; }
-            .narrative { font-size: 0.85rem; line-height: 1.9; }
-            .intro-title { font-size: 1.3rem; letter-spacing: 3px; }
-            .intro-text { font-size: 0.85rem; }
-            .scene-guide .guide-text { font-size: 0.8rem; }
+            #topBar { min-height: 40px; padding: 4px 14px; }
+            #topBar .brand { font-size: 0.82rem; }
+            #topBar .nav-controls button { width: 26px; height: 26px; font-size: 0.75rem; }
+            #mapNav { width: 88px; min-width: 88px; padding: 30px 0 12px 0; }
+            #mapNav .map-title { font-size: 0.6rem; padding: 0 4px 8px; margin: 0 4px 8px; letter-spacing: 2px; }
+            #mapNav .map-title span { font-size: 0.4rem; }
+            #mapNav .map-svg-wrap { padding: 0 4px; }
+            .map-node text { font-size: 4px; }
+            #sceneContainer { padding: 0 10px 24px; }
+            .scene-card { padding: 14px 14px 18px; margin: 8px 0 14px; }
+            .narrative { font-size: 0.82rem; line-height: 1.8; }
+            .intro-title { font-size: 1.2rem; letter-spacing: 2px; }
+            .intro-text { font-size: 0.82rem; }
+            .scene-guide .guide-text { font-size: 0.78rem; }
+            /* 剧场不锁死高度，内容自然展开，由 #content 滚动 */
+            [class$="-theater"] { height: auto !important; min-height: 100%; }
+            [class$="-theater"] .theater-stage { flex-direction: column !important; }
+            [class$="-theater"] .theater-story { width: 100% !important; height: auto !important; max-height: none !important; }
+            [class$="-theater"] .theater-evidence { width: 100% !important; min-height: 300px !important; }
+            [class$="-theater"] .theater-archive { position: relative; top: auto; left: auto; transform: none; width: 100%; max-width: 100%; }
         }
     </style>
 </head>
@@ -2979,6 +2985,16 @@
         window.addEventListener('orientationchange', update);
         update();
         if (skip) skip.addEventListener('click', function(){ skipped = true; prompt.style.display = 'none'; });
+    })();
+
+    /* 横屏手机禁用懒加载，确保图片能及时加载 */
+    (function initMobileEagerLoad() {
+        if (window.innerHeight > 500) return;
+        const forceEager = function() {
+            document.querySelectorAll('img[loading="lazy"]').forEach(function(img){ img.loading = 'eager'; });
+        };
+        new MutationObserver(forceEager).observe(document.body, { childList: true, subtree: true });
+        forceEager();
     })();
 
     const starCanvas = document.getElementById('starCanvas');
