@@ -89,6 +89,20 @@
             letter-spacing: 4px;
             color: var(--gold-dim);
         }
+        #rotatePrompt .rp-skip {
+            margin-top: 36px;
+            background: transparent;
+            border: 1px solid rgba(230,201,168,0.35);
+            color: var(--gold-dim);
+            font-family: var(--font-text);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            padding: 10px 26px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #rotatePrompt .rp-skip:active { background: rgba(230,201,168,0.08); color: var(--gold-light); }
         /* 竖屏触屏设备显示提示，横屏自动隐藏 */
         @media (orientation: portrait) and (max-width: 900px) {
             #rotatePrompt { display: flex; }
@@ -2845,6 +2859,7 @@
         <div class="rp-phone"></div>
         <p class="rp-title">请旋转手机</p>
         <p class="rp-sub">横屏观看 · 效果更佳</p>
+        <button class="rp-skip" id="rpSkip">仍要竖屏浏览</button>
     </div>
     <div id="custom-cursor"></div>
     <div id="custom-cursor-follower"></div>
@@ -2935,6 +2950,23 @@
     <script>
     (function() {
     'use strict';
+
+    /* 手机横竖屏检测（JS 比 CSS media query 在部分 WebView 里更可靠） */
+    (function initRotatePrompt() {
+        const prompt = document.getElementById('rotatePrompt');
+        if (!prompt) return;
+        let skipped = false;
+        function isPortrait() { return window.innerHeight > window.innerWidth; }
+        function update() {
+            if (skipped) { prompt.style.display = 'none'; return; }
+            prompt.style.display = isPortrait() ? 'flex' : 'none';
+        }
+        window.addEventListener('resize', update);
+        window.addEventListener('orientationchange', update);
+        update();
+        const skip = document.getElementById('rpSkip');
+        if (skip) skip.addEventListener('click', function(){ skipped = true; prompt.style.display = 'none'; });
+    })();
 
     const starCanvas = document.getElementById('starCanvas');
     if (starCanvas) {
