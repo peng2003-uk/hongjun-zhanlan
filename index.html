@@ -46,6 +46,54 @@
             background-size: 256px 256px;
         }
 
+        /* ===== 手机横屏提示遮罩 ===== */
+        #rotatePrompt {
+            position: fixed; inset: 0; z-index: 10001;
+            display: none;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+            background: radial-gradient(ellipse at 50% 25%, #2a1414 0%, #0d0808 72%);
+            color: var(--gold-light);
+            text-align: center;
+            font-family: var(--font-text);
+        }
+        #rotatePrompt .rp-phone {
+            width: 72px; height: 128px;
+            border: 2px solid rgba(230,201,168,0.7);
+            border-radius: 14px;
+            position: relative;
+            margin-bottom: 32px;
+            box-shadow: 0 0 30px rgba(184,67,58,0.25), inset 0 0 22px rgba(230,201,168,0.06);
+            animation: rpSpin 2.6s ease-in-out infinite;
+        }
+        #rotatePrompt .rp-phone::before {
+            content: '';
+            position: absolute; left: 50%; bottom: 6px;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(230,201,168,0.7);
+            transform: translateX(-50%);
+        }
+        @keyframes rpSpin {
+            0%, 18% { transform: rotate(0deg); }
+            55%, 100% { transform: rotate(90deg); }
+        }
+        #rotatePrompt .rp-title {
+            font-family: var(--font-title);
+            font-size: 1.7rem;
+            letter-spacing: 8px;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+        #rotatePrompt .rp-sub {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--gold-dim);
+        }
+        /* 竖屏触屏设备显示提示，横屏自动隐藏 */
+        @media (orientation: portrait) and (max-width: 900px) {
+            #rotatePrompt { display: flex; }
+        }
+
         html { scroll-behavior: smooth; }
         body {
             font-family: var(--font-text);
@@ -2771,11 +2819,33 @@
             .theater-photo { display: none; }
             .theater-passage-btn { font-size: 0.85rem; letter-spacing: 2px; height: 44px; }
         }
+        /* ===== 横屏手机适配（高度小、触屏横持）===== */
+        @media (orientation: landscape) and (max-height: 500px) {
+            #topBar { min-height: 42px; padding: 5px 16px; }
+            #topBar .brand { font-size: 0.85rem; }
+            #topBar .nav-controls button { width: 28px; height: 28px; font-size: 0.8rem; }
+            #mapNav { width: 96px; min-width: 96px; padding: 38px 0 16px 0; }
+            #mapNav .map-title { font-size: 0.62rem; padding: 0 6px 10px; margin: 0 6px 10px; letter-spacing: 2px; }
+            #mapNav .map-title span { font-size: 0.42rem; }
+            #mapNav .map-svg-wrap { padding: 0 6px; }
+            .map-node text { font-size: 5px; }
+            #sceneContainer { padding: 0 12px 28px; }
+            .scene-card { padding: 18px 16px 22px; margin: 10px 0 16px; }
+            .narrative { font-size: 0.85rem; line-height: 1.9; }
+            .intro-title { font-size: 1.3rem; letter-spacing: 3px; }
+            .intro-text { font-size: 0.85rem; }
+            .scene-guide .guide-text { font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
 
     <div id="grain-overlay"></div>
+    <div id="rotatePrompt">
+        <div class="rp-phone"></div>
+        <p class="rp-title">请旋转手机</p>
+        <p class="rp-sub">横屏观看 · 效果更佳</p>
+    </div>
     <div id="custom-cursor"></div>
     <div id="custom-cursor-follower"></div>
 
