@@ -2857,8 +2857,8 @@
     <div id="grain-overlay"></div>
     <div id="rotatePrompt">
         <div class="rp-phone"></div>
-        <p class="rp-title">请旋转手机</p>
-        <p class="rp-sub">横屏观看 · 效果更佳</p>
+        <p class="rp-title" id="rpTitle">请旋转手机</p>
+        <p class="rp-sub" id="rpSub">横屏观看 · 效果更佳</p>
         <button class="rp-skip" id="rpSkip">仍要竖屏浏览</button>
     </div>
     <div id="custom-cursor"></div>
@@ -2956,6 +2956,20 @@
         const prompt = document.getElementById('rotatePrompt');
         if (!prompt) return;
         let skipped = false;
+        const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+        const title = document.getElementById('rpTitle');
+        const sub = document.getElementById('rpSub');
+        const skip = document.getElementById('rpSkip');
+        const phoneIcon = prompt.querySelector('.rp-phone');
+
+        // 微信内置浏览器锁竖屏，无法横屏 → 引导跳系统浏览器
+        if (isWeChat) {
+            if (title) title.textContent = '请用浏览器打开';
+            if (sub) sub.textContent = '点击右上角 ··· → 在浏览器中打开';
+            if (skip) skip.textContent = '在微信内竖屏浏览';
+            if (phoneIcon) phoneIcon.style.display = 'none';
+        }
+
         function isPortrait() { return window.innerHeight > window.innerWidth; }
         function update() {
             if (skipped) { prompt.style.display = 'none'; return; }
@@ -2964,7 +2978,6 @@
         window.addEventListener('resize', update);
         window.addEventListener('orientationchange', update);
         update();
-        const skip = document.getElementById('rpSkip');
         if (skip) skip.addEventListener('click', function(){ skipped = true; prompt.style.display = 'none'; });
     })();
 
